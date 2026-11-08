@@ -7,6 +7,9 @@ import '../../core/game_random.dart';
 import '../../domain/career/season_calendar.dart';
 import '../../domain/career/week_engine.dart';
 import '../../domain/league/team.dart';
+import '../../domain/national/nation.dart';
+import '../../domain/national/national_engine.dart';
+import '../../domain/national/tournament.dart';
 import '../../domain/match/critical_moment.dart';
 import '../../domain/match/match_session.dart';
 import '../../domain/match/match_simulator.dart';
@@ -14,6 +17,7 @@ import '../../domain/match/moment_resolver.dart';
 import '../../domain/match/player_rating.dart';
 import '../../game/mini_game_types.dart';
 import '../../game/mini_game_view.dart';
+import '../l10n_labels.dart';
 import '../providers.dart';
 
 enum _Stage { preMatch, momentIntro, miniGame, momentResult, summary }
@@ -35,6 +39,11 @@ class _MatchScreenState extends ConsumerState<MatchScreen> {
   late final Team _opponent;
   late final Side _playerSide;
   late final MatchSession _session;
+  late final bool _isNational;
+  int _round = 0;
+
+  /// Turnuva eleme maçı berabere bitince penaltı atışları (bizim, rakibin).
+  (int, int)? _pens;
 
   _Stage _stage = _Stage.preMatch;
   bool _finishing = false;
@@ -46,13 +55,29 @@ class _MatchScreenState extends ConsumerState<MatchScreen> {
     super.initState();
     final career = ref.read(activeCareerProvider)!.state;
     final player = career.player;
-    final world = ref.read(clubWorldProvider)!;
-    final clubId = career.contract!.clubId;
-    final round = SeasonCalendar.leagueRoundOf(career.week) ?? 1;
-    final fixture = world.fixtureFor(clubId, round);
-    _playerTeam = world.team(clubId);
-    _opponent = fixture.opponent;
-    _playerSide = fixture.home ? Side.home : Side.away;
+    _isNational = NationalEngine.dayOf(career) == NationalDay.play;
+    if (_isNational) {
+      // Turnuva maçı: tarafsız saha, ülke takımları.
+      final bracket = NationalEngine.tournamentOf(career)!;
+      _round = NationalEngine.roundOfWeek(career.week)!;
+      final home = bracket.nation(NationalWorld.homeId);
+      final opponent = bracket.opponentOfHome(_round)!;
+      _playerTeam = Team(id: home.id, name: home.name, strength: home.strength);
+      _opponent = Team(
+        id: opponent.id,
+        name: opponent.name,
+        strength: opponent.strength,
+      );
+      _playerSide = Side.home;
+    } else {
+      final world = ref.read(clubWorldProvider)!;
+      final clubId = career.contract!.clubId;
+      final round = SeasonCalendar.leagueRoundOf(career.week) ?? 1;
+      final fixture = world.fixtureFor(clubId, round);
+      _playerTeam = world.team(clubId);
+      _opponent = fixture.opponent;
+      _playerSide = fixture.home ? Side.home : Side.away;
+    }
     final playerIsHome = _playerSide == Side.home;
     _session = MatchSession.start(
       homeStrength: playerIsHome ? _playerTeam.strength : _opponent.strength,
@@ -60,6 +85,7 @@ class _MatchScreenState extends ConsumerState<MatchScreen> {
       playerSide: _playerSide,
       player: player,
       random: _random,
+      neutral: _isNational,
     );
   }
 
@@ -121,9 +147,15 @@ class _MatchScreenState extends ConsumerState<MatchScreen> {
             assists: goals.where((g) => g.assistedByPlayer).length,
             scoreFor: own,
             scoreAgainst: other,
+            pensFor: own == other ? _pens?.$1 : null,
+            pensAgainst: own == other ? _pens?.$2 : null,
             result: own > other
                 ? MatchResultKind.win
                 : own < other
+                ? MatchResultKind.loss
+                : _pens != null && _pens!.$1 > _pens!.$2
+                ? MatchResultKind.win
+                : _pens != null
                 ? MatchResultKind.loss
                 : MatchResultKind.draw,
           ),
@@ -155,7 +187,11 @@ class _MatchScreenState extends ConsumerState<MatchScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(l10n.matchTitle),
+        title: Text(
+          _isNational
+              ? l10n.nationalMatchTitle(l10n.roundName(_round))
+              : l10n.matchTitle,
+        ),
         automaticallyImplyLeading: _stage == _Stage.preMatch,
       ),
       body: SafeArea(
@@ -236,6 +272,14 @@ class _MatchScreenState extends ConsumerState<MatchScreen> {
         ),
         const SizedBox(height: 12),
         Text(l10n.matchYourTeam(_playerTeam.name), textAlign: TextAlign.center),
+        if (_isNational) ...[
+          const SizedBox(height: 8),
+          Text(
+            l10n.nationalKnockoutNote,
+            textAlign: TextAlign.center,
+            style: Theme.of(context).textTheme.bodySmall,
+          ),
+        ],
         const Spacer(),
         FilledButton(
           style: FilledButton.styleFrom(minimumSize: const Size.fromHeight(56)),
@@ -345,10 +389,22 @@ class _MatchScreenState extends ConsumerState<MatchScreen> {
     final result = _session.result;
     final own = _playerSide == Side.home ? result.homeGoals : result.awayGoals;
     final other = result.totalGoals - own;
+    if (_isNational && own == other && _pens == null) {
+      _pens = Shootout.decide(
+        _playerTeam.strength,
+        _opponent.strength,
+        _random,
+      );
+    }
+    final pens = own == other ? _pens : null;
     final verdict = own > other
         ? l10n.resultWin
         : own < other
         ? l10n.resultLoss
+        : pens != null
+        ? (pens.$1 > pens.$2
+              ? l10n.shootoutWon('${pens.$1}-${pens.$2}')
+              : l10n.shootoutLost('${pens.$1}-${pens.$2}'))
         : l10n.resultDraw;
     final rating = PlayerRating.compute(_session);
     final textTheme = Theme.of(context).textTheme;

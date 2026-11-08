@@ -23,6 +23,9 @@ IconData newsIcon(NewsKind k) => switch (k) {
   NewsKind.signed => Icons.draw,
   NewsKind.event => Icons.forum,
   NewsKind.injury => Icons.healing,
+  NewsKind.national => Icons.flag,
+  NewsKind.achievement => Icons.emoji_events,
+  NewsKind.retired => Icons.sports_score,
 };
 
 /// 0-100 değere göre renk: düşük kırmızı, orta nötr, yüksek yeşil.

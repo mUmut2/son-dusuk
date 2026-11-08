@@ -1,11 +1,16 @@
 import '../app/l10n/app_localizations.dart';
+import '../domain/achievements/achievements.dart';
 import '../domain/career/difficulty.dart';
+import '../domain/career/retirement.dart';
 import '../domain/career/player_status.dart';
 import '../domain/career/season_calendar.dart';
 import '../domain/career/week_report.dart';
 import '../domain/career/weekly_plan.dart';
 import '../domain/club/contract.dart';
 import '../domain/club/finance.dart';
+import '../domain/national/nation.dart';
+import '../domain/national/national_engine.dart';
+import '../domain/national/national_career.dart';
 import '../domain/player/attribute.dart';
 import '../domain/social/event_models.dart';
 import '../domain/social/relationships.dart';
@@ -146,7 +151,48 @@ extension L10nLabels on AppLocalizations {
     WeekEventKind.renewalOffered => eventRenewalOffered(clubName),
     WeekEventKind.contractExpired => eventContractExpired(clubName),
     WeekEventKind.newEvent => eventNewEvent(eventTitle),
+    WeekEventKind.nationalCalled => eventNationalCalled(
+      tournamentName(TournamentKind.values.byName(e.detail!)),
+      nationalRoleName(NationalRole.values.byName(e.detail2!)),
+    ),
+    WeekEventKind.nationalOmitted => eventNationalOmitted(
+      tournamentName(TournamentKind.values.byName(e.detail!)),
+    ),
+    WeekEventKind.nationalMatch => _nationalMatchText(e),
+    WeekEventKind.nationalOut => eventNationalOut(
+      tournamentName(TournamentKind.values.byName(e.detail!)),
+      stageResult(TournamentStage.values.byName(e.detail2!)),
+    ),
+    WeekEventKind.nationalRunnerUp => eventNationalRunnerUp(
+      tournamentName(TournamentKind.values.byName(e.detail!)),
+    ),
+    WeekEventKind.nationalChampion => eventNationalChampion(
+      tournamentName(TournamentKind.values.byName(e.detail!)),
+    ),
+    WeekEventKind.achievement => eventAchievement(
+      achievementTitle(Achievement.values.byName(e.detail!)),
+    ),
+    WeekEventKind.retired => eventRetired,
   };
+
+  String _nationalMatchText(WeekEvent e) {
+    final parts = (e.detail2 ?? '').split('|');
+    final round = roundName(e.weeks ?? 0);
+    return parts.length > 1
+        ? eventNationalMatchPens(
+            round,
+            NationalWorld.homeName,
+            parts[0],
+            e.detail ?? '',
+            nationalPens(parts[1]),
+          )
+        : eventNationalMatch(
+            round,
+            NationalWorld.homeName,
+            parts[0],
+            e.detail ?? '',
+          );
+  }
 
   String relationName(Relation r) => switch (r) {
     Relation.coach => rel_coach,
@@ -180,29 +226,43 @@ extension L10nLabels on AppLocalizations {
   };
 
   /// Haber akışı satırı. [clubName]: kulüp kimliğinden ada çevirici.
-  String newsText(NewsItem n, String Function(String id) clubName) =>
-      switch (n.kind) {
-        NewsKind.match =>
-          (n.params['goals'] ?? '0') == '0'
-              ? newsMatch(n.params['opponent'] ?? '', n.params['score'] ?? '')
-              : newsMatchGoals(
-                  n.params['opponent'] ?? '',
-                  n.params['score'] ?? '',
-                  n.params['goals'] ?? '',
-                ),
-        NewsKind.signed => newsSigned(clubName(n.params['club'] ?? '')),
-        NewsKind.injury => newsInjury(
-          injuryTypeName(
-            InjuryType.values.byName(n.params['type'] ?? 'muscle'),
-          ),
-          n.params['weeks'] ?? '',
+  String newsText(
+    NewsItem n,
+    String Function(String id) clubName,
+  ) => switch (n.kind) {
+    NewsKind.match =>
+      (n.params['goals'] ?? '0') == '0'
+          ? newsMatch(n.params['opponent'] ?? '', n.params['score'] ?? '')
+          : newsMatchGoals(
+              n.params['opponent'] ?? '',
+              n.params['score'] ?? '',
+              n.params['goals'] ?? '',
+            ),
+    NewsKind.signed => newsSigned(clubName(n.params['club'] ?? '')),
+    NewsKind.injury => newsInjury(
+      injuryTypeName(InjuryType.values.byName(n.params['type'] ?? 'muscle')),
+      n.params['weeks'] ?? '',
+    ),
+    NewsKind.national => newsNational(
+      tournamentName(TournamentKind.values.byName(n.params['kind'] ?? 'world')),
+      stageResult(
+        TournamentStage.values.byName(
+          n.params['stage'] ?? TournamentStage.roundOf16.name,
         ),
-        NewsKind.event => () {
-          final t = eventTexts(n.params['id'] ?? '', const {});
-          final i = int.tryParse(n.params['choice'] ?? '') ?? 0;
-          return newsEvent(t.title, t.choices[i]);
-        }(),
-      };
+      ),
+    ),
+    NewsKind.achievement => newsAchievement(
+      achievementTitle(
+        Achievement.values.byName(n.params['id'] ?? 'firstMatch'),
+      ),
+    ),
+    NewsKind.retired => newsRetired(n.params['age'] ?? ''),
+    NewsKind.event => () {
+      final t = eventTexts(n.params['id'] ?? '', const {});
+      final i = int.tryParse(n.params['choice'] ?? '') ?? 0;
+      return newsEvent(t.title, t.choices[i]);
+    }(),
+  };
 
   String roleName(SquadRole r) => switch (r) {
     SquadRole.prospect => role_prospect,
@@ -223,6 +283,7 @@ extension L10nLabels on AppLocalizations {
     MoneyKind.goalBonus => money_goalBonus,
     MoneyKind.agentFee => money_agentFee,
     MoneyKind.living => money_living,
+    MoneyKind.nationalBonus => money_nationalBonus,
   };
 
   String agentLevelName(int level) => switch (level) {
@@ -237,6 +298,135 @@ extension L10nLabels on AppLocalizations {
     3 => leagueTier3,
     4 => leagueTier4,
     _ => leagueTier5,
+  };
+
+  String nationalDayText(NationalDay d, {String opponent = ''}) => switch (d) {
+    NationalDay.none => '',
+    NationalDay.notCalled => nationalNotCalledThisWeek,
+    NationalDay.eliminated => nationalEliminatedThisWeek,
+    NationalDay.injured => nationalInjuredThisWeek,
+    NationalDay.benched => nationalBenchedThisWeek,
+    NationalDay.play => nationalMatchThisWeek(opponent),
+  };
+
+  String tournamentName(TournamentKind k) => switch (k) {
+    TournamentKind.continental => tournament_continental,
+    TournamentKind.world => tournament_world,
+  };
+
+  String roundName(int round) => switch (round) {
+    0 => round_0,
+    1 => round_1,
+    2 => round_2,
+    _ => round_3,
+  };
+
+  String stageResult(TournamentStage s) => switch (s) {
+    TournamentStage.roundOf16 => stageResult_roundOf16,
+    TournamentStage.quarterFinal => stageResult_quarterFinal,
+    TournamentStage.semiFinal => stageResult_semiFinal,
+    TournamentStage.runnerUp => stageResult_runnerUp,
+    TournamentStage.champion => stageResult_champion,
+  };
+
+  String nationalRoleName(NationalRole r) => switch (r) {
+    NationalRole.starter => natRole_starter,
+    NationalRole.rotation => natRole_rotation,
+    NationalRole.reserve => natRole_reserve,
+  };
+
+  String legacyName(LegacyRank r) => switch (r) {
+    LegacyRank.amateur => legacy_amateur,
+    LegacyRank.local => legacy_local,
+    LegacyRank.pro => legacy_pro,
+    LegacyRank.star => legacy_star,
+    LegacyRank.legend => legacy_legend,
+  };
+
+  String legacyBlurb(LegacyRank r) => switch (r) {
+    LegacyRank.amateur => legacyBlurb_amateur,
+    LegacyRank.local => legacyBlurb_local,
+    LegacyRank.pro => legacyBlurb_pro,
+    LegacyRank.star => legacyBlurb_star,
+    LegacyRank.legend => legacyBlurb_legend,
+  };
+
+  String achievementCategoryName(AchievementCategory c) => switch (c) {
+    AchievementCategory.career => achCategory_career,
+    AchievementCategory.club => achCategory_club,
+    AchievementCategory.national => achCategory_national,
+    AchievementCategory.growth => achCategory_growth,
+    AchievementCategory.wealth => achCategory_wealth,
+  };
+
+  String achievementTitle(Achievement a) => switch (a) {
+    Achievement.firstMatch => ach_firstMatch_title,
+    Achievement.firstGoal => ach_firstGoal_title,
+    Achievement.firstAssist => ach_firstAssist_title,
+    Achievement.goals10 => ach_goals10_title,
+    Achievement.goals50 => ach_goals50_title,
+    Achievement.goals150 => ach_goals150_title,
+    Achievement.goals400 => ach_goals400_title,
+    Achievement.matches50 => ach_matches50_title,
+    Achievement.matches250 => ach_matches250_title,
+    Achievement.matches500 => ach_matches500_title,
+    Achievement.hatTrick => ach_hatTrick_title,
+    Achievement.starPerformance => ach_starPerformance_title,
+    Achievement.seasons10 => ach_seasons10_title,
+    Achievement.veteran => ach_veteran_title,
+    Achievement.firstTransfer => ach_firstTransfer_title,
+    Achievement.topLeague => ach_topLeague_title,
+    Achievement.leagueChampion => ach_leagueChampion_title,
+    Achievement.topLeagueChampion => ach_topLeagueChampion_title,
+    Achievement.loyal => ach_loyal_title,
+    Achievement.agentTop => ach_agentTop_title,
+    Achievement.nationalDebut => ach_nationalDebut_title,
+    Achievement.nationalGoal => ach_nationalGoal_title,
+    Achievement.nationalFinal => ach_nationalFinal_title,
+    Achievement.continentalChampion => ach_continentalChampion_title,
+    Achievement.worldChampion => ach_worldChampion_title,
+    Achievement.overall70 => ach_overall70_title,
+    Achievement.overall80 => ach_overall80_title,
+    Achievement.overall90 => ach_overall90_title,
+    Achievement.fanIdol => ach_fanIdol_title,
+    Achievement.comfortable => ach_comfortable_title,
+    Achievement.millionaire => ach_millionaire_title,
+    Achievement.tycoon => ach_tycoon_title,
+  };
+
+  String achievementDesc(Achievement a) => switch (a) {
+    Achievement.firstMatch => ach_firstMatch_desc,
+    Achievement.firstGoal => ach_firstGoal_desc,
+    Achievement.firstAssist => ach_firstAssist_desc,
+    Achievement.goals10 => ach_goals10_desc,
+    Achievement.goals50 => ach_goals50_desc,
+    Achievement.goals150 => ach_goals150_desc,
+    Achievement.goals400 => ach_goals400_desc,
+    Achievement.matches50 => ach_matches50_desc,
+    Achievement.matches250 => ach_matches250_desc,
+    Achievement.matches500 => ach_matches500_desc,
+    Achievement.hatTrick => ach_hatTrick_desc,
+    Achievement.starPerformance => ach_starPerformance_desc,
+    Achievement.seasons10 => ach_seasons10_desc,
+    Achievement.veteran => ach_veteran_desc,
+    Achievement.firstTransfer => ach_firstTransfer_desc,
+    Achievement.topLeague => ach_topLeague_desc,
+    Achievement.leagueChampion => ach_leagueChampion_desc,
+    Achievement.topLeagueChampion => ach_topLeagueChampion_desc,
+    Achievement.loyal => ach_loyal_desc,
+    Achievement.agentTop => ach_agentTop_desc,
+    Achievement.nationalDebut => ach_nationalDebut_desc,
+    Achievement.nationalGoal => ach_nationalGoal_desc,
+    Achievement.nationalFinal => ach_nationalFinal_desc,
+    Achievement.continentalChampion => ach_continentalChampion_desc,
+    Achievement.worldChampion => ach_worldChampion_desc,
+    Achievement.overall70 => ach_overall70_desc,
+    Achievement.overall80 => ach_overall80_desc,
+    Achievement.overall90 => ach_overall90_desc,
+    Achievement.fanIdol => ach_fanIdol_desc,
+    Achievement.comfortable => ach_comfortable_desc,
+    Achievement.millionaire => ach_millionaire_desc,
+    Achievement.tycoon => ach_tycoon_desc,
   };
 
   /// 1234567 -> "1.234.567 ₺" (eksi değerlerde "-").

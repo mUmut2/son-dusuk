@@ -56,6 +56,14 @@ enum WeekEventKind {
   renewalOffered,
   contractExpired,
   newEvent,
+  nationalCalled,
+  nationalOmitted,
+  nationalMatch,
+  nationalOut,
+  nationalRunnerUp,
+  nationalChampion,
+  achievement,
+  retired,
 }
 
 class WeekEvent {
@@ -66,6 +74,8 @@ class WeekEvent {
     this.age,
     this.clubId,
     this.eventId,
+    this.detail,
+    this.detail2,
   });
 
   final WeekEventKind kind;
@@ -78,6 +88,14 @@ class WeekEvent {
 
   /// `newEvent` olayında yeni gelen olayın şablon kimliği.
   final String? eventId;
+
+  /// Milli takım / başarım olaylarının serbest alanları (anlamı olaya göre):
+  /// nationalCalled: detail = turnuva türü, detail2 = kadro rolü.
+  /// nationalMatch: detail = rakip adı, detail2 = skor ("2-1" ya da "1-1|4-3"),
+  /// weeks = tur numarası. nationalOut/RunnerUp/Champion: detail = turnuva türü,
+  /// detail2 = aşama. achievement: detail = başarım adı.
+  final String? detail;
+  final String? detail2;
 }
 
 /// Bir haftanın özeti: ne değişti ve neden.

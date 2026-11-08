@@ -20,9 +20,9 @@
 | Şut mini oyunu (Flame) + maç akışı | 3 | Tamam (elle oynanış testi bekliyor) |
 | Form/kondisyon/moral/sakatlık, haftalık döngü | 4 | Tamam (elle oynanış testi bekliyor) |
 | Penaltı, serbest vuruş, pas, dribling, kafa, savunma, bire bir | 5 | Tamam (elle oynanış testi bekliyor) |
-| Transfer, kontrat, menajer, ekonomi | 6 | Planlı |
-| Sosyal sistemler, olay motoru, basın | 7 | Planlı |
-| Milli takım, başarımlar, emeklilik | 8 | Planlı |
+| Transfer, kontrat, menajer, ekonomi | 6 | Tamam (elle oynanış testi bekliyor) |
+| Sosyal sistemler, olay motoru, basın | 7 | Tamam (elle oynanış testi bekliyor) |
+| Milli takım, başarımlar, emeklilik | 8 | Tamam (elle oynanış testi bekliyor) |
 | Cila, CI/CD, yayın | 9 | Planlı |
 
 ## 3. Denge tabloları
@@ -62,7 +62,7 @@ Pozitif değişim: `taban × potansiyel çarpanı (0.8-1.5) × profesyonellik ç
 
 5 kademe × 18 takım (306 maç/sezon, 34 hafta). Kademe başına ortalama takım gücü: 76 / 66 / 56 / 46 / 36, takımlar arası sapma 6. Lig adları ARB'de (Ulusal, Birinci, İkinci, Üçüncü, Amatör); takım adları uydurma "{yer} {Spor|Gücü|Atletik}". Fikstür: daire yöntemi, ikinci devre ilkinin ev/deplasman tersi; art arda 3'ten fazla aynı saha yok.
 
-**Sezon takvimi (42 hafta):** 1-4 hazırlık, 5-38 lig turları 1-34, 39-42 sezon arası. Transfer penceresi: hafta 1-6 (yaz) ve 22-24 (kış). Kupa ve milli takım araları ileride eklenecek.
+**Sezon takvimi (42 hafta):** 1-4 hazırlık, 5-38 lig turları 1-34, 39-42 sezon arası. Transfer penceresi: hafta 1-6 (yaz) ve 22-24 (kış). Çift sezonlarda 39-42. haftalarda milli takım turnuvası oynanır (bkz. 3.9). Kupa ileride eklenecek.
 
 ### 3.3 Maç simülasyonu (Faz 2)
 
@@ -185,6 +185,24 @@ Parametreler `lib/domain/social/social_balance.dart`, olaylar `event_catalog.dar
 
 **Ölçülen (60 kariyer × 3 sezon, rastgele cevaplarla):** sezon başına ≈14 olay; oynanan maçların %38'inde basın sorusu; ilişki ortalamaları hoca 55, takım 53, taraftar 46, aile 75, medya 44.
 
+### 3.9 Milli takım, başarımlar, emeklilik (Faz 8)
+
+Parametreler `lib/domain/national/national_balance.dart` ve `lib/domain/career/legacy_balance.dart`. Ölçüm: `dart run tool/national_stats.dart`.
+
+**Turnuva:** Çift sezonlarda (2, 4, 6...) sezon arasında, 39-42. haftalarda 16 kurgusal ülkeyle tek maçlık eleme turnuvası: Son 16 → Çeyrek → Yarı → Final. Dört sezonda bir "Dünya Kupası", aradakiler "Kıtalar Kupası". Oyuncunun ülkesi **Anatolya**; diğer 15 ülke uydurmadır, güçleri dünya seed'inden ve turnuva sezonundan gelir (ülke gücü 74, rakipler ortalama 66 ± 7; tarafsız saha, ev sahibi avantajı yok). Kura ve diğer maçlar seed'e bağlıdır (her açılışta aynı); ülkenin maçları gerçek sonuçla işlenir. Beraberlikte penaltı atışları (güce hafif bağlı).
+
+**Çağrılma:** 38. haftadan 39'a geçerken kadro açıklanır. Puan = genel güç + lig kademesi payı (üst lig +4 … amatör -8) + form payı (±4); en az 18 yaş. ≥70 yedek, ≥77 rotasyon, ≥84 ana kadro; ilk 11 olasılığı %35 / %70 / %95. Kadroda olmasan da ülke turnuvayı oynar, tabloyu ve sonuçları izlersin.
+
+**Ödül ve etki:** Oynadığın her maça maaşın yarısı kadar prim; turnuva sonunda (kadrodaysan) şampiyon 6, finalist 3, yarı finalist 1.5, çeyrek finalist 0.75 haftalık maaş; moral ve taraftar/medya/aile etkisi.
+
+**Başarımlar:** 32 adet, 5 kategori (kariyer, kulüp, milli takım, gelişim, para). Koşullar durumdan hesaplanır (`AchievementEngine.sync`), her hafta sonu açılanlar hafta özetine ve habere düşer. Açılma anı kayda yazılır.
+
+**Sezon geçmişi:** Her sezon sonu `SeasonRecord` (kulüp, kademe, lig sırası, maç/gol/asist, ortalama reyting, güç) eklenir; lig sırası o sezon oyuncunun gördüğü tablodan hesaplanır.
+
+**Emeklilik:** 30 yaşından itibaren isteğe bağlı (onaylı, geri alınamaz), 40 yaşında sezon başında zorunlu. Emekli kayıt yalnızca kariyer özetini açar. **Miras puanı** gol/asist/maç, lig ve turnuva kupaları, milli maç, zirve güç, ulaşılan en üst lig ve başarımlardan hesaplanır; sıralama: Amatör Ruh (<400), Yerel Kahraman (400), Profesyonel (650), Yıldız (950), Efsane (1300).
+
+**Ölçülen (60 kariyer, emekliliğe kadar, basit politika):** %48 kariyerde en az bir çağrılma; turnuva başına çağrılma %29; kariyer başına ≈3.3 milli maç; ülke sonuçları: Son 16 %44, çeyrek %26, yarı %13, finalist %8, şampiyon %9; miras: yerel %20, profesyonel %52, yıldız %25, efsane %3.
+
 ## 4. Tasarım kararları ve gerekçeleri
 
 | Karar | Gerekçe |
@@ -212,3 +230,7 @@ Parametreler `lib/domain/social/social_balance.dart`, olaylar `event_catalog.dar
 | Seçim etkisi gizli, alan etiketi açık | Oyuncu hangi ilişkiye dokunduğunu bilir ama sonucu tahmin eder; sonuç ekranı gerçek değişimi gösterir (öğrenme ve sürpriz). |
 | Olay metinleri ARB'de, mantık domain'de | Şablon kimliği `ev_<id>_*` anahtarlarına bağlanır; metin değişikliği mantığa dokunmaz. Test, her şablonun metninin tam olduğunu doğrular. |
 | Rozetler (Kulüp / Sosyal) | Bekleyen teklif ve olay, sekmeye girmeden fark edilir; hafta özeti ve ana sayfa da doğrudan cevap vermeye götürür. |
+| Turnuva her iki sezonda bir, tek maçlık eleme | Sezon arasındaki 4 hafta tam dört tura yetiyor; kariyer ritmini bozmadan her maç kritik. Grup aşaması ya da eleme turları için takvim genişletilebilir (Faz 9 ya da sonrası). |
+| Milli takım rakipleri ve ülkesi kurgusal | Telif/gerçek ülke markası riski yok; `Anatolya` ve 15 uydurma ülke. |
+| Başarımlar durumdan hesaplanır | Sayaç tutmak yerine koşul her hafta durumdan yeniden değerlendirilir; yeni başarım eklemek kayıt göçü gerektirmez. |
+| Emeklilik kayıtta bayrak | Kariyer silinmez; kayıt yalnızca özet ekranını açar, kullanıcı başarımları ve sezonları sonradan da gezebilir. |

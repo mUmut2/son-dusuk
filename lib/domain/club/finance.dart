@@ -34,7 +34,7 @@ class Finance {
   };
 }
 
-enum MoneyKind { wage, winBonus, goalBonus, agentFee, living }
+enum MoneyKind { wage, winBonus, goalBonus, agentFee, living, nationalBonus }
 
 class MoneyLine {
   const MoneyLine(this.kind, this.amount);

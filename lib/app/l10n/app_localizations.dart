@@ -3093,6 +3093,1103 @@ abstract class AppLocalizations {
   /// In tr, this message translates to:
   /// **'S{season} · H{week}'**
   String seasonWeekShort(int season, int week);
+
+  /// No description provided for @profileCareerSection.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kariyer'**
+  String get profileCareerSection;
+
+  /// No description provided for @profileNationalCard.
+  ///
+  /// In tr, this message translates to:
+  /// **'Milli Takım'**
+  String get profileNationalCard;
+
+  /// No description provided for @profileNationalSub.
+  ///
+  /// In tr, this message translates to:
+  /// **'{caps} maç · {goals} gol'**
+  String profileNationalSub(int caps, int goals);
+
+  /// No description provided for @profileAchievementsCard.
+  ///
+  /// In tr, this message translates to:
+  /// **'Başarımlar'**
+  String get profileAchievementsCard;
+
+  /// No description provided for @profileAchievementsSub.
+  ///
+  /// In tr, this message translates to:
+  /// **'{done} / {total} açıldı'**
+  String profileAchievementsSub(int done, int total);
+
+  /// No description provided for @profileSummaryCard.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kariyer Özeti'**
+  String get profileSummaryCard;
+
+  /// No description provided for @profileSummarySub.
+  ///
+  /// In tr, this message translates to:
+  /// **'Şimdiye kadarki yolculuğun'**
+  String get profileSummarySub;
+
+  /// No description provided for @retireButton.
+  ///
+  /// In tr, this message translates to:
+  /// **'Futbolu Bırak'**
+  String get retireButton;
+
+  /// No description provided for @retireTitle.
+  ///
+  /// In tr, this message translates to:
+  /// **'Futbolu bırakıyor musun?'**
+  String get retireTitle;
+
+  /// No description provided for @retireBody.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kariyerin burada biter ve kariyer özetin açılır. Bu geri alınamaz.'**
+  String get retireBody;
+
+  /// No description provided for @retireConfirm.
+  ///
+  /// In tr, this message translates to:
+  /// **'Evet, bırak'**
+  String get retireConfirm;
+
+  /// No description provided for @retireAgeHint.
+  ///
+  /// In tr, this message translates to:
+  /// **'Emekli olmak için en az {age} yaşında olmalısın.'**
+  String retireAgeHint(int age);
+
+  /// No description provided for @tournament_continental.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kıtalar Kupası'**
+  String get tournament_continental;
+
+  /// No description provided for @tournament_world.
+  ///
+  /// In tr, this message translates to:
+  /// **'Dünya Kupası'**
+  String get tournament_world;
+
+  /// No description provided for @round_0.
+  ///
+  /// In tr, this message translates to:
+  /// **'Son 16'**
+  String get round_0;
+
+  /// No description provided for @round_1.
+  ///
+  /// In tr, this message translates to:
+  /// **'Çeyrek Final'**
+  String get round_1;
+
+  /// No description provided for @round_2.
+  ///
+  /// In tr, this message translates to:
+  /// **'Yarı Final'**
+  String get round_2;
+
+  /// No description provided for @round_3.
+  ///
+  /// In tr, this message translates to:
+  /// **'Final'**
+  String get round_3;
+
+  /// No description provided for @stageResult_roundOf16.
+  ///
+  /// In tr, this message translates to:
+  /// **'Son 16\'da elendi'**
+  String get stageResult_roundOf16;
+
+  /// No description provided for @stageResult_quarterFinal.
+  ///
+  /// In tr, this message translates to:
+  /// **'Çeyrek finalde elendi'**
+  String get stageResult_quarterFinal;
+
+  /// No description provided for @stageResult_semiFinal.
+  ///
+  /// In tr, this message translates to:
+  /// **'Yarı finalde elendi'**
+  String get stageResult_semiFinal;
+
+  /// No description provided for @stageResult_runnerUp.
+  ///
+  /// In tr, this message translates to:
+  /// **'Finalde kaybetti'**
+  String get stageResult_runnerUp;
+
+  /// No description provided for @stageResult_champion.
+  ///
+  /// In tr, this message translates to:
+  /// **'Şampiyon oldu'**
+  String get stageResult_champion;
+
+  /// No description provided for @natRole_starter.
+  ///
+  /// In tr, this message translates to:
+  /// **'Ana kadro'**
+  String get natRole_starter;
+
+  /// No description provided for @natRole_rotation.
+  ///
+  /// In tr, this message translates to:
+  /// **'Rotasyon'**
+  String get natRole_rotation;
+
+  /// No description provided for @natRole_reserve.
+  ///
+  /// In tr, this message translates to:
+  /// **'Yedek'**
+  String get natRole_reserve;
+
+  /// No description provided for @nationalTitle.
+  ///
+  /// In tr, this message translates to:
+  /// **'Milli Takım'**
+  String get nationalTitle;
+
+  /// No description provided for @nationalCapsGoals.
+  ///
+  /// In tr, this message translates to:
+  /// **'{caps} milli maç · {goals} gol'**
+  String nationalCapsGoals(int caps, int goals);
+
+  /// No description provided for @nationalStatusCalled.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kadrodasın · {role}'**
+  String nationalStatusCalled(String role);
+
+  /// No description provided for @nationalStatusOmitted.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bu turnuvanın kadrosunda değilsin. Ülkeni uzaktan destekle.'**
+  String get nationalStatusOmitted;
+
+  /// No description provided for @nationalStatusEliminated.
+  ///
+  /// In tr, this message translates to:
+  /// **'Ülken turnuvadan elendi.'**
+  String get nationalStatusEliminated;
+
+  /// No description provided for @nationalStatusChampion.
+  ///
+  /// In tr, this message translates to:
+  /// **'Ülken turnuvayı kazandı!'**
+  String get nationalStatusChampion;
+
+  /// No description provided for @nationalNextTournament.
+  ///
+  /// In tr, this message translates to:
+  /// **'Sıradaki turnuva: {name}, sezon {season} sonunda.'**
+  String nationalNextTournament(String name, int season);
+
+  /// No description provided for @nationalEmpty.
+  ///
+  /// In tr, this message translates to:
+  /// **'Henüz milli takım geçmişin yok. Turnuvalar iki sezonda bir, sezon arasında oynanır. Genel gücü ve formu yüksek, üst liglerde oynayan oyuncular çağrılır.'**
+  String get nationalEmpty;
+
+  /// No description provided for @nationalBracketTitle.
+  ///
+  /// In tr, this message translates to:
+  /// **'Eşleşmeler'**
+  String get nationalBracketTitle;
+
+  /// No description provided for @nationalRoundHeader.
+  ///
+  /// In tr, this message translates to:
+  /// **'{round} · Hafta {week}'**
+  String nationalRoundHeader(String round, int week);
+
+  /// No description provided for @nationalHistoryTitle.
+  ///
+  /// In tr, this message translates to:
+  /// **'Geçmiş Turnuvalar'**
+  String get nationalHistoryTitle;
+
+  /// No description provided for @nationalHistoryLine.
+  ///
+  /// In tr, this message translates to:
+  /// **'{name} · Sezon {season}'**
+  String nationalHistoryLine(String name, int season);
+
+  /// No description provided for @nationalHistorySub.
+  ///
+  /// In tr, this message translates to:
+  /// **'{result} · {apps} maç, {goals} gol'**
+  String nationalHistorySub(String result, int apps, int goals);
+
+  /// No description provided for @nationalHistoryNotCalled.
+  ///
+  /// In tr, this message translates to:
+  /// **'{result} · Kadroda değildin'**
+  String nationalHistoryNotCalled(String result);
+
+  /// No description provided for @nationalYouPlayed.
+  ///
+  /// In tr, this message translates to:
+  /// **'Oynadın'**
+  String get nationalYouPlayed;
+
+  /// No description provided for @nationalPens.
+  ///
+  /// In tr, this message translates to:
+  /// **'pen. {score}'**
+  String nationalPens(String score);
+
+  /// No description provided for @homeNationalCalled.
+  ///
+  /// In tr, this message translates to:
+  /// **'{tournament} için milli takıma çağrıldın!'**
+  String homeNationalCalled(String tournament);
+
+  /// No description provided for @homeNationalNext.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bu sezon sonunda {tournament} var.'**
+  String homeNationalNext(String tournament);
+
+  /// No description provided for @homeNationalRound.
+  ///
+  /// In tr, this message translates to:
+  /// **'{tournament} · {round}: {opponent}'**
+  String homeNationalRound(String tournament, String round, String opponent);
+
+  /// No description provided for @homeNationalOut.
+  ///
+  /// In tr, this message translates to:
+  /// **'{tournament}: ülken elendi.'**
+  String homeNationalOut(String tournament);
+
+  /// No description provided for @homeNationalChampion.
+  ///
+  /// In tr, this message translates to:
+  /// **'{tournament} şampiyonusun!'**
+  String homeNationalChampion(String tournament);
+
+  /// No description provided for @nationalMatchThisWeek.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bu hafta milli maç var: {opponent}.'**
+  String nationalMatchThisWeek(String opponent);
+
+  /// No description provided for @nationalBenchedThisWeek.
+  ///
+  /// In tr, this message translates to:
+  /// **'Milli takımda bu hafta yedeksin.'**
+  String get nationalBenchedThisWeek;
+
+  /// No description provided for @nationalNotCalledThisWeek.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bu hafta turnuva maçı var ama kadroda değilsin.'**
+  String get nationalNotCalledThisWeek;
+
+  /// No description provided for @nationalEliminatedThisWeek.
+  ///
+  /// In tr, this message translates to:
+  /// **'Ülken turnuvadan elendi, bu hafta maç yok.'**
+  String get nationalEliminatedThisWeek;
+
+  /// No description provided for @nationalInjuredThisWeek.
+  ///
+  /// In tr, this message translates to:
+  /// **'Sakatsın, milli maçı kaçıracaksın.'**
+  String get nationalInjuredThisWeek;
+
+  /// No description provided for @playWeekNationalMatch.
+  ///
+  /// In tr, this message translates to:
+  /// **'Milli Maçı Oyna'**
+  String get playWeekNationalMatch;
+
+  /// No description provided for @nationalMatchTitle.
+  ///
+  /// In tr, this message translates to:
+  /// **'Milli Maç · {round}'**
+  String nationalMatchTitle(String round);
+
+  /// No description provided for @nationalKnockoutNote.
+  ///
+  /// In tr, this message translates to:
+  /// **'Eleme maçı: beraberlikte penaltılara gidilir.'**
+  String get nationalKnockoutNote;
+
+  /// No description provided for @shootoutWon.
+  ///
+  /// In tr, this message translates to:
+  /// **'Penaltılarda kazandınız: {score}'**
+  String shootoutWon(String score);
+
+  /// No description provided for @shootoutLost.
+  ///
+  /// In tr, this message translates to:
+  /// **'Penaltılarda kaybettiniz: {score}'**
+  String shootoutLost(String score);
+
+  /// No description provided for @eventNationalCalled.
+  ///
+  /// In tr, this message translates to:
+  /// **'Milli takıma çağrıldın! {tournament} kadrosundasın ({role}).'**
+  String eventNationalCalled(String tournament, String role);
+
+  /// No description provided for @eventNationalOmitted.
+  ///
+  /// In tr, this message translates to:
+  /// **'{tournament} kadrosunda yer alamadın.'**
+  String eventNationalOmitted(String tournament);
+
+  /// No description provided for @eventNationalMatch.
+  ///
+  /// In tr, this message translates to:
+  /// **'{round}: {home} {score} {opponent}'**
+  String eventNationalMatch(
+    String round,
+    String home,
+    String score,
+    String opponent,
+  );
+
+  /// No description provided for @eventNationalMatchPens.
+  ///
+  /// In tr, this message translates to:
+  /// **'{round}: {home} {score} {opponent} ({pens})'**
+  String eventNationalMatchPens(
+    String round,
+    String home,
+    String score,
+    String opponent,
+    String pens,
+  );
+
+  /// No description provided for @eventNationalOut.
+  ///
+  /// In tr, this message translates to:
+  /// **'{tournament}: {result}'**
+  String eventNationalOut(String tournament, String result);
+
+  /// No description provided for @eventNationalRunnerUp.
+  ///
+  /// In tr, this message translates to:
+  /// **'{tournament} finalini kaybettiniz. Gurur duyulacak bir yol oldu.'**
+  String eventNationalRunnerUp(String tournament);
+
+  /// No description provided for @eventNationalChampion.
+  ///
+  /// In tr, this message translates to:
+  /// **'ŞAMPİYONSUN! {tournament} kupasını kaldırdın!'**
+  String eventNationalChampion(String tournament);
+
+  /// No description provided for @eventAchievement.
+  ///
+  /// In tr, this message translates to:
+  /// **'Başarım açıldı: {title}'**
+  String eventAchievement(String title);
+
+  /// No description provided for @eventRetired.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kariyerin sona erdi. Futbola veda ettin.'**
+  String get eventRetired;
+
+  /// No description provided for @money_nationalBonus.
+  ///
+  /// In tr, this message translates to:
+  /// **'Milli takım primi'**
+  String get money_nationalBonus;
+
+  /// No description provided for @summarySeeCareer.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kariyer Özetini Gör'**
+  String get summarySeeCareer;
+
+  /// No description provided for @newsNational.
+  ///
+  /// In tr, this message translates to:
+  /// **'{tournament}: {result}'**
+  String newsNational(String tournament, String result);
+
+  /// No description provided for @newsAchievement.
+  ///
+  /// In tr, this message translates to:
+  /// **'Başarım: {title}'**
+  String newsAchievement(String title);
+
+  /// No description provided for @newsRetired.
+  ///
+  /// In tr, this message translates to:
+  /// **'{age} yaşında futbolu bıraktın.'**
+  String newsRetired(String age);
+
+  /// No description provided for @achievementsTitle.
+  ///
+  /// In tr, this message translates to:
+  /// **'Başarımlar'**
+  String get achievementsTitle;
+
+  /// No description provided for @achievementsProgress.
+  ///
+  /// In tr, this message translates to:
+  /// **'{done} / {total}'**
+  String achievementsProgress(int done, int total);
+
+  /// No description provided for @achCategory_career.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kariyer'**
+  String get achCategory_career;
+
+  /// No description provided for @achCategory_club.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kulüp'**
+  String get achCategory_club;
+
+  /// No description provided for @achCategory_national.
+  ///
+  /// In tr, this message translates to:
+  /// **'Milli Takım'**
+  String get achCategory_national;
+
+  /// No description provided for @achCategory_growth.
+  ///
+  /// In tr, this message translates to:
+  /// **'Gelişim'**
+  String get achCategory_growth;
+
+  /// No description provided for @achCategory_wealth.
+  ///
+  /// In tr, this message translates to:
+  /// **'Para'**
+  String get achCategory_wealth;
+
+  /// No description provided for @achLocked.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kilitli'**
+  String get achLocked;
+
+  /// No description provided for @ach_firstMatch_title.
+  ///
+  /// In tr, this message translates to:
+  /// **'İlk Düdük'**
+  String get ach_firstMatch_title;
+
+  /// No description provided for @ach_firstMatch_desc.
+  ///
+  /// In tr, this message translates to:
+  /// **'İlk maçına çık.'**
+  String get ach_firstMatch_desc;
+
+  /// No description provided for @ach_firstGoal_title.
+  ///
+  /// In tr, this message translates to:
+  /// **'Ağlar Sallandı'**
+  String get ach_firstGoal_title;
+
+  /// No description provided for @ach_firstGoal_desc.
+  ///
+  /// In tr, this message translates to:
+  /// **'İlk golünü at.'**
+  String get ach_firstGoal_desc;
+
+  /// No description provided for @ach_firstAssist_title.
+  ///
+  /// In tr, this message translates to:
+  /// **'Takım Oyuncusu'**
+  String get ach_firstAssist_title;
+
+  /// No description provided for @ach_firstAssist_desc.
+  ///
+  /// In tr, this message translates to:
+  /// **'İlk asistini yap.'**
+  String get ach_firstAssist_desc;
+
+  /// No description provided for @ach_goals10_title.
+  ///
+  /// In tr, this message translates to:
+  /// **'Çift Haneli'**
+  String get ach_goals10_title;
+
+  /// No description provided for @ach_goals10_desc.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kariyerinde 10 gol at.'**
+  String get ach_goals10_desc;
+
+  /// No description provided for @ach_goals50_title.
+  ///
+  /// In tr, this message translates to:
+  /// **'Golcü'**
+  String get ach_goals50_title;
+
+  /// No description provided for @ach_goals50_desc.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kariyerinde 50 gol at.'**
+  String get ach_goals50_desc;
+
+  /// No description provided for @ach_goals150_title.
+  ///
+  /// In tr, this message translates to:
+  /// **'Gol Avcısı'**
+  String get ach_goals150_title;
+
+  /// No description provided for @ach_goals150_desc.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kariyerinde 150 gol at.'**
+  String get ach_goals150_desc;
+
+  /// No description provided for @ach_goals400_title.
+  ///
+  /// In tr, this message translates to:
+  /// **'Gol Makinesi'**
+  String get ach_goals400_title;
+
+  /// No description provided for @ach_goals400_desc.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kariyerinde 400 gol at.'**
+  String get ach_goals400_desc;
+
+  /// No description provided for @ach_matches50_title.
+  ///
+  /// In tr, this message translates to:
+  /// **'Yerleşik Oyuncu'**
+  String get ach_matches50_title;
+
+  /// No description provided for @ach_matches50_desc.
+  ///
+  /// In tr, this message translates to:
+  /// **'50 maç oyna.'**
+  String get ach_matches50_desc;
+
+  /// No description provided for @ach_matches250_title.
+  ///
+  /// In tr, this message translates to:
+  /// **'Sahanın Adamı'**
+  String get ach_matches250_title;
+
+  /// No description provided for @ach_matches250_desc.
+  ///
+  /// In tr, this message translates to:
+  /// **'250 maç oyna.'**
+  String get ach_matches250_desc;
+
+  /// No description provided for @ach_matches500_title.
+  ///
+  /// In tr, this message translates to:
+  /// **'Demir Adam'**
+  String get ach_matches500_title;
+
+  /// No description provided for @ach_matches500_desc.
+  ///
+  /// In tr, this message translates to:
+  /// **'500 maç oyna.'**
+  String get ach_matches500_desc;
+
+  /// No description provided for @ach_hatTrick_title.
+  ///
+  /// In tr, this message translates to:
+  /// **'Hat-trick'**
+  String get ach_hatTrick_title;
+
+  /// No description provided for @ach_hatTrick_desc.
+  ///
+  /// In tr, this message translates to:
+  /// **'Tek maçta 3 gol at.'**
+  String get ach_hatTrick_desc;
+
+  /// No description provided for @ach_starPerformance_title.
+  ///
+  /// In tr, this message translates to:
+  /// **'Maçın Adamı'**
+  String get ach_starPerformance_title;
+
+  /// No description provided for @ach_starPerformance_desc.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bir maçta 9.8 ve üzeri reyting al.'**
+  String get ach_starPerformance_desc;
+
+  /// No description provided for @ach_seasons10_title.
+  ///
+  /// In tr, this message translates to:
+  /// **'On Yıllık Yol'**
+  String get ach_seasons10_title;
+
+  /// No description provided for @ach_seasons10_desc.
+  ///
+  /// In tr, this message translates to:
+  /// **'10 sezon boyunca oyna.'**
+  String get ach_seasons10_desc;
+
+  /// No description provided for @ach_veteran_title.
+  ///
+  /// In tr, this message translates to:
+  /// **'Tecrübe'**
+  String get ach_veteran_title;
+
+  /// No description provided for @ach_veteran_desc.
+  ///
+  /// In tr, this message translates to:
+  /// **'35 yaşına ulaş.'**
+  String get ach_veteran_desc;
+
+  /// No description provided for @ach_firstTransfer_title.
+  ///
+  /// In tr, this message translates to:
+  /// **'Yeni Sayfa'**
+  String get ach_firstTransfer_title;
+
+  /// No description provided for @ach_firstTransfer_desc.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kulüp değiştir.'**
+  String get ach_firstTransfer_desc;
+
+  /// No description provided for @ach_topLeague_title.
+  ///
+  /// In tr, this message translates to:
+  /// **'Büyükler Ligi'**
+  String get ach_topLeague_title;
+
+  /// No description provided for @ach_topLeague_desc.
+  ///
+  /// In tr, this message translates to:
+  /// **'En üst ligde bir kulüpte oyna.'**
+  String get ach_topLeague_desc;
+
+  /// No description provided for @ach_leagueChampion_title.
+  ///
+  /// In tr, this message translates to:
+  /// **'Şampiyon'**
+  String get ach_leagueChampion_title;
+
+  /// No description provided for @ach_leagueChampion_desc.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bir sezonu ligin zirvesinde bitir.'**
+  String get ach_leagueChampion_desc;
+
+  /// No description provided for @ach_topLeagueChampion_title.
+  ///
+  /// In tr, this message translates to:
+  /// **'Zirvenin Sahibi'**
+  String get ach_topLeagueChampion_title;
+
+  /// No description provided for @ach_topLeagueChampion_desc.
+  ///
+  /// In tr, this message translates to:
+  /// **'En üst ligde şampiyon ol.'**
+  String get ach_topLeagueChampion_desc;
+
+  /// No description provided for @ach_loyal_title.
+  ///
+  /// In tr, this message translates to:
+  /// **'Sadık Yürek'**
+  String get ach_loyal_title;
+
+  /// No description provided for @ach_loyal_desc.
+  ///
+  /// In tr, this message translates to:
+  /// **'Aynı kulüpte arka arkaya 10 sezon geçir.'**
+  String get ach_loyal_desc;
+
+  /// No description provided for @ach_agentTop_title.
+  ///
+  /// In tr, this message translates to:
+  /// **'Güçlü Bağlantılar'**
+  String get ach_agentTop_title;
+
+  /// No description provided for @ach_agentTop_desc.
+  ///
+  /// In tr, this message translates to:
+  /// **'En üst seviye menajerle çalış.'**
+  String get ach_agentTop_desc;
+
+  /// No description provided for @ach_nationalDebut_title.
+  ///
+  /// In tr, this message translates to:
+  /// **'Milli Forma'**
+  String get ach_nationalDebut_title;
+
+  /// No description provided for @ach_nationalDebut_desc.
+  ///
+  /// In tr, this message translates to:
+  /// **'Milli takımda ilk maçına çık.'**
+  String get ach_nationalDebut_desc;
+
+  /// No description provided for @ach_nationalGoal_title.
+  ///
+  /// In tr, this message translates to:
+  /// **'Milli Gol'**
+  String get ach_nationalGoal_title;
+
+  /// No description provided for @ach_nationalGoal_desc.
+  ///
+  /// In tr, this message translates to:
+  /// **'Milli takım adına gol at.'**
+  String get ach_nationalGoal_desc;
+
+  /// No description provided for @ach_nationalFinal_title.
+  ///
+  /// In tr, this message translates to:
+  /// **'Büyük Final'**
+  String get ach_nationalFinal_title;
+
+  /// No description provided for @ach_nationalFinal_desc.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bir turnuvada finale çık.'**
+  String get ach_nationalFinal_desc;
+
+  /// No description provided for @ach_continentalChampion_title.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kıtanın Zirvesi'**
+  String get ach_continentalChampion_title;
+
+  /// No description provided for @ach_continentalChampion_desc.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kıtalar Kupası\'nı kazan.'**
+  String get ach_continentalChampion_desc;
+
+  /// No description provided for @ach_worldChampion_title.
+  ///
+  /// In tr, this message translates to:
+  /// **'Dünya Şampiyonu'**
+  String get ach_worldChampion_title;
+
+  /// No description provided for @ach_worldChampion_desc.
+  ///
+  /// In tr, this message translates to:
+  /// **'Dünya Kupası\'nı kazan.'**
+  String get ach_worldChampion_desc;
+
+  /// No description provided for @ach_overall70_title.
+  ///
+  /// In tr, this message translates to:
+  /// **'Yükselen Yıldız'**
+  String get ach_overall70_title;
+
+  /// No description provided for @ach_overall70_desc.
+  ///
+  /// In tr, this message translates to:
+  /// **'Genel gücünü 70\'e çıkar.'**
+  String get ach_overall70_desc;
+
+  /// No description provided for @ach_overall80_title.
+  ///
+  /// In tr, this message translates to:
+  /// **'Dünya Sınıfı'**
+  String get ach_overall80_title;
+
+  /// No description provided for @ach_overall80_desc.
+  ///
+  /// In tr, this message translates to:
+  /// **'Genel gücünü 80\'e çıkar.'**
+  String get ach_overall80_desc;
+
+  /// No description provided for @ach_overall90_title.
+  ///
+  /// In tr, this message translates to:
+  /// **'Efsane Seviyesi'**
+  String get ach_overall90_title;
+
+  /// No description provided for @ach_overall90_desc.
+  ///
+  /// In tr, this message translates to:
+  /// **'Genel gücünü 90\'a çıkar.'**
+  String get ach_overall90_desc;
+
+  /// No description provided for @ach_fanIdol_title.
+  ///
+  /// In tr, this message translates to:
+  /// **'Tribünlerin Gözdesi'**
+  String get ach_fanIdol_title;
+
+  /// No description provided for @ach_fanIdol_desc.
+  ///
+  /// In tr, this message translates to:
+  /// **'Taraftar ilişkisini en üst düzeye çıkar.'**
+  String get ach_fanIdol_desc;
+
+  /// No description provided for @ach_comfortable_title.
+  ///
+  /// In tr, this message translates to:
+  /// **'Rahat Yaşam'**
+  String get ach_comfortable_title;
+
+  /// No description provided for @ach_comfortable_desc.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bakiyeni 100.000 ₺\'ye ulaştır.'**
+  String get ach_comfortable_desc;
+
+  /// No description provided for @ach_millionaire_title.
+  ///
+  /// In tr, this message translates to:
+  /// **'Milyoner'**
+  String get ach_millionaire_title;
+
+  /// No description provided for @ach_millionaire_desc.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bakiyeni 1.000.000 ₺\'ye ulaştır.'**
+  String get ach_millionaire_desc;
+
+  /// No description provided for @summaryTitleRetired.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kariyer Özeti'**
+  String get summaryTitleRetired;
+
+  /// No description provided for @summaryTitleLive.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kariyerin Şu Ana Kadar'**
+  String get summaryTitleLive;
+
+  /// No description provided for @summaryRetiredAt.
+  ///
+  /// In tr, this message translates to:
+  /// **'{age} yaşında futbolu bıraktı'**
+  String summaryRetiredAt(int age);
+
+  /// No description provided for @summaryLegacy.
+  ///
+  /// In tr, this message translates to:
+  /// **'Miras'**
+  String get summaryLegacy;
+
+  /// No description provided for @legacy_amateur.
+  ///
+  /// In tr, this message translates to:
+  /// **'Amatör Ruh'**
+  String get legacy_amateur;
+
+  /// No description provided for @legacy_local.
+  ///
+  /// In tr, this message translates to:
+  /// **'Yerel Kahraman'**
+  String get legacy_local;
+
+  /// No description provided for @legacy_pro.
+  ///
+  /// In tr, this message translates to:
+  /// **'Profesyonel'**
+  String get legacy_pro;
+
+  /// No description provided for @legacy_star.
+  ///
+  /// In tr, this message translates to:
+  /// **'Yıldız'**
+  String get legacy_star;
+
+  /// No description provided for @legacy_legend.
+  ///
+  /// In tr, this message translates to:
+  /// **'Efsane'**
+  String get legacy_legend;
+
+  /// No description provided for @legacyBlurb_amateur.
+  ///
+  /// In tr, this message translates to:
+  /// **'Sahada az göründün ama futbol sevgin gerçekti.'**
+  String get legacyBlurb_amateur;
+
+  /// No description provided for @legacyBlurb_local.
+  ///
+  /// In tr, this message translates to:
+  /// **'Mahallede adın hâlâ anılır; tribünler seni unutmadı.'**
+  String get legacyBlurb_local;
+
+  /// No description provided for @legacyBlurb_pro.
+  ///
+  /// In tr, this message translates to:
+  /// **'Yıllarca sağlam bir kariyer sürdürdün; saygın bir isimsin.'**
+  String get legacyBlurb_pro;
+
+  /// No description provided for @legacyBlurb_star.
+  ///
+  /// In tr, this message translates to:
+  /// **'Gollerin ve kupalarınla bir döneme damga vurdun.'**
+  String get legacyBlurb_star;
+
+  /// No description provided for @legacyBlurb_legend.
+  ///
+  /// In tr, this message translates to:
+  /// **'Adın futbol tarihine yazıldı. Gelecek kuşaklar seni konuşacak.'**
+  String get legacyBlurb_legend;
+
+  /// No description provided for @sumStat_matches.
+  ///
+  /// In tr, this message translates to:
+  /// **'Maç'**
+  String get sumStat_matches;
+
+  /// No description provided for @sumStat_goals.
+  ///
+  /// In tr, this message translates to:
+  /// **'Gol'**
+  String get sumStat_goals;
+
+  /// No description provided for @sumStat_assists.
+  ///
+  /// In tr, this message translates to:
+  /// **'Asist'**
+  String get sumStat_assists;
+
+  /// No description provided for @sumStat_rating.
+  ///
+  /// In tr, this message translates to:
+  /// **'Ort. Reyting'**
+  String get sumStat_rating;
+
+  /// No description provided for @sumStat_seasons.
+  ///
+  /// In tr, this message translates to:
+  /// **'Sezon'**
+  String get sumStat_seasons;
+
+  /// No description provided for @sumStat_peak.
+  ///
+  /// In tr, this message translates to:
+  /// **'Zirve Güç'**
+  String get sumStat_peak;
+
+  /// No description provided for @sumStat_clubs.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kulüp'**
+  String get sumStat_clubs;
+
+  /// No description provided for @sumStat_titles.
+  ///
+  /// In tr, this message translates to:
+  /// **'Lig Şampiyonluğu'**
+  String get sumStat_titles;
+
+  /// No description provided for @sumStat_caps.
+  ///
+  /// In tr, this message translates to:
+  /// **'Milli Maç'**
+  String get sumStat_caps;
+
+  /// No description provided for @sumStat_natTitles.
+  ///
+  /// In tr, this message translates to:
+  /// **'Turnuva Kupası'**
+  String get sumStat_natTitles;
+
+  /// No description provided for @sumStat_bestLeague.
+  ///
+  /// In tr, this message translates to:
+  /// **'En Üst Lig'**
+  String get sumStat_bestLeague;
+
+  /// No description provided for @sumStat_achievements.
+  ///
+  /// In tr, this message translates to:
+  /// **'Başarım'**
+  String get sumStat_achievements;
+
+  /// No description provided for @summarySeasonsTitle.
+  ///
+  /// In tr, this message translates to:
+  /// **'Sezon Sezon'**
+  String get summarySeasonsTitle;
+
+  /// No description provided for @summarySeasonTitle.
+  ///
+  /// In tr, this message translates to:
+  /// **'Sezon {season} · {age} yaş'**
+  String summarySeasonTitle(int season, int age);
+
+  /// No description provided for @summarySeasonSub.
+  ///
+  /// In tr, this message translates to:
+  /// **'{club} · {league}'**
+  String summarySeasonSub(String club, String league);
+
+  /// No description provided for @summarySeasonStats.
+  ///
+  /// In tr, this message translates to:
+  /// **'{matches} maç · {goals} gol · {assists} asist'**
+  String summarySeasonStats(int matches, int goals, int assists);
+
+  /// No description provided for @summaryPosition.
+  ///
+  /// In tr, this message translates to:
+  /// **'{pos}. sırada bitirdi'**
+  String summaryPosition(int pos);
+
+  /// No description provided for @summaryNoClub.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kulüpsüz'**
+  String get summaryNoClub;
+
+  /// No description provided for @summaryBalance.
+  ///
+  /// In tr, this message translates to:
+  /// **'Son bakiye'**
+  String get summaryBalance;
+
+  /// No description provided for @summaryHonorsTitle.
+  ///
+  /// In tr, this message translates to:
+  /// **'Öne Çıkanlar'**
+  String get summaryHonorsTitle;
+
+  /// No description provided for @summaryToMenu.
+  ///
+  /// In tr, this message translates to:
+  /// **'Ana Menüye Dön'**
+  String get summaryToMenu;
+
+  /// No description provided for @summaryBack.
+  ///
+  /// In tr, this message translates to:
+  /// **'Geri'**
+  String get summaryBack;
+
+  /// No description provided for @summaryOpenAchievements.
+  ///
+  /// In tr, this message translates to:
+  /// **'Başarımlar'**
+  String get summaryOpenAchievements;
+
+  /// No description provided for @slotRetired.
+  ///
+  /// In tr, this message translates to:
+  /// **'Emekli · {age} yaş · Zirve {peak}'**
+  String slotRetired(int age, int peak);
+
+  /// No description provided for @ach_tycoon_title.
+  ///
+  /// In tr, this message translates to:
+  /// **'Servet Sahibi'**
+  String get ach_tycoon_title;
+
+  /// No description provided for @ach_tycoon_desc.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bakiyeni 25.000.000 ₺\'ye ulaştır.'**
+  String get ach_tycoon_desc;
 }
 
 class _AppLocalizationsDelegate

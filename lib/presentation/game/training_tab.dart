@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../app/l10n/app_localizations.dart';
 import '../../domain/career/season_calendar.dart';
 import '../../domain/club/squad.dart';
+import '../../domain/national/national_engine.dart';
 import '../../domain/career/weekly_plan.dart';
 import '../l10n_labels.dart';
 import '../providers.dart';
@@ -57,7 +58,9 @@ class TrainingTab extends ConsumerWidget {
     final status = career.status;
     final injured = status.isInjured;
     final matchDay = Squad.matchDay(career);
-    final matchWeek = matchDay == MatchDay.play;
+    final nationalDay = NationalEngine.dayOf(career);
+    final nationalMatch = nationalDay == NationalDay.play;
+    final matchWeek = matchDay == MatchDay.play || nationalMatch;
     final textTheme = Theme.of(context).textTheme;
 
     return ListView(
@@ -134,6 +137,14 @@ class TrainingTab extends ConsumerWidget {
         ),
         if (matchDay == MatchDay.benched)
           Text(l10n.benchedThisWeek, style: textTheme.bodySmall),
+        if (nationalDay != NationalDay.none)
+          Text(
+            l10n.nationalDayText(
+              nationalDay,
+              opponent: NationalEngine.opponentOf(career)?.name ?? '',
+            ),
+            style: textTheme.bodySmall,
+          ),
         if (career.isFreeAgent)
           Text(l10n.freeAgentNoMatch, style: textTheme.bodySmall),
         Text(l10n.trainingHint, style: textTheme.bodySmall),
@@ -141,7 +152,13 @@ class TrainingTab extends ConsumerWidget {
         FilledButton(
           style: FilledButton.styleFrom(minimumSize: const Size.fromHeight(56)),
           onPressed: () => _play(context, ref, matchWeek),
-          child: Text(matchWeek ? l10n.playWeekMatch : l10n.playWeekNoMatch),
+          child: Text(
+            nationalMatch
+                ? l10n.playWeekNationalMatch
+                : matchWeek
+                ? l10n.playWeekMatch
+                : l10n.playWeekNoMatch,
+          ),
         ),
       ],
     );

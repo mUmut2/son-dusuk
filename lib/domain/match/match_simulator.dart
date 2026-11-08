@@ -40,19 +40,23 @@ class MatchResult {
 /// çarpanı x exp(eğim x güç farkı).
 abstract final class MatchSimulator {
   /// Takımların maç başı gol beklentileri (home, away).
+  ///
+  /// [neutral]: tarafsız saha (turnuva); ev sahibi avantajı uygulanmaz.
   static ({double home, double away}) expectedGoals({
     required double homeStrength,
     required double awayStrength,
+    bool neutral = false,
   }) {
     final diff = homeStrength - awayStrength;
+    final advantage = neutral ? 1.0 : MatchBalance.homeAdvantage;
     return (
       home:
           MatchBalance.baseGoals *
-          MatchBalance.homeAdvantage *
+          advantage *
           math.exp(MatchBalance.strengthSlope * diff),
       away:
           MatchBalance.baseGoals /
-          MatchBalance.homeAdvantage *
+          advantage *
           math.exp(-MatchBalance.strengthSlope * diff),
     );
   }
@@ -65,10 +69,12 @@ abstract final class MatchSimulator {
     required GameRandom random,
     double homeReduction = 0,
     double awayReduction = 0,
+    bool neutral = false,
   }) {
     final expected = expectedGoals(
       homeStrength: homeStrength,
       awayStrength: awayStrength,
+      neutral: neutral,
     );
     final homeLambda = math.max(
       MatchBalance.minGoalExpectation,

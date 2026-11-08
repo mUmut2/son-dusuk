@@ -6,6 +6,7 @@ import '../data/settings_repository.dart';
 import '../domain/career/career_state.dart';
 import '../core/game_random.dart';
 import '../domain/career/difficulty.dart';
+import '../domain/career/retirement.dart';
 import '../domain/career/week_engine.dart';
 import '../domain/career/weekly_plan.dart';
 import '../domain/club/finance.dart';
@@ -162,6 +163,13 @@ class ActiveCareerNotifier extends Notifier<ActiveCareer?> {
     );
     await update(result.state);
     return result;
+  }
+
+  /// Futbolu bırakır; kariyer özeti açılır.
+  Future<void> retire() async {
+    final current = state;
+    if (current == null) return;
+    await update(Retirement.retire(current.state));
   }
 
   void close() => state = null;

@@ -999,5 +999,530 @@
         "type": "int"
       }
     }
-  }
+  },
+  "profileCareerSection": "Kariyer",
+  "profileNationalCard": "Milli Takım",
+  "profileNationalSub": "{caps} maç · {goals} gol",
+  "@profileNationalSub": {
+    "placeholders": {
+      "caps": {
+        "type": "int"
+      },
+      "goals": {
+        "type": "int"
+      }
+    }
+  },
+  "profileAchievementsCard": "Başarımlar",
+  "profileAchievementsSub": "{done} / {total} açıldı",
+  "@profileAchievementsSub": {
+    "placeholders": {
+      "done": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "profileSummaryCard": "Kariyer Özeti",
+  "profileSummarySub": "Şimdiye kadarki yolculuğun",
+  "retireButton": "Futbolu Bırak",
+  "retireTitle": "Futbolu bırakıyor musun?",
+  "retireBody": "Kariyerin burada biter ve kariyer özetin açılır. Bu geri alınamaz.",
+  "retireConfirm": "Evet, bırak",
+  "retireAgeHint": "Emekli olmak için en az {age} yaşında olmalısın.",
+  "@retireAgeHint": {
+    "placeholders": {
+      "age": {
+        "type": "int"
+      }
+    }
+  },
+  "tournament_continental": "Kıtalar Kupası",
+  "tournament_world": "Dünya Kupası",
+  "round_0": "Son 16",
+  "round_1": "Çeyrek Final",
+  "round_2": "Yarı Final",
+  "round_3": "Final",
+  "stageResult_roundOf16": "Son 16'da elendi",
+  "stageResult_quarterFinal": "Çeyrek finalde elendi",
+  "stageResult_semiFinal": "Yarı finalde elendi",
+  "stageResult_runnerUp": "Finalde kaybetti",
+  "stageResult_champion": "Şampiyon oldu",
+  "natRole_starter": "Ana kadro",
+  "natRole_rotation": "Rotasyon",
+  "natRole_reserve": "Yedek",
+  "nationalTitle": "Milli Takım",
+  "nationalCapsGoals": "{caps} milli maç · {goals} gol",
+  "@nationalCapsGoals": {
+    "placeholders": {
+      "caps": {
+        "type": "int"
+      },
+      "goals": {
+        "type": "int"
+      }
+    }
+  },
+  "nationalStatusCalled": "Kadrodasın · {role}",
+  "@nationalStatusCalled": {
+    "placeholders": {
+      "role": {
+        "type": "String"
+      }
+    }
+  },
+  "nationalStatusOmitted": "Bu turnuvanın kadrosunda değilsin. Ülkeni uzaktan destekle.",
+  "nationalStatusEliminated": "Ülken turnuvadan elendi.",
+  "nationalStatusChampion": "Ülken turnuvayı kazandı!",
+  "nationalNextTournament": "Sıradaki turnuva: {name}, sezon {season} sonunda.",
+  "@nationalNextTournament": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "season": {
+        "type": "int"
+      }
+    }
+  },
+  "nationalEmpty": "Henüz milli takım geçmişin yok. Turnuvalar iki sezonda bir, sezon arasında oynanır. Genel gücü ve formu yüksek, üst liglerde oynayan oyuncular çağrılır.",
+  "nationalBracketTitle": "Eşleşmeler",
+  "nationalRoundHeader": "{round} · Hafta {week}",
+  "@nationalRoundHeader": {
+    "placeholders": {
+      "round": {
+        "type": "String"
+      },
+      "week": {
+        "type": "int"
+      }
+    }
+  },
+  "nationalHistoryTitle": "Geçmiş Turnuvalar",
+  "nationalHistoryLine": "{name} · Sezon {season}",
+  "@nationalHistoryLine": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "season": {
+        "type": "int"
+      }
+    }
+  },
+  "nationalHistorySub": "{result} · {apps} maç, {goals} gol",
+  "@nationalHistorySub": {
+    "placeholders": {
+      "result": {
+        "type": "String"
+      },
+      "apps": {
+        "type": "int"
+      },
+      "goals": {
+        "type": "int"
+      }
+    }
+  },
+  "nationalHistoryNotCalled": "{result} · Kadroda değildin",
+  "@nationalHistoryNotCalled": {
+    "placeholders": {
+      "result": {
+        "type": "String"
+      }
+    }
+  },
+  "nationalYouPlayed": "Oynadın",
+  "nationalPens": "pen. {score}",
+  "@nationalPens": {
+    "placeholders": {
+      "score": {
+        "type": "String"
+      }
+    }
+  },
+  "homeNationalCalled": "{tournament} için milli takıma çağrıldın!",
+  "@homeNationalCalled": {
+    "placeholders": {
+      "tournament": {
+        "type": "String"
+      }
+    }
+  },
+  "homeNationalNext": "Bu sezon sonunda {tournament} var.",
+  "@homeNationalNext": {
+    "placeholders": {
+      "tournament": {
+        "type": "String"
+      }
+    }
+  },
+  "homeNationalRound": "{tournament} · {round}: {opponent}",
+  "@homeNationalRound": {
+    "placeholders": {
+      "tournament": {
+        "type": "String"
+      },
+      "round": {
+        "type": "String"
+      },
+      "opponent": {
+        "type": "String"
+      }
+    }
+  },
+  "homeNationalOut": "{tournament}: ülken elendi.",
+  "@homeNationalOut": {
+    "placeholders": {
+      "tournament": {
+        "type": "String"
+      }
+    }
+  },
+  "homeNationalChampion": "{tournament} şampiyonusun!",
+  "@homeNationalChampion": {
+    "placeholders": {
+      "tournament": {
+        "type": "String"
+      }
+    }
+  },
+  "nationalMatchThisWeek": "Bu hafta milli maç var: {opponent}.",
+  "@nationalMatchThisWeek": {
+    "placeholders": {
+      "opponent": {
+        "type": "String"
+      }
+    }
+  },
+  "nationalBenchedThisWeek": "Milli takımda bu hafta yedeksin.",
+  "nationalNotCalledThisWeek": "Bu hafta turnuva maçı var ama kadroda değilsin.",
+  "nationalEliminatedThisWeek": "Ülken turnuvadan elendi, bu hafta maç yok.",
+  "nationalInjuredThisWeek": "Sakatsın, milli maçı kaçıracaksın.",
+  "playWeekNationalMatch": "Milli Maçı Oyna",
+  "nationalMatchTitle": "Milli Maç · {round}",
+  "@nationalMatchTitle": {
+    "placeholders": {
+      "round": {
+        "type": "String"
+      }
+    }
+  },
+  "nationalKnockoutNote": "Eleme maçı: beraberlikte penaltılara gidilir.",
+  "shootoutWon": "Penaltılarda kazandınız: {score}",
+  "@shootoutWon": {
+    "placeholders": {
+      "score": {
+        "type": "String"
+      }
+    }
+  },
+  "shootoutLost": "Penaltılarda kaybettiniz: {score}",
+  "@shootoutLost": {
+    "placeholders": {
+      "score": {
+        "type": "String"
+      }
+    }
+  },
+  "eventNationalCalled": "Milli takıma çağrıldın! {tournament} kadrosundasın ({role}).",
+  "@eventNationalCalled": {
+    "placeholders": {
+      "tournament": {
+        "type": "String"
+      },
+      "role": {
+        "type": "String"
+      }
+    }
+  },
+  "eventNationalOmitted": "{tournament} kadrosunda yer alamadın.",
+  "@eventNationalOmitted": {
+    "placeholders": {
+      "tournament": {
+        "type": "String"
+      }
+    }
+  },
+  "eventNationalMatch": "{round}: {home} {score} {opponent}",
+  "@eventNationalMatch": {
+    "placeholders": {
+      "round": {
+        "type": "String"
+      },
+      "home": {
+        "type": "String"
+      },
+      "score": {
+        "type": "String"
+      },
+      "opponent": {
+        "type": "String"
+      }
+    }
+  },
+  "eventNationalMatchPens": "{round}: {home} {score} {opponent} ({pens})",
+  "@eventNationalMatchPens": {
+    "placeholders": {
+      "round": {
+        "type": "String"
+      },
+      "home": {
+        "type": "String"
+      },
+      "score": {
+        "type": "String"
+      },
+      "opponent": {
+        "type": "String"
+      },
+      "pens": {
+        "type": "String"
+      }
+    }
+  },
+  "eventNationalOut": "{tournament}: {result}",
+  "@eventNationalOut": {
+    "placeholders": {
+      "tournament": {
+        "type": "String"
+      },
+      "result": {
+        "type": "String"
+      }
+    }
+  },
+  "eventNationalRunnerUp": "{tournament} finalini kaybettiniz. Gurur duyulacak bir yol oldu.",
+  "@eventNationalRunnerUp": {
+    "placeholders": {
+      "tournament": {
+        "type": "String"
+      }
+    }
+  },
+  "eventNationalChampion": "ŞAMPİYONSUN! {tournament} kupasını kaldırdın!",
+  "@eventNationalChampion": {
+    "placeholders": {
+      "tournament": {
+        "type": "String"
+      }
+    }
+  },
+  "eventAchievement": "Başarım açıldı: {title}",
+  "@eventAchievement": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "eventRetired": "Kariyerin sona erdi. Futbola veda ettin.",
+  "money_nationalBonus": "Milli takım primi",
+  "summarySeeCareer": "Kariyer Özetini Gör",
+  "newsNational": "{tournament}: {result}",
+  "@newsNational": {
+    "placeholders": {
+      "tournament": {
+        "type": "String"
+      },
+      "result": {
+        "type": "String"
+      }
+    }
+  },
+  "newsAchievement": "Başarım: {title}",
+  "@newsAchievement": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "newsRetired": "{age} yaşında futbolu bıraktın.",
+  "@newsRetired": {
+    "placeholders": {
+      "age": {
+        "type": "String"
+      }
+    }
+  },
+  "achievementsTitle": "Başarımlar",
+  "achievementsProgress": "{done} / {total}",
+  "@achievementsProgress": {
+    "placeholders": {
+      "done": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "achCategory_career": "Kariyer",
+  "achCategory_club": "Kulüp",
+  "achCategory_national": "Milli Takım",
+  "achCategory_growth": "Gelişim",
+  "achCategory_wealth": "Para",
+  "achLocked": "Kilitli",
+  "ach_firstMatch_title": "İlk Düdük",
+  "ach_firstMatch_desc": "İlk maçına çık.",
+  "ach_firstGoal_title": "Ağlar Sallandı",
+  "ach_firstGoal_desc": "İlk golünü at.",
+  "ach_firstAssist_title": "Takım Oyuncusu",
+  "ach_firstAssist_desc": "İlk asistini yap.",
+  "ach_goals10_title": "Çift Haneli",
+  "ach_goals10_desc": "Kariyerinde 10 gol at.",
+  "ach_goals50_title": "Golcü",
+  "ach_goals50_desc": "Kariyerinde 50 gol at.",
+  "ach_goals150_title": "Gol Avcısı",
+  "ach_goals150_desc": "Kariyerinde 150 gol at.",
+  "ach_goals400_title": "Gol Makinesi",
+  "ach_goals400_desc": "Kariyerinde 400 gol at.",
+  "ach_matches50_title": "Yerleşik Oyuncu",
+  "ach_matches50_desc": "50 maç oyna.",
+  "ach_matches250_title": "Sahanın Adamı",
+  "ach_matches250_desc": "250 maç oyna.",
+  "ach_matches500_title": "Demir Adam",
+  "ach_matches500_desc": "500 maç oyna.",
+  "ach_hatTrick_title": "Hat-trick",
+  "ach_hatTrick_desc": "Tek maçta 3 gol at.",
+  "ach_starPerformance_title": "Maçın Adamı",
+  "ach_starPerformance_desc": "Bir maçta 9.8 ve üzeri reyting al.",
+  "ach_seasons10_title": "On Yıllık Yol",
+  "ach_seasons10_desc": "10 sezon boyunca oyna.",
+  "ach_veteran_title": "Tecrübe",
+  "ach_veteran_desc": "35 yaşına ulaş.",
+  "ach_firstTransfer_title": "Yeni Sayfa",
+  "ach_firstTransfer_desc": "Kulüp değiştir.",
+  "ach_topLeague_title": "Büyükler Ligi",
+  "ach_topLeague_desc": "En üst ligde bir kulüpte oyna.",
+  "ach_leagueChampion_title": "Şampiyon",
+  "ach_leagueChampion_desc": "Bir sezonu ligin zirvesinde bitir.",
+  "ach_topLeagueChampion_title": "Zirvenin Sahibi",
+  "ach_topLeagueChampion_desc": "En üst ligde şampiyon ol.",
+  "ach_loyal_title": "Sadık Yürek",
+  "ach_loyal_desc": "Aynı kulüpte arka arkaya 10 sezon geçir.",
+  "ach_agentTop_title": "Güçlü Bağlantılar",
+  "ach_agentTop_desc": "En üst seviye menajerle çalış.",
+  "ach_nationalDebut_title": "Milli Forma",
+  "ach_nationalDebut_desc": "Milli takımda ilk maçına çık.",
+  "ach_nationalGoal_title": "Milli Gol",
+  "ach_nationalGoal_desc": "Milli takım adına gol at.",
+  "ach_nationalFinal_title": "Büyük Final",
+  "ach_nationalFinal_desc": "Bir turnuvada finale çık.",
+  "ach_continentalChampion_title": "Kıtanın Zirvesi",
+  "ach_continentalChampion_desc": "Kıtalar Kupası'nı kazan.",
+  "ach_worldChampion_title": "Dünya Şampiyonu",
+  "ach_worldChampion_desc": "Dünya Kupası'nı kazan.",
+  "ach_overall70_title": "Yükselen Yıldız",
+  "ach_overall70_desc": "Genel gücünü 70'e çıkar.",
+  "ach_overall80_title": "Dünya Sınıfı",
+  "ach_overall80_desc": "Genel gücünü 80'e çıkar.",
+  "ach_overall90_title": "Efsane Seviyesi",
+  "ach_overall90_desc": "Genel gücünü 90'a çıkar.",
+  "ach_fanIdol_title": "Tribünlerin Gözdesi",
+  "ach_fanIdol_desc": "Taraftar ilişkisini en üst düzeye çıkar.",
+  "ach_comfortable_title": "Rahat Yaşam",
+  "ach_comfortable_desc": "Bakiyeni 100.000 ₺'ye ulaştır.",
+  "ach_millionaire_title": "Milyoner",
+  "ach_millionaire_desc": "Bakiyeni 1.000.000 ₺'ye ulaştır.",
+  "summaryTitleRetired": "Kariyer Özeti",
+  "summaryTitleLive": "Kariyerin Şu Ana Kadar",
+  "summaryRetiredAt": "{age} yaşında futbolu bıraktı",
+  "@summaryRetiredAt": {
+    "placeholders": {
+      "age": {
+        "type": "int"
+      }
+    }
+  },
+  "summaryLegacy": "Miras",
+  "legacy_amateur": "Amatör Ruh",
+  "legacy_local": "Yerel Kahraman",
+  "legacy_pro": "Profesyonel",
+  "legacy_star": "Yıldız",
+  "legacy_legend": "Efsane",
+  "legacyBlurb_amateur": "Sahada az göründün ama futbol sevgin gerçekti.",
+  "legacyBlurb_local": "Mahallede adın hâlâ anılır; tribünler seni unutmadı.",
+  "legacyBlurb_pro": "Yıllarca sağlam bir kariyer sürdürdün; saygın bir isimsin.",
+  "legacyBlurb_star": "Gollerin ve kupalarınla bir döneme damga vurdun.",
+  "legacyBlurb_legend": "Adın futbol tarihine yazıldı. Gelecek kuşaklar seni konuşacak.",
+  "sumStat_matches": "Maç",
+  "sumStat_goals": "Gol",
+  "sumStat_assists": "Asist",
+  "sumStat_rating": "Ort. Reyting",
+  "sumStat_seasons": "Sezon",
+  "sumStat_peak": "Zirve Güç",
+  "sumStat_clubs": "Kulüp",
+  "sumStat_titles": "Lig Şampiyonluğu",
+  "sumStat_caps": "Milli Maç",
+  "sumStat_natTitles": "Turnuva Kupası",
+  "sumStat_bestLeague": "En Üst Lig",
+  "sumStat_achievements": "Başarım",
+  "summarySeasonsTitle": "Sezon Sezon",
+  "summarySeasonTitle": "Sezon {season} · {age} yaş",
+  "@summarySeasonTitle": {
+    "placeholders": {
+      "season": {
+        "type": "int"
+      },
+      "age": {
+        "type": "int"
+      }
+    }
+  },
+  "summarySeasonSub": "{club} · {league}",
+  "@summarySeasonSub": {
+    "placeholders": {
+      "club": {
+        "type": "String"
+      },
+      "league": {
+        "type": "String"
+      }
+    }
+  },
+  "summarySeasonStats": "{matches} maç · {goals} gol · {assists} asist",
+  "@summarySeasonStats": {
+    "placeholders": {
+      "matches": {
+        "type": "int"
+      },
+      "goals": {
+        "type": "int"
+      },
+      "assists": {
+        "type": "int"
+      }
+    }
+  },
+  "summaryPosition": "{pos}. sırada bitirdi",
+  "@summaryPosition": {
+    "placeholders": {
+      "pos": {
+        "type": "int"
+      }
+    }
+  },
+  "summaryNoClub": "Kulüpsüz",
+  "summaryBalance": "Son bakiye",
+  "summaryHonorsTitle": "Öne Çıkanlar",
+  "summaryToMenu": "Ana Menüye Dön",
+  "summaryBack": "Geri",
+  "summaryOpenAchievements": "Başarımlar",
+  "slotRetired": "Emekli · {age} yaş · Zirve {peak}",
+  "@slotRetired": {
+    "placeholders": {
+      "age": {
+        "type": "int"
+      },
+      "peak": {
+        "type": "int"
+      }
+    }
+  },
+  "ach_tycoon_title": "Servet Sahibi",
+  "ach_tycoon_desc": "Bakiyeni 25.000.000 ₺'ye ulaştır."
 }

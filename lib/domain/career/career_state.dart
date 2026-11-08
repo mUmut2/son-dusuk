@@ -2,11 +2,13 @@ import '../club/agent.dart';
 import '../club/contract.dart';
 import '../club/finance.dart';
 import '../club/transfer_offer.dart';
+import '../national/national_career.dart';
 import '../player/player.dart';
 import '../social/event_models.dart';
 import '../social/relationships.dart';
 import 'match_record.dart';
 import 'player_status.dart';
+import 'season_record.dart';
 import 'season_calendar.dart';
 
 /// Bir kayıt slotundaki tüm kariyer durumu. Sonraki fazlarda genişler.
@@ -27,6 +29,11 @@ class CareerState {
     this.pendingEvents = const [],
     this.news = const [],
     this.eventSeen = const {},
+    this.seasonStats = const CareerStats(),
+    this.history = const [],
+    this.national = const NationalCareer(),
+    this.achievements = const {},
+    this.retired = false,
   });
 
   factory CareerState.fromJson(Map<String, dynamic> json) => CareerState(
@@ -71,6 +78,20 @@ class CareerState {
     eventSeen: Map<String, int>.from(
       (json['eventSeen'] as Map<String, dynamic>?) ?? const {},
     ),
+    seasonStats: json['seasonStats'] == null
+        ? const CareerStats()
+        : CareerStats.fromJson(json['seasonStats'] as Map<String, dynamic>),
+    history: [
+      for (final r in (json['history'] as List<dynamic>? ?? const []))
+        SeasonRecord.fromJson(r as Map<String, dynamic>),
+    ],
+    national: json['national'] == null
+        ? const NationalCareer()
+        : NationalCareer.fromJson(json['national'] as Map<String, dynamic>),
+    achievements: Map<String, int>.from(
+      (json['achievements'] as Map<String, dynamic>?) ?? const {},
+    ),
+    retired: json['retired'] as bool? ?? false,
   );
 
   final Player player;
@@ -103,6 +124,21 @@ class CareerState {
   /// Olay kimliği -> en son çıktığı mutlak hafta (tekrarı önlemek için).
   final Map<String, int> eventSeen;
 
+  /// Bu sezonun istatistikleri (sezon sonunda [history]'ye yazılıp sıfırlanır).
+  final CareerStats seasonStats;
+
+  /// Biten sezonların özeti, eskiden yeniye.
+  final List<SeasonRecord> history;
+
+  /// Milli takım kariyeri ve turnuvalar.
+  final NationalCareer national;
+
+  /// Açılan başarımlar: kimlik -> açıldığı mutlak hafta.
+  final Map<String, int> achievements;
+
+  /// Kariyer bitti (emeklilik); oyun yalnızca kariyer özetini gösterir.
+  final bool retired;
+
   bool get isFreeAgent => contract == null;
 
   /// Sezonlar boyunca artan hafta sayacı (tekliflerin son geçerlilik günü için).
@@ -126,6 +162,11 @@ class CareerState {
     List<PendingEvent>? pendingEvents,
     List<NewsItem>? news,
     Map<String, int>? eventSeen,
+    CareerStats? seasonStats,
+    List<SeasonRecord>? history,
+    NationalCareer? national,
+    Map<String, int>? achievements,
+    bool? retired,
   }) => CareerState(
     player: player ?? this.player,
     season: season ?? this.season,
@@ -142,6 +183,11 @@ class CareerState {
     pendingEvents: pendingEvents ?? this.pendingEvents,
     news: news ?? this.news,
     eventSeen: eventSeen ?? this.eventSeen,
+    seasonStats: seasonStats ?? this.seasonStats,
+    history: history ?? this.history,
+    national: national ?? this.national,
+    achievements: achievements ?? this.achievements,
+    retired: retired ?? this.retired,
   );
 
   Map<String, dynamic> toJson() => {
@@ -160,5 +206,10 @@ class CareerState {
     'pendingEvents': [for (final e in pendingEvents) e.toJson()],
     'news': [for (final n in news) n.toJson()],
     'eventSeen': eventSeen,
+    'seasonStats': seasonStats.toJson(),
+    'history': [for (final r in history) r.toJson()],
+    'national': national.toJson(),
+    'achievements': achievements,
+    'retired': retired,
   };
 }

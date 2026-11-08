@@ -1,15 +1,18 @@
 import 'dart:math' as math;
 
 import '../../core/game_random.dart';
+import '../achievements/achievements.dart';
 import '../club/club_engine.dart';
 import '../club/finance.dart';
 import '../league/club_world.dart';
+import '../national/national_engine.dart';
 import '../social/social_engine.dart';
 import '../player/player_development.dart';
 import '../player/position.dart';
 import 'career_state.dart';
 import 'match_record.dart';
 import 'player_status.dart';
+import 'retirement.dart';
 import 'season_calendar.dart';
 import 'week_balance.dart';
 import 'week_report.dart';
@@ -26,6 +29,8 @@ class WeekMatch {
     required this.result,
     this.scoreFor = 0,
     this.scoreAgainst = 0,
+    this.pensFor,
+    this.pensAgainst,
   });
 
   final double rating;
@@ -36,6 +41,10 @@ class WeekMatch {
   /// Takımın attığı ve yediği goller (puan durumu için).
   final int scoreFor;
   final int scoreAgainst;
+
+  /// Turnuva eleme maçı berabere bittiyse penaltı atışları skoru.
+  final int? pensFor;
+  final int? pensAgainst;
 }
 
 class WeekResult {
@@ -316,6 +325,13 @@ abstract final class WeekEngine {
               assists: m.assists,
               rating: m.rating,
             ),
+      seasonStats: m == null
+          ? state.seasonStats
+          : state.seasonStats.addMatch(
+              goals: m.goals,
+              assists: m.assists,
+              rating: m.rating,
+            ),
       finance: state.finance.copyWith(
         balance: state.finance.balance + money.net,
       ),
@@ -330,6 +346,22 @@ abstract final class WeekEngine {
     );
     events.addAll(club.events);
 
+    // --- Milli takım: kadro açıklaması, turnuva maçı, ödüller ---
+    final national = NationalEngine.afterWeek(
+      prev: state,
+      next: club.state,
+      play: m != null && NationalEngine.roundOfWeek(reportWeek) != null
+          ? NationalPlay(
+              goals: m.goals,
+              scoreFor: m.scoreFor,
+              scoreAgainst: m.scoreAgainst,
+              pensFor: m.pensFor,
+              pensAgainst: m.pensAgainst,
+            )
+          : null,
+    );
+    events.addAll(national.events);
+
     // --- Sosyal: ilişkiler, haber akışı, yeni olaylar ---
     var opponent = '';
     final c = state.contract;
@@ -340,7 +372,7 @@ abstract final class WeekEngine {
     }
     final social = SocialEngine.afterWeek(
       state,
-      club.state,
+      national.state,
       WeekSocialInput(
         rating: m?.rating,
         goals: m?.goals ?? 0,
@@ -348,7 +380,7 @@ abstract final class WeekEngine {
         lost: m?.result == MatchResultKind.loss,
         scoreFor: m?.scoreFor ?? 0,
         scoreAgainst: m?.scoreAgainst ?? 0,
-        opponent: opponent,
+        opponent: national.opponent ?? opponent,
         benched:
             m == null &&
             !injuredAtStart &&
@@ -359,8 +391,26 @@ abstract final class WeekEngine {
     );
     events.addAll(social.events);
 
+    // --- Başarımlar ve zorunlu emeklilik ---
+    var finalState = social.state;
+    final contract = finalState.contract;
+    final ach = AchievementEngine.sync(
+      finalState,
+      tier: contract == null
+          ? null
+          : ClubWorld(finalState.worldSeed).tierOf(contract.clubId),
+      matchGoals: m?.goals,
+      matchRating: m?.rating,
+    );
+    finalState = ach.state;
+    events.addAll(ach.events);
+    if (season > state.season && Retirement.mustRetire(finalState)) {
+      finalState = Retirement.retire(finalState);
+      events.add(const WeekEvent(WeekEventKind.retired));
+    }
+
     return WeekResult(
-      state: social.state,
+      state: finalState,
       before: before,
       report: WeekReport(
         season: reportSeason,
@@ -369,7 +419,12 @@ abstract final class WeekEngine {
         attributeGains: gains,
         events: events,
         playedMatch: m != null,
-        money: money,
+        money: national.bonus == 0
+            ? money
+            : WeekMoney([
+                ...money.lines,
+                MoneyLine(MoneyKind.nationalBonus, national.bonus),
+              ]),
       ),
     );
   }

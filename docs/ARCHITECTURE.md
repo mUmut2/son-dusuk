@@ -60,3 +60,12 @@ Mini oyunlar (Faz 3+): `domain/match` kritik an üretir → `game/` Flame sahnes
 - `WeekEngine.advance` en son `SocialEngine.afterWeek` çağırır: ilişki değişimi -> haber -> süresi dolan olaylar -> yeni olay.
 - Olay şablonları saf veridir (`EventCatalog`); koşullar `EventContext` üzerinden sorgulanır. Cevap `SocialEngine.resolve` ile uygulanır, UI yalnızca seçim alır ve `ResolveResult`'ı gösterir.
 - Oyuna etkiler tek yerde: `SocialEngine.coachSelectionBonus`, `offerFactor`, `moraleBaseline` (Squad, TransferMarket, WeekEngine bunları çağırır).
+
+## Milli takım, başarımlar, emeklilik (Faz 8)
+
+- `CareerState` ek alanları: `seasonStats`, `history` (`SeasonRecord`), `national` (`NationalCareer`), `achievements`, `retired`; `CareerStats.transfers`. Kayıt şeması 6 (v5→v6 yalnızca sürüm adımı, eksik alanlar varsayılanla yüklenir).
+- `WeekEngine.advance` sırası: antrenman/durum -> para -> skor -> `ClubEngine.process` (sezon geçişinde `SeasonRecord` yazar) -> `NationalEngine.afterWeek` (kadro açıklaması, turnuva maçı, ödül) -> `SocialEngine.afterWeek` -> `AchievementEngine.sync` -> zorunlu emeklilik.
+- `domain/national/`: `Tournament` (16 ülkeli tablo; kura ve diğer maçlar seed'li, ülkenin maçları `NationalMatchRecord`), `NationalEngine` (`dayOf` o haftanın durumu), `Shootout`. Ülke maçı oyuncu oynamazsa seed'le simüle edilir.
+- Maç ekranı hem lig hem turnuva maçını oynatır (`NationalEngine.dayOf == play` ise ülke takımları, tarafsız saha, beraberlikte penaltılar).
+- Emekli kayıtta `/game` rotaları `/game/summary`'ye yönlenir (router redirect). Başarımlar/milli takım/özet ekranları kabuk dışı tam ekran rotalardır.
+

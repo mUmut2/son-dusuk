@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../presentation/achievements/achievements_screen.dart';
 import '../presentation/create/create_player_screen.dart';
 import '../presentation/game/club_tab.dart';
 import '../presentation/game/game_shell.dart';
@@ -10,18 +11,26 @@ import '../presentation/game/training_tab.dart';
 import '../presentation/game/week_summary_screen.dart';
 import '../presentation/match/match_screen.dart';
 import '../presentation/menu/main_menu_screen.dart';
+import '../presentation/national/national_screen.dart';
 import '../presentation/providers.dart';
 import '../presentation/settings/settings_screen.dart';
 import '../presentation/social/event_screen.dart';
 import '../presentation/social/social_tab.dart';
 import '../presentation/simulator/season_simulator_screen.dart';
+import '../presentation/summary/career_summary_screen.dart';
 
 /// Uygulamanın tek yönlendirme noktası. Yeni ekranlar buraya eklenir.
 final routerProvider = Provider<GoRouter>((ref) {
   return GoRouter(
     redirect: (context, state) {
       final inGame = state.matchedLocation.startsWith('/game');
-      if (inGame && ref.read(activeCareerProvider) == null) return '/';
+      final career = ref.read(activeCareerProvider);
+      if (inGame && career == null) return '/';
+      // Emekli kariyerde yalnızca özet, hafta sonucu ve başarımlar açılır.
+      if (inGame && career != null && career.state.retired) {
+        const open = {'/game/summary', '/game/week', '/game/achievements'};
+        if (!open.contains(state.matchedLocation)) return '/game/summary';
+      }
       return null;
     },
     routes: [
@@ -44,6 +53,18 @@ final routerProvider = Provider<GoRouter>((ref) {
         path: '/game/event/:id',
         builder: (context, state) =>
             EventScreen(eventId: state.pathParameters['id'] ?? ''),
+      ),
+      GoRoute(
+        path: '/game/national',
+        builder: (context, state) => const NationalScreen(),
+      ),
+      GoRoute(
+        path: '/game/achievements',
+        builder: (context, state) => const AchievementsScreen(),
+      ),
+      GoRoute(
+        path: '/game/summary',
+        builder: (context, state) => const CareerSummaryScreen(),
       ),
       GoRoute(
         path: '/simulator',

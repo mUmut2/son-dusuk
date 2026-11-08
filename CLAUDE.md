@@ -17,7 +17,7 @@ Kurgusal, tamamen offline bir futbolcu kariyer oyunu (Flutter). 16 yaşında ba�
 
 ## Faz planı
 
-0 Hazırlık ✅ · 1 Oyuncu/kariyer çekirdeği ✅ · 2 Takvim+lig+maç simülasyonu ✅ · 3 Şut mini oyunu (Flame) ✅ · 4 Haftalık yaşam döngüsü ✅ · 5 Diğer mini oyunlar ✅ · 6 Transfer/kontrat/menajer/ekonomi ✅ · 7 Sosyal/olay motoru ✅ · 8 Milli takım/başarım/emeklilik · 9 Cila ve yayın (CI/CD, Pages, README görselleri, Android release).
+0 Hazırlık ✅ · 1 Oyuncu/kariyer çekirdeği ✅ · 2 Takvim+lig+maç simülasyonu ✅ · 3 Şut mini oyunu (Flame) ✅ · 4 Haftalık yaşam döngüsü ✅ · 5 Diğer mini oyunlar ✅ · 6 Transfer/kontrat/menajer/ekonomi ✅ · 7 Sosyal/olay motoru ✅ · 8 Milli takım/başarım/emeklilik ✅ · 9 Cila ve yayın (CI/CD, Pages, README görselleri, Android release).
 
 ## Mimari kuralları
 
@@ -46,6 +46,7 @@ lib/
 - Mini oyunlar: `MiniGameView` (lib/game/mini_game_view.dart) tür -> oyun fabrikasıdır; şut/bire bir/serbest vuruş/kafa `ShotGame` varyantı, diğerleri `MiniGameBase` alt sınıfları (penalty/, pass/, dribble/, tackle/). Dokunma katmanı `containsLocalPoint => true` olmalı. Yeni mini oyun: `mini_balance.dart` + `domain/match/minigames/<oyun>.dart` + Flame sınıfı + `tool/minigame_stats.dart` + `test/mini_games_widget_test.dart`. Flame oyunlarında `late` alan kullanma, boş girdiyle bitişi test et.
 - Kulüp sistemi (Faz 6): `domain/club/` (contract, transfer_offer, agent, finance, squad, transfer_market, club_engine, club_balance). Dünya `ClubWorld(worldSeed)` ile her seferinde aynı seed'den kurulur (takımlar kayda yazılmaz; sağlayıcı `clubWorldProvider`). Oyuncunun maçı kulübünün fikstüründen gelir; `Squad.matchDay` o hafta maç var mı (play/benched/injured/none) söyler. Kulüp/ekonomi parametreleri yalnızca `club_balance.dart`'ta; değiştirince `dart run tool/club_stats.dart`. Kayıt şeması 4 (v3→v4: `CareerFactory.assignClub`). Yeni kayıt alanı eklersen `currentSchemaVersion`'ı artır ve göç adımı yaz.
 - Sosyal sistem (Faz 7): `domain/social/` (relationships, event_models, event_catalog, social_engine, social_balance). Yeni olay: `event_catalog.dart`'a şablon + ARB'ye `ev_<id>_title/body/c<n>/r<n>(/b<n>)` + `presentation/event_texts.dart`'a eşleme; `test/domain/social/social_test.dart` metin eksiğini yakalar. Olay arayüzü `presentation/social/` (SocialTab, EventScreen, rota `/game/event/:id`). Denge `social_balance.dart`; `dart run tool/social_stats.dart`. Kayıt şeması 5.
+- Milli takım/başarım/emeklilik (Faz 8): `domain/national/` (nation, national_career, tournament, national_engine, national_balance), `domain/achievements/achievements.dart`, `domain/career/retirement.dart` + `legacy_balance.dart` + `season_record.dart`. Turnuva çift sezonlarda 39-42. haftalarda (16 ülke, eleme); `NationalEngine.dayOf` o haftanın durumunu verir, maç ekranı ona göre lig/turnuva maçı oynatır. Yeni başarım: `Achievement` enum + `isMet` + ARB `ach_<ad>_title/desc` + `achievementIcon` + `l10n_labels` eşlemesi. Denge: `national_balance.dart`, `legacy_balance.dart`; `dart run tool/national_stats.dart`. Kayıt şeması 6. Emekli kayıtta `/game` rotaları `/game/summary`'ye yönlenir.
 - Form 0-10 (son 5 maç ortalaması, varsayılan 6.0); `PlayerStatus.formBonus` performansa çevirir.
 - Gizli nitelikler (potansiyel, sakatlanma eğilimi, profesyonellik) arayüzde gösterilmez.
 

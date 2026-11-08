@@ -80,6 +80,14 @@ class WeekSummaryScreen extends ConsumerWidget {
                               WeekEventKind.contractExpired =>
                                 Icons.description,
                               WeekEventKind.newEvent => Icons.forum,
+                              WeekEventKind.nationalCalled ||
+                              WeekEventKind.nationalOmitted ||
+                              WeekEventKind.nationalMatch ||
+                              WeekEventKind.nationalOut => Icons.flag,
+                              WeekEventKind.nationalRunnerUp ||
+                              WeekEventKind.nationalChampion ||
+                              WeekEventKind.achievement => Icons.emoji_events,
+                              WeekEventKind.retired => Icons.sports_score,
                               _ => Icons.healing,
                             }),
                             title: Text(
@@ -199,7 +207,8 @@ class WeekSummaryScreen extends ConsumerWidget {
                     ],
                   ),
                 ),
-                if (result.state.pendingEvents.isNotEmpty)
+                if (!result.state.retired &&
+                    result.state.pendingEvents.isNotEmpty)
                   Padding(
                     padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
                     child: FilledButton.tonalIcon(
@@ -225,8 +234,14 @@ class WeekSummaryScreen extends ConsumerWidget {
                     style: FilledButton.styleFrom(
                       minimumSize: const Size.fromHeight(56),
                     ),
-                    onPressed: () => context.go('/game'),
-                    child: Text(l10n.continueButton),
+                    onPressed: () => context.go(
+                      result.state.retired ? '/game/summary' : '/game',
+                    ),
+                    child: Text(
+                      result.state.retired
+                          ? l10n.summarySeeCareer
+                          : l10n.continueButton,
+                    ),
                   ),
                 ),
               ],

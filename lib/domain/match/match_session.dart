@@ -25,6 +25,7 @@ class MatchSession {
     required Side playerSide,
     required Player player,
     required GameRandom random,
+    bool neutral = false,
   }) {
     final moments = CriticalMomentGenerator.generate(player.position, random);
 
@@ -46,6 +47,7 @@ class MatchSession {
       random: random,
       homeReduction: playerIsHome ? refFor : refAgainst,
       awayReduction: playerIsHome ? refAgainst : refFor,
+      neutral: neutral,
     );
 
     return MatchSession._(

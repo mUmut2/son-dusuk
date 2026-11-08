@@ -1,7 +1,11 @@
 import '../../core/game_random.dart';
 import '../career/career_state.dart';
+import '../career/player_status.dart';
+import '../career/season_record.dart';
 import '../career/week_report.dart';
 import '../league/club_world.dart';
+import '../league/league_table.dart';
+import '../career/season_calendar.dart';
 import 'squad.dart';
 import 'transfer_market.dart';
 import 'transfer_offer.dart';
@@ -27,7 +31,11 @@ abstract final class ClubEngine {
     var s = next;
 
     if (newSeason) {
-      s = s.copyWith(results: const []);
+      s = s.copyWith(
+        history: [...s.history, _seasonRecord(s, world)],
+        seasonStats: const CareerStats(),
+        results: const [],
+      );
       final c = s.contract;
       if (c != null) {
         if (c.endSeason < s.season) {
@@ -71,5 +79,38 @@ abstract final class ClubEngine {
       }
     }
     return ClubUpdate(s, events);
+  }
+
+  /// Biten sezonun özeti: kulüp, kademe, lig sırası ve sezon istatistikleri.
+  /// [s] sezon sayacı ilerlemiş durumdur (biten sezon = `s.season - 1`).
+  static SeasonRecord _seasonRecord(CareerState s, ClubWorld world) {
+    final finished = s.season - 1;
+    final clubId = s.contract?.clubId;
+    var tier = 0;
+    var position = 0;
+    if (clubId != null) {
+      tier = world.tierOf(clubId);
+      final table = LeagueTable.compute(
+        world: world,
+        tier: tier,
+        season: finished,
+        throughRound: SeasonCalendar.leagueRounds,
+        playerResults: s.results,
+      );
+      position = table.sorted.indexWhere((r) => r.teamId == clubId) + 1;
+    }
+    final stats = s.seasonStats;
+    return SeasonRecord(
+      season: finished,
+      age: s.player.age - 1,
+      overall: s.player.overall,
+      clubId: clubId,
+      tier: tier,
+      position: position,
+      matches: stats.matches,
+      goals: stats.goals,
+      assists: stats.assists,
+      averageRating: stats.averageRating,
+    );
   }
 }

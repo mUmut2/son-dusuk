@@ -3,7 +3,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../app/l10n/app_localizations.dart';
+import '../../domain/career/career_state.dart';
 import '../../domain/club/squad.dart';
+import '../../domain/national/national_balance.dart';
+import '../../domain/national/national_engine.dart';
 import '../l10n_labels.dart';
 import '../providers.dart';
 import '../widgets/player_avatar.dart';
@@ -25,6 +28,7 @@ class HomeTab extends ConsumerWidget {
     final leagueName = clubId == null
         ? null
         : l10n.tierName(world!.tierOf(clubId));
+    final nationalDay = NationalEngine.dayOf(career);
 
     return ListView(
       padding: const EdgeInsets.all(16),
@@ -80,12 +84,18 @@ class HomeTab extends ConsumerWidget {
               MatchDay.benched => l10n.benchedThisWeek,
               MatchDay.play => l10n.matchThisWeek,
               MatchDay.none =>
-                career.isFreeAgent
+                nationalDay != NationalDay.none
+                    ? l10n.nationalDayText(
+                        nationalDay,
+                        opponent: NationalEngine.opponentOf(career)?.name ?? '',
+                      )
+                    : career.isFreeAgent
                     ? l10n.freeAgentNoMatch
                     : l10n.noMatchThisWeek,
             }),
           ),
         ),
+        _NationalCard(career: career),
         if (career.pendingEvents.isNotEmpty) ...[
           const SizedBox(height: 12),
           Card(
@@ -117,6 +127,62 @@ class HomeTab extends ConsumerWidget {
           onPressed: () => context.go('/game/training'),
         ),
       ],
+    );
+  }
+}
+
+/// Milli takım durumu: çağrılma, sıradaki tur ya da yaklaşan turnuva.
+class _NationalCard extends StatelessWidget {
+  const _NationalCard({required this.career});
+
+  final CareerState career;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final run = career.national.current;
+
+    String? text;
+    var icon = Icons.flag;
+    if (run != null && run.season == career.season) {
+      final name = l10n.tournamentName(run.kind);
+      if (run.champion) {
+        text = l10n.homeNationalChampion(name);
+        icon = Icons.emoji_events;
+      } else if (run.lost) {
+        text = l10n.homeNationalOut(name);
+      } else if (run.results.isEmpty && run.called) {
+        text = l10n.homeNationalCalled(name);
+      } else {
+        final round = run.nextRound.clamp(0, NationalBalance.roundCount - 1);
+        final opponent = NationalEngine.tournamentOf(
+          career,
+        )?.opponentOfHome(round)?.name;
+        text = l10n.homeNationalRound(
+          name,
+          l10n.roundName(round),
+          opponent ?? '?',
+        );
+      }
+    } else if (NationalEngine.isTournamentSeason(career.season) &&
+        career.week >= 30 &&
+        career.week < NationalBalance.firstRoundWeek) {
+      text = l10n.homeNationalNext(
+        l10n.tournamentName(NationalEngine.kindOf(career.season)),
+      );
+    }
+    if (text == null) return const SizedBox.shrink();
+
+    return Padding(
+      padding: const EdgeInsets.only(top: 12),
+      child: Card(
+        child: ListTile(
+          leading: Icon(icon),
+          title: Text(text),
+          trailing: const Icon(Icons.chevron_right),
+          onTap: () => context.push('/game/national'),
+        ),
+      ),
     );
   }
 }

@@ -1676,4 +1676,645 @@ class AppLocalizationsTr extends AppLocalizations {
   String seasonWeekShort(int season, int week) {
     return 'S$season · H$week';
   }
+
+  @override
+  String get profileCareerSection => 'Kariyer';
+
+  @override
+  String get profileNationalCard => 'Milli Takım';
+
+  @override
+  String profileNationalSub(int caps, int goals) {
+    return '$caps maç · $goals gol';
+  }
+
+  @override
+  String get profileAchievementsCard => 'Başarımlar';
+
+  @override
+  String profileAchievementsSub(int done, int total) {
+    return '$done / $total açıldı';
+  }
+
+  @override
+  String get profileSummaryCard => 'Kariyer Özeti';
+
+  @override
+  String get profileSummarySub => 'Şimdiye kadarki yolculuğun';
+
+  @override
+  String get retireButton => 'Futbolu Bırak';
+
+  @override
+  String get retireTitle => 'Futbolu bırakıyor musun?';
+
+  @override
+  String get retireBody =>
+      'Kariyerin burada biter ve kariyer özetin açılır. Bu geri alınamaz.';
+
+  @override
+  String get retireConfirm => 'Evet, bırak';
+
+  @override
+  String retireAgeHint(int age) {
+    return 'Emekli olmak için en az $age yaşında olmalısın.';
+  }
+
+  @override
+  String get tournament_continental => 'Kıtalar Kupası';
+
+  @override
+  String get tournament_world => 'Dünya Kupası';
+
+  @override
+  String get round_0 => 'Son 16';
+
+  @override
+  String get round_1 => 'Çeyrek Final';
+
+  @override
+  String get round_2 => 'Yarı Final';
+
+  @override
+  String get round_3 => 'Final';
+
+  @override
+  String get stageResult_roundOf16 => 'Son 16\'da elendi';
+
+  @override
+  String get stageResult_quarterFinal => 'Çeyrek finalde elendi';
+
+  @override
+  String get stageResult_semiFinal => 'Yarı finalde elendi';
+
+  @override
+  String get stageResult_runnerUp => 'Finalde kaybetti';
+
+  @override
+  String get stageResult_champion => 'Şampiyon oldu';
+
+  @override
+  String get natRole_starter => 'Ana kadro';
+
+  @override
+  String get natRole_rotation => 'Rotasyon';
+
+  @override
+  String get natRole_reserve => 'Yedek';
+
+  @override
+  String get nationalTitle => 'Milli Takım';
+
+  @override
+  String nationalCapsGoals(int caps, int goals) {
+    return '$caps milli maç · $goals gol';
+  }
+
+  @override
+  String nationalStatusCalled(String role) {
+    return 'Kadrodasın · $role';
+  }
+
+  @override
+  String get nationalStatusOmitted =>
+      'Bu turnuvanın kadrosunda değilsin. Ülkeni uzaktan destekle.';
+
+  @override
+  String get nationalStatusEliminated => 'Ülken turnuvadan elendi.';
+
+  @override
+  String get nationalStatusChampion => 'Ülken turnuvayı kazandı!';
+
+  @override
+  String nationalNextTournament(String name, int season) {
+    return 'Sıradaki turnuva: $name, sezon $season sonunda.';
+  }
+
+  @override
+  String get nationalEmpty =>
+      'Henüz milli takım geçmişin yok. Turnuvalar iki sezonda bir, sezon arasında oynanır. Genel gücü ve formu yüksek, üst liglerde oynayan oyuncular çağrılır.';
+
+  @override
+  String get nationalBracketTitle => 'Eşleşmeler';
+
+  @override
+  String nationalRoundHeader(String round, int week) {
+    return '$round · Hafta $week';
+  }
+
+  @override
+  String get nationalHistoryTitle => 'Geçmiş Turnuvalar';
+
+  @override
+  String nationalHistoryLine(String name, int season) {
+    return '$name · Sezon $season';
+  }
+
+  @override
+  String nationalHistorySub(String result, int apps, int goals) {
+    return '$result · $apps maç, $goals gol';
+  }
+
+  @override
+  String nationalHistoryNotCalled(String result) {
+    return '$result · Kadroda değildin';
+  }
+
+  @override
+  String get nationalYouPlayed => 'Oynadın';
+
+  @override
+  String nationalPens(String score) {
+    return 'pen. $score';
+  }
+
+  @override
+  String homeNationalCalled(String tournament) {
+    return '$tournament için milli takıma çağrıldın!';
+  }
+
+  @override
+  String homeNationalNext(String tournament) {
+    return 'Bu sezon sonunda $tournament var.';
+  }
+
+  @override
+  String homeNationalRound(String tournament, String round, String opponent) {
+    return '$tournament · $round: $opponent';
+  }
+
+  @override
+  String homeNationalOut(String tournament) {
+    return '$tournament: ülken elendi.';
+  }
+
+  @override
+  String homeNationalChampion(String tournament) {
+    return '$tournament şampiyonusun!';
+  }
+
+  @override
+  String nationalMatchThisWeek(String opponent) {
+    return 'Bu hafta milli maç var: $opponent.';
+  }
+
+  @override
+  String get nationalBenchedThisWeek => 'Milli takımda bu hafta yedeksin.';
+
+  @override
+  String get nationalNotCalledThisWeek =>
+      'Bu hafta turnuva maçı var ama kadroda değilsin.';
+
+  @override
+  String get nationalEliminatedThisWeek =>
+      'Ülken turnuvadan elendi, bu hafta maç yok.';
+
+  @override
+  String get nationalInjuredThisWeek => 'Sakatsın, milli maçı kaçıracaksın.';
+
+  @override
+  String get playWeekNationalMatch => 'Milli Maçı Oyna';
+
+  @override
+  String nationalMatchTitle(String round) {
+    return 'Milli Maç · $round';
+  }
+
+  @override
+  String get nationalKnockoutNote =>
+      'Eleme maçı: beraberlikte penaltılara gidilir.';
+
+  @override
+  String shootoutWon(String score) {
+    return 'Penaltılarda kazandınız: $score';
+  }
+
+  @override
+  String shootoutLost(String score) {
+    return 'Penaltılarda kaybettiniz: $score';
+  }
+
+  @override
+  String eventNationalCalled(String tournament, String role) {
+    return 'Milli takıma çağrıldın! $tournament kadrosundasın ($role).';
+  }
+
+  @override
+  String eventNationalOmitted(String tournament) {
+    return '$tournament kadrosunda yer alamadın.';
+  }
+
+  @override
+  String eventNationalMatch(
+    String round,
+    String home,
+    String score,
+    String opponent,
+  ) {
+    return '$round: $home $score $opponent';
+  }
+
+  @override
+  String eventNationalMatchPens(
+    String round,
+    String home,
+    String score,
+    String opponent,
+    String pens,
+  ) {
+    return '$round: $home $score $opponent ($pens)';
+  }
+
+  @override
+  String eventNationalOut(String tournament, String result) {
+    return '$tournament: $result';
+  }
+
+  @override
+  String eventNationalRunnerUp(String tournament) {
+    return '$tournament finalini kaybettiniz. Gurur duyulacak bir yol oldu.';
+  }
+
+  @override
+  String eventNationalChampion(String tournament) {
+    return 'ŞAMPİYONSUN! $tournament kupasını kaldırdın!';
+  }
+
+  @override
+  String eventAchievement(String title) {
+    return 'Başarım açıldı: $title';
+  }
+
+  @override
+  String get eventRetired => 'Kariyerin sona erdi. Futbola veda ettin.';
+
+  @override
+  String get money_nationalBonus => 'Milli takım primi';
+
+  @override
+  String get summarySeeCareer => 'Kariyer Özetini Gör';
+
+  @override
+  String newsNational(String tournament, String result) {
+    return '$tournament: $result';
+  }
+
+  @override
+  String newsAchievement(String title) {
+    return 'Başarım: $title';
+  }
+
+  @override
+  String newsRetired(String age) {
+    return '$age yaşında futbolu bıraktın.';
+  }
+
+  @override
+  String get achievementsTitle => 'Başarımlar';
+
+  @override
+  String achievementsProgress(int done, int total) {
+    return '$done / $total';
+  }
+
+  @override
+  String get achCategory_career => 'Kariyer';
+
+  @override
+  String get achCategory_club => 'Kulüp';
+
+  @override
+  String get achCategory_national => 'Milli Takım';
+
+  @override
+  String get achCategory_growth => 'Gelişim';
+
+  @override
+  String get achCategory_wealth => 'Para';
+
+  @override
+  String get achLocked => 'Kilitli';
+
+  @override
+  String get ach_firstMatch_title => 'İlk Düdük';
+
+  @override
+  String get ach_firstMatch_desc => 'İlk maçına çık.';
+
+  @override
+  String get ach_firstGoal_title => 'Ağlar Sallandı';
+
+  @override
+  String get ach_firstGoal_desc => 'İlk golünü at.';
+
+  @override
+  String get ach_firstAssist_title => 'Takım Oyuncusu';
+
+  @override
+  String get ach_firstAssist_desc => 'İlk asistini yap.';
+
+  @override
+  String get ach_goals10_title => 'Çift Haneli';
+
+  @override
+  String get ach_goals10_desc => 'Kariyerinde 10 gol at.';
+
+  @override
+  String get ach_goals50_title => 'Golcü';
+
+  @override
+  String get ach_goals50_desc => 'Kariyerinde 50 gol at.';
+
+  @override
+  String get ach_goals150_title => 'Gol Avcısı';
+
+  @override
+  String get ach_goals150_desc => 'Kariyerinde 150 gol at.';
+
+  @override
+  String get ach_goals400_title => 'Gol Makinesi';
+
+  @override
+  String get ach_goals400_desc => 'Kariyerinde 400 gol at.';
+
+  @override
+  String get ach_matches50_title => 'Yerleşik Oyuncu';
+
+  @override
+  String get ach_matches50_desc => '50 maç oyna.';
+
+  @override
+  String get ach_matches250_title => 'Sahanın Adamı';
+
+  @override
+  String get ach_matches250_desc => '250 maç oyna.';
+
+  @override
+  String get ach_matches500_title => 'Demir Adam';
+
+  @override
+  String get ach_matches500_desc => '500 maç oyna.';
+
+  @override
+  String get ach_hatTrick_title => 'Hat-trick';
+
+  @override
+  String get ach_hatTrick_desc => 'Tek maçta 3 gol at.';
+
+  @override
+  String get ach_starPerformance_title => 'Maçın Adamı';
+
+  @override
+  String get ach_starPerformance_desc => 'Bir maçta 9.8 ve üzeri reyting al.';
+
+  @override
+  String get ach_seasons10_title => 'On Yıllık Yol';
+
+  @override
+  String get ach_seasons10_desc => '10 sezon boyunca oyna.';
+
+  @override
+  String get ach_veteran_title => 'Tecrübe';
+
+  @override
+  String get ach_veteran_desc => '35 yaşına ulaş.';
+
+  @override
+  String get ach_firstTransfer_title => 'Yeni Sayfa';
+
+  @override
+  String get ach_firstTransfer_desc => 'Kulüp değiştir.';
+
+  @override
+  String get ach_topLeague_title => 'Büyükler Ligi';
+
+  @override
+  String get ach_topLeague_desc => 'En üst ligde bir kulüpte oyna.';
+
+  @override
+  String get ach_leagueChampion_title => 'Şampiyon';
+
+  @override
+  String get ach_leagueChampion_desc => 'Bir sezonu ligin zirvesinde bitir.';
+
+  @override
+  String get ach_topLeagueChampion_title => 'Zirvenin Sahibi';
+
+  @override
+  String get ach_topLeagueChampion_desc => 'En üst ligde şampiyon ol.';
+
+  @override
+  String get ach_loyal_title => 'Sadık Yürek';
+
+  @override
+  String get ach_loyal_desc => 'Aynı kulüpte arka arkaya 10 sezon geçir.';
+
+  @override
+  String get ach_agentTop_title => 'Güçlü Bağlantılar';
+
+  @override
+  String get ach_agentTop_desc => 'En üst seviye menajerle çalış.';
+
+  @override
+  String get ach_nationalDebut_title => 'Milli Forma';
+
+  @override
+  String get ach_nationalDebut_desc => 'Milli takımda ilk maçına çık.';
+
+  @override
+  String get ach_nationalGoal_title => 'Milli Gol';
+
+  @override
+  String get ach_nationalGoal_desc => 'Milli takım adına gol at.';
+
+  @override
+  String get ach_nationalFinal_title => 'Büyük Final';
+
+  @override
+  String get ach_nationalFinal_desc => 'Bir turnuvada finale çık.';
+
+  @override
+  String get ach_continentalChampion_title => 'Kıtanın Zirvesi';
+
+  @override
+  String get ach_continentalChampion_desc => 'Kıtalar Kupası\'nı kazan.';
+
+  @override
+  String get ach_worldChampion_title => 'Dünya Şampiyonu';
+
+  @override
+  String get ach_worldChampion_desc => 'Dünya Kupası\'nı kazan.';
+
+  @override
+  String get ach_overall70_title => 'Yükselen Yıldız';
+
+  @override
+  String get ach_overall70_desc => 'Genel gücünü 70\'e çıkar.';
+
+  @override
+  String get ach_overall80_title => 'Dünya Sınıfı';
+
+  @override
+  String get ach_overall80_desc => 'Genel gücünü 80\'e çıkar.';
+
+  @override
+  String get ach_overall90_title => 'Efsane Seviyesi';
+
+  @override
+  String get ach_overall90_desc => 'Genel gücünü 90\'a çıkar.';
+
+  @override
+  String get ach_fanIdol_title => 'Tribünlerin Gözdesi';
+
+  @override
+  String get ach_fanIdol_desc => 'Taraftar ilişkisini en üst düzeye çıkar.';
+
+  @override
+  String get ach_comfortable_title => 'Rahat Yaşam';
+
+  @override
+  String get ach_comfortable_desc => 'Bakiyeni 100.000 ₺\'ye ulaştır.';
+
+  @override
+  String get ach_millionaire_title => 'Milyoner';
+
+  @override
+  String get ach_millionaire_desc => 'Bakiyeni 1.000.000 ₺\'ye ulaştır.';
+
+  @override
+  String get summaryTitleRetired => 'Kariyer Özeti';
+
+  @override
+  String get summaryTitleLive => 'Kariyerin Şu Ana Kadar';
+
+  @override
+  String summaryRetiredAt(int age) {
+    return '$age yaşında futbolu bıraktı';
+  }
+
+  @override
+  String get summaryLegacy => 'Miras';
+
+  @override
+  String get legacy_amateur => 'Amatör Ruh';
+
+  @override
+  String get legacy_local => 'Yerel Kahraman';
+
+  @override
+  String get legacy_pro => 'Profesyonel';
+
+  @override
+  String get legacy_star => 'Yıldız';
+
+  @override
+  String get legacy_legend => 'Efsane';
+
+  @override
+  String get legacyBlurb_amateur =>
+      'Sahada az göründün ama futbol sevgin gerçekti.';
+
+  @override
+  String get legacyBlurb_local =>
+      'Mahallede adın hâlâ anılır; tribünler seni unutmadı.';
+
+  @override
+  String get legacyBlurb_pro =>
+      'Yıllarca sağlam bir kariyer sürdürdün; saygın bir isimsin.';
+
+  @override
+  String get legacyBlurb_star =>
+      'Gollerin ve kupalarınla bir döneme damga vurdun.';
+
+  @override
+  String get legacyBlurb_legend =>
+      'Adın futbol tarihine yazıldı. Gelecek kuşaklar seni konuşacak.';
+
+  @override
+  String get sumStat_matches => 'Maç';
+
+  @override
+  String get sumStat_goals => 'Gol';
+
+  @override
+  String get sumStat_assists => 'Asist';
+
+  @override
+  String get sumStat_rating => 'Ort. Reyting';
+
+  @override
+  String get sumStat_seasons => 'Sezon';
+
+  @override
+  String get sumStat_peak => 'Zirve Güç';
+
+  @override
+  String get sumStat_clubs => 'Kulüp';
+
+  @override
+  String get sumStat_titles => 'Lig Şampiyonluğu';
+
+  @override
+  String get sumStat_caps => 'Milli Maç';
+
+  @override
+  String get sumStat_natTitles => 'Turnuva Kupası';
+
+  @override
+  String get sumStat_bestLeague => 'En Üst Lig';
+
+  @override
+  String get sumStat_achievements => 'Başarım';
+
+  @override
+  String get summarySeasonsTitle => 'Sezon Sezon';
+
+  @override
+  String summarySeasonTitle(int season, int age) {
+    return 'Sezon $season · $age yaş';
+  }
+
+  @override
+  String summarySeasonSub(String club, String league) {
+    return '$club · $league';
+  }
+
+  @override
+  String summarySeasonStats(int matches, int goals, int assists) {
+    return '$matches maç · $goals gol · $assists asist';
+  }
+
+  @override
+  String summaryPosition(int pos) {
+    return '$pos. sırada bitirdi';
+  }
+
+  @override
+  String get summaryNoClub => 'Kulüpsüz';
+
+  @override
+  String get summaryBalance => 'Son bakiye';
+
+  @override
+  String get summaryHonorsTitle => 'Öne Çıkanlar';
+
+  @override
+  String get summaryToMenu => 'Ana Menüye Dön';
+
+  @override
+  String get summaryBack => 'Geri';
+
+  @override
+  String get summaryOpenAchievements => 'Başarımlar';
+
+  @override
+  String slotRetired(int age, int peak) {
+    return 'Emekli · $age yaş · Zirve $peak';
+  }
+
+  @override
+  String get ach_tycoon_title => 'Servet Sahibi';
+
+  @override
+  String get ach_tycoon_desc => 'Bakiyeni 25.000.000 ₺\'ye ulaştır.';
 }

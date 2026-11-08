@@ -134,6 +134,7 @@ class CareerStats {
     this.assists = 0,
     this.ratingSum = 0,
     this.penaltyZones = const [0, 0, 0, 0, 0, 0],
+    this.transfers = 0,
   });
 
   factory CareerStats.fromJson(Map<String, dynamic> json) => CareerStats(
@@ -145,12 +146,16 @@ class CareerStats {
       for (final z in (json['penaltyZones'] as List<dynamic>? ?? const []))
         z as int,
     ].followedBy(List.filled(6, 0)).take(6).toList(),
+    transfers: json['transfers'] as int? ?? 0,
   );
 
   final int matches;
   final int goals;
   final int assists;
   final double ratingSum;
+
+  /// Kulüp değiştirdiği transfer sayısı (yenilemeler sayılmaz).
+  final int transfers;
 
   /// Penaltılarda 6 bölgeden her birinin kaç kez seçildiği (kaleci okur).
   final List<int> penaltyZones;
@@ -167,6 +172,7 @@ class CareerStats {
     assists: this.assists + assists,
     ratingSum: ratingSum + rating,
     penaltyZones: penaltyZones,
+    transfers: transfers,
   );
 
   CareerStats addPenalty(int zone) => CareerStats(
@@ -178,6 +184,16 @@ class CareerStats {
       for (var i = 0; i < penaltyZones.length; i++)
         penaltyZones[i] + (i == zone ? 1 : 0),
     ],
+    transfers: transfers,
+  );
+
+  CareerStats addTransfer() => CareerStats(
+    matches: matches,
+    goals: goals,
+    assists: assists,
+    ratingSum: ratingSum,
+    penaltyZones: penaltyZones,
+    transfers: transfers + 1,
   );
 
   Map<String, dynamic> toJson() => {
@@ -186,5 +202,6 @@ class CareerStats {
     'assists': assists,
     'ratingSum': ratingSum,
     'penaltyZones': penaltyZones,
+    'transfers': transfers,
   };
 }

@@ -149,7 +149,7 @@ class PendingEvent {
   };
 }
 
-enum NewsKind { match, signed, event, injury }
+enum NewsKind { match, signed, event, injury, national, achievement, retired }
 
 /// Haber akışındaki bir satır. Metin arayüzde, [kind] ve [params]'tan üretilir.
 class NewsItem {

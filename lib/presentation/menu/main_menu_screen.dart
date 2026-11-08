@@ -112,11 +112,19 @@ class _SlotCard extends ConsumerWidget {
       case SlotStatus.corrupt:
         subtitle = l10n.slotCorrupt;
       case SlotStatus.ok:
-        subtitle = l10n.slotSummary(
-          player!.age,
-          l10n.positionName(player.position),
-          player.overall,
-        );
+        subtitle = career!.retired
+            ? l10n.slotRetired(
+                player!.age,
+                career.history.fold<int>(
+                  player.overall,
+                  (a, r) => r.overall > a ? r.overall : a,
+                ),
+              )
+            : l10n.slotSummary(
+                player!.age,
+                l10n.positionName(player.position),
+                player.overall,
+              );
     }
 
     return Card(

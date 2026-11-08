@@ -223,6 +223,7 @@ abstract final class TransferMarket {
     );
     return s.copyWith(
       contract: contract,
+      stats: offer.kind == OfferKind.transfer ? s.stats.addTransfer() : null,
       finance: s.finance.copyWith(
         balance: s.finance.balance + signingBonus(wage, s.agent),
       ),

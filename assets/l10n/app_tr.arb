@@ -1,0 +1,8 @@
+{
+  "@@locale": "tr",
+  "appTitle": "Son Düdük",
+  "@appTitle": { "description": "Oyunun adı." },
+  "tagline": "16 yaşında başla, dünya yıldızı ol.",
+  "phaseZeroNotice": "Faz 0: altyapı hazır. Oyun yakında burada.",
+  "homeTitle": "Ana Sayfa"
+}

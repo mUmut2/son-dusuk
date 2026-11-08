@@ -113,7 +113,6 @@ extension L10nLabels on AppLocalizations {
     WeekReason.healed => reason_healed,
     WeekReason.exhausted => reason_exhausted,
     WeekReason.formFromRatings => reason_formFromRatings,
-    WeekReason.formFades => reason_formFades,
     WeekReason.earlyReturn => reason_earlyReturn,
     WeekReason.drift => reason_drift,
   };

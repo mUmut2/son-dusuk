@@ -41,19 +41,97 @@ class ShotProfile {
     required this.keeperSkillDelta,
   });
 
-  /// [status]: form hızı artırır; düşük kondisyon hız ve isabet cezası,
-  /// düşük moral küçük bir isabet cezası verir.
+  /// Normal şut. [status]: form halkayı yavaşlatır; düşük kondisyon hız ve
+  /// isabet cezası, düşük moral küçük bir isabet cezası verir.
   factory ShotProfile.fromPlayer(
     Player player,
     Difficulty difficulty, {
     PlayerStatus? status,
+  }) => ShotProfile._build(
+    player,
+    difficulty,
+    status,
+    precisionA: Attribute.finesse,
+    precisionB: Attribute.shooting,
+    windowAttribute: Attribute.shooting,
+    curveAttribute: Attribute.finesse,
+    curveBase: ShotBalance.curveGainBase,
+    curveSpan: ShotBalance.curveGainFinesse,
+    powerAttribute: Attribute.shooting,
+  );
+
+  /// Bire bir: aynı fizik, daha kısa karar süresi (kaleci çok yakın).
+  factory ShotProfile.oneOnOne(
+    Player player,
+    Difficulty difficulty, {
+    PlayerStatus? status,
+  }) => ShotProfile._build(
+    player,
+    difficulty,
+    status,
+    precisionA: Attribute.finesse,
+    precisionB: Attribute.shooting,
+    windowAttribute: Attribute.shooting,
+    curveAttribute: Attribute.finesse,
+    curveBase: ShotBalance.curveGainBase,
+    curveSpan: ShotBalance.curveGainFinesse,
+    powerAttribute: Attribute.shooting,
+    ringFactor: ShotBalance.oneOnOneRingFactor,
+  );
+
+  /// Serbest vuruş: Duran Top ve Plase belirler, falso çok daha etkilidir.
+  factory ShotProfile.freeKick(
+    Player player,
+    Difficulty difficulty, {
+    PlayerStatus? status,
+  }) => ShotProfile._build(
+    player,
+    difficulty,
+    status,
+    precisionA: Attribute.finesse,
+    precisionB: Attribute.setPieces,
+    windowAttribute: Attribute.setPieces,
+    curveAttribute: Attribute.setPieces,
+    curveBase: ShotBalance.freeKickCurveBase,
+    curveSpan: ShotBalance.freeKickCurveSpan,
+    powerAttribute: Attribute.setPieces,
+  );
+
+  /// Kafa vuruşu: Kafa Vuruşu ve Güç belirler; falso yoktur.
+  factory ShotProfile.header(
+    Player player,
+    Difficulty difficulty, {
+    PlayerStatus? status,
+  }) => ShotProfile._build(
+    player,
+    difficulty,
+    status,
+    precisionA: Attribute.heading,
+    precisionB: Attribute.strength,
+    windowAttribute: Attribute.heading,
+    curveAttribute: Attribute.heading,
+    curveBase: 0,
+    curveSpan: 0,
+    powerAttribute: Attribute.strength,
+  );
+
+  factory ShotProfile._build(
+    Player player,
+    Difficulty difficulty,
+    PlayerStatus? status, {
+    required Attribute precisionA,
+    required Attribute precisionB,
+    required Attribute windowAttribute,
+    required Attribute curveAttribute,
+    required double curveBase,
+    required double curveSpan,
+    required Attribute powerAttribute,
+    double ringFactor = 1,
   }) {
-    final form = status?.form ?? 0;
+    final form = status?.formBonus ?? 0;
     final tired = (60 - (status?.condition ?? 100)).clamp(0.0, 60.0);
     final lowMorale = (40 - (status?.morale ?? 60)).clamp(0.0, 40.0);
     double n(Attribute a) => player.attributes.raw(a) / 99;
-    final shooting = n(Attribute.shooting);
-    final finesse = n(Attribute.finesse);
     final composure = n(Attribute.composure);
 
     final ringDifficulty = switch (difficulty) {
@@ -77,23 +155,23 @@ class ShotProfile {
           ShotBalance.ringSecondsBase *
           (0.85 + ShotBalance.ringSecondsComposureSpan * composure) *
           ringDifficulty *
+          ringFactor *
           (1 + 0.01 * form) *
           (1 - tired / 200),
       goodHalfWindow:
           ShotBalance.goodHalfWindow *
-          (0.85 + 0.3 * shooting) *
+          (0.85 + 0.3 * n(windowAttribute)) *
           windowDifficulty,
       sigma:
           (ShotBalance.sigmaBase -
-              ShotBalance.sigmaFinesseGain * finesse -
-              ShotBalance.sigmaShootingGain * shooting) *
+              ShotBalance.sigmaFinesseGain * n(precisionA) -
+              ShotBalance.sigmaShootingGain * n(precisionB)) *
           (1 + tired / 100) *
           (1 + lowMorale / 200),
-      curveGain:
-          ShotBalance.curveGainBase + ShotBalance.curveGainFinesse * finesse,
+      curveGain: curveBase + curveSpan * n(curveAttribute),
       powerEfficiency:
           ShotBalance.powerEfficiencyBase +
-          ShotBalance.powerEfficiencyShooting * shooting,
+          ShotBalance.powerEfficiencyShooting * n(powerAttribute),
       composure: composure,
       keeperSkillDelta: keeperDelta,
     );

@@ -2,7 +2,7 @@
 
 16 yaşında başla, dünya yıldızı ol. Kurgusal bir futbolcu kariyer oyunu: maçta yalnızca kritik anları oynarsın, kararların uzun vadeli sonuçları olur.
 
-> **Durum:** Faz 4 — haftalık yaşam döngüsü (antrenman, kondisyon/form/moral, sakatlık, hafta özeti) hazır. Önceki: Faz 3 — şut mini oyunu (Flame) ve maç akışı (kritik an → mini oyun → özet) hazır; Ana Sayfa'daki "Maçı Oyna" ile denenebilir. Önceki: Faz 2 — oyuncu, kayıt, kurgusal lig piramidi, fikstür ve seed'li maç simülasyonu hazır (ana menüdeki "Lig Simülatörü" ile denenebilir); mini oyunlar henüz yok.
+> **Durum:** Faz 5 — tüm mini oyunlar (şut, bire bir, penaltı, serbest vuruş, kafa, pas, dribling, müdahale) hazır. Önceki: Faz 4 — haftalık yaşam döngüsü (antrenman, kondisyon/form/moral, sakatlık, hafta özeti) hazır. Önceki: Faz 3 — şut mini oyunu (Flame) ve maç akışı (kritik an → mini oyun → özet) hazır; Ana Sayfa'daki "Maçı Oyna" ile denenebilir. Önceki: Faz 2 — oyuncu, kayıt, kurgusal lig piramidi, fikstür ve seed'li maç simülasyonu hazır (ana menüdeki "Lig Simülatörü" ile denenebilir); mini oyunlar henüz yok.
 > ▶ Oyna: _GitHub Pages bağlantısı Faz 9'da eklenecek._
 
 **Felsefe:** reklam yok, gerçek para yok, enerji bekleme süresi yok. İlerleme yalnızca karar ve becerinle olur. Tüm kulüp, oyuncu ve lig isimleri kurguseldir.
@@ -38,7 +38,7 @@ Gereksinim: Flutter 3.35+ (Dart 3.9+).
 
 ## Yol Haritası
 
-Faz 0 Hazırlık ✅ · 1 Oyuncu/kariyer ✅ · 2 Lig + simülasyon ✅ · 3 Şut ✅ · 4 Haftalık döngü ✅ · 5 Diğer mini oyunlar · 6 Transfer/ekonomi · 7 Olaylar/sosyal · 8 Milli takım/başarım · 9 Cila ve yayın
+Faz 0 Hazırlık ✅ · 1 Oyuncu/kariyer ✅ · 2 Lig + simülasyon ✅ · 3 Şut ✅ · 4 Haftalık döngü ✅ · 5 Diğer mini oyunlar ✅ · 6 Transfer/ekonomi · 7 Olaylar/sosyal · 8 Milli takım/başarım · 9 Cila ve yayın
 
 ## Lisans
 

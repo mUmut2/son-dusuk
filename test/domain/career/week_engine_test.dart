@@ -274,8 +274,33 @@ void main() {
     });
   });
 
-  group('form', () {
-    test('iyi maçlar formu yükseltir, kötü maçlar düşürür', () {
+  group('form (son 5 maçın ortalaması, 0-10)', () {
+    test('başlangıç formu 6.0 (maç yok)', () {
+      expect(const PlayerStatus().form, 6.0);
+      final r = WeekEngine.advance(
+        newCareer(),
+        const WeeklyPlan(focus: TrainingFocus.rest),
+        null,
+        GameRandom(1),
+      );
+      expect(r.state.status.form, 6.0);
+    });
+
+    test('form tam olarak son maçların reyting ortalamasıdır', () {
+      var s = newCareer();
+      final random = GameRandom(1);
+      for (final rating in [8.0, 7.0, 6.0]) {
+        s = WeekEngine.advance(
+          s,
+          const WeeklyPlan(focus: TrainingFocus.rest),
+          match(rating, MatchResultKind.draw),
+          random,
+        ).state;
+      }
+      expect(s.status.form, closeTo(7.0, 1e-9));
+    });
+
+    test('iyi maçlar formu 10a, kötü maçlar 0a yaklaştırır', () {
       var good = newCareer();
       var bad = newCareer();
       final random = GameRandom(1);
@@ -283,39 +308,41 @@ void main() {
         good = WeekEngine.advance(
           good,
           const WeeklyPlan(focus: TrainingFocus.rest),
-          match(8.5, MatchResultKind.win),
+          match(9, MatchResultKind.win),
           random,
         ).state;
         bad = WeekEngine.advance(
           bad,
           const WeeklyPlan(focus: TrainingFocus.rest),
-          match(4.5, MatchResultKind.loss),
+          match(3, MatchResultKind.loss),
           random,
         ).state;
       }
-      expect(good.status.form, greaterThan(5));
-      expect(bad.status.form, lessThan(-5));
-      expect(good.status.recentRatings.length, 4);
+      expect(good.status.form, 9);
+      expect(bad.status.form, 3);
+      expect(good.status.form, lessThanOrEqualTo(10));
+      expect(bad.status.form, greaterThanOrEqualTo(0));
     });
 
-    test('hareketli ortalama son 5 maçı tutar', () {
+    test('pencere son 5 maçı tutar (eski maçlar düşer)', () {
       var s = newCareer();
       final random = GameRandom(1);
-      for (var i = 0; i < 8; i++) {
+      for (final rating in [2.0, 8.0, 8.0, 8.0, 8.0, 8.0]) {
         s = WeekEngine.advance(
           s,
           const WeeklyPlan(focus: TrainingFocus.rest),
-          match(7, MatchResultKind.draw),
+          match(rating, MatchResultKind.draw),
           random,
         ).state;
       }
       expect(s.status.recentRatings, hasLength(5));
+      expect(s.status.form, closeTo(8.0, 1e-9));
     });
 
-    test('maçsız haftalarda form sıfıra söner', () {
+    test('maç oynanmayan haftada form değişmez', () {
       var s = newCareer(status: const PlayerStatus(form: 8));
       final random = GameRandom(1);
-      for (var i = 0; i < 12; i++) {
+      for (var i = 0; i < 5; i++) {
         s = WeekEngine.advance(
           s,
           const WeeklyPlan(focus: TrainingFocus.rest),
@@ -323,7 +350,7 @@ void main() {
           random,
         ).state;
       }
-      expect(s.status.form.abs(), lessThan(1.5));
+      expect(s.status.form, 8);
     });
   });
 
@@ -468,7 +495,7 @@ void main() {
       final s = newCareer(
         status: const PlayerStatus(
           condition: 55.5,
-          form: 3,
+          form: 7.4,
           morale: 70,
           injury: injury,
           relapseRisk: 0.2,
@@ -493,13 +520,51 @@ void main() {
         },
       };
       final migrated = const SaveMigrator().migrate(v1);
-      expect(migrated['schemaVersion'], 2);
+      expect(migrated['schemaVersion'], 3);
       final career = CareerState.fromJson(
         migrated['career'] as Map<String, dynamic>,
       );
       expect(career.week, 7);
       expect(career.status.condition, 100);
       expect(career.stats.matches, 0);
+    });
+  });
+
+  group('kayıt: form göçü', () {
+    test('v2 kaydı v3e göç eder: form reyting ortalamasına dönüşür', () {
+      final v2 = {
+        'schemaVersion': 2,
+        'career': {
+          'player': newCareer().player.toJson(),
+          'status': {
+            'condition': 80,
+            'form': -4, // eski -10..+10 ölçeği
+            'morale': 55,
+            'recentRatings': [5.0, 7.0],
+          },
+        },
+      };
+      final migrated = const SaveMigrator().migrate(v2);
+      expect(migrated['schemaVersion'], 3);
+      final career = CareerState.fromJson(
+        migrated['career'] as Map<String, dynamic>,
+      );
+      expect(career.status.form, closeTo(6.0, 1e-9));
+      expect(career.status.condition, 80);
+    });
+
+    test('maçı olmayan v2 kaydında form 6.0 olur', () {
+      final v2 = {
+        'schemaVersion': 2,
+        'career': {
+          'player': newCareer().player.toJson(),
+          'status': {'condition': 90, 'form': 2.5, 'morale': 60},
+        },
+      };
+      final career = CareerState.fromJson(
+        const SaveMigrator().migrate(v2)['career'] as Map<String, dynamic>,
+      );
+      expect(career.status.form, 6.0);
     });
   });
 
@@ -533,7 +598,7 @@ void main() {
           weeks++;
           expect(s.status.condition, inInclusiveRange(0, 100));
           expect(s.status.morale, inInclusiveRange(0, 100));
-          expect(s.status.form, inInclusiveRange(-10, 10));
+          expect(s.status.form, inInclusiveRange(0, 10));
         }
         for (final a in Attribute.values) {
           totalGain += s.player.attributes.raw(a) - start.raw(a);

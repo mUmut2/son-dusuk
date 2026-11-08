@@ -215,7 +215,6 @@
   "momentIntro_tackle": "Rakip hızla üstüne geliyor, doğru zamanda müdahale et.",
   "momentPlay": "Oyna",
   "momentAuto": "Otomatik Çöz",
-  "momentAutoNote": "Bu mini oyun henüz hazır değil; sonuç niteliklerine göre hesaplanır.",
   "momentContinue": "Devam",
   "outcomeGoal": "Gol!",
   "outcomeAssist": "Asist!",
@@ -359,10 +358,10 @@
         "type": "String"
       },
       "before": {
-        "type": "int"
+        "type": "String"
       },
       "after": {
-        "type": "int"
+        "type": "String"
       }
     }
   },
@@ -384,7 +383,6 @@
   "reason_healed": "İyileşme",
   "reason_exhausted": "Bitkinlik",
   "reason_formFromRatings": "Son maç reytingleri",
-  "reason_formFades": "Maç yok, form sönüyor",
   "reason_earlyReturn": "Erken dönüş",
   "reason_drift": "Zamanla dengelenme",
   "eventInjured": "Sakatlandın: {type} ({weeks} hafta).",
@@ -420,5 +418,23 @@
   },
   "eventTrainingBlocked": "Sakat olduğun için antrenman dinlenmeye çevrildi.",
   "continueButton": "Devam",
-  "finishWeek": "Haftayı Bitir"
+  "finishWeek": "Haftayı Bitir",
+  "miniHint_oneOnOne": "Kaleci çok yakın! Zamanı tut, topa dokun ve köşeye doğru kaydır.",
+  "miniHint_freeKick": "Duvarın üstünden aş ya da yanından kavisle dolan. Topa dokun ve kaydır; yolu bükersen falso olur.",
+  "miniHint_header": "Top kafa hizasına gelince parmağını oyuncuya koy ve kale yönüne kaydır.",
+  "miniHint_penalty": "Kaleye dokunarak köşeyi seç, sonra ibreyi yeşil bölgede durdurmak için aşağıya dokun.",
+  "miniHint_keyPass": "Bir arkadaşını seç, sonra ibreyi yeşil bölgede durdurmak için aşağıya dokun.",
+  "miniHint_dribble": "Sürükleyerek yönlendir. Savunmacı atılmadan hemen önce, atıldığı yanın tersine hızlıca kaydır!",
+  "miniHint_tackle": "Parmağınla rakibin önünde kal. Top ayağından en çok açıldığı anda parmağını bırak!",
+  "shootButton": "Durdur",
+  "tooEarly": "Çok erken!",
+  "passComplete": "Pas tamam!",
+  "passAssist": "ASİST!",
+  "passIntercepted": "Pas kesildi!",
+  "dribbleBeaten": "Çalım tuttu!",
+  "dribbleFail": "Savunmacı topu aldı!",
+  "tackleWon": "Top kazanıldı!",
+  "tackleFoul": "Faul!",
+  "tackleBeaten": "Geçildi!",
+  "momentAutoSkip": "Otomatik Çöz"
 }

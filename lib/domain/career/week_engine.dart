@@ -171,9 +171,8 @@ abstract final class WeekEngine {
         );
       }
     }
-    final injuredNow = injury != null;
 
-    // --- Form ---
+    // --- Form: son 5 maçın reyting ortalaması (0-10) ---
     final ratings = [...before.recentRatings];
     var newForm = before.form;
     if (m != null) {
@@ -183,23 +182,16 @@ abstract final class WeekEngine {
           0,
           math.max(0, ratings.length - WeekBalance.ratingWindow),
         );
-      final avg = ratings.reduce((a, b) => a + b) / ratings.length;
-      newForm = ((avg - 6) * WeekBalance.formPerRating).clamp(-10.0, 10.0);
+      newForm = (ratings.reduce((a, b) => a + b) / ratings.length).clamp(
+        0.0,
+        10.0,
+      );
       changes.add(
         StatChange(
           StatKind.form,
           newForm - before.form,
           WeekReason.formFromRatings,
         ),
-      );
-    } else if (before.form != 0) {
-      newForm = injuredNow
-          ? (before.form.abs() <= WeekBalance.formDecayInjured
-                ? 0.0
-                : before.form - before.form.sign * WeekBalance.formDecayInjured)
-          : before.form * (1 - WeekBalance.formDecay);
-      changes.add(
-        StatChange(StatKind.form, newForm - before.form, WeekReason.formFades),
       );
     }
 

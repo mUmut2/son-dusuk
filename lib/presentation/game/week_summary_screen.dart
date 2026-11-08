@@ -34,6 +34,9 @@ class WeekSummaryScreen extends ConsumerWidget {
       StatKind.morale: (before.morale, after.morale),
     };
 
+    String fmt(StatKind k, double v) =>
+        k == StatKind.form ? v.toStringAsFixed(1) : '${v.round()}';
+
     String signed(double v) =>
         '${v >= 0 ? '+' : ''}${v.toStringAsFixed(v.abs() < 10 ? 1 : 0)}';
 
@@ -76,8 +79,8 @@ class WeekSummaryScreen extends ConsumerWidget {
                         Text(
                           l10n.statLine(
                             l10n.statName(kind),
-                            statValues[kind]!.$1.round(),
-                            statValues[kind]!.$2.round(),
+                            fmt(kind, statValues[kind]!.$1),
+                            fmt(kind, statValues[kind]!.$2),
                           ),
                           style: textTheme.titleSmall,
                         ),

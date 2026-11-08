@@ -25,9 +25,9 @@ class StatusMeters extends StatelessWidget {
         ),
         _Meter(
           label: l10n.statForm,
-          value: (status.form + 10) / 20,
-          text: (status.form >= 0 ? '+' : '') + status.form.toStringAsFixed(1),
-          color: status.form < -3 ? scheme.error : scheme.primary,
+          value: status.form / 10,
+          text: status.form.toStringAsFixed(1),
+          color: status.form < 4.5 ? scheme.error : scheme.primary,
         ),
         _Meter(
           label: l10n.statMorale,

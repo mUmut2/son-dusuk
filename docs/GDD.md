@@ -19,7 +19,7 @@
 | Lig, fikstür, maç simülasyonu, kritik anlar | 2 | Tamam |
 | Şut mini oyunu (Flame) + maç akışı | 3 | Tamam (elle oynanış testi bekliyor) |
 | Form/kondisyon/moral/sakatlık, haftalık döngü | 4 | Tamam (elle oynanış testi bekliyor) |
-| Penaltı, serbest vuruş, pas, dribling, kafa, savunma | 5 | Planlı |
+| Penaltı, serbest vuruş, pas, dribling, kafa, savunma, bire bir | 5 | Tamam (elle oynanış testi bekliyor) |
 | Transfer, kontrat, menajer, ekonomi | 6 | Planlı |
 | Sosyal sistemler, olay motoru, basın | 7 | Planlı |
 | Milli takım, başarımlar, emeklilik | 8 | Planlı |
@@ -114,15 +114,34 @@ Parametreler: `lib/domain/career/week_balance.dart`. Motor: `WeekEngine.advance`
 **Sakatlık:** haftalık risk = `0.01 + 0.015·eğilim + düşük kondisyon (60 altında, 0'da +0.06) + maç 0.01 + yoğunluk (0 / 0.005 / 0.015) + tekrar riski`. Türler: kas %60 (1-4 hf), bağ %30 (4-10 hf), kırık %10 (8-16 hf). Sakatken antrenman dinlenmeye çevrilir, maç yok; dinlenme odağı iyileşmeyi %25 olasılıkla bir hafta kısaltır. Ölçülen: normal planda ~1.15 sakatlık/sezon, sürekli sert planda ~1.6.
 **Riskli erken dönüş:** sakatlık anında biter, kondisyon -10, tekrar sakatlanma riski 0.35 (haftalık yarıya iner); tekrar sakatlanma süreyi ×1.5 yapar. Testte dönüşten sonra sakatlanma ihtimali sağlıklı oyuncunun >5 katı.
 
-**Form (-10..+10):** son 5 maç reytinginin ortalaması: `(ort - 6) × 5`. Maç yoksa her hafta %20 söner; sakatken haftada 1 puan sıfıra yaklaşır.
+**Form (0-10):** son 5 maçın reyting ortalaması (10 en iyi, 0 en kötü; hiç maç oynanmadıysa 6.0). Maç oynanmayan haftalarda (sakatlık dahil) değişmez; yeni maç eskisini pencereden düşürür. Performansa etkisi: `formBonus = (form − 6) × 2.5` (−10..+10 puan), yani form 10 → +%10, form ≤2 → −%10.
 
 **Moral (0-100):** galibiyet +3, mağlubiyet -3, reyting ≥7.5 +3 / ≤5 -3, sakatlık sürerken -2/hf, sakatlanma anı -6, iyileşme +3, bitkinlik (kondisyon <30) -3, sert antrenman -1, sosyal: aile +4 / arkadaş +5 / hobi +3; ayrıca haftada boşluğun %8'i kadar 60'a doğru dengelenir.
 
-**Performans çarpanı:** `1 + 0.01·form − 0.004·(60−kondisyon) − 0.003·(40−moral)` (0.6-1.15). Mini oyunda form halkayı yavaşlatır; düşük kondisyon halkayı hızlandırıp sapmayı büyütür, düşük moral sapmayı biraz büyütür. Otomatik çözümde olasılıklar bu çarpanla çarpılır.
+**Performans çarpanı:** `1 + 0.01·formBonus − 0.004·(60−kondisyon) − 0.003·(40−moral)` (0.6-1.15). Mini oyunda iyi form halkayı yavaşlatır; düşük kondisyon halkayı hızlandırıp sapmayı büyütür, düşük moral sapmayı biraz büyütür. Otomatik çözümde olasılıklar bu çarpanla çarpılır.
 
 **Zincir:** düşük kondisyon → sakatlık riski ↑ → sakatlık = maç yok → form sönümü → moral düşüşü → performans çarpanı ↓.
 
 Kayıt şeması 2'ye çıktı (durum + istatistik alanları); v1 kayıtları `SaveMigrator` ile varsayılan değerlerle yükseltilir. Medya ve sponsor kararları Faz 6-7'de eklenecek.
+
+
+### 3.6 Diğer mini oyunlar (Faz 5)
+
+Hepsi tek elle, 5-15 sn, tekrar yok. Parametreler: `lib/domain/match/minigames/mini_balance.dart` (şut/serbest vuruş/kafa/bire bir fiziği `shot_balance.dart` ile paylaşır). Sonuçlar `MomentOutcome` olarak maça döner. Ölçümler `dart run tool/minigame_stats.dart` (nitelik 50, normal zorluk):
+
+| Mini oyun | Oynanış | Ölçülen |
+|---|---|---|
+| **Penaltı** | Kaleye dokunarak 6 bölgeden birini seç (3×2); aşağıya dokunarak güç ibresini durdur (yeşil bölge ideal). Kaleci bölgeyi oyuncunun GEÇMİŞ penaltı tercihlerine göre seçer; Sakinlik titremeyi azaltır, aşırı güç sapmayı ×1.7 yapar, zayıf vuruş kurtarılır. | Rastgele/dağınık %73; hep aynı köşe (okunmuş) %49; aşırı güç %63 |
+| **Serbest vuruş** | Şut mekaniği (halka + swipe) + duvar. Duvarın üstünden (yükseklik) ya da kenarından (kavis) geç; duvar %30 zıplar (yüksekliği +0.25). Duran Top falsoyu güçlendirir. | Duvar üstü köşe %44; özensiz %29; düz/alçak %0 |
+| **Kafa vuruşu** | Ortanın yayı topu kafa hizasına getirir; halka 1.0'a gelince oyuncuya dokunup kale yönüne kaydır (falso yok). Rakip baskısı × kötü zamanlama = havada mücadele kaybı; Güç dengeler. | Mükemmel zamanlama %34; rastgele %25 |
+| **Bire bir** | Şut mekaniği, halka %20 hızlı, kaleci +0.12 güçlü, savunmacı yok. | Özensiz %32; düzgün %40 |
+| **Pas** | 2-4 seçenek (Vizyon: <40 → 2, <70 → 3, değilse 4; yüksek vizyon riski %30'a kadar azaltır, ödülü %40 artırır). Arkadaşı seç, ibreyi yeşil bölgede durdur. Rakip büyüklüğü = kesilme riski; ara pas riskli ama en ödüllü. | Rastgele seçim asist %3.8; EV'ye göre akıllı seçim %11 (tamamlama %62) |
+| **Dribling** | Parmakla sürükleyerek oyuncuyu yönlendir; savunmacı yaklaşır, atılmadan önce işaret verir; atıldığı yanın TERSİNE hızlı yatay swipe yap. Çabukluk/Dribling/Top Kontrolü başarıyı etkiler. | Mükemmel zamanlama %74; rastgele %45; yanlış yön %4 |
+| **Müdahale** | Parmakla rakibin önünde kal (hizalama), top ayağından en çok açıldığı anda parmağı bırak. Çok erken/yanlış hizada → faul veya geçilme (yenilen gol riski). | Mükemmel %94; rastgele zamanlama %62; hizasız %0 |
+
+**Otomatik çözümle uyum:** hızlı simülasyon olasılıkları, vasat bir oyuncunun mini oyundaki oranına yaklaştırıldı (şut %30, bire bir %32, serbest vuruş %25, kafa %15, penaltı %76, kilit pas %6, dribling %3.5 asist). İyi oynayan 1.3-3 kat daha iyi sonuç alır. Kritik an ağırlıkları buna göre yeniden dağıtıldı (forvet maç başı ≈0.7 gol/asist katkısı, defans ≈0.3).
+
+**Ortak:** form/kondisyon/moral `performanceMultiplier` ile mini oyunları etkiler (ibre hızı, sapma, olasılıklar). Zorluk: Kolay/Zor ibre hızını, savunmacı hamlesinin belirginliğini, rakip becerisini ve kaleci gücünü değiştirir. Penaltı bölgesi tercihleri kayda (`stats.penaltyZones`) yazılır.
 
 ## 4. Tasarım kararları ve gerekçeleri
 
@@ -142,4 +161,5 @@ Kayıt şeması 2'ye çıktı (durum + istatistik alanları); v1 kayıtları `Sa
 | Kayıt zarfı `{schemaVersion, savedAt, career}` + `SaveMigrator` | Şema değişince eski kayıtlar adım adım yükseltilir; bozuk veya daha yeni sürüm kayıt çökmeden "bozuk" işaretlenir. |
 | Haftalık motor tek fonksiyon (`WeekEngine.advance`) | Tüm haftalık sonuçlar tek yerde, seed'li testlerle doğrulanır; UI yalnızca plan toplar ve raporu gösterir. Rapor her değişimin NEDENİNİ taşır. |
 | Zaman kısıtı: seçimlerin bedeli var | Sert antrenman + arkadaşlarla zaman kondisyonu eritir, dinlenmek gelişimi durdurur; ayrı bir 'zaman bütçesi' yerine bu ödünleşmeler kullanıldı. |
+| Mini oyunların ortak Flame tabanı (`MiniGameBase`) | Yerleşim, dokunma, sonuç gösterimi, sarsıntı/yavaş çekim tek yerde; her oyun yalnızca kendi girdisini ve çizimini yazar. Fizik/sonuç domain'de, widget testleriyle (boş oynanış ve gerçek dokunuş) doğrulanır. |
 | Zorluk yalnızca ayar | Ekonomi/ilerleme satın alınamaz; zorluk mini oyun toleransı ve rakip gücüne bağlanacak (Faz 3+). |

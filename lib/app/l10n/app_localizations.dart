@@ -838,12 +838,6 @@ abstract class AppLocalizations {
   /// **'Otomatik Çöz'**
   String get momentAuto;
 
-  /// No description provided for @momentAutoNote.
-  ///
-  /// In tr, this message translates to:
-  /// **'Bu mini oyun henüz hazır değil; sonuç niteliklerine göre hesaplanır.'**
-  String get momentAutoNote;
-
   /// No description provided for @momentContinue.
   ///
   /// In tr, this message translates to:
@@ -1262,7 +1256,7 @@ abstract class AppLocalizations {
   ///
   /// In tr, this message translates to:
   /// **'{stat}: {before} → {after}'**
-  String statLine(String stat, int before, int after);
+  String statLine(String stat, String before, String after);
 
   /// No description provided for @reason_recovery.
   ///
@@ -1372,12 +1366,6 @@ abstract class AppLocalizations {
   /// **'Son maç reytingleri'**
   String get reason_formFromRatings;
 
-  /// No description provided for @reason_formFades.
-  ///
-  /// In tr, this message translates to:
-  /// **'Maç yok, form sönüyor'**
-  String get reason_formFades;
-
   /// No description provided for @reason_earlyReturn.
   ///
   /// In tr, this message translates to:
@@ -1431,6 +1419,114 @@ abstract class AppLocalizations {
   /// In tr, this message translates to:
   /// **'Haftayı Bitir'**
   String get finishWeek;
+
+  /// No description provided for @miniHint_oneOnOne.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kaleci çok yakın! Zamanı tut, topa dokun ve köşeye doğru kaydır.'**
+  String get miniHint_oneOnOne;
+
+  /// No description provided for @miniHint_freeKick.
+  ///
+  /// In tr, this message translates to:
+  /// **'Duvarın üstünden aş ya da yanından kavisle dolan. Topa dokun ve kaydır; yolu bükersen falso olur.'**
+  String get miniHint_freeKick;
+
+  /// No description provided for @miniHint_header.
+  ///
+  /// In tr, this message translates to:
+  /// **'Top kafa hizasına gelince parmağını oyuncuya koy ve kale yönüne kaydır.'**
+  String get miniHint_header;
+
+  /// No description provided for @miniHint_penalty.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kaleye dokunarak köşeyi seç, sonra ibreyi yeşil bölgede durdurmak için aşağıya dokun.'**
+  String get miniHint_penalty;
+
+  /// No description provided for @miniHint_keyPass.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bir arkadaşını seç, sonra ibreyi yeşil bölgede durdurmak için aşağıya dokun.'**
+  String get miniHint_keyPass;
+
+  /// No description provided for @miniHint_dribble.
+  ///
+  /// In tr, this message translates to:
+  /// **'Sürükleyerek yönlendir. Savunmacı atılmadan hemen önce, atıldığı yanın tersine hızlıca kaydır!'**
+  String get miniHint_dribble;
+
+  /// No description provided for @miniHint_tackle.
+  ///
+  /// In tr, this message translates to:
+  /// **'Parmağınla rakibin önünde kal. Top ayağından en çok açıldığı anda parmağını bırak!'**
+  String get miniHint_tackle;
+
+  /// No description provided for @shootButton.
+  ///
+  /// In tr, this message translates to:
+  /// **'Durdur'**
+  String get shootButton;
+
+  /// No description provided for @tooEarly.
+  ///
+  /// In tr, this message translates to:
+  /// **'Çok erken!'**
+  String get tooEarly;
+
+  /// No description provided for @passComplete.
+  ///
+  /// In tr, this message translates to:
+  /// **'Pas tamam!'**
+  String get passComplete;
+
+  /// No description provided for @passAssist.
+  ///
+  /// In tr, this message translates to:
+  /// **'ASİST!'**
+  String get passAssist;
+
+  /// No description provided for @passIntercepted.
+  ///
+  /// In tr, this message translates to:
+  /// **'Pas kesildi!'**
+  String get passIntercepted;
+
+  /// No description provided for @dribbleBeaten.
+  ///
+  /// In tr, this message translates to:
+  /// **'Çalım tuttu!'**
+  String get dribbleBeaten;
+
+  /// No description provided for @dribbleFail.
+  ///
+  /// In tr, this message translates to:
+  /// **'Savunmacı topu aldı!'**
+  String get dribbleFail;
+
+  /// No description provided for @tackleWon.
+  ///
+  /// In tr, this message translates to:
+  /// **'Top kazanıldı!'**
+  String get tackleWon;
+
+  /// No description provided for @tackleFoul.
+  ///
+  /// In tr, this message translates to:
+  /// **'Faul!'**
+  String get tackleFoul;
+
+  /// No description provided for @tackleBeaten.
+  ///
+  /// In tr, this message translates to:
+  /// **'Geçildi!'**
+  String get tackleBeaten;
+
+  /// No description provided for @momentAutoSkip.
+  ///
+  /// In tr, this message translates to:
+  /// **'Otomatik Çöz'**
+  String get momentAutoSkip;
 }
 
 class _AppLocalizationsDelegate

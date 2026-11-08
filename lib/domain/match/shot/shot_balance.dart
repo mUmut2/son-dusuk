@@ -89,6 +89,15 @@ abstract final class ShotBalance {
   static const double easyKeeperDelta = -0.1;
   static const double hardKeeperDelta = 0.1;
 
+  // --- Varyantlar ---
+  /// Bire bir: halka bu çarpanla daha hızlı, kaleci +0.12 daha iyi.
+  static const double oneOnOneRingFactor = 0.8;
+  static const double oneOnOneKeeperBonus = 0.12;
+
+  /// Serbest vuruş falsosu (tam falso kale düzleminde bu kadar kaydırır).
+  static const double freeKickCurveBase = 0.35;
+  static const double freeKickCurveSpan = 0.45;
+
   // --- Görsel/etkileşim (oyun katmanı) ---
   /// Swipe hızı (px/sn) bu değerde güç = 1.
   static const double maxSwipeSpeed = 2800;

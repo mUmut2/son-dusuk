@@ -7,44 +7,16 @@ import 'package:flutter/animation.dart';
 import 'package:flutter/painting.dart';
 
 import '../../core/game_random.dart';
+import '../../domain/match/critical_moment.dart';
+import '../../domain/match/minigames/free_kick.dart';
 import '../../domain/match/shot/shot_balance.dart';
 import '../../domain/match/shot/shot_models.dart';
 import '../../domain/match/shot/shot_resolver.dart';
+import '../mini_game_types.dart';
 import 'shot_geometry.dart';
 
-/// Oyun içinde gösterilen yerelleştirilmiş metinler (Flutter tarafından verilir).
-class ShotGameLabels {
-  const ShotGameLabels({
-    required this.hint,
-    required this.invalidSwipe,
-    required this.goal,
-    required this.saved,
-    required this.blocked,
-    required this.offTarget,
-    required this.woodwork,
-    required this.timeout,
-    required this.perfect,
-  });
-
-  final String hint;
-  final String invalidSwipe;
-  final String goal;
-  final String saved;
-  final String blocked;
-  final String offTarget;
-  final String woodwork;
-  final String timeout;
-  final String perfect;
-
-  String forOutcome(ShotOutcome o) => switch (o) {
-    ShotOutcome.goal => goal,
-    ShotOutcome.saved => saved,
-    ShotOutcome.blocked => blocked,
-    ShotOutcome.offTarget => offTarget,
-    ShotOutcome.woodwork => woodwork,
-    ShotOutcome.timeout => timeout,
-  };
-}
+/// Şut mini oyununun varyantları: aynı girdi/animasyon, farklı engel ve çözüm.
+enum ShotVariant { shot, oneOnOne, freeKick, header }
 
 enum _Phase { aiming, flying, showing, done }
 
@@ -57,13 +29,32 @@ class ShotGame extends FlameGame {
     required this.random,
     required this.labels,
     required this.onFinished,
+    this.variant = ShotVariant.shot,
+    this.wall,
+    this.customResolver,
     this.onImpact,
   });
 
   final ShotProfile profile;
   final ShotContext shotContext;
   final GameRandom random;
-  final ShotGameLabels labels;
+  final MiniGameLabels labels;
+
+  /// Serbest vuruşta duvar (varsa savunmacı yerine çizilir ve engeller).
+  final WallSpec? wall;
+  final ShotVariant variant;
+
+  /// Serbest vuruş/kafa gibi varyantların kendi çözümleyicisi.
+  final ShotResult Function(ShotInput input)? customResolver;
+
+  MomentType get _momentType => switch (variant) {
+    ShotVariant.shot => MomentType.shot,
+    ShotVariant.oneOnOne => MomentType.oneOnOne,
+    ShotVariant.freeKick => MomentType.freeKick,
+    ShotVariant.header => MomentType.header,
+  };
+
+  bool get _hasDefender => variant == ShotVariant.shot;
   final void Function(ShotResult result) onFinished;
 
   /// Gol/kurtarış anında titreşim vb. için.
@@ -87,8 +78,8 @@ class ShotGame extends FlameGame {
 
   // Uçuş / sonuç
   ShotResult? _result;
-  late ({double x, double y}) _flightStart;
-  late ({double x, double y}) _flightEnd;
+  ({double x, double y}) _flightStart = (x: 0, y: 0);
+  ({double x, double y}) _flightEnd = (x: 0, y: 0);
   double _flightControlOffset = 0;
   double _flightT = 0;
   double _showT = 0;
@@ -152,12 +143,14 @@ class ShotGame extends FlameGame {
       timing: _gripTiming,
     );
     _launch(
-      ShotResolver.resolve(
-        input: input,
-        profile: profile,
-        context: shotContext,
-        random: random,
-      ),
+      customResolver != null
+          ? customResolver!(input)
+          : ShotResolver.resolve(
+              input: input,
+              profile: profile,
+              context: shotContext,
+              random: random,
+            ),
       reading.curve,
     );
   }
@@ -168,7 +161,9 @@ class ShotGame extends FlameGame {
     _flightT = 0;
     _flightStart = (x: _layout.ballX, y: _layout.ballY);
     if (result.outcome == ShotOutcome.blocked) {
-      _flightEnd = _layout.defenderPosition(shotContext.defenderAimX);
+      _flightEnd = _layout.defenderPosition(
+        wall?.centerX ?? shotContext.defenderAimX,
+      );
       _flightControlOffset = 0;
     } else {
       _flightEnd = _layout.toScreen(result.finalX, result.finalY);
@@ -178,6 +173,10 @@ class ShotGame extends FlameGame {
 
   void _timeout() {
     _result = const ShotResult.timeout();
+    // Şut atılmadı: top yerinde kalır.
+    _flightStart = (x: _layout.ballX, y: _layout.ballY);
+    _flightEnd = _flightStart;
+    _flightT = 0;
     _phase = _Phase.showing;
     _showT = 0;
     _fireImpact();
@@ -226,7 +225,7 @@ class ShotGame extends FlameGame {
           _fireImpact();
         }
       case _Phase.showing:
-        _showT += scaled;
+        _showT += dt; // yavaş çekim sonuç süresini uzatmaz
         if (_showT > 1.4 / 1) {
           _phase = _Phase.done;
           onFinished(_result!);
@@ -239,7 +238,11 @@ class ShotGame extends FlameGame {
   // --- Çizim ---
 
   ({double x, double y}) get _ballPosition {
-    if (_phase == _Phase.aiming) return (x: _layout.ballX, y: _layout.ballY);
+    if (_phase == _Phase.aiming) {
+      return variant == ShotVariant.header
+          ? _crossBallPosition()
+          : (x: _layout.ballX, y: _layout.ballY);
+    }
     final t = Curves.easeOut.transform(_flightT);
     final cx = (_flightStart.x + _flightEnd.x) / 2 + _flightControlOffset;
     final cy = (_flightStart.y + _flightEnd.y) / 2;
@@ -247,6 +250,25 @@ class ShotGame extends FlameGame {
     return (
       x: u * u * _flightStart.x + 2 * u * t * cx + t * t * _flightEnd.x,
       y: u * u * _flightStart.y + 2 * u * t * cy + t * t * _flightEnd.y,
+    );
+  }
+
+  /// Kafa vuruşu: ortanın yayı. Halka 1.0'a ulaştığında top kafa hizasındadır.
+  ({double x, double y}) _crossBallPosition() {
+    final l = _layout;
+    final cycleLength = profile.ringSeconds * _ringOverrun + _ringPause;
+    final side = (_ringClock ~/ cycleLength).isEven ? -1.0 : 1.0;
+    final p = _ringProgress.clamp(0.0, _ringOverrun);
+    final sx = l.ballX + side * l.width * 0.42;
+    final sy = l.height * 0.5;
+    final ex = l.ballX;
+    final ey = l.ballY - l.ballRadius * 2.5;
+    final cx = (sx + ex) / 2;
+    final cy = math.min(sy, ey) - l.height * 0.12;
+    final u = 1 - p;
+    return (
+      x: u * u * sx + 2 * u * p * cx + p * p * ex,
+      y: u * u * sy + 2 * u * p * cy + p * p * ey,
     );
   }
 
@@ -262,7 +284,8 @@ class ShotGame extends FlameGame {
     _drawPitch(canvas);
     _drawGoal(canvas);
     _drawKeeper(canvas);
-    _drawDefender(canvas);
+    if (_hasDefender) _drawDefender(canvas);
+    if (wall != null) _drawWall(canvas);
     if (_phase == _Phase.aiming) {
       _drawRing(canvas);
       _drawAimPreview(canvas);
@@ -371,6 +394,41 @@ class ShotGame extends FlameGame {
         Paint()..color = const Color(0xFFD9A47A),
       )
       ..restore();
+  }
+
+  void _drawWall(Canvas canvas) {
+    final l = _layout;
+    final w = wall!;
+    final center = l.defenderPosition(w.centerX);
+    final halfPx = w.halfWidth * l.goalHalfWidth * 0.5;
+    final count = math.max(3, (halfPx * 2 / (l.ballRadius * 2.6)).round());
+    final jump = w.jumps && _phase != _Phase.aiming
+        ? -l.ballRadius * 2 * (_flightT > 0.15 ? 1 : 0)
+        : 0.0;
+    for (var i = 0; i < count; i++) {
+      final x =
+          center.x - halfPx + (count == 1 ? 0 : halfPx * 2 * i / (count - 1));
+      canvas
+        ..save()
+        ..translate(x, center.y + jump)
+        ..drawRRect(
+          RRect.fromRectAndRadius(
+            Rect.fromCenter(
+              center: Offset.zero,
+              width: l.ballRadius * 2.2,
+              height: l.ballRadius * 3.4,
+            ),
+            Radius.circular(l.ballRadius),
+          ),
+          Paint()..color = const Color(0xFF1565C0),
+        )
+        ..drawCircle(
+          Offset(0, -l.ballRadius * 2.1),
+          l.ballRadius * 0.85,
+          Paint()..color = const Color(0xFFD9A47A),
+        )
+        ..restore();
+    }
   }
 
   void _drawDefender(Canvas canvas) {
@@ -493,7 +551,13 @@ class ShotGame extends FlameGame {
   void _drawTexts(Canvas canvas) {
     final l = _layout;
     if (_phase == _Phase.aiming) {
-      _text(canvas, labels.hint, l.width / 2, l.height * 0.93, size: 16);
+      _text(
+        canvas,
+        labels.hints[_momentType] ?? '',
+        l.width / 2,
+        l.height * 0.93,
+        size: 16,
+      );
     }
     if (_toastTime > 0 && _toast != null) {
       _text(canvas, _toast!, l.width / 2, l.height * 0.55, size: 20);
@@ -505,7 +569,7 @@ class ShotGame extends FlameGame {
           : const Color(0xFFFFFFFF);
       _text(
         canvas,
-        labels.forOutcome(r.outcome),
+        labels.forShotOutcome(r.outcome),
         l.width / 2,
         l.height * 0.5,
         size: 44,
@@ -555,6 +619,10 @@ class _TouchLayer extends PositionComponent with DragCallbacks {
     super.onGameResize(size);
     this.size = size;
   }
+
+  /// Katman tüm ekranı kaplar; boyutu henüz atanmamış olsa bile dokunuşları yakalar.
+  @override
+  bool containsLocalPoint(Vector2 point) => true;
 
   @override
   void onDragStart(DragStartEvent event) {

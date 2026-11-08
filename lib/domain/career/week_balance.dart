@@ -73,13 +73,8 @@ abstract final class WeekBalance {
   static const double relapseRiskDecay = 0.5;
 
   // --- Form ---
-  /// Form = (ortalama reyting - 6) * bu çarpan, [-10, 10]. 5 maçlık pencere.
-  static const double formPerRating = 5;
+  /// Form = son [ratingWindow] maçın reyting ortalaması (0-10).
   static const int ratingWindow = 5;
-
-  /// Maç oynanmayan haftada formun sıfıra doğru sönümü (oran / sakatken mutlak puan).
-  static const double formDecay = 0.2;
-  static const double formDecayInjured = 1.0;
 
   // --- Moral ---
   static const double moraleBaseline = 60;

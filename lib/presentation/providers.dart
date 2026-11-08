@@ -90,6 +90,15 @@ class ActiveCareerNotifier extends Notifier<ActiveCareer?> {
     await update(result.state);
   }
 
+  /// Penaltıda seçilen bölgeyi kaydeder (sonraki penaltılarda kaleci okur).
+  Future<void> recordPenalty(int zone) async {
+    final current = state;
+    if (current == null) return;
+    await update(
+      current.state.copyWith(stats: current.state.stats.addPenalty(zone)),
+    );
+  }
+
   /// Riskli erken dönüş (sakatlığı bitirir, tekrar sakatlanma riski yaratır).
   Future<void> returnEarly() async {
     final current = state;

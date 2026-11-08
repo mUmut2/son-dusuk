@@ -23,7 +23,6 @@ enum WeekReason {
   healed,
   exhausted,
   formFromRatings,
-  formFades,
   earlyReturn,
   drift,
 }

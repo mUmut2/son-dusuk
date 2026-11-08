@@ -413,10 +413,6 @@ class AppLocalizationsTr extends AppLocalizations {
   String get momentAuto => 'Otomatik Çöz';
 
   @override
-  String get momentAutoNote =>
-      'Bu mini oyun henüz hazır değil; sonuç niteliklerine göre hesaplanır.';
-
-  @override
   String get momentContinue => 'Devam';
 
   @override
@@ -642,7 +638,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get changesTitle => 'Ne değişti, neden?';
 
   @override
-  String statLine(String stat, int before, int after) {
+  String statLine(String stat, String before, String after) {
     return '$stat: $before → $after';
   }
 
@@ -701,9 +697,6 @@ class AppLocalizationsTr extends AppLocalizations {
   String get reason_formFromRatings => 'Son maç reytingleri';
 
   @override
-  String get reason_formFades => 'Maç yok, form sönüyor';
-
-  @override
   String get reason_earlyReturn => 'Erken dönüş';
 
   @override
@@ -736,4 +729,65 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get finishWeek => 'Haftayı Bitir';
+
+  @override
+  String get miniHint_oneOnOne =>
+      'Kaleci çok yakın! Zamanı tut, topa dokun ve köşeye doğru kaydır.';
+
+  @override
+  String get miniHint_freeKick =>
+      'Duvarın üstünden aş ya da yanından kavisle dolan. Topa dokun ve kaydır; yolu bükersen falso olur.';
+
+  @override
+  String get miniHint_header =>
+      'Top kafa hizasına gelince parmağını oyuncuya koy ve kale yönüne kaydır.';
+
+  @override
+  String get miniHint_penalty =>
+      'Kaleye dokunarak köşeyi seç, sonra ibreyi yeşil bölgede durdurmak için aşağıya dokun.';
+
+  @override
+  String get miniHint_keyPass =>
+      'Bir arkadaşını seç, sonra ibreyi yeşil bölgede durdurmak için aşağıya dokun.';
+
+  @override
+  String get miniHint_dribble =>
+      'Sürükleyerek yönlendir. Savunmacı atılmadan hemen önce, atıldığı yanın tersine hızlıca kaydır!';
+
+  @override
+  String get miniHint_tackle =>
+      'Parmağınla rakibin önünde kal. Top ayağından en çok açıldığı anda parmağını bırak!';
+
+  @override
+  String get shootButton => 'Durdur';
+
+  @override
+  String get tooEarly => 'Çok erken!';
+
+  @override
+  String get passComplete => 'Pas tamam!';
+
+  @override
+  String get passAssist => 'ASİST!';
+
+  @override
+  String get passIntercepted => 'Pas kesildi!';
+
+  @override
+  String get dribbleBeaten => 'Çalım tuttu!';
+
+  @override
+  String get dribbleFail => 'Savunmacı topu aldı!';
+
+  @override
+  String get tackleWon => 'Top kazanıldı!';
+
+  @override
+  String get tackleFoul => 'Faul!';
+
+  @override
+  String get tackleBeaten => 'Geçildi!';
+
+  @override
+  String get momentAutoSkip => 'Otomatik Çöz';
 }

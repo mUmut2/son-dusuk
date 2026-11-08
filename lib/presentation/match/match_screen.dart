@@ -12,12 +12,11 @@ import '../../domain/match/match_session.dart';
 import '../../domain/match/match_simulator.dart';
 import '../../domain/match/moment_resolver.dart';
 import '../../domain/match/player_rating.dart';
-import '../../domain/match/shot/shot_models.dart';
-import '../../game/shot/shot_game.dart';
-import '../../game/shot/shot_game_view.dart';
+import '../../game/mini_game_types.dart';
+import '../../game/mini_game_view.dart';
 import '../providers.dart';
 
-enum _Stage { preMatch, momentIntro, shotGame, momentResult, summary }
+enum _Stage { preMatch, momentIntro, miniGame, momentResult, summary }
 
 /// Hazırlık maçı akışı: kritik an -> mini oyun -> sonuç -> maç özeti.
 /// (Lig maçları kulüp sistemi geldiğinde bu akışı kullanacak.)
@@ -133,11 +132,16 @@ class _MatchScreenState extends ConsumerState<MatchScreen> {
     context.go('/game/week');
   }
 
-  void _onShotFinished(ShotResult result) {
+  void _onMiniFinished(MiniGameFinish finish) {
     // Flame güncelleme döngüsünden çağrılır; widget ağacını bir sonraki karede değiştir.
-    WidgetsBinding.instance.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
       if (!mounted) return;
-      _resolve(result.isGoal ? MomentOutcome.goal : MomentOutcome.none);
+      final zone = finish.penaltyZone;
+      if (zone != null) {
+        await ref.read(activeCareerProvider.notifier).recordPenalty(zone);
+        if (!mounted) return;
+      }
+      _resolve(finish.outcome);
     });
   }
 
@@ -145,8 +149,8 @@ class _MatchScreenState extends ConsumerState<MatchScreen> {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
 
-    if (_stage == _Stage.shotGame) {
-      return Scaffold(body: _buildShotGame(l10n));
+    if (_stage == _Stage.miniGame) {
+      return Scaffold(body: _buildMiniGame(l10n));
     }
 
     return Scaffold(
@@ -165,7 +169,7 @@ class _MatchScreenState extends ConsumerState<MatchScreen> {
                 _Stage.momentIntro => _buildIntro(l10n),
                 _Stage.momentResult => _buildMomentResult(l10n),
                 _Stage.summary => _buildSummary(l10n),
-                _Stage.shotGame => const SizedBox.shrink(),
+                _Stage.miniGame => const SizedBox.shrink(),
               },
             ),
           ),
@@ -174,17 +178,28 @@ class _MatchScreenState extends ConsumerState<MatchScreen> {
     );
   }
 
-  Widget _buildShotGame(AppLocalizations l10n) {
+  Widget _buildMiniGame(AppLocalizations l10n) {
     final career = ref.read(activeCareerProvider)!.state;
     final settings = ref.read(settingsProvider);
-    return ShotGameView(
+    return MiniGameView(
+      type: _moment!.type,
       player: career.player,
       status: career.status,
       difficulty: settings.difficulty,
       vibration: settings.vibrationOn,
+      penaltyHistory: career.stats.penaltyZones,
       random: _random,
-      labels: ShotGameLabels(
-        hint: l10n.shotHint,
+      labels: MiniGameLabels(
+        hints: {
+          MomentType.shot: l10n.shotHint,
+          MomentType.oneOnOne: l10n.miniHint_oneOnOne,
+          MomentType.freeKick: l10n.miniHint_freeKick,
+          MomentType.header: l10n.miniHint_header,
+          MomentType.penalty: l10n.miniHint_penalty,
+          MomentType.keyPass: l10n.miniHint_keyPass,
+          MomentType.dribble: l10n.miniHint_dribble,
+          MomentType.tackle: l10n.miniHint_tackle,
+        },
         invalidSwipe: l10n.shotInvalid,
         goal: l10n.shotGoal,
         saved: l10n.shotSaved,
@@ -193,8 +208,18 @@ class _MatchScreenState extends ConsumerState<MatchScreen> {
         woodwork: l10n.shotWood,
         timeout: l10n.shotTimeout,
         perfect: l10n.shotPerfect,
+        passComplete: l10n.passComplete,
+        passAssist: l10n.passAssist,
+        passIntercepted: l10n.passIntercepted,
+        dribbleBeaten: l10n.dribbleBeaten,
+        dribbleFail: l10n.dribbleFail,
+        tackleWon: l10n.tackleWon,
+        tackleFoul: l10n.tackleFoul,
+        tackleBeaten: l10n.tackleBeaten,
+        shootButton: l10n.shootButton,
+        tooEarly: l10n.tooEarly,
       ),
-      onFinished: _onShotFinished,
+      onFinished: _onMiniFinished,
     );
   }
 
@@ -232,7 +257,6 @@ class _MatchScreenState extends ConsumerState<MatchScreen> {
   Widget _buildIntro(AppLocalizations l10n) {
     final moment = _moment!;
     final textTheme = Theme.of(context).textTheme;
-    final playable = moment.type == MomentType.shot;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -256,21 +280,19 @@ class _MatchScreenState extends ConsumerState<MatchScreen> {
         ),
         const SizedBox(height: 16),
         Text(_momentIntro(l10n, moment.type), textAlign: TextAlign.center),
-        if (!playable) ...[
-          const SizedBox(height: 12),
-          Text(
-            l10n.momentAutoNote,
-            textAlign: TextAlign.center,
-            style: textTheme.bodySmall,
-          ),
-        ],
         const Spacer(),
         FilledButton(
           style: FilledButton.styleFrom(minimumSize: const Size.fromHeight(56)),
-          onPressed: playable
-              ? () => setState(() => _stage = _Stage.shotGame)
-              : _autoResolve,
-          child: Text(playable ? l10n.momentPlay : l10n.momentAuto),
+          onPressed: () => setState(() => _stage = _Stage.miniGame),
+          child: Text(l10n.momentPlay),
+        ),
+        const SizedBox(height: 12),
+        OutlinedButton(
+          style: OutlinedButton.styleFrom(
+            minimumSize: const Size.fromHeight(48),
+          ),
+          onPressed: _autoResolve,
+          child: Text(l10n.momentAuto),
         ),
         const SizedBox(height: 12),
         OutlinedButton(

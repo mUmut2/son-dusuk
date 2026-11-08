@@ -5,6 +5,7 @@ import '../presentation/create/create_player_screen.dart';
 import '../presentation/game/game_shell.dart';
 import '../presentation/game/home_tab.dart';
 import '../presentation/game/profile_tab.dart';
+import '../presentation/match/match_screen.dart';
 import '../presentation/menu/main_menu_screen.dart';
 import '../presentation/providers.dart';
 import '../presentation/settings/settings_screen.dart';
@@ -26,6 +27,10 @@ final routerProvider = Provider<GoRouter>((ref) {
         builder: (context, state) => CreatePlayerScreen(
           slot: int.tryParse(state.pathParameters['slot'] ?? '') ?? 0,
         ),
+      ),
+      GoRoute(
+        path: '/game/match',
+        builder: (context, state) => const MatchScreen(),
       ),
       GoRoute(
         path: '/simulator',

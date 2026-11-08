@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../app/l10n/app_localizations.dart';
 import '../l10n_labels.dart';
@@ -55,7 +56,11 @@ class HomeTab extends ConsumerWidget {
           child: ListTile(
             leading: const Icon(Icons.sports_soccer),
             title: Text(l10n.nextMatch),
-            subtitle: Text(l10n.nextMatchPlaceholder),
+            subtitle: Text(l10n.nextMatchHint),
+            trailing: FilledButton(
+              onPressed: () => context.push('/game/match'),
+              child: Text(l10n.matchPlay),
+            ),
           ),
         ),
       ],

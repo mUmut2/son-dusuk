@@ -681,6 +681,318 @@ abstract class AppLocalizations {
   /// In tr, this message translates to:
   /// **'Tüm kayıtlar silindi.'**
   String get allSavesDeleted;
+
+  /// No description provided for @matchTitle.
+  ///
+  /// In tr, this message translates to:
+  /// **'Hazırlık Maçı'**
+  String get matchTitle;
+
+  /// No description provided for @matchPlay.
+  ///
+  /// In tr, this message translates to:
+  /// **'Maçı Oyna'**
+  String get matchPlay;
+
+  /// No description provided for @matchStart.
+  ///
+  /// In tr, this message translates to:
+  /// **'Maça Başla'**
+  String get matchStart;
+
+  /// No description provided for @matchQuickSim.
+  ///
+  /// In tr, this message translates to:
+  /// **'Hızlı Simüle Et'**
+  String get matchQuickSim;
+
+  /// No description provided for @matchQuickSimRest.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kalanı Hızlı Simüle Et'**
+  String get matchQuickSimRest;
+
+  /// No description provided for @matchYourTeam.
+  ///
+  /// In tr, this message translates to:
+  /// **'Takımın: {team}'**
+  String matchYourTeam(String team);
+
+  /// No description provided for @matchVersus.
+  ///
+  /// In tr, this message translates to:
+  /// **'{home} - {away}'**
+  String matchVersus(String home, String away);
+
+  /// No description provided for @matchMinute.
+  ///
+  /// In tr, this message translates to:
+  /// **'{minute}. dakika'**
+  String matchMinute(int minute);
+
+  /// No description provided for @momentTitle_shot.
+  ///
+  /// In tr, this message translates to:
+  /// **'Şut'**
+  String get momentTitle_shot;
+
+  /// No description provided for @momentIntro_shot.
+  ///
+  /// In tr, this message translates to:
+  /// **'Top ayağına geldi, kaleci karşında. Zamanı tut ve vur!'**
+  String get momentIntro_shot;
+
+  /// No description provided for @momentTitle_oneOnOne.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bire Bir'**
+  String get momentTitle_oneOnOne;
+
+  /// No description provided for @momentIntro_oneOnOne.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kalecinin karşısında tek başınasın!'**
+  String get momentIntro_oneOnOne;
+
+  /// No description provided for @momentTitle_header.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kafa Vuruşu'**
+  String get momentTitle_header;
+
+  /// No description provided for @momentIntro_header.
+  ///
+  /// In tr, this message translates to:
+  /// **'Ortayı yükselen sen oldun, top havada.'**
+  String get momentIntro_header;
+
+  /// No description provided for @momentTitle_freeKick.
+  ///
+  /// In tr, this message translates to:
+  /// **'Serbest Vuruş'**
+  String get momentTitle_freeKick;
+
+  /// No description provided for @momentIntro_freeKick.
+  ///
+  /// In tr, this message translates to:
+  /// **'Ceza sahası önünde serbest vuruş kazanıldı.'**
+  String get momentIntro_freeKick;
+
+  /// No description provided for @momentTitle_penalty.
+  ///
+  /// In tr, this message translates to:
+  /// **'Penaltı'**
+  String get momentTitle_penalty;
+
+  /// No description provided for @momentIntro_penalty.
+  ///
+  /// In tr, this message translates to:
+  /// **'Penaltı! Tüm stadyum sessizleşti.'**
+  String get momentIntro_penalty;
+
+  /// No description provided for @momentTitle_keyPass.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kilit Pas'**
+  String get momentTitle_keyPass;
+
+  /// No description provided for @momentIntro_keyPass.
+  ///
+  /// In tr, this message translates to:
+  /// **'Savunmanın arkasına bir pas fırsatı var.'**
+  String get momentIntro_keyPass;
+
+  /// No description provided for @momentTitle_dribble.
+  ///
+  /// In tr, this message translates to:
+  /// **'Çalım'**
+  String get momentTitle_dribble;
+
+  /// No description provided for @momentIntro_dribble.
+  ///
+  /// In tr, this message translates to:
+  /// **'Savunmacı karşında; geçmek senin elinde.'**
+  String get momentIntro_dribble;
+
+  /// No description provided for @momentTitle_tackle.
+  ///
+  /// In tr, this message translates to:
+  /// **'Müdahale'**
+  String get momentTitle_tackle;
+
+  /// No description provided for @momentIntro_tackle.
+  ///
+  /// In tr, this message translates to:
+  /// **'Rakip hızla üstüne geliyor, doğru zamanda müdahale et.'**
+  String get momentIntro_tackle;
+
+  /// No description provided for @momentPlay.
+  ///
+  /// In tr, this message translates to:
+  /// **'Oyna'**
+  String get momentPlay;
+
+  /// No description provided for @momentAuto.
+  ///
+  /// In tr, this message translates to:
+  /// **'Otomatik Çöz'**
+  String get momentAuto;
+
+  /// No description provided for @momentAutoNote.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bu mini oyun henüz hazır değil; sonuç niteliklerine göre hesaplanır.'**
+  String get momentAutoNote;
+
+  /// No description provided for @momentContinue.
+  ///
+  /// In tr, this message translates to:
+  /// **'Devam'**
+  String get momentContinue;
+
+  /// No description provided for @outcomeGoal.
+  ///
+  /// In tr, this message translates to:
+  /// **'Gol!'**
+  String get outcomeGoal;
+
+  /// No description provided for @outcomeAssist.
+  ///
+  /// In tr, this message translates to:
+  /// **'Asist!'**
+  String get outcomeAssist;
+
+  /// No description provided for @outcomeConceded.
+  ///
+  /// In tr, this message translates to:
+  /// **'Hatan gole yol açtı.'**
+  String get outcomeConceded;
+
+  /// No description provided for @outcomeNothing.
+  ///
+  /// In tr, this message translates to:
+  /// **'Pozisyon sonuçsuz kaldı.'**
+  String get outcomeNothing;
+
+  /// No description provided for @summaryTitle.
+  ///
+  /// In tr, this message translates to:
+  /// **'Maç Sonu'**
+  String get summaryTitle;
+
+  /// No description provided for @resultWin.
+  ///
+  /// In tr, this message translates to:
+  /// **'Galibiyet'**
+  String get resultWin;
+
+  /// No description provided for @resultDraw.
+  ///
+  /// In tr, this message translates to:
+  /// **'Beraberlik'**
+  String get resultDraw;
+
+  /// No description provided for @resultLoss.
+  ///
+  /// In tr, this message translates to:
+  /// **'Mağlubiyet'**
+  String get resultLoss;
+
+  /// No description provided for @ratingLabel.
+  ///
+  /// In tr, this message translates to:
+  /// **'Oyuncu Reytingi'**
+  String get ratingLabel;
+
+  /// No description provided for @timelineGoal.
+  ///
+  /// In tr, this message translates to:
+  /// **'{minute}\'  Gol — {team}'**
+  String timelineGoal(int minute, String team);
+
+  /// No description provided for @timelineGoalYou.
+  ///
+  /// In tr, this message translates to:
+  /// **'{minute}\'  Gol (sen) — {team}'**
+  String timelineGoalYou(int minute, String team);
+
+  /// No description provided for @timelineAssistYou.
+  ///
+  /// In tr, this message translates to:
+  /// **'{minute}\'  Asist (sen) — {team}'**
+  String timelineAssistYou(int minute, String team);
+
+  /// No description provided for @noGoals.
+  ///
+  /// In tr, this message translates to:
+  /// **'Gol olmadı.'**
+  String get noGoals;
+
+  /// No description provided for @backHome.
+  ///
+  /// In tr, this message translates to:
+  /// **'Ana Sayfaya Dön'**
+  String get backHome;
+
+  /// No description provided for @shotHint.
+  ///
+  /// In tr, this message translates to:
+  /// **'Zamanı tut, topa dokun ve kaleye doğru kaydır.'**
+  String get shotHint;
+
+  /// No description provided for @shotInvalid.
+  ///
+  /// In tr, this message translates to:
+  /// **'Yukarı doğru, daha uzun kaydır.'**
+  String get shotInvalid;
+
+  /// No description provided for @shotGoal.
+  ///
+  /// In tr, this message translates to:
+  /// **'GOL!'**
+  String get shotGoal;
+
+  /// No description provided for @shotSaved.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kaleci kurtardı!'**
+  String get shotSaved;
+
+  /// No description provided for @shotBlocked.
+  ///
+  /// In tr, this message translates to:
+  /// **'Savunma engelledi!'**
+  String get shotBlocked;
+
+  /// No description provided for @shotOff.
+  ///
+  /// In tr, this message translates to:
+  /// **'Auta gitti!'**
+  String get shotOff;
+
+  /// No description provided for @shotWood.
+  ///
+  /// In tr, this message translates to:
+  /// **'Direkten döndü!'**
+  String get shotWood;
+
+  /// No description provided for @shotTimeout.
+  ///
+  /// In tr, this message translates to:
+  /// **'Fırsat kaçtı!'**
+  String get shotTimeout;
+
+  /// No description provided for @shotPerfect.
+  ///
+  /// In tr, this message translates to:
+  /// **'Mükemmel zamanlama!'**
+  String get shotPerfect;
+
+  /// No description provided for @nextMatchHint.
+  ///
+  /// In tr, this message translates to:
+  /// **'Şimdilik hazırlık maçı oynayabilirsin; lig maçları kulüp sistemiyle gelecek.'**
+  String get nextMatchHint;
 }
 
 class _AppLocalizationsDelegate

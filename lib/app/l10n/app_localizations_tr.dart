@@ -324,4 +324,177 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get allSavesDeleted => 'Tüm kayıtlar silindi.';
+
+  @override
+  String get matchTitle => 'Hazırlık Maçı';
+
+  @override
+  String get matchPlay => 'Maçı Oyna';
+
+  @override
+  String get matchStart => 'Maça Başla';
+
+  @override
+  String get matchQuickSim => 'Hızlı Simüle Et';
+
+  @override
+  String get matchQuickSimRest => 'Kalanı Hızlı Simüle Et';
+
+  @override
+  String matchYourTeam(String team) {
+    return 'Takımın: $team';
+  }
+
+  @override
+  String matchVersus(String home, String away) {
+    return '$home - $away';
+  }
+
+  @override
+  String matchMinute(int minute) {
+    return '$minute. dakika';
+  }
+
+  @override
+  String get momentTitle_shot => 'Şut';
+
+  @override
+  String get momentIntro_shot =>
+      'Top ayağına geldi, kaleci karşında. Zamanı tut ve vur!';
+
+  @override
+  String get momentTitle_oneOnOne => 'Bire Bir';
+
+  @override
+  String get momentIntro_oneOnOne => 'Kalecinin karşısında tek başınasın!';
+
+  @override
+  String get momentTitle_header => 'Kafa Vuruşu';
+
+  @override
+  String get momentIntro_header => 'Ortayı yükselen sen oldun, top havada.';
+
+  @override
+  String get momentTitle_freeKick => 'Serbest Vuruş';
+
+  @override
+  String get momentIntro_freeKick =>
+      'Ceza sahası önünde serbest vuruş kazanıldı.';
+
+  @override
+  String get momentTitle_penalty => 'Penaltı';
+
+  @override
+  String get momentIntro_penalty => 'Penaltı! Tüm stadyum sessizleşti.';
+
+  @override
+  String get momentTitle_keyPass => 'Kilit Pas';
+
+  @override
+  String get momentIntro_keyPass => 'Savunmanın arkasına bir pas fırsatı var.';
+
+  @override
+  String get momentTitle_dribble => 'Çalım';
+
+  @override
+  String get momentIntro_dribble => 'Savunmacı karşında; geçmek senin elinde.';
+
+  @override
+  String get momentTitle_tackle => 'Müdahale';
+
+  @override
+  String get momentIntro_tackle =>
+      'Rakip hızla üstüne geliyor, doğru zamanda müdahale et.';
+
+  @override
+  String get momentPlay => 'Oyna';
+
+  @override
+  String get momentAuto => 'Otomatik Çöz';
+
+  @override
+  String get momentAutoNote =>
+      'Bu mini oyun henüz hazır değil; sonuç niteliklerine göre hesaplanır.';
+
+  @override
+  String get momentContinue => 'Devam';
+
+  @override
+  String get outcomeGoal => 'Gol!';
+
+  @override
+  String get outcomeAssist => 'Asist!';
+
+  @override
+  String get outcomeConceded => 'Hatan gole yol açtı.';
+
+  @override
+  String get outcomeNothing => 'Pozisyon sonuçsuz kaldı.';
+
+  @override
+  String get summaryTitle => 'Maç Sonu';
+
+  @override
+  String get resultWin => 'Galibiyet';
+
+  @override
+  String get resultDraw => 'Beraberlik';
+
+  @override
+  String get resultLoss => 'Mağlubiyet';
+
+  @override
+  String get ratingLabel => 'Oyuncu Reytingi';
+
+  @override
+  String timelineGoal(int minute, String team) {
+    return '$minute\'  Gol — $team';
+  }
+
+  @override
+  String timelineGoalYou(int minute, String team) {
+    return '$minute\'  Gol (sen) — $team';
+  }
+
+  @override
+  String timelineAssistYou(int minute, String team) {
+    return '$minute\'  Asist (sen) — $team';
+  }
+
+  @override
+  String get noGoals => 'Gol olmadı.';
+
+  @override
+  String get backHome => 'Ana Sayfaya Dön';
+
+  @override
+  String get shotHint => 'Zamanı tut, topa dokun ve kaleye doğru kaydır.';
+
+  @override
+  String get shotInvalid => 'Yukarı doğru, daha uzun kaydır.';
+
+  @override
+  String get shotGoal => 'GOL!';
+
+  @override
+  String get shotSaved => 'Kaleci kurtardı!';
+
+  @override
+  String get shotBlocked => 'Savunma engelledi!';
+
+  @override
+  String get shotOff => 'Auta gitti!';
+
+  @override
+  String get shotWood => 'Direkten döndü!';
+
+  @override
+  String get shotTimeout => 'Fırsat kaçtı!';
+
+  @override
+  String get shotPerfect => 'Mükemmel zamanlama!';
+
+  @override
+  String get nextMatchHint =>
+      'Şimdilik hazırlık maçı oynayabilirsin; lig maçları kulüp sistemiyle gelecek.';
 }

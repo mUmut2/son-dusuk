@@ -64,6 +64,18 @@ class MatchSession {
 
   bool get isFinished => _outcomes.length == moments.length;
 
+  /// Henüz çözülmemiş ilk an (yoksa null).
+  CriticalMoment? get nextMoment {
+    for (final m in moments) {
+      if (!_outcomes.containsKey(m)) return m;
+    }
+    return null;
+  }
+
+  /// Oyuncunun kritik anlarından yenen gol sayısı.
+  int get concededFromMoments =>
+      _outcomes.values.where((o) => o.concededGoal).length;
+
   /// Bir anın sonucunu işler (her an yalnızca bir kez).
   void resolve(CriticalMoment moment, MomentOutcome outcome) {
     assert(moments.contains(moment), 'Bu an bu maça ait değil');

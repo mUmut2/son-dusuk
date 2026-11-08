@@ -2,28 +2,44 @@
   "@@locale": "tr",
   "appTitle": "Son Düdük",
   "tagline": "16 yaşında başla, dünya yıldızı ol.",
-
   "menuTitle": "Kariyer Seç",
   "slotTitle": "Kayıt {number}",
-  "@slotTitle": { "placeholders": { "number": { "type": "int" } } },
+  "@slotTitle": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
   "slotEmpty": "Boş — yeni kariyer başlat",
   "slotCorrupt": "Bozuk kayıt",
   "slotSummary": "{age} yaş · {position} · Genel {overall}",
   "@slotSummary": {
     "placeholders": {
-      "age": { "type": "int" },
-      "position": { "type": "String" },
-      "overall": { "type": "int" }
+      "age": {
+        "type": "int"
+      },
+      "position": {
+        "type": "String"
+      },
+      "overall": {
+        "type": "int"
+      }
     }
   },
   "deleteSave": "Kaydı sil",
   "deleteSaveConfirm": "{name} kariyeri kalıcı olarak silinecek. Bu işlem geri alınamaz.",
-  "@deleteSaveConfirm": { "placeholders": { "name": { "type": "String" } } },
+  "@deleteSaveConfirm": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
   "deleteCorruptConfirm": "Bozuk kayıt silinecek. Bu işlem geri alınamaz.",
   "cancel": "Vazgeç",
   "delete": "Sil",
   "settings": "Ayarlar",
-
   "simulatorTitle": "Lig Simülatörü",
   "simulatorSeed": "Seed (boş = rastgele)",
   "simulatorSeedInvalid": "Seed bir tam sayı olmalı.",
@@ -46,13 +62,20 @@
   "simulatorStats": "{matches} maç · maç başı {goals} gol · ev sahibi galibiyeti %{homeWin} · beraberlik %{draw}",
   "@simulatorStats": {
     "placeholders": {
-      "matches": { "type": "int" },
-      "goals": { "type": "String" },
-      "homeWin": { "type": "String" },
-      "draw": { "type": "String" }
+      "matches": {
+        "type": "int"
+      },
+      "goals": {
+        "type": "String"
+      },
+      "homeWin": {
+        "type": "String"
+      },
+      "draw": {
+        "type": "String"
+      }
     }
   },
-
   "createTitle": "Yeni Oyuncu",
   "nameLabel": "Oyuncu adı",
   "nameRequired": "Bir isim gir.",
@@ -65,7 +88,6 @@
   "hairLabel": "Saç",
   "kitLabel": "Forma",
   "startCareer": "Kariyere Başla",
-
   "position_forward": "Forvet",
   "position_winger": "Kanat",
   "position_attackingMid": "Ofansif Orta Saha",
@@ -74,7 +96,6 @@
   "foot_left": "Sol",
   "foot_right": "Sağ",
   "foot_both": "Her İkisi",
-
   "attr_shooting": "Şut",
   "attr_finesse": "Plase",
   "attr_passing": "Pas",
@@ -93,28 +114,44 @@
   "kind_physical": "Fiziksel",
   "kind_technical": "Teknik",
   "kind_mental": "Zihinsel",
-
   "navHome": "Ana Sayfa",
   "navTraining": "Antrenman",
   "navClub": "Kulüp",
   "navSocial": "Sosyal",
   "navProfile": "Profil",
   "comingSoon": "Bu bölüm yakında geliyor.",
-
   "overallLabel": "Genel Güç",
   "ageYears": "{age} yaş",
-  "@ageYears": { "placeholders": { "age": { "type": "int" } } },
+  "@ageYears": {
+    "placeholders": {
+      "age": {
+        "type": "int"
+      }
+    }
+  },
   "seasonWeek": "Sezon {season} · Hafta {week}",
   "@seasonWeek": {
-    "placeholders": { "season": { "type": "int" }, "week": { "type": "int" } }
+    "placeholders": {
+      "season": {
+        "type": "int"
+      },
+      "week": {
+        "type": "int"
+      }
+    }
   },
   "nextMatch": "Sıradaki maç",
   "nextMatchPlaceholder": "Fikstür henüz hazır değil.",
   "attributesTitle": "Nitelikler",
   "backToMenu": "Ana menüye dön",
   "birthplaceValue": "Doğum yeri: {city}",
-  "@birthplaceValue": { "placeholders": { "city": { "type": "String" } } },
-
+  "@birthplaceValue": {
+    "placeholders": {
+      "city": {
+        "type": "String"
+      }
+    }
+  },
   "settingsTitle": "Ayarlar",
   "soundLabel": "Ses",
   "vibrationLabel": "Titreşim",
@@ -127,5 +164,111 @@
   "languageTurkish": "Türkçe",
   "deleteAllSaves": "Tüm kayıtları sil",
   "deleteAllConfirm": "Üç slottaki tüm kariyerler kalıcı olarak silinecek. Bu işlem geri alınamaz.",
-  "allSavesDeleted": "Tüm kayıtlar silindi."
+  "allSavesDeleted": "Tüm kayıtlar silindi.",
+  "matchTitle": "Hazırlık Maçı",
+  "matchPlay": "Maçı Oyna",
+  "matchStart": "Maça Başla",
+  "matchQuickSim": "Hızlı Simüle Et",
+  "matchQuickSimRest": "Kalanı Hızlı Simüle Et",
+  "matchYourTeam": "Takımın: {team}",
+  "@matchYourTeam": {
+    "placeholders": {
+      "team": {
+        "type": "String"
+      }
+    }
+  },
+  "matchVersus": "{home} - {away}",
+  "@matchVersus": {
+    "placeholders": {
+      "home": {
+        "type": "String"
+      },
+      "away": {
+        "type": "String"
+      }
+    }
+  },
+  "matchMinute": "{minute}. dakika",
+  "@matchMinute": {
+    "placeholders": {
+      "minute": {
+        "type": "int"
+      }
+    }
+  },
+  "momentTitle_shot": "Şut",
+  "momentIntro_shot": "Top ayağına geldi, kaleci karşında. Zamanı tut ve vur!",
+  "momentTitle_oneOnOne": "Bire Bir",
+  "momentIntro_oneOnOne": "Kalecinin karşısında tek başınasın!",
+  "momentTitle_header": "Kafa Vuruşu",
+  "momentIntro_header": "Ortayı yükselen sen oldun, top havada.",
+  "momentTitle_freeKick": "Serbest Vuruş",
+  "momentIntro_freeKick": "Ceza sahası önünde serbest vuruş kazanıldı.",
+  "momentTitle_penalty": "Penaltı",
+  "momentIntro_penalty": "Penaltı! Tüm stadyum sessizleşti.",
+  "momentTitle_keyPass": "Kilit Pas",
+  "momentIntro_keyPass": "Savunmanın arkasına bir pas fırsatı var.",
+  "momentTitle_dribble": "Çalım",
+  "momentIntro_dribble": "Savunmacı karşında; geçmek senin elinde.",
+  "momentTitle_tackle": "Müdahale",
+  "momentIntro_tackle": "Rakip hızla üstüne geliyor, doğru zamanda müdahale et.",
+  "momentPlay": "Oyna",
+  "momentAuto": "Otomatik Çöz",
+  "momentAutoNote": "Bu mini oyun henüz hazır değil; sonuç niteliklerine göre hesaplanır.",
+  "momentContinue": "Devam",
+  "outcomeGoal": "Gol!",
+  "outcomeAssist": "Asist!",
+  "outcomeConceded": "Hatan gole yol açtı.",
+  "outcomeNothing": "Pozisyon sonuçsuz kaldı.",
+  "summaryTitle": "Maç Sonu",
+  "resultWin": "Galibiyet",
+  "resultDraw": "Beraberlik",
+  "resultLoss": "Mağlubiyet",
+  "ratingLabel": "Oyuncu Reytingi",
+  "timelineGoal": "{minute}'  Gol — {team}",
+  "@timelineGoal": {
+    "placeholders": {
+      "minute": {
+        "type": "int"
+      },
+      "team": {
+        "type": "String"
+      }
+    }
+  },
+  "timelineGoalYou": "{minute}'  Gol (sen) — {team}",
+  "@timelineGoalYou": {
+    "placeholders": {
+      "minute": {
+        "type": "int"
+      },
+      "team": {
+        "type": "String"
+      }
+    }
+  },
+  "timelineAssistYou": "{minute}'  Asist (sen) — {team}",
+  "@timelineAssistYou": {
+    "placeholders": {
+      "minute": {
+        "type": "int"
+      },
+      "team": {
+        "type": "String"
+      }
+    }
+  },
+  "noGoals": "Gol olmadı.",
+  "backHome": "Ana Sayfaya Dön",
+  "shotHint": "Zamanı tut, topa dokun ve kaleye doğru kaydır.",
+  "shotInvalid": "Yukarı doğru, daha uzun kaydır.",
+  "shotGoal": "GOL!",
+  "shotSaved": "Kaleci kurtardı!",
+  "shotBlocked": "Savunma engelledi!",
+  "shotOff": "Auta gitti!",
+  "shotWood": "Direkten döndü!",
+  "shotTimeout": "Fırsat kaçtı!",
+  "shotPerfect": "Mükemmel zamanlama!",
+  "nextMatchHint": "Şimdilik hazırlık maçı oynayabilirsin; lig maçları kulüp sistemiyle gelecek."
 }

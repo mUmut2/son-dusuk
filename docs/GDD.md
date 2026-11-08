@@ -17,7 +17,7 @@
 | Oyuncu, nitelikler, yaş eğrisi | 1 | Tamam |
 | Kayıt sistemi (3 slot), ayarlar | 1 | Tamam |
 | Lig, fikstür, maç simülasyonu, kritik anlar | 2 | Tamam |
-| Şut mini oyunu | 3 | Planlı |
+| Şut mini oyunu (Flame) + maç akışı | 3 | Tamam (elle oynanış testi bekliyor) |
 | Form/kondisyon/moral/sakatlık, haftalık döngü | 4 | Planlı |
 | Penaltı, serbest vuruş, pas, dribling, kafa, savunma | 5 | Planlı |
 | Transfer, kontrat, menajer, ekonomi | 6 | Planlı |
@@ -83,6 +83,25 @@ Tüm parametreler `lib/domain/match/match_balance.dart` içinde.
 
 **Nitelik etkisi:** an olasılığı = referans × `(0.5 + nitelik/100)`; nitelik 50 → ×1.0, 90 → ×1.4.
 
+
+### 3.4 Şut mini oyunu (Faz 3)
+
+Parametreler: `lib/domain/match/shot/shot_balance.dart`. Çözüm: `ShotResolver` (saf Dart, seed'li). Flame katmanı (`lib/game/shot`) yalnızca girdiyi toplar ve canlandırır; swipe okuma `ShotGeometry` ile test edilir.
+
+**Oynanış:** topun etrafında küçülen bir zamanlama halkası döner (3 tur sonra fırsat kaçar). Halka topa ulaştığında parmağı topa koy (kalite 1 = mükemmel), kaleye doğru kaydır: **swipe'ın hedefi** = nişan noktası, **hız** = güç, **yolun bükülmesi** = falso. Sürüklerken sarı halka tahmini varış noktasını (sapma ve zamanlama hariç) gösterir.
+
+**Çözüm sırası:** kötü vuruş (kötü zamanlamada olasılık `0.9·(1-kalite)²`) → savunmacı bloku (yerden ve çizgisi önündeyse) → sapma (`σ`: Plase/Şut, zamanlama, baskı×(1-Sakinlik), aşırı güç) → kaleci (şutu okuma olasılığı kaleci becerisine bağlı; üst köşelere erişimi %40 azalır) → isabet/direk/üst direk → gol.
+
+**Nitelikler:** Şut + Plase: sapma ↓, Şut: zamanlama penceresi ↑, Plase: falso etkisi ↑, Sakinlik: halka yavaşlar ve baskı cezası ↓. **Zorluk:** Kolay halka ×1.25, pencere ×1.3, kaleci -0.1; Zor halka ×0.85, pencere ×0.8, kaleci +0.1.
+
+**Ölçülen gol oranı** (`dart run tool/shot_stats.dart`, nitelik 50, normal zorluk): özensiz oyuncu (rastgele hedef ve zamanlama) %33, düzgün oyuncu (köşe hedefi, iyi zamanlama) %45, uzman ~%46. Nitelik 30'da özensiz %30, nitelik 80'de %39. Kolay/Normal/Zor farkı ~48/45/42.
+
+**Kritik an ile ilişki:** şut anı "net pozisyon" sayılır. Otomatik (hızlı) çözümde şut gol olasılığı %30 (≈ özensiz oyuncu); elle oynayan düzgün oyuncu ~1.4-1.5 kat daha iyi. Şut an ağırlıkları buna göre azaltıldı (forvet %32 → %12), böylece forvetin maç başı beklenen golü ~0.7'de kalır.
+
+**Reyting:** `6.0 + 1.3·gol + 0.8·asist − 0.6·hatadan yenen gol ± 0.3 (galibiyet/mağlubiyet)`, 1-10 arası.
+
+> Bilinen sınır: elle oynanış hissi (halka hızı, nişan toleransı) gerçek cihazda ayarlanmalı; değerler `shot_balance.dart` içindedir.
+
 ## 4. Tasarım kararları ve gerekçeleri
 
 | Karar | Gerekçe |
@@ -92,7 +111,8 @@ Tüm parametreler `lib/domain/match/match_balance.dart` içinde.
 | Routing: go_router | Flutter ekibinin resmi paketi, web URL desteği. |
 | Modeller elle yazılır (freezed yok) | build_runner karmaşası ve üretilen kod yükü olmadan okunabilir kod; model sayısı yönetilebilir. |
 | Domain saf Dart | Simülasyon seed'li testlerle hızlıca doğrulanabilir, UI'dan bağımsızdır. Test ile zorlanır. |
-| Flame Faz 3'te eklenir | Faz 0-2'de kullanılmayan bağımlılık taşımamak için. |
+| Flame Faz 3'te eklendi | Faz 0-2'de kullanılmayan bağımlılık taşımamak için. |
+| Mini oyun fiziği domain'de, Flame sadece girdi/animasyon | Sonuç mantığı seed'li testlerle doğrulanır; mini oyun sonucu `MomentOutcome` ile simülasyona döner. |
 | Yerelleştirme ARB ile, varsayılan `tr` | Metinler koda gömülmez; ileride yeni dil eklemek kolay. |
 | Tüm içerik kurgusal | Telif/lisans riski yok. |
 | Nitelikler içeride `double`, dışarıda `int` | Yıllık küçük gelişimler yuvarlamada kaybolmaz; ileride haftalık antrenman da aynı modele oturur. |

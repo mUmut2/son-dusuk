@@ -8,6 +8,7 @@ import '../presentation/game/profile_tab.dart';
 import '../presentation/menu/main_menu_screen.dart';
 import '../presentation/providers.dart';
 import '../presentation/settings/settings_screen.dart';
+import '../presentation/simulator/season_simulator_screen.dart';
 import 'l10n/app_localizations.dart';
 
 /// Uygulamanın tek yönlendirme noktası. Yeni ekranlar buraya eklenir.
@@ -25,6 +26,10 @@ final routerProvider = Provider<GoRouter>((ref) {
         builder: (context, state) => CreatePlayerScreen(
           slot: int.tryParse(state.pathParameters['slot'] ?? '') ?? 0,
         ),
+      ),
+      GoRoute(
+        path: '/simulator',
+        builder: (context, state) => const SeasonSimulatorScreen(),
       ),
       GoRoute(
         path: '/settings',

@@ -55,6 +55,74 @@ class AppLocalizationsTr extends AppLocalizations {
   String get settings => 'Ayarlar';
 
   @override
+  String get simulatorTitle => 'Lig Simülatörü';
+
+  @override
+  String get simulatorSeed => 'Seed (boş = rastgele)';
+
+  @override
+  String get simulatorSeedInvalid => 'Seed bir tam sayı olmalı.';
+
+  @override
+  String get simulateSeason => 'Sezonu Simüle Et';
+
+  @override
+  String get simulatorHint =>
+      'Seçilen ligin 34 haftalık sezonunu saf Dart motoruyla oynatır.';
+
+  @override
+  String get leagueTier1 => 'Ulusal Lig';
+
+  @override
+  String get leagueTier2 => 'Birinci Lig';
+
+  @override
+  String get leagueTier3 => 'İkinci Lig';
+
+  @override
+  String get leagueTier4 => 'Üçüncü Lig';
+
+  @override
+  String get leagueTier5 => 'Amatör Lig';
+
+  @override
+  String get colPlayed => 'O';
+
+  @override
+  String get colWon => 'G';
+
+  @override
+  String get colDrawn => 'B';
+
+  @override
+  String get colLost => 'M';
+
+  @override
+  String get colGoalsFor => 'A';
+
+  @override
+  String get colGoalsAgainst => 'Y';
+
+  @override
+  String get colGoalDiff => 'Av';
+
+  @override
+  String get colPoints => 'P';
+
+  @override
+  String get colTeam => 'Takım';
+
+  @override
+  String simulatorStats(
+    int matches,
+    String goals,
+    String homeWin,
+    String draw,
+  ) {
+    return '$matches maç · maç başı $goals gol · ev sahibi galibiyeti %$homeWin · beraberlik %$draw';
+  }
+
+  @override
   String get createTitle => 'Yeni Oyuncu';
 
   @override

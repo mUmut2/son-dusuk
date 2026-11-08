@@ -16,7 +16,7 @@
 |---|---|---|
 | Oyuncu, nitelikler, yaş eğrisi | 1 | Tamam |
 | Kayıt sistemi (3 slot), ayarlar | 1 | Tamam |
-| Lig, fikstür, maç simülasyonu | 2 | Planlı |
+| Lig, fikstür, maç simülasyonu, kritik anlar | 2 | Tamam |
 | Şut mini oyunu | 3 | Planlı |
 | Form/kondisyon/moral/sakatlık, haftalık döngü | 4 | Planlı |
 | Penaltı, serbest vuruş, pas, dribling, kafa, savunma | 5 | Planlı |
@@ -58,9 +58,30 @@ Pozitif değişim: `taban × potansiyel çarpanı (0.8-1.5) × profesyonellik ç
 
 **Doğrulama (300 kariyer × 22 sezon, seed'li test):** ortalama zirve genel güç ≈ 67, min 49, max 87. Aşırı güçlü ya da hiç gelişmeyen oyuncu yok; yüksek potansiyel anlamlı biçimde daha yüksek zirve verir; 28→36 yaş arası Hız ortalama >10 puan düşer, Vizyon düşmez.
 
-### 3.2 Diğer
+### 3.2 Lig piramidi (Faz 2)
 
-(Faz 2'den itibaren doldurulacak. Mini oyun parametreleri tek denge dosyasında tutulur.)
+5 kademe × 18 takım (306 maç/sezon, 34 hafta). Kademe başına ortalama takım gücü: 76 / 66 / 56 / 46 / 36, takımlar arası sapma 6. Lig adları ARB'de (Ulusal, Birinci, İkinci, Üçüncü, Amatör); takım adları uydurma "{yer} {Spor|Gücü|Atletik}". Fikstür: daire yöntemi, ikinci devre ilkinin ev/deplasman tersi; art arda 3'ten fazla aynı saha yok.
+
+**Sezon takvimi (42 hafta):** 1-4 hazırlık, 5-38 lig turları 1-34, 39-42 sezon arası. Transfer penceresi: hafta 1-6 (yaz) ve 22-24 (kış). Kupa ve milli takım araları ileride eklenecek.
+
+### 3.3 Maç simülasyonu (Faz 2)
+
+Tüm parametreler `lib/domain/match/match_balance.dart` içinde.
+
+- Dakika başına bağımsız gol denemesi (yaklaşık Poisson). Beklenen gol: `1.33 × ev çarpanı(1.1) × exp(0.018 × güç farkı)`; deplasman için `1.33 / 1.1 × exp(-0.018 × fark)`.
+- `dart run tool/match_stats.dart` ile ölçülen (20.000 maç):
+
+| Karşılaşma (ev vs dep) | Gol/maç | Ev | Ber. | Dep |
+|---|---|---|---|---|
+| 60 vs 60 | 2.67 | %43.6 | %25.8 | %30.6 |
+| 70 vs 60 | 2.76 | %55.3 | %23.7 | %21.0 |
+| 85 vs 50 | 3.40 | %81.6 | %12.5 | %5.9 |
+
+**Kritik anlar:** maç başı 5-8 (ort. 6.5). Türler: şut, bire bir, kafa, serbest vuruş, penaltı, kilit pas, dribling, müdahale. Mevki dağılımı `momentWeights` tablosunda (forvet: şut %32; orta saha: kilit pas %35; defans: müdahale %55).
+
+**Geri besleme:** `MatchSession` oyuncunun anlarının referans (nitelik 50) beklenen golünü takım beklentisinden düşer; ortalama bir oyuncu otomatik oynasa da maç ortalaması bozulmaz (test: 2.5-3.0 gol/maç), nitelikli veya iyi oynayan oyuncu fark yaratır. Mini oyunlar `MomentOutcome` (gol / asist / yenilen gol / yok) döndürür.
+
+**Nitelik etkisi:** an olasılığı = referans × `(0.5 + nitelik/100)`; nitelik 50 → ×1.0, 90 → ×1.4.
 
 ## 4. Tasarım kararları ve gerekçeleri
 

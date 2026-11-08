@@ -172,6 +172,126 @@ abstract class AppLocalizations {
   /// **'Ayarlar'**
   String get settings;
 
+  /// No description provided for @simulatorTitle.
+  ///
+  /// In tr, this message translates to:
+  /// **'Lig Simülatörü'**
+  String get simulatorTitle;
+
+  /// No description provided for @simulatorSeed.
+  ///
+  /// In tr, this message translates to:
+  /// **'Seed (boş = rastgele)'**
+  String get simulatorSeed;
+
+  /// No description provided for @simulatorSeedInvalid.
+  ///
+  /// In tr, this message translates to:
+  /// **'Seed bir tam sayı olmalı.'**
+  String get simulatorSeedInvalid;
+
+  /// No description provided for @simulateSeason.
+  ///
+  /// In tr, this message translates to:
+  /// **'Sezonu Simüle Et'**
+  String get simulateSeason;
+
+  /// No description provided for @simulatorHint.
+  ///
+  /// In tr, this message translates to:
+  /// **'Seçilen ligin 34 haftalık sezonunu saf Dart motoruyla oynatır.'**
+  String get simulatorHint;
+
+  /// No description provided for @leagueTier1.
+  ///
+  /// In tr, this message translates to:
+  /// **'Ulusal Lig'**
+  String get leagueTier1;
+
+  /// No description provided for @leagueTier2.
+  ///
+  /// In tr, this message translates to:
+  /// **'Birinci Lig'**
+  String get leagueTier2;
+
+  /// No description provided for @leagueTier3.
+  ///
+  /// In tr, this message translates to:
+  /// **'İkinci Lig'**
+  String get leagueTier3;
+
+  /// No description provided for @leagueTier4.
+  ///
+  /// In tr, this message translates to:
+  /// **'Üçüncü Lig'**
+  String get leagueTier4;
+
+  /// No description provided for @leagueTier5.
+  ///
+  /// In tr, this message translates to:
+  /// **'Amatör Lig'**
+  String get leagueTier5;
+
+  /// No description provided for @colPlayed.
+  ///
+  /// In tr, this message translates to:
+  /// **'O'**
+  String get colPlayed;
+
+  /// No description provided for @colWon.
+  ///
+  /// In tr, this message translates to:
+  /// **'G'**
+  String get colWon;
+
+  /// No description provided for @colDrawn.
+  ///
+  /// In tr, this message translates to:
+  /// **'B'**
+  String get colDrawn;
+
+  /// No description provided for @colLost.
+  ///
+  /// In tr, this message translates to:
+  /// **'M'**
+  String get colLost;
+
+  /// No description provided for @colGoalsFor.
+  ///
+  /// In tr, this message translates to:
+  /// **'A'**
+  String get colGoalsFor;
+
+  /// No description provided for @colGoalsAgainst.
+  ///
+  /// In tr, this message translates to:
+  /// **'Y'**
+  String get colGoalsAgainst;
+
+  /// No description provided for @colGoalDiff.
+  ///
+  /// In tr, this message translates to:
+  /// **'Av'**
+  String get colGoalDiff;
+
+  /// No description provided for @colPoints.
+  ///
+  /// In tr, this message translates to:
+  /// **'P'**
+  String get colPoints;
+
+  /// No description provided for @colTeam.
+  ///
+  /// In tr, this message translates to:
+  /// **'Takım'**
+  String get colTeam;
+
+  /// No description provided for @simulatorStats.
+  ///
+  /// In tr, this message translates to:
+  /// **'{matches} maç · maç başı {goals} gol · ev sahibi galibiyeti %{homeWin} · beraberlik %{draw}'**
+  String simulatorStats(int matches, String goals, String homeWin, String draw);
+
   /// No description provided for @createTitle.
   ///
   /// In tr, this message translates to:

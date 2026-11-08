@@ -24,6 +24,35 @@
   "delete": "Sil",
   "settings": "Ayarlar",
 
+  "simulatorTitle": "Lig Simülatörü",
+  "simulatorSeed": "Seed (boş = rastgele)",
+  "simulatorSeedInvalid": "Seed bir tam sayı olmalı.",
+  "simulateSeason": "Sezonu Simüle Et",
+  "simulatorHint": "Seçilen ligin 34 haftalık sezonunu saf Dart motoruyla oynatır.",
+  "leagueTier1": "Ulusal Lig",
+  "leagueTier2": "Birinci Lig",
+  "leagueTier3": "İkinci Lig",
+  "leagueTier4": "Üçüncü Lig",
+  "leagueTier5": "Amatör Lig",
+  "colPlayed": "O",
+  "colWon": "G",
+  "colDrawn": "B",
+  "colLost": "M",
+  "colGoalsFor": "A",
+  "colGoalsAgainst": "Y",
+  "colGoalDiff": "Av",
+  "colPoints": "P",
+  "colTeam": "Takım",
+  "simulatorStats": "{matches} maç · maç başı {goals} gol · ev sahibi galibiyeti %{homeWin} · beraberlik %{draw}",
+  "@simulatorStats": {
+    "placeholders": {
+      "matches": { "type": "int" },
+      "goals": { "type": "String" },
+      "homeWin": { "type": "String" },
+      "draw": { "type": "String" }
+    }
+  },
+
   "createTitle": "Yeni Oyuncu",
   "nameLabel": "Oyuncu adı",
   "nameRequired": "Bir isim gir.",

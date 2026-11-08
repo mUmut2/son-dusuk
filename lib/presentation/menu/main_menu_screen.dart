@@ -22,6 +22,11 @@ class MainMenuScreen extends ConsumerWidget {
         title: Text(l10n.appTitle),
         actions: [
           IconButton(
+            tooltip: l10n.simulatorTitle,
+            icon: const Icon(Icons.leaderboard),
+            onPressed: () => context.push('/simulator'),
+          ),
+          IconButton(
             tooltip: l10n.settings,
             icon: const Icon(Icons.settings),
             onPressed: () => context.push('/settings'),

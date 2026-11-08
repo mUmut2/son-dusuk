@@ -195,7 +195,7 @@ Parametreler `lib/domain/national/national_balance.dart` ve `lib/domain/career/l
 
 **Ödül ve etki:** Oynadığın her maça maaşın yarısı kadar prim; turnuva sonunda (kadrodaysan) şampiyon 6, finalist 3, yarı finalist 1.5, çeyrek finalist 0.75 haftalık maaş; moral ve taraftar/medya/aile etkisi.
 
-**Başarımlar:** 32 adet, 5 kategori (kariyer, kulüp, milli takım, gelişim, para). Koşullar durumdan hesaplanır (`AchievementEngine.sync`), her hafta sonu açılanlar hafta özetine ve habere düşer. Açılma anı kayda yazılır.
+**Başarımlar:** 37 adet, 5 kategori (kariyer, kulüp, milli takım, gelişim, para). Koşullar durumdan hesaplanır (`AchievementEngine.sync`), her hafta sonu açılanlar hafta özetine ve habere düşer. Açılma anı kayda yazılır.
 
 **Sezon geçmişi:** Her sezon sonu `SeasonRecord` (kulüp, kademe, lig sırası, maç/gol/asist, ortalama reyting, güç) eklenir; lig sırası o sezon oyuncunun gördüğü tablodan hesaplanır.
 

@@ -23,6 +23,9 @@ enum Achievement {
   hatTrick(AchievementCategory.career),
   starPerformance(AchievementCategory.career),
   seasons10(AchievementCategory.career),
+  prolific(AchievementCategory.career),
+  playmaker(AchievementCategory.career),
+  steady(AchievementCategory.career),
   veteran(AchievementCategory.career),
   // Kulüp
   firstTransfer(AchievementCategory.club),
@@ -31,12 +34,14 @@ enum Achievement {
   topLeagueChampion(AchievementCategory.club),
   loyal(AchievementCategory.club),
   agentTop(AchievementCategory.club),
+  globetrotter(AchievementCategory.club),
   // Milli takım
   nationalDebut(AchievementCategory.national),
   nationalGoal(AchievementCategory.national),
   nationalFinal(AchievementCategory.national),
   continentalChampion(AchievementCategory.national),
   worldChampion(AchievementCategory.national),
+  nationalVeteran(AchievementCategory.national),
   // Gelişim
   overall70(AchievementCategory.growth),
   overall80(AchievementCategory.growth),
@@ -145,6 +150,13 @@ abstract final class AchievementEngine {
       Achievement.starPerformance => (matchRating ?? 0) >= 9.8,
       Achievement.seasons10 => s.history.length >= 10,
       Achievement.veteran => s.player.age >= 35,
+      Achievement.prolific => s.history.any((r) => r.goals >= 25),
+      Achievement.playmaker => s.history.any((r) => r.assists >= 15),
+      Achievement.steady => s.history.any(
+        (r) => r.matches >= 20 && r.averageRating >= 7.5,
+      ),
+      Achievement.globetrotter => stats.transfers >= 6,
+      Achievement.nationalVeteran => nat.caps >= 8,
       Achievement.firstTransfer => stats.transfers >= 1,
       Achievement.topLeague => tier == 1,
       Achievement.leagueChampion => s.history.any((r) => r.champion),

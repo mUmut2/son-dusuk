@@ -113,6 +113,41 @@ void main() {
       expect(got, isNot(contains(Achievement.continentalChampion)));
     });
 
+    test('sezon ve milli takım başarımları', () {
+      final s = career().copyWith(
+        stats: const CareerStats(transfers: 6),
+        history: [
+          SeasonRecord(
+            season: 1,
+            age: 20,
+            overall: 70,
+            clubId: 't5_0',
+            tier: 3,
+            position: 4,
+            matches: 30,
+            goals: 25,
+            assists: 15,
+            averageRating: 7.6,
+          ),
+        ],
+        national: const NationalCareer(caps: 8),
+      );
+      expect(
+        AchievementEngine.sync(s).unlocked,
+        containsAll([
+          Achievement.prolific,
+          Achievement.playmaker,
+          Achievement.steady,
+          Achievement.globetrotter,
+          Achievement.nationalVeteran,
+        ]),
+      );
+      expect(
+        AchievementEngine.sync(career()).unlocked,
+        isNot(contains(Achievement.prolific)),
+      );
+    });
+
     test('sadakat: 10 sezon arka arkaya aynı kulüp', () {
       bool loyal(int n) => AchievementEngine.isMet(
         Achievement.loyal,

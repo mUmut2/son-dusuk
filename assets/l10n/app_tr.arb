@@ -1524,5 +1524,15 @@
     }
   },
   "ach_tycoon_title": "Servet Sahibi",
-  "ach_tycoon_desc": "Bakiyeni 25.000.000 ₺'ye ulaştır."
+  "ach_tycoon_desc": "Bakiyeni 25.000.000 ₺'ye ulaştır.",
+  "ach_prolific_title": "Gol Makinesi",
+  "ach_prolific_desc": "Tek sezonda 25 gol at.",
+  "ach_playmaker_title": "Oyun Kurucu",
+  "ach_playmaker_desc": "Tek sezonda 15 asist yap.",
+  "ach_steady_title": "İstikrar Abidesi",
+  "ach_steady_desc": "En az 20 maçlık bir sezonu 7.5 ve üzeri ortalama reytingle bitir.",
+  "ach_globetrotter_title": "Gezgin",
+  "ach_globetrotter_desc": "Kariyerinde 6 kez kulüp değiştir.",
+  "ach_nationalVeteran_title": "Milli Gurur",
+  "ach_nationalVeteran_desc": "Milli takımla 8 maça çık."
 }

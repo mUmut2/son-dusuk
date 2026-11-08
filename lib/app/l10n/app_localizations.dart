@@ -4190,6 +4190,66 @@ abstract class AppLocalizations {
   /// In tr, this message translates to:
   /// **'Bakiyeni 25.000.000 ₺\'ye ulaştır.'**
   String get ach_tycoon_desc;
+
+  /// No description provided for @ach_prolific_title.
+  ///
+  /// In tr, this message translates to:
+  /// **'Gol Makinesi'**
+  String get ach_prolific_title;
+
+  /// No description provided for @ach_prolific_desc.
+  ///
+  /// In tr, this message translates to:
+  /// **'Tek sezonda 25 gol at.'**
+  String get ach_prolific_desc;
+
+  /// No description provided for @ach_playmaker_title.
+  ///
+  /// In tr, this message translates to:
+  /// **'Oyun Kurucu'**
+  String get ach_playmaker_title;
+
+  /// No description provided for @ach_playmaker_desc.
+  ///
+  /// In tr, this message translates to:
+  /// **'Tek sezonda 15 asist yap.'**
+  String get ach_playmaker_desc;
+
+  /// No description provided for @ach_steady_title.
+  ///
+  /// In tr, this message translates to:
+  /// **'İstikrar Abidesi'**
+  String get ach_steady_title;
+
+  /// No description provided for @ach_steady_desc.
+  ///
+  /// In tr, this message translates to:
+  /// **'En az 20 maçlık bir sezonu 7.5 ve üzeri ortalama reytingle bitir.'**
+  String get ach_steady_desc;
+
+  /// No description provided for @ach_globetrotter_title.
+  ///
+  /// In tr, this message translates to:
+  /// **'Gezgin'**
+  String get ach_globetrotter_title;
+
+  /// No description provided for @ach_globetrotter_desc.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kariyerinde 6 kez kulüp değiştir.'**
+  String get ach_globetrotter_desc;
+
+  /// No description provided for @ach_nationalVeteran_title.
+  ///
+  /// In tr, this message translates to:
+  /// **'Milli Gurur'**
+  String get ach_nationalVeteran_title;
+
+  /// No description provided for @ach_nationalVeteran_desc.
+  ///
+  /// In tr, this message translates to:
+  /// **'Milli takımla 8 maça çık.'**
+  String get ach_nationalVeteran_desc;
 }
 
 class _AppLocalizationsDelegate

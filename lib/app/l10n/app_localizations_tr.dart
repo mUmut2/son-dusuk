@@ -2317,4 +2317,35 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get ach_tycoon_desc => 'Bakiyeni 25.000.000 ₺\'ye ulaştır.';
+
+  @override
+  String get ach_prolific_title => 'Gol Makinesi';
+
+  @override
+  String get ach_prolific_desc => 'Tek sezonda 25 gol at.';
+
+  @override
+  String get ach_playmaker_title => 'Oyun Kurucu';
+
+  @override
+  String get ach_playmaker_desc => 'Tek sezonda 15 asist yap.';
+
+  @override
+  String get ach_steady_title => 'İstikrar Abidesi';
+
+  @override
+  String get ach_steady_desc =>
+      'En az 20 maçlık bir sezonu 7.5 ve üzeri ortalama reytingle bitir.';
+
+  @override
+  String get ach_globetrotter_title => 'Gezgin';
+
+  @override
+  String get ach_globetrotter_desc => 'Kariyerinde 6 kez kulüp değiştir.';
+
+  @override
+  String get ach_nationalVeteran_title => 'Milli Gurur';
+
+  @override
+  String get ach_nationalVeteran_desc => 'Milli takımla 8 maça çık.';
 }

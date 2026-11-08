@@ -81,9 +81,13 @@ abstract final class Economy {
       }
     }
     if (agent != null && income > 0) {
-      lines.add(MoneyLine(MoneyKind.agentFee, -(income * agent.commission).round()));
+      lines.add(
+        MoneyLine(MoneyKind.agentFee, -(income * agent.commission).round()),
+      );
     }
-    lines.add(MoneyLine(MoneyKind.living, -ClubBalance.lifestyleCost[lifestyle]!));
+    lines.add(
+      MoneyLine(MoneyKind.living, -ClubBalance.lifestyleCost[lifestyle]!),
+    );
     return WeekMoney(lines);
   }
 

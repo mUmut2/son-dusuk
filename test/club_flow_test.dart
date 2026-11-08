@@ -125,29 +125,30 @@ void main() {
     expect(find.text('Şu an bekleyen teklif yok.'), findsOneWidget);
   });
 
-  testWidgets('pazarlık: en yüksek istek üst sınırı aşarsa karşı teklif gelir', (
-    tester,
-  ) async {
-    // maxWage 2100, istek: 2000 * 1.4 = 2800 > 2100 * 1.12 -> kulüp çekilir.
-    final container = await pumpClub(
-      tester,
-      setup: (base, world) =>
-          base.copyWith(offers: [offerFrom(world, maxWage: 2100)]),
-    );
-    await tester.ensureVisible(find.text('Pazarlık Et'));
-    await tester.tap(find.text('Pazarlık Et'));
-    await tester.pumpAndSettle();
-    expect(find.text('Maaş pazarlığı'), findsOneWidget);
+  testWidgets(
+    'pazarlık: en yüksek istek üst sınırı aşarsa karşı teklif gelir',
+    (tester) async {
+      // maxWage 2100, istek: 2000 * 1.4 = 2800 > 2100 * 1.12 -> kulüp çekilir.
+      final container = await pumpClub(
+        tester,
+        setup: (base, world) =>
+            base.copyWith(offers: [offerFrom(world, maxWage: 2100)]),
+      );
+      await tester.ensureVisible(find.text('Pazarlık Et'));
+      await tester.tap(find.text('Pazarlık Et'));
+      await tester.pumpAndSettle();
+      expect(find.text('Maaş pazarlığı'), findsOneWidget);
 
-    // Kaydırıcıyı sonuna çek.
-    await tester.drag(find.byType(Slider), const Offset(600, 0));
-    await tester.pumpAndSettle();
-    await tester.tap(find.text('Teklif Et'));
-    await tester.pumpAndSettle();
+      // Kaydırıcıyı sonuna çek.
+      await tester.drag(find.byType(Slider), const Offset(600, 0));
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('Teklif Et'));
+      await tester.pumpAndSettle();
 
-    expect(find.textContaining('teklifi geri çekti'), findsOneWidget);
-    expect(container.read(activeCareerProvider)!.state.offers, isEmpty);
-  });
+      expect(find.textContaining('teklifi geri çekti'), findsOneWidget);
+      expect(container.read(activeCareerProvider)!.state.offers, isEmpty);
+    },
+  );
 
   testWidgets('pazarlık: makul istek kabul edilir', (tester) async {
     final container = await pumpClub(

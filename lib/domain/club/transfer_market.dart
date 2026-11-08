@@ -11,6 +11,8 @@ import 'agent.dart';
 import 'club_balance.dart';
 import 'contract.dart';
 import 'finance.dart';
+import '../social/event_models.dart';
+import '../social/social_engine.dart';
 import 'squad.dart';
 import 'transfer_offer.dart';
 
@@ -32,7 +34,9 @@ abstract final class TransferMarket {
     final eff = Squad.effectiveOverall(p);
     final v =
         ClubBalance.valueBase *
-        math.exp(ClubBalance.valueGrowth * (eff - ClubBalance.valueBaseOverall)) *
+        math.exp(
+          ClubBalance.valueGrowth * (eff - ClubBalance.valueBaseOverall),
+        ) *
         ClubBalance.ageValueFactor(p.age);
     return _round(v);
   }
@@ -67,19 +71,15 @@ abstract final class TransferMarket {
 
     final formFactor = (0.7 + 0.1 * (s.status.form - 6)).clamp(0.4, 1.5);
     final chance =
-        ((free
-                    ? ClubBalance.freeAgentOfferChance
-                    : ClubBalance.offerChance) *
+        ((free ? ClubBalance.freeAgentOfferChance : ClubBalance.offerChance) *
                 (s.agent?.offerBoost ?? 1.0) *
+                SocialEngine.offerFactor(s) *
                 formFactor)
             .clamp(0.0, 0.95);
     if (!random.chance(chance)) return const [];
 
     final eff = Squad.effectiveOverall(s.player);
-    final taken = {
-      s.contract?.clubId,
-      for (final o in s.offers) o.clubId,
-    };
+    final taken = {s.contract?.clubId, for (final o in s.offers) o.clubId};
     final candidates = <(Team, SquadRole)>[];
     for (final t in world.allTeams) {
       if (taken.contains(t.id)) continue;
@@ -158,7 +158,9 @@ abstract final class TransferMarket {
       player: s.player,
       role: role,
     );
-    final wage = _round(fair * (1 - ClubBalance.offerLow + random.nextDouble() * 0.15));
+    final wage = _round(
+      fair * (1 - ClubBalance.offerLow + random.nextDouble() * 0.15),
+    );
     final maxWage = math.max(
       _round(
         fair *
@@ -176,8 +178,7 @@ abstract final class TransferMarket {
       years: random.range(1, ClubBalance.renewalMaxYears),
       role: role,
       // Sezon sonuna kadar geçerli.
-      expiresAt:
-          (s.season) * SeasonCalendar.weeksPerSeason,
+      expiresAt: (s.season) * SeasonCalendar.weeksPerSeason,
     );
   }
 
@@ -208,7 +209,8 @@ abstract final class TransferMarket {
     if (offer.kind == OfferKind.renewal && current != null) {
       endSeason = current.endSeason + offer.years;
     } else {
-      final start = s.week > SeasonCalendar.preseasonWeeks + SeasonCalendar.leagueRounds
+      final start =
+          s.week > SeasonCalendar.preseasonWeeks + SeasonCalendar.leagueRounds
           ? s.season + 1
           : s.season;
       endSeason = start + offer.years - 1;
@@ -225,6 +227,15 @@ abstract final class TransferMarket {
         balance: s.finance.balance + signingBonus(wage, s.agent),
       ),
       offers: const [],
+      news: SocialEngine.addNews(
+        s.news,
+        NewsItem(
+          kind: NewsKind.signed,
+          season: s.season,
+          week: s.week,
+          params: {'club': offer.clubId},
+        ),
+      ),
       // Kulüp değiştiyse bu sezonki skorlar eski kulübe aittir; tabloda
       // kulüp kimliğiyle ayrıştırıldığı için silmeye gerek yok.
     );
@@ -249,12 +260,18 @@ abstract final class ClubActions {
       s.copyWith(finance: s.finance.copyWith(lifestyle: l));
 
   static CareerState declineOffer(CareerState s, TransferOffer offer) =>
-      s.copyWith(offers: [for (final o in s.offers) if (o != offer) o]);
+      s.copyWith(
+        offers: [
+          for (final o in s.offers)
+            if (o != offer) o,
+        ],
+      );
 
   static CareerState markNegotiated(CareerState s, TransferOffer offer) =>
       s.copyWith(
         offers: [
-          for (final o in s.offers) o == offer ? o.copyWith(negotiated: true) : o,
+          for (final o in s.offers)
+            o == offer ? o.copyWith(negotiated: true) : o,
         ],
       );
 }

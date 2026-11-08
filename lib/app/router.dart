@@ -12,8 +12,9 @@ import '../presentation/match/match_screen.dart';
 import '../presentation/menu/main_menu_screen.dart';
 import '../presentation/providers.dart';
 import '../presentation/settings/settings_screen.dart';
+import '../presentation/social/event_screen.dart';
+import '../presentation/social/social_tab.dart';
 import '../presentation/simulator/season_simulator_screen.dart';
-import 'l10n/app_localizations.dart';
 
 /// Uygulamanın tek yönlendirme noktası. Yeni ekranlar buraya eklenir.
 final routerProvider = Provider<GoRouter>((ref) {
@@ -38,6 +39,11 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: '/game/week',
         builder: (context, state) => const WeekSummaryScreen(),
+      ),
+      GoRoute(
+        path: '/game/event/:id',
+        builder: (context, state) =>
+            EventScreen(eventId: state.pathParameters['id'] ?? ''),
       ),
       GoRoute(
         path: '/simulator',
@@ -78,9 +84,7 @@ final routerProvider = Provider<GoRouter>((ref) {
             routes: [
               GoRoute(
                 path: '/game/social',
-                builder: (context, state) => PlaceholderTab(
-                  title: AppLocalizations.of(context).navSocial,
-                ),
+                builder: (context, state) => const SocialTab(),
               ),
             ],
           ),

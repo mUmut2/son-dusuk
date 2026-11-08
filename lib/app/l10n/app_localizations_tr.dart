@@ -1051,4 +1051,629 @@ class AppLocalizationsTr extends AppLocalizations {
   String offersWaiting(int count) {
     return '$count bekleyen teklif var';
   }
+
+  @override
+  String get ev_pressWin_title => 'Galibiyet sonrası mikrofonlar';
+
+  @override
+  String ev_pressWin_body(String opponent, String score) {
+    return '$opponent karşısında $score kazandınız. Gazeteciler seni bekliyor: \"Bu galibiyetteki en büyük pay kimin?\"';
+  }
+
+  @override
+  String get ev_pressWin_c0 => 'Bu takımın başarısı, hepsine minnettarım.';
+
+  @override
+  String get ev_pressWin_r0 => 'Soyunma odası bu sözlere bayıldı.';
+
+  @override
+  String get ev_pressWin_c1 => 'Bugün benim günümdü, hep böyle olsun.';
+
+  @override
+  String get ev_pressWin_r1 =>
+      'Manşetler seninle açıldı ama takım arkadaşları homurdandı.';
+
+  @override
+  String get ev_pressWin_c2 => 'Rakip bu seviyeye çıkamadı, herkes gördü.';
+
+  @override
+  String get ev_pressWin_r2 => 'Sert sözlerin gündem oldu.';
+
+  @override
+  String get ev_pressWin_b2 =>
+      'Rakip kulüp sert tepki verdi, teknik direktör seni uyardı.';
+
+  @override
+  String get ev_pressLoss_title => 'Yenilgi sonrası sorular';
+
+  @override
+  String ev_pressLoss_body(String opponent, String score) {
+    return '$opponent karşısında $score kaybettiniz. Gazeteciler soruyor: \"Bu yenilgi kimin hatası?\"';
+  }
+
+  @override
+  String get ev_pressLoss_c0 => 'Hepimizin sorumluluğu var, toparlanacağız.';
+
+  @override
+  String get ev_pressLoss_r0 => 'Olgun duruşun teknik heyetin dikkatini çekti.';
+
+  @override
+  String get ev_pressLoss_c1 => 'Hakem kararları maçı değiştirdi.';
+
+  @override
+  String get ev_pressLoss_r1 => 'Taraftarlar seni haklı buldu.';
+
+  @override
+  String get ev_pressLoss_b1 =>
+      'Açıklama tepki çekti; teknik direktör seni uyardı.';
+
+  @override
+  String get ev_pressLoss_c2 => 'Bu soruya cevap vermeyeceğim.';
+
+  @override
+  String get ev_pressLoss_r2 => 'Gazeteciler suskunluğunu yorumladı.';
+
+  @override
+  String get ev_pressStar_title => 'Günün yıldızı';
+
+  @override
+  String ev_pressStar_body(String opponent, String score) {
+    return '$opponent maçını $score bitirdiniz ve skorda senin imzan var. Gazeteciler: \"Bu performans seni büyük kulüplere taşır mı?\"';
+  }
+
+  @override
+  String get ev_pressStar_c0 => 'Takım arkadaşlarım sayesinde buradayım.';
+
+  @override
+  String get ev_pressStar_r0 => 'Mütevazı sözlerin herkesi memnun etti.';
+
+  @override
+  String get ev_pressStar_c1 =>
+      'Daha fazlasını yapabilirim, kim isterse gelsin.';
+
+  @override
+  String get ev_pressStar_r1 => 'Büyük kulüplerin radarına girdin.';
+
+  @override
+  String get ev_pressStar_b1 => 'Bu sözler soyunma odasında kızgınlık yarattı.';
+
+  @override
+  String get ev_pressStar_c2 =>
+      'Teknik direktörüm bana güvendi, hesabını verdim.';
+
+  @override
+  String get ev_pressStar_r2 => 'Hoca bu sözlere çok sevindi.';
+
+  @override
+  String get ev_pressPoor_title => 'Eleştiri yağmuru';
+
+  @override
+  String ev_pressPoor_body(String opponent, String score) {
+    return '$opponent karşısında $score bitti ve performansın eleştirildi. Gazeteciler: \"Bugün neden sahada yoktun?\"';
+  }
+
+  @override
+  String get ev_pressPoor_c0 => 'Kötüydüm, bunu kabul ediyorum.';
+
+  @override
+  String get ev_pressPoor_r0 => 'Dürüstlüğün takdir topladı.';
+
+  @override
+  String get ev_pressPoor_c1 => 'Eleştiriler beni daha da motive ediyor.';
+
+  @override
+  String get ev_pressPoor_r1 =>
+      'Meydan okuman bazılarını güldürdü, bazılarını kızdırdı.';
+
+  @override
+  String get ev_pressPoor_c2 => 'Yorum yok.';
+
+  @override
+  String get ev_pressPoor_r2 => 'Kısa kesmen soru işaretleri bıraktı.';
+
+  @override
+  String get ev_pressBench_title => 'Yedek kulübesi';
+
+  @override
+  String get ev_pressBench_body =>
+      'Bu hafta kadroda yoktun. Gazeteciler: \"Yedek kalmak seni nasıl etkiliyor?\"';
+
+  @override
+  String get ev_pressBench_c0 => 'Sabırlıyım, sıram gelecek.';
+
+  @override
+  String get ev_pressBench_r0 => 'Teknik direktör olgunluğunu not etti.';
+
+  @override
+  String get ev_pressBench_c1 => 'Daha fazla süre hak ediyorum.';
+
+  @override
+  String get ev_pressBench_r1 => 'Söylediklerin yazıldı, hoca pek hoşlanmadı.';
+
+  @override
+  String get ev_pressBench_c2 => 'Önemli olan takımın kazanması.';
+
+  @override
+  String get ev_pressBench_r2 => 'Takım arkadaşların bunu duyunca memnun oldu.';
+
+  @override
+  String get ev_familyDinner_title => 'Aile yemeği';
+
+  @override
+  String get ev_familyDinner_body =>
+      'Annen ve baban seni akşam yemeğine çağırıyor. Haftanın tek boş akşamı.';
+
+  @override
+  String get ev_familyDinner_c0 => 'Yemeğe git, doyasıya sohbet et.';
+
+  @override
+  String get ev_familyDinner_r0 =>
+      'Mutlu ve yorgun döndün; aile seni özlemişti.';
+
+  @override
+  String get ev_familyDinner_c1 => 'Antrenmana odaklan, daha sonra görüşürsün.';
+
+  @override
+  String get ev_familyDinner_r1 =>
+      'Annen biraz kırıldı ama hoca çalışkanlığını görüyor.';
+
+  @override
+  String get ev_familyDinner_c2 => 'Kısa bir telefon görüşmesi yap.';
+
+  @override
+  String get ev_familyDinner_r2 => 'Sesini duymak yetti, ama sarılmak başka.';
+
+  @override
+  String get ev_partyInvite_title => 'Doğum günü daveti';
+
+  @override
+  String get ev_partyInvite_body =>
+      'Takım arkadaşların bir doğum günü kutlamasına seni çağırıyor.';
+
+  @override
+  String get ev_partyInvite_c0 => 'Katıl, gece uzasın.';
+
+  @override
+  String get ev_partyInvite_r0 => 'Soyunma odasında bağların güçlendi.';
+
+  @override
+  String get ev_partyInvite_b0 =>
+      'Bir video sızdı. Medya ve teknik direktör hoşnut değil.';
+
+  @override
+  String get ev_partyInvite_c1 => 'Nazikçe reddet, dinlen.';
+
+  @override
+  String get ev_partyInvite_r1 => 'Dinlendin ama bazıları seni mesafeli buldu.';
+
+  @override
+  String get ev_partyInvite_c2 => 'Bir saat uğrayıp çık.';
+
+  @override
+  String get ev_partyInvite_r2 => 'Hem orada oldun hem dinlenebildin.';
+
+  @override
+  String get ev_fanMeet_title => 'Taraftar buluşması';
+
+  @override
+  String get ev_fanMeet_body =>
+      'Antrenman çıkışı, kapıda onlarca taraftar seni bekliyor.';
+
+  @override
+  String get ev_fanMeet_c0 => 'Durup herkesle fotoğraf çektir.';
+
+  @override
+  String get ev_fanMeet_r0 => 'Taraftarlar bu ilgiyi uzun süre unutmayacak.';
+
+  @override
+  String get ev_fanMeet_c1 => 'Hızlıca geç, yorgunsun.';
+
+  @override
+  String get ev_fanMeet_r1 => 'Bazı taraftarlar küstü.';
+
+  @override
+  String get ev_fanMeet_c2 => 'Birkaç imza ver, el salla.';
+
+  @override
+  String get ev_fanMeet_r2 => 'Hem hızlı hem samimi oldu.';
+
+  @override
+  String get ev_coachTalk_title => 'Hoca çağırıyor';
+
+  @override
+  String get ev_coachTalk_body =>
+      'Teknik direktör seni ofisine çağırdı. Aranızın pek iyi olmadığı belli.';
+
+  @override
+  String get ev_coachTalk_c0 => 'Dinle ve çalışmaya odaklan.';
+
+  @override
+  String get ev_coachTalk_r0 => 'Hoca ciddiyetini gördü.';
+
+  @override
+  String get ev_coachTalk_c1 => 'Haklı olduğunu savun.';
+
+  @override
+  String get ev_coachTalk_r1 => 'Konuşma gerginleşti ama içini döktün.';
+
+  @override
+  String get ev_coachTalk_c2 => 'Taktik önerin olduğunu söyle.';
+
+  @override
+  String get ev_coachTalk_r2 => 'Hoca önerini dikkate aldı!';
+
+  @override
+  String get ev_coachTalk_b2 =>
+      'Önerin fazla iddialı bulundu, hoca aldırış etmedi.';
+
+  @override
+  String get ev_teammateRift_title => 'Soyunma odası gerginliği';
+
+  @override
+  String get ev_teammateRift_body =>
+      'Antrenmanda bir takım arkadaşınla sürtüşme yaşadın, soyunma odası ikiye bölündü.';
+
+  @override
+  String get ev_teammateRift_c0 => 'Konuşup barışmayı dene.';
+
+  @override
+  String get ev_teammateRift_r0 => 'Barıştınız, hava yumuşadı.';
+
+  @override
+  String get ev_teammateRift_c1 => 'Durumu teknik direktöre anlat.';
+
+  @override
+  String get ev_teammateRift_r1 =>
+      'Hoca ilgilendi ama arkadaşların seni küçümsedi.';
+
+  @override
+  String get ev_teammateRift_c2 => 'Görmezden gel.';
+
+  @override
+  String get ev_teammateRift_r2 => 'Gerginlik bir süre daha sürecek.';
+
+  @override
+  String get ev_sponsorOffer_title => 'Sponsor teklifi';
+
+  @override
+  String get ev_sponsorOffer_body =>
+      'Bir spor markası seninle sponsorluk görüşmesi yapmak istiyor.';
+
+  @override
+  String get ev_sponsorOffer_c0 => 'Büyük, uluslararası markayla anlaş.';
+
+  @override
+  String get ev_sponsorOffer_r0 =>
+      'Hesabına iyi bir para girdi; bazı taraftarlar fazla ticari buldu.';
+
+  @override
+  String get ev_sponsorOffer_c1 => 'Yerel esnafın küçük markasıyla anlaş.';
+
+  @override
+  String get ev_sponsorOffer_r1 => 'Para az ama taraftar bunu sevdi.';
+
+  @override
+  String get ev_sponsorOffer_c2 => 'Şimdilik reddet, futbola odaklan.';
+
+  @override
+  String get ev_sponsorOffer_r2 => 'Odağın hocanın hoşuna gitti.';
+
+  @override
+  String get ev_charity_title => 'Yardım maçı';
+
+  @override
+  String get ev_charity_body =>
+      'Kulübün düzenlediği yardım maçına katılman ve bağış yapman isteniyor.';
+
+  @override
+  String get ev_charity_c0 => 'Katıl ve maaşından bağışla.';
+
+  @override
+  String get ev_charity_r0 => 'Hem insanlar hem basın bu jesti çok sevdi.';
+
+  @override
+  String get ev_charity_c1 => 'Katıl ama bağış yapma.';
+
+  @override
+  String get ev_charity_r1 => 'Sahadaydın, bu da bir şey.';
+
+  @override
+  String get ev_charity_c2 => 'Katılma.';
+
+  @override
+  String get ev_charity_r2 => 'Birileri hatırlayacak.';
+
+  @override
+  String get ev_transferRumor_title => 'Transfer dedikodusu';
+
+  @override
+  String get ev_transferRumor_body =>
+      'Gazeteler adını başka bir kulüple yazıyor: \"Gizli görüşme yapıldı.\"';
+
+  @override
+  String get ev_transferRumor_c0 => 'Yalanla: buradayım.';
+
+  @override
+  String get ev_transferRumor_r0 => 'Hoca bu sadakate sevindi.';
+
+  @override
+  String get ev_transferRumor_c1 => 'Yorum yapma.';
+
+  @override
+  String get ev_transferRumor_r1 => 'Söylenti sürdü, adın konuşuldu.';
+
+  @override
+  String get ev_transferRumor_c2 => 'Ucu açık bırak, söylentiyi körükle.';
+
+  @override
+  String get ev_transferRumor_r2 =>
+      'Gündemdesin ama kulüp ve taraftar rahatsız.';
+
+  @override
+  String get ev_socialPost_title => 'Sosyal medya fırtınası';
+
+  @override
+  String get ev_socialPost_body =>
+      'Eskiden attığın bir paylaşım gündem oldu, yorumlar alevlendi.';
+
+  @override
+  String get ev_socialPost_c0 => 'Paylaşımı sil, konuşma.';
+
+  @override
+  String get ev_socialPost_r0 => 'Fırtına yavaş yavaş dindi.';
+
+  @override
+  String get ev_socialPost_c1 => 'Paylaşımı savun.';
+
+  @override
+  String get ev_socialPost_r1 => 'Destekçilerin sana sahip çıktı.';
+
+  @override
+  String get ev_socialPost_b1 => 'Savunma ters tepti; olay daha da büyüdü.';
+
+  @override
+  String get ev_socialPost_c2 => 'Açıkça özür dile.';
+
+  @override
+  String get ev_socialPost_r2 =>
+      'Özrün samimi bulundu ama biraz moralin bozuldu.';
+
+  @override
+  String get ev_injuryRehab_title => 'Rehabilitasyon kararı';
+
+  @override
+  String get ev_injuryRehab_body =>
+      'Sakatlığın uzun sürecek. Fizyoterapist sana bir program öneriyor.';
+
+  @override
+  String get ev_injuryRehab_c0 => 'Programa sıkı sıkıya bağlı kal.';
+
+  @override
+  String get ev_injuryRehab_r0 => 'Düzenli çalışman iyileşmeyi hızlandırdı.';
+
+  @override
+  String get ev_injuryRehab_c1 => 'Gizlice ekstra çalış.';
+
+  @override
+  String get ev_injuryRehab_r1 => 'Fazladan çalışman işe yaradı!';
+
+  @override
+  String get ev_injuryRehab_b1 =>
+      'Aşırıya kaçtın; sakatlığın nüksetme riski arttı.';
+
+  @override
+  String get ev_injuryRehab_c2 => 'Ailenle vakit geçir, moral topla.';
+
+  @override
+  String get ev_injuryRehab_r2 => 'Sevdiklerinin yanında içini rahatlattın.';
+
+  @override
+  String get ev_youthAcademy_title => 'Akademi ziyareti';
+
+  @override
+  String get ev_youthAcademy_body =>
+      'Kulüp, gençlik akademisini ziyaret etmeni istiyor. Çocuklar seni görmek için sabırsız.';
+
+  @override
+  String get ev_youthAcademy_c0 => 'Git, çocuklarla vakit geçir.';
+
+  @override
+  String get ev_youthAcademy_r0 => 'Çocukların gözlerindeki ışık değdi.';
+
+  @override
+  String get ev_youthAcademy_c1 => 'Bu hafta olmaz.';
+
+  @override
+  String get ev_youthAcademy_r1 => 'Ziyaret bir başkasına kaldı.';
+
+  @override
+  String get ev_debtHelp_title => 'Borç baskısı';
+
+  @override
+  String get ev_debtHelp_body =>
+      'Hesabın eksiye düştü ve banka seni arıyor. Ne yapacaksın?';
+
+  @override
+  String get ev_debtHelp_c0 => 'Aileden borç iste.';
+
+  @override
+  String get ev_debtHelp_r0 => 'Ailen yardım etti, ama bunu unutmayacaklar.';
+
+  @override
+  String get ev_debtHelp_c1 => 'Kimseden yardım isteme, kendin çöz.';
+
+  @override
+  String get ev_debtHelp_r1 => 'Gururun yerinde ama stres arttı.';
+
+  @override
+  String get socialTitle => 'Sosyal';
+
+  @override
+  String get socialPending => 'Cevap bekleyenler';
+
+  @override
+  String get socialNoPending =>
+      'Şu an cevap bekleyen bir gelişme yok. Maçlardan ve haftalardan sonra yenileri gelir.';
+
+  @override
+  String get socialRelations => 'İlişkiler';
+
+  @override
+  String get rel_coach => 'Teknik direktör';
+
+  @override
+  String get rel_teammates => 'Takım arkadaşları';
+
+  @override
+  String get rel_fans => 'Taraftar';
+
+  @override
+  String get rel_family => 'Aile';
+
+  @override
+  String get rel_media => 'Medya';
+
+  @override
+  String get relHint_coach => 'Maça çıkma şansını etkiler';
+
+  @override
+  String get relHint_teammates => 'Moral dengeni etkiler';
+
+  @override
+  String get relHint_fans => 'Sponsor ve prim fırsatlarını etkiler';
+
+  @override
+  String get relHint_family => 'Moral dengeni etkiler';
+
+  @override
+  String get relHint_media => 'Teklif sıklığını etkiler';
+
+  @override
+  String get relLevel_0 => 'Soğuk';
+
+  @override
+  String get relLevel_1 => 'Mesafeli';
+
+  @override
+  String get relLevel_2 => 'Normal';
+
+  @override
+  String get relLevel_3 => 'Sıcak';
+
+  @override
+  String get relLevel_4 => 'Çok yakın';
+
+  @override
+  String get socialNews => 'Haber akışı';
+
+  @override
+  String get socialNewsEmpty => 'Henüz haber yok.';
+
+  @override
+  String newsMatch(String opponent, String score) {
+    return '$opponent maçı: $score';
+  }
+
+  @override
+  String newsMatchGoals(String opponent, String score, String goals) {
+    return '$opponent maçı: $score · $goals gol';
+  }
+
+  @override
+  String newsSigned(String club) {
+    return '$club ile imza attın';
+  }
+
+  @override
+  String newsInjury(String type, String weeks) {
+    return 'Sakatlandın: $type, $weeks hafta';
+  }
+
+  @override
+  String newsEvent(String title, String choice) {
+    return '$title: $choice';
+  }
+
+  @override
+  String get eventKind_press => 'Basın toplantısı';
+
+  @override
+  String get eventKind_personal => 'Kişisel';
+
+  @override
+  String get eventKind_career => 'Kariyer';
+
+  @override
+  String get eventKind_money => 'Para';
+
+  @override
+  String get eventAnswer => 'Cevap ver';
+
+  @override
+  String eventExpires(int weeks) {
+    return '$weeks hafta içinde cevapla';
+  }
+
+  @override
+  String get eventExpiresLast => 'Son hafta!';
+
+  @override
+  String get eventChooseHint =>
+      'Bir seçenek seç. Etkilenecek alanlar işaretli, sonuç sürpriz.';
+
+  @override
+  String get eventRiskyTag => 'Riskli';
+
+  @override
+  String get eventResult => 'Sonuç';
+
+  @override
+  String get eventBackfired => 'Ters tepti!';
+
+  @override
+  String get eventDone => 'Tamam';
+
+  @override
+  String get effectMorale => 'Moral';
+
+  @override
+  String get effectCondition => 'Kondisyon';
+
+  @override
+  String get effectMoney => 'Para';
+
+  @override
+  String get effectHeal => 'Sakatlık süresi';
+
+  @override
+  String effectHealValue(int weeks) {
+    return '$weeks hafta kısaldı';
+  }
+
+  @override
+  String get effectRelapse => 'Tekrar sakatlanma riski';
+
+  @override
+  String eventNewEvent(String title) {
+    return 'Yeni gelişme: $title';
+  }
+
+  @override
+  String get summaryPendingEvent => 'Cevap bekleyen bir gelişme var';
+
+  @override
+  String get summaryAnswerNow => 'Şimdi Cevapla';
+
+  @override
+  String pendingEventsCard(int count) {
+    return '$count gelişme cevap bekliyor';
+  }
+
+  @override
+  String get pendingEventsHint => 'Sosyal sekmesinde';
+
+  @override
+  String seasonWeekShort(int season, int week) {
+    return 'S$season · H$week';
+  }
 }

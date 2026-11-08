@@ -12,6 +12,8 @@ import '../domain/club/finance.dart';
 import '../domain/club/transfer_market.dart';
 import '../domain/club/transfer_offer.dart';
 import '../domain/league/club_world.dart';
+import '../domain/social/event_models.dart';
+import '../domain/social/social_engine.dart';
 
 /// `main()` içinde gerçek örnekle, testlerde sahte örnekle override edilir.
 final sharedPreferencesProvider = Provider<SharedPreferences>(
@@ -148,6 +150,20 @@ class ActiveCareerNotifier extends Notifier<ActiveCareer?> {
     await update(ClubActions.setLifestyle(current.state, l));
   }
 
+  /// Bekleyen olaya [choice]. seçenekle cevap verir; sonucu döner.
+  Future<ResolveResult?> resolveEvent(PendingEvent event, int choice) async {
+    final current = state;
+    if (current == null) return null;
+    final result = SocialEngine.resolve(
+      current.state,
+      event,
+      choice,
+      GameRandom(),
+    );
+    await update(result.state);
+    return result;
+  }
+
   void close() => state = null;
 }
 
@@ -209,6 +225,8 @@ final lastWeekProvider = NotifierProvider<LastWeekNotifier, WeekResult?>(
 
 /// Aktif kariyerin lig dünyası (seed aynı kaldıkça yeniden kurulmaz).
 final clubWorldProvider = Provider<ClubWorld?>((ref) {
-  final seed = ref.watch(activeCareerProvider.select((c) => c?.state.worldSeed));
+  final seed = ref.watch(
+    activeCareerProvider.select((c) => c?.state.worldSeed),
+  );
   return seed == null ? null : ClubWorld(seed);
 });

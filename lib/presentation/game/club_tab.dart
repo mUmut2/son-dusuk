@@ -45,7 +45,10 @@ class ClubTab extends ConsumerWidget {
           title: l10n.offersTitle,
           child: _Offers(career: career, world: world),
         ),
-        _Section(title: l10n.agentTitle, child: _AgentSection(career: career)),
+        _Section(
+          title: l10n.agentTitle,
+          child: _AgentSection(career: career),
+        ),
         _Section(
           title: l10n.financeTitle,
           child: _FinanceSection(career: career),
@@ -493,9 +496,8 @@ class _FinanceSection extends ConsumerWidget {
               ChoiceChip(
                 label: Text(l10n.lifestyleName(l)),
                 selected: finance.lifestyle == l,
-                onSelected: (_) => ref
-                    .read(activeCareerProvider.notifier)
-                    .setLifestyle(l),
+                onSelected: (_) =>
+                    ref.read(activeCareerProvider.notifier).setLifestyle(l),
               ),
           ],
         ),

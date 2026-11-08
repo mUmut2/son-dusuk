@@ -14,7 +14,8 @@ class ClubFixture {
 /// Kariyerin dünyası: 5 kademeli lig piramidi. Aynı [seed] her zaman aynı
 /// dünyayı üretir; kayıtta yalnızca seed saklanır.
 class ClubWorld {
-  ClubWorld(this.seed) : leagues = LeagueFactory.createPyramid(GameRandom(seed)) {
+  ClubWorld(this.seed)
+    : leagues = LeagueFactory.createPyramid(GameRandom(seed)) {
     for (final league in leagues) {
       for (final team in league.teams) {
         _teams[team.id] = team;
@@ -61,6 +62,5 @@ class ClubWorld {
   }
 
   /// Yeni kariyerin başlangıç kulübü: amatör ligden, seed'e bağlı bir takım.
-  Team startingClub(GameRandom random) =>
-      random.pick(leagues.last.teams);
+  Team startingClub(GameRandom random) => random.pick(leagues.last.teams);
 }

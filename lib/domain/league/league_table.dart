@@ -48,7 +48,12 @@ abstract final class LeagueTable {
           awayStrength: world.team(f.awayId).strength,
           random: GameRandom(mixSeed([world.seed, season, tier, r, i])),
         );
-        standings.record(f.homeId, f.awayId, result.homeGoals, result.awayGoals);
+        standings.record(
+          f.homeId,
+          f.awayId,
+          result.homeGoals,
+          result.awayGoals,
+        );
       }
     }
     return standings;

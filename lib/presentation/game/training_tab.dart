@@ -134,7 +134,8 @@ class TrainingTab extends ConsumerWidget {
         ),
         if (matchDay == MatchDay.benched)
           Text(l10n.benchedThisWeek, style: textTheme.bodySmall),
-        if (career.isFreeAgent) Text(l10n.freeAgentNoMatch, style: textTheme.bodySmall),
+        if (career.isFreeAgent)
+          Text(l10n.freeAgentNoMatch, style: textTheme.bodySmall),
         Text(l10n.trainingHint, style: textTheme.bodySmall),
         const SizedBox(height: 16),
         FilledButton(

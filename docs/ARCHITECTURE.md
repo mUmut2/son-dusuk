@@ -53,3 +53,10 @@ Mini oyunlar (Faz 3+): `domain/match` kritik an üretir → `game/` Flame sahnes
 - `WeekEngine.advance` hafta sonunda sırasıyla: antrenman/durum -> para (`Economy.weekly`) -> skor kaydı -> `ClubEngine.process` (sezon geçişi, süresi dolan teklifler, yenileme, yeni teklifler).
 - `ClubWorld` (lig piramidi + fikstür) ve `LeagueTable` (deterministik puan durumu) `domain/league/` içinde; UI'da `clubWorldProvider` ile paylaşılır.
 - Kulüp aksiyonları (`TransferMarket.sign`, `ClubActions.*`) saf fonksiyonlardır; `ActiveCareerNotifier` yalnızca çağırıp kaydeder.
+
+## Sosyal sistem (Faz 7)
+
+- `CareerState` ek alanları: `relations`, `pendingEvents`, `news`, `eventSeen`; kayıt şeması 5 (v4→v5 yalnızca sürüm adımı, eksik alanlar varsayılanla yüklenir).
+- `WeekEngine.advance` en son `SocialEngine.afterWeek` çağırır: ilişki değişimi -> haber -> süresi dolan olaylar -> yeni olay.
+- Olay şablonları saf veridir (`EventCatalog`); koşullar `EventContext` üzerinden sorgulanır. Cevap `SocialEngine.resolve` ile uygulanır, UI yalnızca seçim alır ve `ResolveResult`'ı gösterir.
+- Oyuna etkiler tek yerde: `SocialEngine.coachSelectionBonus`, `offerFactor`, `moraleBaseline` (Squad, TransferMarket, WeekEngine bunları çağırır).

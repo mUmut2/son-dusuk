@@ -1,17 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../app/l10n/app_localizations.dart';
+import '../providers.dart';
 
 /// Oyun içi alt navigasyon çubuğu (5 sekme).
-class GameShell extends StatelessWidget {
+class GameShell extends ConsumerWidget {
   const GameShell({required this.navigationShell, super.key});
 
   final StatefulNavigationShell navigationShell;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context);
+    final pending = ref.watch(
+      activeCareerProvider.select((c) => c?.state.pendingEvents.length ?? 0),
+    );
+    final offers = ref.watch(
+      activeCareerProvider.select((c) => c?.state.offers.length ?? 0),
+    );
     return Scaffold(
       body: SafeArea(
         child: Center(
@@ -39,13 +47,29 @@ class GameShell extends StatelessWidget {
             label: l10n.navTraining,
           ),
           NavigationDestination(
-            icon: const Icon(Icons.shield_outlined),
-            selectedIcon: const Icon(Icons.shield),
+            icon: Badge(
+              isLabelVisible: offers > 0,
+              label: Text('$offers'),
+              child: const Icon(Icons.shield_outlined),
+            ),
+            selectedIcon: Badge(
+              isLabelVisible: offers > 0,
+              label: Text('$offers'),
+              child: const Icon(Icons.shield),
+            ),
             label: l10n.navClub,
           ),
           NavigationDestination(
-            icon: const Icon(Icons.forum_outlined),
-            selectedIcon: const Icon(Icons.forum),
+            icon: Badge(
+              isLabelVisible: pending > 0,
+              label: Text('$pending'),
+              child: const Icon(Icons.forum_outlined),
+            ),
+            selectedIcon: Badge(
+              isLabelVisible: pending > 0,
+              label: Text('$pending'),
+              child: const Icon(Icons.forum),
+            ),
             label: l10n.navSocial,
           ),
           NavigationDestination(

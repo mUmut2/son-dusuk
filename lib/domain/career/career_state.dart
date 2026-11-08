@@ -3,6 +3,8 @@ import '../club/contract.dart';
 import '../club/finance.dart';
 import '../club/transfer_offer.dart';
 import '../player/player.dart';
+import '../social/event_models.dart';
+import '../social/relationships.dart';
 import 'match_record.dart';
 import 'player_status.dart';
 import 'season_calendar.dart';
@@ -21,6 +23,10 @@ class CareerState {
     this.finance = const Finance(),
     this.offers = const [],
     this.results = const [],
+    this.relations = const Relationships(),
+    this.pendingEvents = const [],
+    this.news = const [],
+    this.eventSeen = const {},
   });
 
   factory CareerState.fromJson(Map<String, dynamic> json) => CareerState(
@@ -51,6 +57,20 @@ class CareerState {
       for (final r in (json['results'] as List<dynamic>? ?? const []))
         MatchRecord.fromJson(r as Map<String, dynamic>),
     ],
+    relations: json['relations'] == null
+        ? const Relationships()
+        : Relationships.fromJson(json['relations'] as Map<String, dynamic>),
+    pendingEvents: [
+      for (final e in (json['pendingEvents'] as List<dynamic>? ?? const []))
+        PendingEvent.fromJson(e as Map<String, dynamic>),
+    ],
+    news: [
+      for (final n in (json['news'] as List<dynamic>? ?? const []))
+        NewsItem.fromJson(n as Map<String, dynamic>),
+    ],
+    eventSeen: Map<String, int>.from(
+      (json['eventSeen'] as Map<String, dynamic>?) ?? const {},
+    ),
   );
 
   final Player player;
@@ -71,6 +91,18 @@ class CareerState {
   /// Bu sezon oynanan lig maçlarının skorları.
   final List<MatchRecord> results;
 
+  /// Çevreyle ilişkiler (teknik direktör, takım, taraftar, aile, medya).
+  final Relationships relations;
+
+  /// Cevap bekleyen olaylar (basın toplantısı, kişisel gelişmeler...).
+  final List<PendingEvent> pendingEvents;
+
+  /// Haber akışı, en yeni başta.
+  final List<NewsItem> news;
+
+  /// Olay kimliği -> en son çıktığı mutlak hafta (tekrarı önlemek için).
+  final Map<String, int> eventSeen;
+
   bool get isFreeAgent => contract == null;
 
   /// Sezonlar boyunca artan hafta sayacı (tekliflerin son geçerlilik günü için).
@@ -90,6 +122,10 @@ class CareerState {
     Finance? finance,
     List<TransferOffer>? offers,
     List<MatchRecord>? results,
+    Relationships? relations,
+    List<PendingEvent>? pendingEvents,
+    List<NewsItem>? news,
+    Map<String, int>? eventSeen,
   }) => CareerState(
     player: player ?? this.player,
     season: season ?? this.season,
@@ -102,6 +138,10 @@ class CareerState {
     finance: finance ?? this.finance,
     offers: offers ?? this.offers,
     results: results ?? this.results,
+    relations: relations ?? this.relations,
+    pendingEvents: pendingEvents ?? this.pendingEvents,
+    news: news ?? this.news,
+    eventSeen: eventSeen ?? this.eventSeen,
   );
 
   Map<String, dynamic> toJson() => {
@@ -116,5 +156,9 @@ class CareerState {
     'finance': finance.toJson(),
     'offers': [for (final o in offers) o.toJson()],
     'results': [for (final r in results) r.toJson()],
+    'relations': relations.toJson(),
+    'pendingEvents': [for (final e in pendingEvents) e.toJson()],
+    'news': [for (final n in news) n.toJson()],
+    'eventSeen': eventSeen,
   };
 }

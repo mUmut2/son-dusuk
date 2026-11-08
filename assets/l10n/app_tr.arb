@@ -682,5 +682,322 @@
         "type": "int"
       }
     }
+  },
+  "ev_pressWin_title": "Galibiyet sonrası mikrofonlar",
+  "ev_pressWin_body": "{opponent} karşısında {score} kazandınız. Gazeteciler seni bekliyor: \"Bu galibiyetteki en büyük pay kimin?\"",
+  "@ev_pressWin_body": {
+    "placeholders": {
+      "opponent": {
+        "type": "String"
+      },
+      "score": {
+        "type": "String"
+      }
+    }
+  },
+  "ev_pressWin_c0": "Bu takımın başarısı, hepsine minnettarım.",
+  "ev_pressWin_r0": "Soyunma odası bu sözlere bayıldı.",
+  "ev_pressWin_c1": "Bugün benim günümdü, hep böyle olsun.",
+  "ev_pressWin_r1": "Manşetler seninle açıldı ama takım arkadaşları homurdandı.",
+  "ev_pressWin_c2": "Rakip bu seviyeye çıkamadı, herkes gördü.",
+  "ev_pressWin_r2": "Sert sözlerin gündem oldu.",
+  "ev_pressWin_b2": "Rakip kulüp sert tepki verdi, teknik direktör seni uyardı.",
+  "ev_pressLoss_title": "Yenilgi sonrası sorular",
+  "ev_pressLoss_body": "{opponent} karşısında {score} kaybettiniz. Gazeteciler soruyor: \"Bu yenilgi kimin hatası?\"",
+  "@ev_pressLoss_body": {
+    "placeholders": {
+      "opponent": {
+        "type": "String"
+      },
+      "score": {
+        "type": "String"
+      }
+    }
+  },
+  "ev_pressLoss_c0": "Hepimizin sorumluluğu var, toparlanacağız.",
+  "ev_pressLoss_r0": "Olgun duruşun teknik heyetin dikkatini çekti.",
+  "ev_pressLoss_c1": "Hakem kararları maçı değiştirdi.",
+  "ev_pressLoss_r1": "Taraftarlar seni haklı buldu.",
+  "ev_pressLoss_b1": "Açıklama tepki çekti; teknik direktör seni uyardı.",
+  "ev_pressLoss_c2": "Bu soruya cevap vermeyeceğim.",
+  "ev_pressLoss_r2": "Gazeteciler suskunluğunu yorumladı.",
+  "ev_pressStar_title": "Günün yıldızı",
+  "ev_pressStar_body": "{opponent} maçını {score} bitirdiniz ve skorda senin imzan var. Gazeteciler: \"Bu performans seni büyük kulüplere taşır mı?\"",
+  "@ev_pressStar_body": {
+    "placeholders": {
+      "opponent": {
+        "type": "String"
+      },
+      "score": {
+        "type": "String"
+      }
+    }
+  },
+  "ev_pressStar_c0": "Takım arkadaşlarım sayesinde buradayım.",
+  "ev_pressStar_r0": "Mütevazı sözlerin herkesi memnun etti.",
+  "ev_pressStar_c1": "Daha fazlasını yapabilirim, kim isterse gelsin.",
+  "ev_pressStar_r1": "Büyük kulüplerin radarına girdin.",
+  "ev_pressStar_b1": "Bu sözler soyunma odasında kızgınlık yarattı.",
+  "ev_pressStar_c2": "Teknik direktörüm bana güvendi, hesabını verdim.",
+  "ev_pressStar_r2": "Hoca bu sözlere çok sevindi.",
+  "ev_pressPoor_title": "Eleştiri yağmuru",
+  "ev_pressPoor_body": "{opponent} karşısında {score} bitti ve performansın eleştirildi. Gazeteciler: \"Bugün neden sahada yoktun?\"",
+  "@ev_pressPoor_body": {
+    "placeholders": {
+      "opponent": {
+        "type": "String"
+      },
+      "score": {
+        "type": "String"
+      }
+    }
+  },
+  "ev_pressPoor_c0": "Kötüydüm, bunu kabul ediyorum.",
+  "ev_pressPoor_r0": "Dürüstlüğün takdir topladı.",
+  "ev_pressPoor_c1": "Eleştiriler beni daha da motive ediyor.",
+  "ev_pressPoor_r1": "Meydan okuman bazılarını güldürdü, bazılarını kızdırdı.",
+  "ev_pressPoor_c2": "Yorum yok.",
+  "ev_pressPoor_r2": "Kısa kesmen soru işaretleri bıraktı.",
+  "ev_pressBench_title": "Yedek kulübesi",
+  "ev_pressBench_body": "Bu hafta kadroda yoktun. Gazeteciler: \"Yedek kalmak seni nasıl etkiliyor?\"",
+  "ev_pressBench_c0": "Sabırlıyım, sıram gelecek.",
+  "ev_pressBench_r0": "Teknik direktör olgunluğunu not etti.",
+  "ev_pressBench_c1": "Daha fazla süre hak ediyorum.",
+  "ev_pressBench_r1": "Söylediklerin yazıldı, hoca pek hoşlanmadı.",
+  "ev_pressBench_c2": "Önemli olan takımın kazanması.",
+  "ev_pressBench_r2": "Takım arkadaşların bunu duyunca memnun oldu.",
+  "ev_familyDinner_title": "Aile yemeği",
+  "ev_familyDinner_body": "Annen ve baban seni akşam yemeğine çağırıyor. Haftanın tek boş akşamı.",
+  "ev_familyDinner_c0": "Yemeğe git, doyasıya sohbet et.",
+  "ev_familyDinner_r0": "Mutlu ve yorgun döndün; aile seni özlemişti.",
+  "ev_familyDinner_c1": "Antrenmana odaklan, daha sonra görüşürsün.",
+  "ev_familyDinner_r1": "Annen biraz kırıldı ama hoca çalışkanlığını görüyor.",
+  "ev_familyDinner_c2": "Kısa bir telefon görüşmesi yap.",
+  "ev_familyDinner_r2": "Sesini duymak yetti, ama sarılmak başka.",
+  "ev_partyInvite_title": "Doğum günü daveti",
+  "ev_partyInvite_body": "Takım arkadaşların bir doğum günü kutlamasına seni çağırıyor.",
+  "ev_partyInvite_c0": "Katıl, gece uzasın.",
+  "ev_partyInvite_r0": "Soyunma odasında bağların güçlendi.",
+  "ev_partyInvite_b0": "Bir video sızdı. Medya ve teknik direktör hoşnut değil.",
+  "ev_partyInvite_c1": "Nazikçe reddet, dinlen.",
+  "ev_partyInvite_r1": "Dinlendin ama bazıları seni mesafeli buldu.",
+  "ev_partyInvite_c2": "Bir saat uğrayıp çık.",
+  "ev_partyInvite_r2": "Hem orada oldun hem dinlenebildin.",
+  "ev_fanMeet_title": "Taraftar buluşması",
+  "ev_fanMeet_body": "Antrenman çıkışı, kapıda onlarca taraftar seni bekliyor.",
+  "ev_fanMeet_c0": "Durup herkesle fotoğraf çektir.",
+  "ev_fanMeet_r0": "Taraftarlar bu ilgiyi uzun süre unutmayacak.",
+  "ev_fanMeet_c1": "Hızlıca geç, yorgunsun.",
+  "ev_fanMeet_r1": "Bazı taraftarlar küstü.",
+  "ev_fanMeet_c2": "Birkaç imza ver, el salla.",
+  "ev_fanMeet_r2": "Hem hızlı hem samimi oldu.",
+  "ev_coachTalk_title": "Hoca çağırıyor",
+  "ev_coachTalk_body": "Teknik direktör seni ofisine çağırdı. Aranızın pek iyi olmadığı belli.",
+  "ev_coachTalk_c0": "Dinle ve çalışmaya odaklan.",
+  "ev_coachTalk_r0": "Hoca ciddiyetini gördü.",
+  "ev_coachTalk_c1": "Haklı olduğunu savun.",
+  "ev_coachTalk_r1": "Konuşma gerginleşti ama içini döktün.",
+  "ev_coachTalk_c2": "Taktik önerin olduğunu söyle.",
+  "ev_coachTalk_r2": "Hoca önerini dikkate aldı!",
+  "ev_coachTalk_b2": "Önerin fazla iddialı bulundu, hoca aldırış etmedi.",
+  "ev_teammateRift_title": "Soyunma odası gerginliği",
+  "ev_teammateRift_body": "Antrenmanda bir takım arkadaşınla sürtüşme yaşadın, soyunma odası ikiye bölündü.",
+  "ev_teammateRift_c0": "Konuşup barışmayı dene.",
+  "ev_teammateRift_r0": "Barıştınız, hava yumuşadı.",
+  "ev_teammateRift_c1": "Durumu teknik direktöre anlat.",
+  "ev_teammateRift_r1": "Hoca ilgilendi ama arkadaşların seni küçümsedi.",
+  "ev_teammateRift_c2": "Görmezden gel.",
+  "ev_teammateRift_r2": "Gerginlik bir süre daha sürecek.",
+  "ev_sponsorOffer_title": "Sponsor teklifi",
+  "ev_sponsorOffer_body": "Bir spor markası seninle sponsorluk görüşmesi yapmak istiyor.",
+  "ev_sponsorOffer_c0": "Büyük, uluslararası markayla anlaş.",
+  "ev_sponsorOffer_r0": "Hesabına iyi bir para girdi; bazı taraftarlar fazla ticari buldu.",
+  "ev_sponsorOffer_c1": "Yerel esnafın küçük markasıyla anlaş.",
+  "ev_sponsorOffer_r1": "Para az ama taraftar bunu sevdi.",
+  "ev_sponsorOffer_c2": "Şimdilik reddet, futbola odaklan.",
+  "ev_sponsorOffer_r2": "Odağın hocanın hoşuna gitti.",
+  "ev_charity_title": "Yardım maçı",
+  "ev_charity_body": "Kulübün düzenlediği yardım maçına katılman ve bağış yapman isteniyor.",
+  "ev_charity_c0": "Katıl ve maaşından bağışla.",
+  "ev_charity_r0": "Hem insanlar hem basın bu jesti çok sevdi.",
+  "ev_charity_c1": "Katıl ama bağış yapma.",
+  "ev_charity_r1": "Sahadaydın, bu da bir şey.",
+  "ev_charity_c2": "Katılma.",
+  "ev_charity_r2": "Birileri hatırlayacak.",
+  "ev_transferRumor_title": "Transfer dedikodusu",
+  "ev_transferRumor_body": "Gazeteler adını başka bir kulüple yazıyor: \"Gizli görüşme yapıldı.\"",
+  "ev_transferRumor_c0": "Yalanla: buradayım.",
+  "ev_transferRumor_r0": "Hoca bu sadakate sevindi.",
+  "ev_transferRumor_c1": "Yorum yapma.",
+  "ev_transferRumor_r1": "Söylenti sürdü, adın konuşuldu.",
+  "ev_transferRumor_c2": "Ucu açık bırak, söylentiyi körükle.",
+  "ev_transferRumor_r2": "Gündemdesin ama kulüp ve taraftar rahatsız.",
+  "ev_socialPost_title": "Sosyal medya fırtınası",
+  "ev_socialPost_body": "Eskiden attığın bir paylaşım gündem oldu, yorumlar alevlendi.",
+  "ev_socialPost_c0": "Paylaşımı sil, konuşma.",
+  "ev_socialPost_r0": "Fırtına yavaş yavaş dindi.",
+  "ev_socialPost_c1": "Paylaşımı savun.",
+  "ev_socialPost_r1": "Destekçilerin sana sahip çıktı.",
+  "ev_socialPost_b1": "Savunma ters tepti; olay daha da büyüdü.",
+  "ev_socialPost_c2": "Açıkça özür dile.",
+  "ev_socialPost_r2": "Özrün samimi bulundu ama biraz moralin bozuldu.",
+  "ev_injuryRehab_title": "Rehabilitasyon kararı",
+  "ev_injuryRehab_body": "Sakatlığın uzun sürecek. Fizyoterapist sana bir program öneriyor.",
+  "ev_injuryRehab_c0": "Programa sıkı sıkıya bağlı kal.",
+  "ev_injuryRehab_r0": "Düzenli çalışman iyileşmeyi hızlandırdı.",
+  "ev_injuryRehab_c1": "Gizlice ekstra çalış.",
+  "ev_injuryRehab_r1": "Fazladan çalışman işe yaradı!",
+  "ev_injuryRehab_b1": "Aşırıya kaçtın; sakatlığın nüksetme riski arttı.",
+  "ev_injuryRehab_c2": "Ailenle vakit geçir, moral topla.",
+  "ev_injuryRehab_r2": "Sevdiklerinin yanında içini rahatlattın.",
+  "ev_youthAcademy_title": "Akademi ziyareti",
+  "ev_youthAcademy_body": "Kulüp, gençlik akademisini ziyaret etmeni istiyor. Çocuklar seni görmek için sabırsız.",
+  "ev_youthAcademy_c0": "Git, çocuklarla vakit geçir.",
+  "ev_youthAcademy_r0": "Çocukların gözlerindeki ışık değdi.",
+  "ev_youthAcademy_c1": "Bu hafta olmaz.",
+  "ev_youthAcademy_r1": "Ziyaret bir başkasına kaldı.",
+  "ev_debtHelp_title": "Borç baskısı",
+  "ev_debtHelp_body": "Hesabın eksiye düştü ve banka seni arıyor. Ne yapacaksın?",
+  "ev_debtHelp_c0": "Aileden borç iste.",
+  "ev_debtHelp_r0": "Ailen yardım etti, ama bunu unutmayacaklar.",
+  "ev_debtHelp_c1": "Kimseden yardım isteme, kendin çöz.",
+  "ev_debtHelp_r1": "Gururun yerinde ama stres arttı.",
+  "socialTitle": "Sosyal",
+  "socialPending": "Cevap bekleyenler",
+  "socialNoPending": "Şu an cevap bekleyen bir gelişme yok. Maçlardan ve haftalardan sonra yenileri gelir.",
+  "socialRelations": "İlişkiler",
+  "rel_coach": "Teknik direktör",
+  "rel_teammates": "Takım arkadaşları",
+  "rel_fans": "Taraftar",
+  "rel_family": "Aile",
+  "rel_media": "Medya",
+  "relHint_coach": "Maça çıkma şansını etkiler",
+  "relHint_teammates": "Moral dengeni etkiler",
+  "relHint_fans": "Sponsor ve prim fırsatlarını etkiler",
+  "relHint_family": "Moral dengeni etkiler",
+  "relHint_media": "Teklif sıklığını etkiler",
+  "relLevel_0": "Soğuk",
+  "relLevel_1": "Mesafeli",
+  "relLevel_2": "Normal",
+  "relLevel_3": "Sıcak",
+  "relLevel_4": "Çok yakın",
+  "socialNews": "Haber akışı",
+  "socialNewsEmpty": "Henüz haber yok.",
+  "newsMatch": "{opponent} maçı: {score}",
+  "@newsMatch": {
+    "placeholders": {
+      "opponent": {
+        "type": "String"
+      },
+      "score": {
+        "type": "String"
+      }
+    }
+  },
+  "newsMatchGoals": "{opponent} maçı: {score} · {goals} gol",
+  "@newsMatchGoals": {
+    "placeholders": {
+      "opponent": {
+        "type": "String"
+      },
+      "score": {
+        "type": "String"
+      },
+      "goals": {
+        "type": "String"
+      }
+    }
+  },
+  "newsSigned": "{club} ile imza attın",
+  "@newsSigned": {
+    "placeholders": {
+      "club": {
+        "type": "String"
+      }
+    }
+  },
+  "newsInjury": "Sakatlandın: {type}, {weeks} hafta",
+  "@newsInjury": {
+    "placeholders": {
+      "type": {
+        "type": "String"
+      },
+      "weeks": {
+        "type": "String"
+      }
+    }
+  },
+  "newsEvent": "{title}: {choice}",
+  "@newsEvent": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      },
+      "choice": {
+        "type": "String"
+      }
+    }
+  },
+  "eventKind_press": "Basın toplantısı",
+  "eventKind_personal": "Kişisel",
+  "eventKind_career": "Kariyer",
+  "eventKind_money": "Para",
+  "eventAnswer": "Cevap ver",
+  "eventExpires": "{weeks} hafta içinde cevapla",
+  "@eventExpires": {
+    "placeholders": {
+      "weeks": {
+        "type": "int"
+      }
+    }
+  },
+  "eventExpiresLast": "Son hafta!",
+  "eventChooseHint": "Bir seçenek seç. Etkilenecek alanlar işaretli, sonuç sürpriz.",
+  "eventRiskyTag": "Riskli",
+  "eventResult": "Sonuç",
+  "eventBackfired": "Ters tepti!",
+  "eventDone": "Tamam",
+  "effectMorale": "Moral",
+  "effectCondition": "Kondisyon",
+  "effectMoney": "Para",
+  "effectHeal": "Sakatlık süresi",
+  "effectHealValue": "{weeks} hafta kısaldı",
+  "@effectHealValue": {
+    "placeholders": {
+      "weeks": {
+        "type": "int"
+      }
+    }
+  },
+  "effectRelapse": "Tekrar sakatlanma riski",
+  "eventNewEvent": "Yeni gelişme: {title}",
+  "@eventNewEvent": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "summaryPendingEvent": "Cevap bekleyen bir gelişme var",
+  "summaryAnswerNow": "Şimdi Cevapla",
+  "pendingEventsCard": "{count} gelişme cevap bekliyor",
+  "@pendingEventsCard": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "pendingEventsHint": "Sosyal sekmesinde",
+  "seasonWeekShort": "S{season} · H{week}",
+  "@seasonWeekShort": {
+    "placeholders": {
+      "season": {
+        "type": "int"
+      },
+      "week": {
+        "type": "int"
+      }
+    }
   }
 }

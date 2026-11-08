@@ -4,8 +4,11 @@ import 'package:go_router/go_router.dart';
 
 import '../../app/l10n/app_localizations.dart';
 import '../../domain/career/week_report.dart';
+import '../../domain/social/event_catalog.dart';
+import '../event_texts.dart';
 import '../l10n_labels.dart';
 import '../providers.dart';
+import '../social/social_visuals.dart';
 
 /// Hafta sonu özeti: ne değişti, neden değişti.
 class WeekSummaryScreen extends ConsumerWidget {
@@ -74,11 +77,21 @@ class WeekSummaryScreen extends ConsumerWidget {
                               WeekEventKind.benched => Icons.event_seat,
                               WeekEventKind.offerReceived ||
                               WeekEventKind.renewalOffered => Icons.mail,
-                              WeekEventKind.contractExpired => Icons.description,
+                              WeekEventKind.contractExpired =>
+                                Icons.description,
+                              WeekEventKind.newEvent => Icons.forum,
                               _ => Icons.healing,
                             }),
                             title: Text(
-                              l10n.eventText(event, clubName: clubOf(event)),
+                              l10n.eventText(
+                                event,
+                                clubName: clubOf(event),
+                                eventTitle: event.eventId == null
+                                    ? ''
+                                    : l10n
+                                          .eventTexts(event.eventId!, const {})
+                                          .title,
+                              ),
                             ),
                           ),
                         ),
@@ -186,6 +199,26 @@ class WeekSummaryScreen extends ConsumerWidget {
                     ],
                   ),
                 ),
+                if (result.state.pendingEvents.isNotEmpty)
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
+                    child: FilledButton.tonalIcon(
+                      style: FilledButton.styleFrom(
+                        minimumSize: const Size.fromHeight(52),
+                      ),
+                      icon: Icon(
+                        eventKindIcon(
+                          EventCatalog.byId(
+                            result.state.pendingEvents.first.id,
+                          ).kind,
+                        ),
+                      ),
+                      label: Text(l10n.summaryAnswerNow),
+                      onPressed: () => context.go(
+                        '/game/event/${result.state.pendingEvents.first.id}',
+                      ),
+                    ),
+                  ),
                 Padding(
                   padding: const EdgeInsets.all(16),
                   child: FilledButton(

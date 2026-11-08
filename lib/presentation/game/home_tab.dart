@@ -22,7 +22,9 @@ class HomeTab extends ConsumerWidget {
     final world = ref.watch(clubWorldProvider);
     final clubId = career.contract?.clubId;
     final clubName = clubId == null ? null : world!.team(clubId).name;
-    final leagueName = clubId == null ? null : l10n.tierName(world!.tierOf(clubId));
+    final leagueName = clubId == null
+        ? null
+        : l10n.tierName(world!.tierOf(clubId));
 
     return ListView(
       padding: const EdgeInsets.all(16),
@@ -73,19 +75,30 @@ class HomeTab extends ConsumerWidget {
           child: ListTile(
             leading: const Icon(Icons.sports_soccer),
             title: Text('${l10n.thisWeek}: ${l10n.phaseName(career.week)}'),
-            subtitle: Text(
-              switch (Squad.matchDay(career)) {
-                MatchDay.injured => l10n.injuredNoMatch,
-                MatchDay.benched => l10n.benchedThisWeek,
-                MatchDay.play => l10n.matchThisWeek,
-                MatchDay.none =>
-                  career.isFreeAgent
-                      ? l10n.freeAgentNoMatch
-                      : l10n.noMatchThisWeek,
-              },
-            ),
+            subtitle: Text(switch (Squad.matchDay(career)) {
+              MatchDay.injured => l10n.injuredNoMatch,
+              MatchDay.benched => l10n.benchedThisWeek,
+              MatchDay.play => l10n.matchThisWeek,
+              MatchDay.none =>
+                career.isFreeAgent
+                    ? l10n.freeAgentNoMatch
+                    : l10n.noMatchThisWeek,
+            }),
           ),
         ),
+        if (career.pendingEvents.isNotEmpty) ...[
+          const SizedBox(height: 12),
+          Card(
+            color: Theme.of(context).colorScheme.primaryContainer,
+            child: ListTile(
+              leading: const Icon(Icons.forum),
+              title: Text(l10n.pendingEventsCard(career.pendingEvents.length)),
+              subtitle: Text(l10n.pendingEventsHint),
+              trailing: const Icon(Icons.chevron_right),
+              onTap: () => context.go('/game/social'),
+            ),
+          ),
+        ],
         if (career.offers.isNotEmpty) ...[
           const SizedBox(height: 12),
           Card(

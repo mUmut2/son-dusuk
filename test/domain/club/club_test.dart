@@ -112,7 +112,9 @@ void main() {
       };
       final migrated = const SaveMigrator().migrate(v3);
       expect(migrated['schemaVersion'], currentSchemaVersion);
-      final s = CareerState.fromJson(migrated['career'] as Map<String, dynamic>);
+      final s = CareerState.fromJson(
+        migrated['career'] as Map<String, dynamic>,
+      );
       expect(s.contract, isNotNull);
       expect(ClubWorld(s.worldSeed).tierOf(s.contract!.clubId), 5);
     });
@@ -121,8 +123,11 @@ void main() {
   group('maaş ve değer', () {
     test('güçlü oyuncu ve üst kademe daha çok kazanır', () {
       final p = newPlayer();
-      double wage(int tier) =>
-          TransferMarket.fairWage(tier: tier, player: p, role: SquadRole.starter);
+      double wage(int tier) => TransferMarket.fairWage(
+        tier: tier,
+        player: p,
+        role: SquadRole.starter,
+      );
       for (var t = 1; t < 5; t++) {
         expect(wage(t), greaterThan(wage(t + 1)));
       }
@@ -161,7 +166,10 @@ void main() {
       expect(of(MoneyKind.goalBonus), 300);
       // %5 komisyon: (1000 + 250 + 300) * 0.05 = 77.5 -> 78
       expect(of(MoneyKind.agentFee), -78);
-      expect(of(MoneyKind.living), -ClubBalance.lifestyleCost[Lifestyle.modest]!);
+      expect(
+        of(MoneyKind.living),
+        -ClubBalance.lifestyleCost[Lifestyle.modest]!,
+      );
       expect(money.net, 1550 - 78 - 150);
     });
 
@@ -177,9 +185,7 @@ void main() {
     test('borç moral cezası, rahat yaşam moral bonusu verir', () {
       expect(Economy.moraleEffect(const Finance(balance: -1)).$1, lessThan(0));
       expect(
-        Economy.moraleEffect(
-          const Finance(lifestyle: Lifestyle.lavish),
-        ).$1,
+        Economy.moraleEffect(const Finance(lifestyle: Lifestyle.lavish)).$1,
         greaterThan(0),
       );
     });
@@ -188,10 +194,7 @@ void main() {
       final s = newCareer();
       final r = WeekEngine.advance(s, const WeeklyPlan(), null, GameRandom(3));
       expect(r.report.money.net, isNot(0));
-      expect(
-        r.state.finance.balance,
-        s.finance.balance + r.report.money.net,
-      );
+      expect(r.state.finance.balance, s.finance.balance + r.report.money.net);
     });
   });
 
@@ -223,16 +226,16 @@ void main() {
       const total = 34 * 6;
       expect(played(SquadRole.star), total);
       expect(played(SquadRole.starter), greaterThan(total * 0.85));
-      expect(played(SquadRole.rotation), inInclusiveRange(total * 0.55, total * 0.85));
+      expect(
+        played(SquadRole.rotation),
+        inInclusiveRange(total * 0.55, total * 0.85),
+      );
       expect(played(SquadRole.prospect), lessThan(total * 0.5));
     });
 
     test('sakat, yedek ve serbest oyuncu için maç günü', () {
       final s = newCareer().copyWith(week: 10);
-      expect(
-        Squad.matchDay(s.copyWith(clearContract: true)),
-        MatchDay.none,
-      );
+      expect(Squad.matchDay(s.copyWith(clearContract: true)), MatchDay.none);
       expect(Squad.matchDay(s.copyWith(week: 2)), MatchDay.none);
     });
   });
@@ -268,23 +271,26 @@ void main() {
       expect(count, lessThan(120), reason: 'her hafta teklif yağmaz');
     });
 
-    test('serbest oyuncu pencere dışında da teklif alır, asla işsiz kalmaz', () {
-      final s = windowCareer(free: true).copyWith(week: 15);
-      final world = ClubWorld(s.worldSeed);
-      var weeks = 0;
-      var state = s;
-      while (state.offers.isEmpty && weeks < 12) {
-        state = state.copyWith(
-          offers: [
-            ...state.offers,
-            ...TransferMarket.newOffers(state, world, GameRandom(weeks)),
-          ],
-        );
-        weeks++;
-      }
-      expect(state.offers, isNotEmpty);
-      expect(weeks, lessThan(6));
-    });
+    test(
+      'serbest oyuncu pencere dışında da teklif alır, asla işsiz kalmaz',
+      () {
+        final s = windowCareer(free: true).copyWith(week: 15);
+        final world = ClubWorld(s.worldSeed);
+        var weeks = 0;
+        var state = s;
+        while (state.offers.isEmpty && weeks < 12) {
+          state = state.copyWith(
+            offers: [
+              ...state.offers,
+              ...TransferMarket.newOffers(state, world, GameRandom(weeks)),
+            ],
+          );
+          weeks++;
+        }
+        expect(state.offers, isNotEmpty);
+        expect(weeks, lessThan(6));
+      },
+    );
 
     test('menajer teklif sayısını artırır', () {
       int count(Agent? agent) {
@@ -309,7 +315,11 @@ void main() {
         final world = ClubWorld(s.worldSeed);
         var sum = 0.0, n = 0;
         for (var seed = 0; seed < 500; seed++) {
-          for (final o in TransferMarket.newOffers(s, world, GameRandom(seed))) {
+          for (final o in TransferMarket.newOffers(
+            s,
+            world,
+            GameRandom(seed),
+          )) {
             sum += o.maxWage / o.weeklyWage;
             n++;
           }
@@ -473,7 +483,11 @@ void main() {
       );
       var got = 0;
       for (var seed = 0; seed < 50; seed++) {
-        final u = ClubEngine.process(base, newSeason: false, random: GameRandom(seed));
+        final u = ClubEngine.process(
+          base,
+          newSeason: false,
+          random: GameRandom(seed),
+        );
         if (u.state.offers.any((o) => o.kind == OfferKind.renewal)) got++;
       }
       expect(got, greaterThan(35), reason: 'yıldız için %95');

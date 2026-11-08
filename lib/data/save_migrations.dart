@@ -10,12 +10,13 @@ typedef MigrationStep = Map<String, dynamic> Function(Map<String, dynamic> e);
 ///
 /// Şema değiştiğinde: [currentSchemaVersion]'ı artır ve `steps`'e
 /// `eskiSürüm: dönüştürücü` ekle.
-const int currentSchemaVersion = 4;
+const int currentSchemaVersion = 5;
 
 const Map<int, MigrationStep> _defaultSteps = {
   1: _v1ToV2,
   2: _v2ToV3,
   3: _v3ToV4,
+  4: _v4ToV5,
 };
 
 /// v1 -> v2 (Faz 4): kondisyon/form/moral/sakatlık ve istatistik alanları.
@@ -48,10 +49,20 @@ Map<String, dynamic> _v3ToV4(Map<String, dynamic> envelope) {
   final career = Map<String, dynamic>.from(envelope['career'] as Map);
   final state = CareerState.fromJson(career);
   final seed =
-      state.player.name.codeUnits.fold<int>(7, (a, c) => (a * 31 + c) % 1000003) +
+      state.player.name.codeUnits.fold<int>(
+        7,
+        (a, c) => (a * 31 + c) % 1000003,
+      ) +
       1;
-  return {...envelope, 'career': CareerFactory.assignClub(state, seed).toJson()};
+  return {
+    ...envelope,
+    'career': CareerFactory.assignClub(state, seed).toJson(),
+  };
 }
+
+/// v4 -> v5 (Faz 7): ilişkiler, olaylar, haberler. Eksik alanlar varsayılanla
+/// yüklenir; kayıt biçimi değişmez.
+Map<String, dynamic> _v4ToV5(Map<String, dynamic> envelope) => envelope;
 
 class SaveMigrator {
   const SaveMigrator({

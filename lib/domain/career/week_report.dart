@@ -55,6 +55,7 @@ enum WeekEventKind {
   offerReceived,
   renewalOffered,
   contractExpired,
+  newEvent,
 }
 
 class WeekEvent {
@@ -64,6 +65,7 @@ class WeekEvent {
     this.weeks,
     this.age,
     this.clubId,
+    this.eventId,
   });
 
   final WeekEventKind kind;
@@ -73,6 +75,9 @@ class WeekEvent {
 
   /// Teklif/sözleşme olaylarında ilgili kulüp.
   final String? clubId;
+
+  /// `newEvent` olayında yeni gelen olayın şablon kimliği.
+  final String? eventId;
 }
 
 /// Bir haftanın özeti: ne değişti ve neden.

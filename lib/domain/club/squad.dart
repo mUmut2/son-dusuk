@@ -4,6 +4,7 @@ import '../career/career_state.dart';
 import '../career/season_calendar.dart';
 import '../league/team.dart';
 import '../player/player.dart';
+import '../social/social_engine.dart';
 import 'club_balance.dart';
 import 'contract.dart';
 
@@ -39,7 +40,10 @@ abstract final class Squad {
   static bool isSelected(CareerState s) {
     final c = s.contract;
     if (c == null) return false;
-    final chance = ClubBalance.rolePlayChance[c.role]!;
+    final chance =
+        (ClubBalance.rolePlayChance[c.role]! +
+                SocialEngine.coachSelectionBonus(s))
+            .clamp(0.0, 1.0);
     final random = GameRandom(mixSeed([s.worldSeed, s.season, s.week, 99]));
     return random.chance(chance);
   }

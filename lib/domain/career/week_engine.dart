@@ -3,6 +3,8 @@ import 'dart:math' as math;
 import '../../core/game_random.dart';
 import '../club/club_engine.dart';
 import '../club/finance.dart';
+import '../league/club_world.dart';
+import '../social/social_engine.dart';
 import '../player/player_development.dart';
 import '../player/position.dart';
 import 'career_state.dart';
@@ -247,7 +249,9 @@ abstract final class WeekEngine {
     final (lifeMorale, inDebt) = Economy.moraleEffect(state.finance);
     morale(lifeMorale, inDebt ? WeekReason.debt : WeekReason.lifestyle);
     morale(
-      (WeekBalance.moraleBaseline - before.morale) * WeekBalance.moraleDrift,
+      (SocialEngine.moraleBaseline(state, WeekBalance.moraleBaseline) -
+              before.morale) *
+          WeekBalance.moraleDrift,
       WeekReason.drift,
     );
     final moraleDelta = changes
@@ -326,8 +330,37 @@ abstract final class WeekEngine {
     );
     events.addAll(club.events);
 
+    // --- Sosyal: ilişkiler, haber akışı, yeni olaylar ---
+    var opponent = '';
+    final c = state.contract;
+    if (c != null && round != null) {
+      opponent = ClubWorld(
+        state.worldSeed,
+      ).fixtureFor(c.clubId, round).opponent.name;
+    }
+    final social = SocialEngine.afterWeek(
+      state,
+      club.state,
+      WeekSocialInput(
+        rating: m?.rating,
+        goals: m?.goals ?? 0,
+        won: m?.result == MatchResultKind.win,
+        lost: m?.result == MatchResultKind.loss,
+        scoreFor: m?.scoreFor ?? 0,
+        scoreAgainst: m?.scoreAgainst ?? 0,
+        opponent: opponent,
+        benched:
+            m == null &&
+            !injuredAtStart &&
+            state.contract != null &&
+            hasMatch(state.week),
+      ),
+      random,
+    );
+    events.addAll(social.events);
+
     return WeekResult(
-      state: club.state,
+      state: social.state,
       before: before,
       report: WeekReport(
         season: reportSeason,

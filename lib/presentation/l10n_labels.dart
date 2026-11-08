@@ -7,6 +7,9 @@ import '../domain/career/weekly_plan.dart';
 import '../domain/club/contract.dart';
 import '../domain/club/finance.dart';
 import '../domain/player/attribute.dart';
+import '../domain/social/event_models.dart';
+import '../domain/social/relationships.dart';
+import 'event_texts.dart';
 import '../domain/player/position.dart';
 
 /// Enum -> yerelleştirilmiş metin eşlemeleri (tek yerde).
@@ -122,7 +125,11 @@ extension L10nLabels on AppLocalizations {
   };
 
   /// [clubName]: teklif/sözleşme olaylarında kulüp adı.
-  String eventText(WeekEvent e, {String clubName = ''}) => switch (e.kind) {
+  String eventText(
+    WeekEvent e, {
+    String clubName = '',
+    String eventTitle = '',
+  }) => switch (e.kind) {
     WeekEventKind.injured => eventInjured(
       injuryTypeName(e.injuryType!),
       e.weeks!,
@@ -138,7 +145,64 @@ extension L10nLabels on AppLocalizations {
     WeekEventKind.offerReceived => eventOfferReceived(clubName),
     WeekEventKind.renewalOffered => eventRenewalOffered(clubName),
     WeekEventKind.contractExpired => eventContractExpired(clubName),
+    WeekEventKind.newEvent => eventNewEvent(eventTitle),
   };
+
+  String relationName(Relation r) => switch (r) {
+    Relation.coach => rel_coach,
+    Relation.teammates => rel_teammates,
+    Relation.fans => rel_fans,
+    Relation.family => rel_family,
+    Relation.media => rel_media,
+  };
+
+  String relationHint(Relation r) => switch (r) {
+    Relation.coach => relHint_coach,
+    Relation.teammates => relHint_teammates,
+    Relation.fans => relHint_fans,
+    Relation.family => relHint_family,
+    Relation.media => relHint_media,
+  };
+
+  String relationLevel(double value) => switch (Relationships.levelOf(value)) {
+    0 => relLevel_0,
+    1 => relLevel_1,
+    2 => relLevel_2,
+    3 => relLevel_3,
+    _ => relLevel_4,
+  };
+
+  String eventKindName(EventKind k) => switch (k) {
+    EventKind.press => eventKind_press,
+    EventKind.personal => eventKind_personal,
+    EventKind.career => eventKind_career,
+    EventKind.money => eventKind_money,
+  };
+
+  /// Haber akışı satırı. [clubName]: kulüp kimliğinden ada çevirici.
+  String newsText(NewsItem n, String Function(String id) clubName) =>
+      switch (n.kind) {
+        NewsKind.match =>
+          (n.params['goals'] ?? '0') == '0'
+              ? newsMatch(n.params['opponent'] ?? '', n.params['score'] ?? '')
+              : newsMatchGoals(
+                  n.params['opponent'] ?? '',
+                  n.params['score'] ?? '',
+                  n.params['goals'] ?? '',
+                ),
+        NewsKind.signed => newsSigned(clubName(n.params['club'] ?? '')),
+        NewsKind.injury => newsInjury(
+          injuryTypeName(
+            InjuryType.values.byName(n.params['type'] ?? 'muscle'),
+          ),
+          n.params['weeks'] ?? '',
+        ),
+        NewsKind.event => () {
+          final t = eventTexts(n.params['id'] ?? '', const {});
+          final i = int.tryParse(n.params['choice'] ?? '') ?? 0;
+          return newsEvent(t.title, t.choices[i]);
+        }(),
+      };
 
   String roleName(SquadRole r) => switch (r) {
     SquadRole.prospect => role_prospect,

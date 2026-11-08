@@ -50,7 +50,9 @@ void main() {
               final byTier = world
                   .tierOf(a.clubId)
                   .compareTo(world.tierOf(b.clubId));
-              return byTier != 0 ? byTier : b.weeklyWage.compareTo(a.weeklyWage);
+              return byTier != 0
+                  ? byTier
+                  : b.weeklyWage.compareTo(a.weeklyWage);
             });
           final pick = best.first;
           final curTier = s.contract == null
@@ -102,10 +104,16 @@ void main() {
       (v.fold<double>(0, (a, b) => a + b) / v.length).toStringAsFixed(1);
 
   print('Kariyer: $careers, sezon: $seasons');
-  print('Sezon başına teklif: ${(offersPerSeason / (careers * seasons)).toStringAsFixed(2)}');
+  print(
+    'Sezon başına teklif: ${(offersPerSeason / (careers * seasons)).toStringAsFixed(2)}',
+  );
   print('Kariyer başına transfer: ${(transfers / careers).toStringAsFixed(2)}');
-  print('Serbest biten sezon oranı: ${(freeAgentSeasons / (careers * seasons) * 100).toStringAsFixed(1)}%');
-  print('Yedek kalma oranı: ${(benchedWeeks / leagueWeeks * 100).toStringAsFixed(1)}%');
+  print(
+    'Serbest biten sezon oranı: ${(freeAgentSeasons / (careers * seasons) * 100).toStringAsFixed(1)}%',
+  );
+  print(
+    'Yedek kalma oranı: ${(benchedWeeks / leagueWeeks * 100).toStringAsFixed(1)}%',
+  );
   final at27 = tierAtAge[27] ?? [];
   for (var t = 1; t <= 6; t++) {
     final pct = at27.where((x) => x == t).length / at27.length * 100;
@@ -113,6 +121,8 @@ void main() {
   }
   print('Yaş | ort. kademe | ort. bakiye | ort. güç');
   for (final age in tierAtAge.keys.toList()..sort()) {
-    print('$age | ${avg(tierAtAge[age]!)} | ${avg(balanceAtAge[age]!)} | ${avg(overallAtAge[age]!)}');
+    print(
+      '$age | ${avg(tierAtAge[age]!)} | ${avg(balanceAtAge[age]!)} | ${avg(overallAtAge[age]!)}',
+    );
   }
 }

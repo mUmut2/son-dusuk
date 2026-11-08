@@ -167,6 +167,24 @@ Tüm parametreler `lib/domain/club/club_balance.dart`'ta. Para birimi kurgusal �
 
 **Ölçülen (60 kariyer, her pencerede en iyi teklifi alan politika):** sezon başına ≈2 teklif; 27 yaşında kademe dağılımı ≈ %23 üst lig, %55 ikinci, %20 üçüncü; yedek kalma oranı ≈ %13.
 
+### 3.8 Sosyal sistem ve olaylar (Faz 7)
+
+Parametreler `lib/domain/social/social_balance.dart`, olaylar `event_catalog.dart`. Ölçüm: `dart run tool/social_stats.dart`.
+
+**İlişkiler (0-100):** Teknik direktör, takım arkadaşları, taraftar, aile, medya. Nötr değerler 50/50/40/70/40; her hafta %3 nötre yaklaşır (itibar bakım ister). Maç sonrası: galibiyet taraftar +1.5 ve takım +1; yenilgi taraftar -1.5; her gol taraftar +1 (en çok 3); reyting ≥7.5 hoca +1.5 ve medya +1; reyting ≤5 hoca -1.5 ve medya -1; sakatken aile +1.
+
+**Oyuna etkileri:** Hoca ilişkisi maça çıkma olasılığına ±%10; medya teklif sıklığına ×0.85…1.15; aile ve takım arkadaşları moralin yöneldiği tabanı kaydırır (aile ±%20, takım ±%10 oranında). Taraftar+medya sponsor teklifinin açılmasını belirler.
+
+**Olay motoru:** Her hafta sonu en fazla 1 yeni olay gelir, en çok 3 olay bekleyebilir. Maç oynandıysa önce basın sorusu denenir (olağan maçta %45, dikkat çekici maçta %90: reyting ≥7.5 / ≤5 ya da ≥2 gol). Yoksa maçtan bağımsız olay %22. Şablonların koşulu, ağırlığı ve bekleme süresi vardır (tekrarı önler). Basın soruları 2 hafta, diğerleri 5 hafta geçerlidir; cevapsız kalırsa küçük bir "yok say" cezası uygulanır.
+
+**Seçimler:** Her olayda 2-3 seçenek. Arayüz etkilenecek ALANLARI etiketle gösterir (taraftar, medya, para…), yönü ve miktarı göstermez; riskli seçenekte "Riskli" etiketi vardır ve belli olasılıkla (%25-50) alternatif (ters tepen) sonuç uygulanır. Sonuç ekranı kısa bir hikâye cümlesi ve gerçek değişimleri (ok + sayı) gösterir.
+
+**Katalog (17 olay):** 5 basın (galibiyet, yenilgi, gol yıldızı, kötü performans, yedek kalma), aile yemeği, doğum günü daveti (riskli), taraftar buluşması, hoca görüşmesi (hoca <55), soyunma odası gerginliği (takım <45), sponsor teklifi (taraftar≥45 ve medya≥40), yardım maçı, transfer dedikodusu (bekleyen teklif varken), sosyal medya fırtınası (riskli), rehabilitasyon kararı (≥3 hafta sakatlık, riskli), akademi ziyareti, borç baskısı (bakiye <0).
+
+**Haber akışı:** son 25 kayıt (maç, imza, sakatlık, verilen cevaplar). Metinler kayıtta değil, tür + parametre olarak saklanır ve gösterimde yerelleştirilir.
+
+**Ölçülen (60 kariyer × 3 sezon, rastgele cevaplarla):** sezon başına ≈14 olay; oynanan maçların %38'inde basın sorusu; ilişki ortalamaları hoca 55, takım 53, taraftar 46, aile 75, medya 44.
+
 ## 4. Tasarım kararları ve gerekçeleri
 
 | Karar | Gerekçe |
@@ -191,3 +209,6 @@ Tüm parametreler `lib/domain/club/club_balance.dart`'ta. Para birimi kurgusal �
 | Pazarlık sınırı gizli, tek tur | Oyuncu "kaç para isteyeyim" riskini hisseder ama sonsuz deneme-yanılma ile en yüksek maaşı bulamaz. |
 | Puan durumu deterministik yeniden hesap | Diğer maçlar kayda yazılmaz; (seed, sezon, tur) ile her açılışta aynı sonuç, oyuncunun maçları gerçek skorla. |
 | Yaşam tarzı + borç | Para harcanacak yer olmadan anlamsız; küçük ama gerçek bir moral/maliyet dengesi. Satın alma/reklam yok. |
+| Seçim etkisi gizli, alan etiketi açık | Oyuncu hangi ilişkiye dokunduğunu bilir ama sonucu tahmin eder; sonuç ekranı gerçek değişimi gösterir (öğrenme ve sürpriz). |
+| Olay metinleri ARB'de, mantık domain'de | Şablon kimliği `ev_<id>_*` anahtarlarına bağlanır; metin değişikliği mantığa dokunmaz. Test, her şablonun metninin tam olduğunu doğrular. |
+| Rozetler (Kulüp / Sosyal) | Bekleyen teklif ve olay, sekmeye girmeden fark edilir; hafta özeti ve ana sayfa da doğrudan cevap vermeye götürür. |

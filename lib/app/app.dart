@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'l10n/app_localizations.dart';
 import 'router.dart';
 import 'theme.dart';
 
 /// Uygulama kökü: tema, yönlendirme ve yerelleştirme burada bağlanır.
-class SonDusukApp extends StatelessWidget {
+class SonDusukApp extends ConsumerWidget {
   const SonDusukApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return MaterialApp.router(
       onGenerateTitle: (context) => AppLocalizations.of(context).appTitle,
       theme: AppTheme.light(),
       darkTheme: AppTheme.dark(),
       themeMode: ThemeMode.system,
-      routerConfig: appRouter,
+      routerConfig: ref.watch(routerProvider),
       locale: const Locale('tr'),
       supportedLocales: AppLocalizations.supportedLocales,
       localizationsDelegates: const [

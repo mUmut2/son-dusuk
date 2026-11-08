@@ -1,0 +1,23 @@
+/// Doğum yeri seçenekleri (Türkiye şehirleri).
+const List<String> turkishCities = [
+  'Adana',
+  'Ankara',
+  'Antalya',
+  'Bursa',
+  'Denizli',
+  'Diyarbakır',
+  'Edirne',
+  'Eskişehir',
+  'Gaziantep',
+  'Hatay',
+  'İstanbul',
+  'İzmir',
+  'Kayseri',
+  'Kocaeli',
+  'Konya',
+  'Malatya',
+  'Mersin',
+  'Samsun',
+  'Trabzon',
+  'Van',
+];

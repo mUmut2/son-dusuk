@@ -21,8 +21,10 @@ void main() {
 
     test('gaussian ortalama ve sapmaya yakın çıkar', () {
       final r = GameRandom(7);
-      final samples =
-          List.generate(20000, (_) => r.gaussian(mean: 10, stdDev: 2));
+      final samples = List.generate(
+        20000,
+        (_) => r.gaussian(mean: 10, stdDev: 2),
+      );
       final mean = samples.reduce((a, b) => a + b) / samples.length;
       expect(mean, closeTo(10, 0.1));
     });

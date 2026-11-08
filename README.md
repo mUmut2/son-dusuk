@@ -2,7 +2,7 @@
 
 16 yaşında başla, dünya yıldızı ol. Kurgusal bir futbolcu kariyer oyunu: maçta yalnızca kritik anları oynarsın, kararların uzun vadeli sonuçları olur.
 
-> **Durum:** Faz 0 — altyapı hazır, oyun geliştirme aşamasında.
+> **Durum:** Faz 1 — oyuncu yaratma, nitelikler, yaş eğrisi, 3 slotlu kayıt ve ayarlar çalışıyor; maçlar henüz yok.
 > ▶ Oyna: _GitHub Pages bağlantısı Faz 9'da eklenecek._
 
 **Felsefe:** reklam yok, gerçek para yok, enerji bekleme süresi yok. İlerleme yalnızca karar ve becerinle olur. Tüm kulüp, oyuncu ve lig isimleri kurguseldir.
@@ -38,7 +38,7 @@ Gereksinim: Flutter 3.35+ (Dart 3.9+).
 
 ## Yol Haritası
 
-Faz 0 Hazırlık ✅ · 1 Oyuncu/kariyer · 2 Lig + simülasyon · 3 Şut · 4 Haftalık döngü · 5 Diğer mini oyunlar · 6 Transfer/ekonomi · 7 Olaylar/sosyal · 8 Milli takım/başarım · 9 Cila ve yayın
+Faz 0 Hazırlık ✅ · 1 Oyuncu/kariyer ✅ · 2 Lig + simülasyon · 3 Şut · 4 Haftalık döngü · 5 Diğer mini oyunlar · 6 Transfer/ekonomi · 7 Olaylar/sosyal · 8 Milli takım/başarım · 9 Cila ve yayın
 
 ## Lisans
 

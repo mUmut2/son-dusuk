@@ -1,5 +1,11 @@
+import '../club/agent.dart';
+import '../club/contract.dart';
+import '../club/finance.dart';
+import '../club/transfer_offer.dart';
 import '../player/player.dart';
+import 'match_record.dart';
 import 'player_status.dart';
+import 'season_calendar.dart';
 
 /// Bir kayıt slotundaki tüm kariyer durumu. Sonraki fazlarda genişler.
 class CareerState {
@@ -9,6 +15,12 @@ class CareerState {
     this.week = 1,
     this.status = const PlayerStatus(),
     this.stats = const CareerStats(),
+    this.worldSeed = 1,
+    this.contract,
+    this.agent,
+    this.finance = const Finance(),
+    this.offers = const [],
+    this.results = const [],
   });
 
   factory CareerState.fromJson(Map<String, dynamic> json) => CareerState(
@@ -21,6 +33,24 @@ class CareerState {
     stats: json['stats'] == null
         ? const CareerStats()
         : CareerStats.fromJson(json['stats'] as Map<String, dynamic>),
+    worldSeed: json['worldSeed'] as int? ?? 1,
+    contract: json['contract'] == null
+        ? null
+        : Contract.fromJson(json['contract'] as Map<String, dynamic>),
+    agent: json['agent'] == null
+        ? null
+        : Agent.fromJson(json['agent'] as Map<String, dynamic>),
+    finance: json['finance'] == null
+        ? const Finance()
+        : Finance.fromJson(json['finance'] as Map<String, dynamic>),
+    offers: [
+      for (final o in (json['offers'] as List<dynamic>? ?? const []))
+        TransferOffer.fromJson(o as Map<String, dynamic>),
+    ],
+    results: [
+      for (final r in (json['results'] as List<dynamic>? ?? const []))
+        MatchRecord.fromJson(r as Map<String, dynamic>),
+    ],
   );
 
   final Player player;
@@ -29,18 +59,49 @@ class CareerState {
   final PlayerStatus status;
   final CareerStats stats;
 
+  /// Lig piramidini üreten seed (kayıtta yalnızca bu saklanır).
+  final int worldSeed;
+
+  /// null = kulübü yok (serbest oyuncu).
+  final Contract? contract;
+  final Agent? agent;
+  final Finance finance;
+  final List<TransferOffer> offers;
+
+  /// Bu sezon oynanan lig maçlarının skorları.
+  final List<MatchRecord> results;
+
+  bool get isFreeAgent => contract == null;
+
+  /// Sezonlar boyunca artan hafta sayacı (tekliflerin son geçerlilik günü için).
+  int get absoluteWeek => (season - 1) * SeasonCalendar.weeksPerSeason + week;
+
   CareerState copyWith({
     Player? player,
     int? season,
     int? week,
     PlayerStatus? status,
     CareerStats? stats,
+    int? worldSeed,
+    Contract? contract,
+    bool clearContract = false,
+    Agent? agent,
+    bool clearAgent = false,
+    Finance? finance,
+    List<TransferOffer>? offers,
+    List<MatchRecord>? results,
   }) => CareerState(
     player: player ?? this.player,
     season: season ?? this.season,
     week: week ?? this.week,
     status: status ?? this.status,
     stats: stats ?? this.stats,
+    worldSeed: worldSeed ?? this.worldSeed,
+    contract: clearContract ? null : (contract ?? this.contract),
+    agent: clearAgent ? null : (agent ?? this.agent),
+    finance: finance ?? this.finance,
+    offers: offers ?? this.offers,
+    results: results ?? this.results,
   );
 
   Map<String, dynamic> toJson() => {
@@ -49,5 +110,11 @@ class CareerState {
     'week': week,
     'status': status.toJson(),
     'stats': stats.toJson(),
+    'worldSeed': worldSeed,
+    'contract': contract?.toJson(),
+    'agent': agent?.toJson(),
+    'finance': finance.toJson(),
+    'offers': [for (final o in offers) o.toJson()],
+    'results': [for (final r in results) r.toJson()],
   };
 }

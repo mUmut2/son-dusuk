@@ -27,6 +27,12 @@ abstract final class SeasonCalendar {
   static int? leagueRoundOf(int week) =>
       phaseOf(week) == SeasonPhase.regularSeason ? week - preseasonWeeks : null;
 
+  /// [week] başında tamamlanmış lig turu sayısı (0-34).
+  static int roundsPlayed(int week) {
+    _check(week);
+    return (week - preseasonWeeks - 1).clamp(0, leagueRounds);
+  }
+
   static bool isTransferWindow(int week) {
     _check(week);
     return week <= summerWindowEnd ||

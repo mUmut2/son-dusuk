@@ -4,6 +4,8 @@ import '../domain/career/player_status.dart';
 import '../domain/career/season_calendar.dart';
 import '../domain/career/week_report.dart';
 import '../domain/career/weekly_plan.dart';
+import '../domain/club/contract.dart';
+import '../domain/club/finance.dart';
 import '../domain/player/attribute.dart';
 import '../domain/player/position.dart';
 
@@ -115,9 +117,12 @@ extension L10nLabels on AppLocalizations {
     WeekReason.formFromRatings => reason_formFromRatings,
     WeekReason.earlyReturn => reason_earlyReturn,
     WeekReason.drift => reason_drift,
+    WeekReason.lifestyle => reason_lifestyle,
+    WeekReason.debt => reason_debt,
   };
 
-  String eventText(WeekEvent e) => switch (e.kind) {
+  /// [clubName]: teklif/sözleşme olaylarında kulüp adı.
+  String eventText(WeekEvent e, {String clubName = ''}) => switch (e.kind) {
     WeekEventKind.injured => eventInjured(
       injuryTypeName(e.injuryType!),
       e.weeks!,
@@ -129,5 +134,59 @@ extension L10nLabels on AppLocalizations {
     WeekEventKind.healed => eventHealed,
     WeekEventKind.newSeason => eventNewSeason(e.age!),
     WeekEventKind.trainingBlocked => eventTrainingBlocked,
+    WeekEventKind.benched => eventBenched,
+    WeekEventKind.offerReceived => eventOfferReceived(clubName),
+    WeekEventKind.renewalOffered => eventRenewalOffered(clubName),
+    WeekEventKind.contractExpired => eventContractExpired(clubName),
   };
+
+  String roleName(SquadRole r) => switch (r) {
+    SquadRole.prospect => role_prospect,
+    SquadRole.rotation => role_rotation,
+    SquadRole.starter => role_starter,
+    SquadRole.star => role_star,
+  };
+
+  String lifestyleName(Lifestyle l) => switch (l) {
+    Lifestyle.modest => lifestyle_modest,
+    Lifestyle.comfortable => lifestyle_comfortable,
+    Lifestyle.lavish => lifestyle_lavish,
+  };
+
+  String moneyKindName(MoneyKind k) => switch (k) {
+    MoneyKind.wage => money_wage,
+    MoneyKind.winBonus => money_winBonus,
+    MoneyKind.goalBonus => money_goalBonus,
+    MoneyKind.agentFee => money_agentFee,
+    MoneyKind.living => money_living,
+  };
+
+  String agentLevelName(int level) => switch (level) {
+    1 => agentLevel_1,
+    2 => agentLevel_2,
+    _ => agentLevel_3,
+  };
+
+  String tierName(int tier) => switch (tier) {
+    1 => leagueTier1,
+    2 => leagueTier2,
+    3 => leagueTier3,
+    4 => leagueTier4,
+    _ => leagueTier5,
+  };
+
+  /// 1234567 -> "1.234.567 ₺" (eksi değerlerde "-").
+  String money(int value) => moneyAmount(_grouped(value));
+
+  String moneyWeek(int value) => moneyPerWeek(_grouped(value));
+
+  static String _grouped(int value) {
+    final digits = value.abs().toString();
+    final buf = StringBuffer(value < 0 ? '-' : '');
+    for (var i = 0; i < digits.length; i++) {
+      if (i > 0 && (digits.length - i) % 3 == 0) buf.write('.');
+      buf.write(digits[i]);
+    }
+    return buf.toString();
+  }
 }

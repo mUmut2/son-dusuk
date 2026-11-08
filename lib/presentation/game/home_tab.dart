@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../app/l10n/app_localizations.dart';
-import '../../domain/career/week_engine.dart';
+import '../../domain/club/squad.dart';
 import '../l10n_labels.dart';
 import '../providers.dart';
 import '../widgets/player_avatar.dart';
@@ -19,6 +19,10 @@ class HomeTab extends ConsumerWidget {
     final career = ref.watch(activeCareerProvider)!.state;
     final player = career.player;
     final textTheme = Theme.of(context).textTheme;
+    final world = ref.watch(clubWorldProvider);
+    final clubId = career.contract?.clubId;
+    final clubName = clubId == null ? null : world!.team(clubId).name;
+    final leagueName = clubId == null ? null : l10n.tierName(world!.tierOf(clubId));
 
     return ListView(
       padding: const EdgeInsets.all(16),
@@ -40,6 +44,8 @@ class HomeTab extends ConsumerWidget {
                         '${l10n.ageYears(player.age)}',
                       ),
                       Text(l10n.seasonWeek(career.season, career.week)),
+                      if (clubName != null)
+                        Text(l10n.homeClubLine(clubName, leagueName!)),
                     ],
                   ),
                 ),
@@ -68,14 +74,28 @@ class HomeTab extends ConsumerWidget {
             leading: const Icon(Icons.sports_soccer),
             title: Text('${l10n.thisWeek}: ${l10n.phaseName(career.week)}'),
             subtitle: Text(
-              career.status.isInjured
-                  ? l10n.injuredNoMatch
-                  : WeekEngine.hasMatch(career.week)
-                  ? l10n.matchThisWeek
-                  : l10n.noMatchThisWeek,
+              switch (Squad.matchDay(career)) {
+                MatchDay.injured => l10n.injuredNoMatch,
+                MatchDay.benched => l10n.benchedThisWeek,
+                MatchDay.play => l10n.matchThisWeek,
+                MatchDay.none =>
+                  career.isFreeAgent
+                      ? l10n.freeAgentNoMatch
+                      : l10n.noMatchThisWeek,
+              },
             ),
           ),
         ),
+        if (career.offers.isNotEmpty) ...[
+          const SizedBox(height: 12),
+          Card(
+            child: ListTile(
+              leading: const Icon(Icons.mail_outline),
+              title: Text(l10n.offersWaiting(career.offers.length)),
+              onTap: () => context.go('/game/club'),
+            ),
+          ),
+        ],
         const SizedBox(height: 12),
         FilledButton.icon(
           style: FilledButton.styleFrom(minimumSize: const Size.fromHeight(56)),

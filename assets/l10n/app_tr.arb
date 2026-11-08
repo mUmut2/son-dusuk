@@ -165,7 +165,7 @@
   "deleteAllSaves": "Tüm kayıtları sil",
   "deleteAllConfirm": "Üç slottaki tüm kariyerler kalıcı olarak silinecek. Bu işlem geri alınamaz.",
   "allSavesDeleted": "Tüm kayıtlar silindi.",
-  "matchTitle": "Hazırlık Maçı",
+  "matchTitle": "Lig Maçı",
   "matchPlay": "Maçı Oyna",
   "matchStart": "Maça Başla",
   "matchQuickSim": "Hızlı Simüle Et",
@@ -269,7 +269,6 @@
   "shotWood": "Direkten döndü!",
   "shotTimeout": "Fırsat kaçtı!",
   "shotPerfect": "Mükemmel zamanlama!",
-  "nextMatchHint": "Şimdilik hazırlık maçı oynayabilirsin; lig maçları kulüp sistemiyle gelecek.",
   "statCondition": "Kondisyon",
   "statForm": "Form",
   "statMorale": "Moral",
@@ -436,5 +435,252 @@
   "tackleWon": "Top kazanıldı!",
   "tackleFoul": "Faul!",
   "tackleBeaten": "Geçildi!",
-  "momentAutoSkip": "Otomatik Çöz"
+  "momentAutoSkip": "Otomatik Çöz",
+  "moneyAmount": "{amount} ₺",
+  "@moneyAmount": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "moneyPerWeek": "{amount} ₺ / hafta",
+  "@moneyPerWeek": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "clubLeagueLine": "{league} · {pos}. sıra · {points} puan",
+  "@clubLeagueLine": {
+    "placeholders": {
+      "league": {
+        "type": "String"
+      },
+      "pos": {
+        "type": "int"
+      },
+      "points": {
+        "type": "int"
+      }
+    }
+  },
+  "clubLeagueLineNoMatch": "{league} · henüz maç oynanmadı",
+  "@clubLeagueLineNoMatch": {
+    "placeholders": {
+      "league": {
+        "type": "String"
+      }
+    }
+  },
+  "clubFreeAgentTitle": "Serbest oyuncusun",
+  "clubFreeAgentBody": "Bir kulübe imza atana kadar maç oynayamaz ve maaş alamazsın. Teklifler her hafta gelir.",
+  "contractTitle": "Sözleşme",
+  "contractWage": "Maaş",
+  "contractRole": "Rol",
+  "contractEnds": "Sözleşme bitişi",
+  "contractEndsValue": "Sezon {season} sonu",
+  "@contractEndsValue": {
+    "placeholders": {
+      "season": {
+        "type": "int"
+      }
+    }
+  },
+  "marketValue": "Piyasa değeri",
+  "role_prospect": "Yedek (genç)",
+  "role_rotation": "Rotasyon",
+  "role_starter": "İlk 11",
+  "role_star": "Yıldız",
+  "offersTitle": "Teklifler",
+  "offersNone": "Şu an bekleyen teklif yok.",
+  "offersWindowHint": "Transfer pencereleri: sezonun ilk 6 haftası ve 22-24. haftalar. Pencere dışında yalnızca sözleşme yenileme teklifi gelebilir.",
+  "offerTransferTitle": "{club} sana teklif yaptı",
+  "@offerTransferTitle": {
+    "placeholders": {
+      "club": {
+        "type": "String"
+      }
+    }
+  },
+  "offerRenewalTitle": "{club} sözleşmeni uzatmak istiyor",
+  "@offerRenewalTitle": {
+    "placeholders": {
+      "club": {
+        "type": "String"
+      }
+    }
+  },
+  "offerTerms": "{league} · {years} yıl · {role}",
+  "@offerTerms": {
+    "placeholders": {
+      "league": {
+        "type": "String"
+      },
+      "years": {
+        "type": "int"
+      },
+      "role": {
+        "type": "String"
+      }
+    }
+  },
+  "offerExpires": "Son cevap: {weeks} hafta",
+  "@offerExpires": {
+    "placeholders": {
+      "weeks": {
+        "type": "int"
+      }
+    }
+  },
+  "offerAccept": "Kabul Et",
+  "offerNegotiate": "Pazarlık Et",
+  "offerDecline": "Reddet",
+  "negotiateTitle": "Maaş pazarlığı",
+  "negotiateAsk": "İstediğin maaş",
+  "negotiateHint": "Fazla isteme: kulüp teklifi geri çekebilir. Pazarlık hakkı bir kez kullanılır.",
+  "negotiateSubmit": "Teklif Et",
+  "negotiateCounter": "{club} en fazla {wage} verebilir. Bu maaşla imzalar mısın?",
+  "@negotiateCounter": {
+    "placeholders": {
+      "club": {
+        "type": "String"
+      },
+      "wage": {
+        "type": "String"
+      }
+    }
+  },
+  "negotiateWalked": "{club} teklifi geri çekti.",
+  "@negotiateWalked": {
+    "placeholders": {
+      "club": {
+        "type": "String"
+      }
+    }
+  },
+  "negotiateSignAt": "Bu Maaşla İmzala",
+  "offerSigned": "{club} ile imzaladın!",
+  "@offerSigned": {
+    "placeholders": {
+      "club": {
+        "type": "String"
+      }
+    }
+  },
+  "agentTitle": "Menajer",
+  "agentNone": "Menajerin yok. Menajer daha çok ve daha iyi teklif getirir, pazarlıkta işini kolaylaştırır; karşılığında gelirinden komisyon alır.",
+  "agentLevel_1": "Amatör menajer",
+  "agentLevel_2": "Tecrübeli menajer",
+  "agentLevel_3": "Ünlü menajer",
+  "agentInfo": "{name} · komisyon %{percent}",
+  "@agentInfo": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "agentHire": "Anlaş",
+  "agentFire": "Ayrıl",
+  "agentLocked": "Genel güç {min} gerekir",
+  "@agentLocked": {
+    "placeholders": {
+      "min": {
+        "type": "int"
+      }
+    }
+  },
+  "financeTitle": "Finans",
+  "financeBalance": "Bakiye",
+  "financeDebt": "Borçtasın! Moralin her hafta düşüyor.",
+  "financeWeekly": "Haftalık gelir: {income} · gider: {cost}",
+  "@financeWeekly": {
+    "placeholders": {
+      "income": {
+        "type": "String"
+      },
+      "cost": {
+        "type": "String"
+      }
+    }
+  },
+  "lifestyleTitle": "Yaşam tarzı",
+  "lifestyle_modest": "Mütevazı",
+  "lifestyle_comfortable": "Rahat",
+  "lifestyle_lavish": "Lüks",
+  "lifestyleInfo": "{cost} / hafta · moral {morale}",
+  "@lifestyleInfo": {
+    "placeholders": {
+      "cost": {
+        "type": "String"
+      },
+      "morale": {
+        "type": "String"
+      }
+    }
+  },
+  "tableTitle": "Lig Tablosu",
+  "tableHeaderPlayed": "O",
+  "tableHeaderGd": "Av",
+  "tableHeaderPoints": "P",
+  "tableEmpty": "Henüz maç oynanmadı.",
+  "moneyTitle": "Para",
+  "money_wage": "Maaş",
+  "money_winBonus": "Galibiyet primi",
+  "money_goalBonus": "Gol primi",
+  "money_agentFee": "Menajer komisyonu",
+  "money_living": "Yaşam gideri",
+  "reason_lifestyle": "Yaşam tarzı",
+  "reason_debt": "Borç stresi",
+  "eventBenched": "Bu hafta kadroda yer almadın.",
+  "eventOfferReceived": "{club} sana transfer teklifi yaptı. Kulüp sekmesinden bak.",
+  "@eventOfferReceived": {
+    "placeholders": {
+      "club": {
+        "type": "String"
+      }
+    }
+  },
+  "eventRenewalOffered": "{club} sözleşmeni uzatmak istiyor. Kulüp sekmesinden bak.",
+  "@eventRenewalOffered": {
+    "placeholders": {
+      "club": {
+        "type": "String"
+      }
+    }
+  },
+  "eventContractExpired": "{club} ile sözleşmen bitti. Artık serbest oyuncusun.",
+  "@eventContractExpired": {
+    "placeholders": {
+      "club": {
+        "type": "String"
+      }
+    }
+  },
+  "benchedThisWeek": "Bu hafta kadroda yoksun.",
+  "freeAgentNoMatch": "Kulübün yok, bu hafta maç oynayamazsın.",
+  "homeClubLine": "{club} · {league}",
+  "@homeClubLine": {
+    "placeholders": {
+      "club": {
+        "type": "String"
+      },
+      "league": {
+        "type": "String"
+      }
+    }
+  },
+  "offersWaiting": "{count} bekleyen teklif var",
+  "@offersWaiting": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  }
 }

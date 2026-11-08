@@ -4,8 +4,8 @@ import 'package:go_router/go_router.dart';
 
 import '../../app/l10n/app_localizations.dart';
 import '../../core/game_random.dart';
+import '../../domain/career/season_calendar.dart';
 import '../../domain/career/week_engine.dart';
-import '../../domain/league/league_factory.dart';
 import '../../domain/league/team.dart';
 import '../../domain/match/critical_moment.dart';
 import '../../domain/match/match_session.dart';
@@ -18,8 +18,7 @@ import '../providers.dart';
 
 enum _Stage { preMatch, momentIntro, miniGame, momentResult, summary }
 
-/// Hazırlık maçı akışı: kritik an -> mini oyun -> sonuç -> maç özeti.
-/// (Lig maçları kulüp sistemi geldiğinde bu akışı kullanacak.)
+/// Lig maçı akışı: kritik an -> mini oyun -> sonuç -> maç özeti.
 class MatchScreen extends ConsumerStatefulWidget {
   const MatchScreen({this.seed, super.key});
 
@@ -47,14 +46,13 @@ class _MatchScreenState extends ConsumerState<MatchScreen> {
     super.initState();
     final career = ref.read(activeCareerProvider)!.state;
     final player = career.player;
-    final league = LeagueFactory.createPyramid(_random).last; // amatör lig
-    final i = _random.nextInt(league.teams.length);
-    final j =
-        (i + 1 + _random.nextInt(league.teams.length - 1)) %
-        league.teams.length;
-    _playerTeam = league.teams[i];
-    _opponent = league.teams[j];
-    _playerSide = _random.chance(0.5) ? Side.home : Side.away;
+    final world = ref.read(clubWorldProvider)!;
+    final clubId = career.contract!.clubId;
+    final round = SeasonCalendar.leagueRoundOf(career.week) ?? 1;
+    final fixture = world.fixtureFor(clubId, round);
+    _playerTeam = world.team(clubId);
+    _opponent = fixture.opponent;
+    _playerSide = fixture.home ? Side.home : Side.away;
     final playerIsHome = _playerSide == Side.home;
     _session = MatchSession.start(
       homeStrength: playerIsHome ? _playerTeam.strength : _opponent.strength,
@@ -121,6 +119,8 @@ class _MatchScreenState extends ConsumerState<MatchScreen> {
             rating: rating,
             goals: goals.where((g) => g.byPlayer).length,
             assists: goals.where((g) => g.assistedByPlayer).length,
+            scoreFor: own,
+            scoreAgainst: other,
             result: own > other
                 ? MatchResultKind.win
                 : own < other

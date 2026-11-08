@@ -143,6 +143,30 @@ Hepsi tek elle, 5-15 sn, tekrar yok. Parametreler: `lib/domain/match/minigames/m
 
 **Ortak:** form/kondisyon/moral `performanceMultiplier` ile mini oyunları etkiler (ibre hızı, sapma, olasılıklar). Zorluk: Kolay/Zor ibre hızını, savunmacı hamlesinin belirginliğini, rakip becerisini ve kaleci gücünü değiştirir. Penaltı bölgesi tercihleri kayda (`stats.penaltyZones`) yazılır.
 
+### 3.7 Kulüp, kontrat, menajer ve ekonomi (Faz 6)
+
+Tüm parametreler `lib/domain/club/club_balance.dart`'ta. Para birimi kurgusal ₺, maaşlar haftalık. Ölçüm: `dart run tool/club_stats.dart`.
+
+**Dünya:** `worldSeed` kayıtta saklanır; 5 kademeli, 90 takımlı piramit her açılışta aynı seed'den kurulur (takım listesi kayda yazılmaz). Oyuncu amatör ligden (kademe 5) bir kulüple, 2 yıllık sözleşmeyle başlar. Maçlar artık oyuncunun kulübünün gerçek fikstürüdür (rakip ve ev/deplasman turdan gelir).
+
+**Puan durumu:** oyuncunun kulübü dışındaki maçlar `LeagueTable` ile (seed + sezon + tur) tekrarlanabilir şekilde simüle edilir; oyuncunun oynadığı maçlarda gerçek skor kullanılır (`CareerState.results`). Yükselme/düşme henüz yok: kademe değiştirmenin yolu transferdir.
+
+**Rol ve kadro:** oyuncunun (etkin) gücü, kulüp seviyesine (`takım gücü + 6`) göre rolü belirler: fark ≥ 8 Yıldız, ≥ 1 İlk 11, ≥ -6 Rotasyon, genç (≤20) için ≥ -10 Yedek. Etkin güç = genel güç + (21 yaşa kadar) potansiyel farkının %20'si; kulüpler gelecek görür ama potansiyel arayüzde gösterilmez. Maça çıkma olasılığı: Yıldız %100, İlk 11 %95, Rotasyon %70, Yedek %35. Seçim `(worldSeed, sezon, hafta)` ile kararlıdır; yedekteysen o hafta maç oynamazsın (yalnızca antrenman). Rol her sezon başında yeniden hesaplanır.
+
+**Maaş:** `taban[kademe] × 1.045^(etkin güç − kulüp seviyesi) × yaş × rol`. Kademe tabanları 80.000 / 24.000 / 6.500 / 1.900 / 600. Yaş çarpanı 17↓: 0.5, 18: 0.7, 19-20: 0.85, 34↑: 0.8. Rol çarpanı: Yedek 0.6, Rotasyon 0.85, İlk 11 1.0, Yıldız 1.4. Galibiyet primi maaşın %25'i, gol primi %15'i.
+
+**Teklifler:** yalnızca transfer pencerelerinde (hafta 1-6, 22-24) ya da serbest oyuncuyken. Haftalık olasılık `0.30 × menajer çarpanı × form çarpanı` (serbest oyuncuda 0.9). Aday kulüp: seviyesi oyuncunun etkin gücünün -14..+3 aralığında, rolü hesaplanabilen. En fazla 3 bekleyen teklif, 3 hafta geçerli. Teklif maaşı adil maaşın %90-105'i; kulübün GİZLİ üst sınırı %112-122 (+menajer bonusu). Serbest oyuncu asla işsiz kalmaz: aday yoksa amatör ligden bir kulüp teklif eder. Sözleşmenin son sezonunda 30. haftadan sonra mevcut kulüp yenileme teklifi yapabilir (rol bazlı olasılık: Yıldız %95 … Yedek %25).
+
+**Pazarlık (tek tur):** istek teklif maaşına eşit/altıysa teklif maaşı, üst sınırdaysa istenen maaş geçerli; üst sınırın %12'sine kadar karşı teklif (üst sınır maaşı); daha fazlasında kulüp teklifi geri çeker. Zam en fazla %40 istenebilir. Karşı teklifi reddedersen aynı teklif kalır ama pazarlık hakkın biter.
+
+**İmza:** imza parası = yeni haftalık maaş × 8 (menajer komisyonu düşülür). Sözleşme sezon sonuna kadar sayılır; ofsezonda (hafta ≥ 39) imzalanan sözleşme gelecek sezondan başlar. Yenileme mevcut bitişe eklenir. Sözleşme biterse (sezon geçişinde) oyuncu serbest kalır.
+
+**Menajer:** Seviye 1/2/3 — komisyon %5/%8/%12, pazarlık üst sınırına +%3/+%8/+%15, teklif sıklığı ×1.0/×1.35/×1.8. Seviye 2 için genel güç ≥ 50, seviye 3 için ≥ 68. Komisyon maaş, prim ve imza parasından düşülür.
+
+**Finans:** haftalık gelir maaş + primler; gider menajer komisyonu + yaşam tarzı (Mütevazı 150, Rahat 1.200, Lüks 12.000). Yaşam tarzı haftalık moral verir (0 / +1 / +2.5); bakiye eksiye düşerse -2 moral/hafta. Reklam, gerçek para ve satın alma yoktur: para yalnızca kariyer içi bir denge aracıdır.
+
+**Ölçülen (60 kariyer, her pencerede en iyi teklifi alan politika):** sezon başına ≈2 teklif; 27 yaşında kademe dağılımı ≈ %23 üst lig, %55 ikinci, %20 üçüncü; yedek kalma oranı ≈ %13.
+
 ## 4. Tasarım kararları ve gerekçeleri
 
 | Karar | Gerekçe |
@@ -163,3 +187,7 @@ Hepsi tek elle, 5-15 sn, tekrar yok. Parametreler: `lib/domain/match/minigames/m
 | Zaman kısıtı: seçimlerin bedeli var | Sert antrenman + arkadaşlarla zaman kondisyonu eritir, dinlenmek gelişimi durdurur; ayrı bir 'zaman bütçesi' yerine bu ödünleşmeler kullanıldı. |
 | Mini oyunların ortak Flame tabanı (`MiniGameBase`) | Yerleşim, dokunma, sonuç gösterimi, sarsıntı/yavaş çekim tek yerde; her oyun yalnızca kendi girdisini ve çizimini yazar. Fizik/sonuç domain'de, widget testleriyle (boş oynanış ve gerçek dokunuş) doğrulanır. |
 | Zorluk yalnızca ayar | Ekonomi/ilerleme satın alınamaz; zorluk mini oyun toleransı ve rakip gücüne bağlanacak (Faz 3+). |
+| Dünya yerine seed saklanır | 90 takımlık piramit kayda yazılmaz; `worldSeed` aynı dünyayı üretir, kayıt küçük kalır. |
+| Pazarlık sınırı gizli, tek tur | Oyuncu "kaç para isteyeyim" riskini hisseder ama sonsuz deneme-yanılma ile en yüksek maaşı bulamaz. |
+| Puan durumu deterministik yeniden hesap | Diğer maçlar kayda yazılmaz; (seed, sezon, tur) ile her açılışta aynı sonuç, oyuncunun maçları gerçek skorla. |
+| Yaşam tarzı + borç | Para harcanacak yer olmadan anlamsız; küçük ama gerçek bir moral/maliyet dengesi. Satın alma/reklam yok. |

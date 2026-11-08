@@ -1,3 +1,5 @@
+import '../domain/career/career_factory.dart';
+import '../domain/career/career_state.dart';
 import '../domain/career/player_status.dart';
 import 'save_repository.dart';
 
@@ -8,9 +10,13 @@ typedef MigrationStep = Map<String, dynamic> Function(Map<String, dynamic> e);
 ///
 /// Şema değiştiğinde: [currentSchemaVersion]'ı artır ve `steps`'e
 /// `eskiSürüm: dönüştürücü` ekle.
-const int currentSchemaVersion = 3;
+const int currentSchemaVersion = 4;
 
-const Map<int, MigrationStep> _defaultSteps = {1: _v1ToV2, 2: _v2ToV3};
+const Map<int, MigrationStep> _defaultSteps = {
+  1: _v1ToV2,
+  2: _v2ToV3,
+  3: _v3ToV4,
+};
 
 /// v1 -> v2 (Faz 4): kondisyon/form/moral/sakatlık ve istatistik alanları.
 Map<String, dynamic> _v1ToV2(Map<String, dynamic> envelope) {
@@ -35,6 +41,16 @@ Map<String, dynamic> _v2ToV3(Map<String, dynamic> envelope) {
       : (ratings.reduce((a, b) => a + b) / ratings.length).clamp(0.0, 10.0);
   career['status'] = status;
   return {...envelope, 'career': career};
+}
+
+/// v3 -> v4 (Faz 6): kulüp, sözleşme, finans. Eski kariyere amatör bir kulüp verilir.
+Map<String, dynamic> _v3ToV4(Map<String, dynamic> envelope) {
+  final career = Map<String, dynamic>.from(envelope['career'] as Map);
+  final state = CareerState.fromJson(career);
+  final seed =
+      state.player.name.codeUnits.fold<int>(7, (a, c) => (a * 31 + c) % 1000003) +
+      1;
+  return {...envelope, 'career': CareerFactory.assignClub(state, seed).toJson()};
 }
 
 class SaveMigrator {

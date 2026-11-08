@@ -1,3 +1,4 @@
+import '../club/finance.dart';
 import '../player/attribute.dart';
 import 'player_status.dart';
 
@@ -25,6 +26,8 @@ enum WeekReason {
   formFromRatings,
   earlyReturn,
   drift,
+  lifestyle,
+  debt,
 }
 
 class StatChange {
@@ -42,15 +45,34 @@ class AttributeGain {
   final double delta;
 }
 
-enum WeekEventKind { injured, relapse, healed, newSeason, trainingBlocked }
+enum WeekEventKind {
+  injured,
+  relapse,
+  healed,
+  newSeason,
+  trainingBlocked,
+  benched,
+  offerReceived,
+  renewalOffered,
+  contractExpired,
+}
 
 class WeekEvent {
-  const WeekEvent(this.kind, {this.injuryType, this.weeks, this.age});
+  const WeekEvent(
+    this.kind, {
+    this.injuryType,
+    this.weeks,
+    this.age,
+    this.clubId,
+  });
 
   final WeekEventKind kind;
   final InjuryType? injuryType;
   final int? weeks;
   final int? age;
+
+  /// Teklif/sözleşme olaylarında ilgili kulüp.
+  final String? clubId;
 }
 
 /// Bir haftanın özeti: ne değişti ve neden.
@@ -62,6 +84,7 @@ class WeekReport {
     required this.attributeGains,
     required this.events,
     this.playedMatch = false,
+    this.money = const WeekMoney([]),
   });
 
   /// Bu raporun ait olduğu (oynanan) sezon ve hafta.
@@ -71,6 +94,9 @@ class WeekReport {
   final List<AttributeGain> attributeGains;
   final List<WeekEvent> events;
   final bool playedMatch;
+
+  /// Haftanın gelir-giderleri.
+  final WeekMoney money;
 
   double totalDelta(StatKind kind) => statChanges
       .where((c) => c.stat == kind)

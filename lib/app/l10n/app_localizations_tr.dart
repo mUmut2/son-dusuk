@@ -326,7 +326,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get allSavesDeleted => 'Tüm kayıtlar silindi.';
 
   @override
-  String get matchTitle => 'Hazırlık Maçı';
+  String get matchTitle => 'Lig Maçı';
 
   @override
   String get matchPlay => 'Maçı Oyna';
@@ -489,10 +489,6 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get shotPerfect => 'Mükemmel zamanlama!';
-
-  @override
-  String get nextMatchHint =>
-      'Şimdilik hazırlık maçı oynayabilirsin; lig maçları kulüp sistemiyle gelecek.';
 
   @override
   String get statCondition => 'Kondisyon';
@@ -790,4 +786,269 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get momentAutoSkip => 'Otomatik Çöz';
+
+  @override
+  String moneyAmount(String amount) {
+    return '$amount ₺';
+  }
+
+  @override
+  String moneyPerWeek(String amount) {
+    return '$amount ₺ / hafta';
+  }
+
+  @override
+  String clubLeagueLine(String league, int pos, int points) {
+    return '$league · $pos. sıra · $points puan';
+  }
+
+  @override
+  String clubLeagueLineNoMatch(String league) {
+    return '$league · henüz maç oynanmadı';
+  }
+
+  @override
+  String get clubFreeAgentTitle => 'Serbest oyuncusun';
+
+  @override
+  String get clubFreeAgentBody =>
+      'Bir kulübe imza atana kadar maç oynayamaz ve maaş alamazsın. Teklifler her hafta gelir.';
+
+  @override
+  String get contractTitle => 'Sözleşme';
+
+  @override
+  String get contractWage => 'Maaş';
+
+  @override
+  String get contractRole => 'Rol';
+
+  @override
+  String get contractEnds => 'Sözleşme bitişi';
+
+  @override
+  String contractEndsValue(int season) {
+    return 'Sezon $season sonu';
+  }
+
+  @override
+  String get marketValue => 'Piyasa değeri';
+
+  @override
+  String get role_prospect => 'Yedek (genç)';
+
+  @override
+  String get role_rotation => 'Rotasyon';
+
+  @override
+  String get role_starter => 'İlk 11';
+
+  @override
+  String get role_star => 'Yıldız';
+
+  @override
+  String get offersTitle => 'Teklifler';
+
+  @override
+  String get offersNone => 'Şu an bekleyen teklif yok.';
+
+  @override
+  String get offersWindowHint =>
+      'Transfer pencereleri: sezonun ilk 6 haftası ve 22-24. haftalar. Pencere dışında yalnızca sözleşme yenileme teklifi gelebilir.';
+
+  @override
+  String offerTransferTitle(String club) {
+    return '$club sana teklif yaptı';
+  }
+
+  @override
+  String offerRenewalTitle(String club) {
+    return '$club sözleşmeni uzatmak istiyor';
+  }
+
+  @override
+  String offerTerms(String league, int years, String role) {
+    return '$league · $years yıl · $role';
+  }
+
+  @override
+  String offerExpires(int weeks) {
+    return 'Son cevap: $weeks hafta';
+  }
+
+  @override
+  String get offerAccept => 'Kabul Et';
+
+  @override
+  String get offerNegotiate => 'Pazarlık Et';
+
+  @override
+  String get offerDecline => 'Reddet';
+
+  @override
+  String get negotiateTitle => 'Maaş pazarlığı';
+
+  @override
+  String get negotiateAsk => 'İstediğin maaş';
+
+  @override
+  String get negotiateHint =>
+      'Fazla isteme: kulüp teklifi geri çekebilir. Pazarlık hakkı bir kez kullanılır.';
+
+  @override
+  String get negotiateSubmit => 'Teklif Et';
+
+  @override
+  String negotiateCounter(String club, String wage) {
+    return '$club en fazla $wage verebilir. Bu maaşla imzalar mısın?';
+  }
+
+  @override
+  String negotiateWalked(String club) {
+    return '$club teklifi geri çekti.';
+  }
+
+  @override
+  String get negotiateSignAt => 'Bu Maaşla İmzala';
+
+  @override
+  String offerSigned(String club) {
+    return '$club ile imzaladın!';
+  }
+
+  @override
+  String get agentTitle => 'Menajer';
+
+  @override
+  String get agentNone =>
+      'Menajerin yok. Menajer daha çok ve daha iyi teklif getirir, pazarlıkta işini kolaylaştırır; karşılığında gelirinden komisyon alır.';
+
+  @override
+  String get agentLevel_1 => 'Amatör menajer';
+
+  @override
+  String get agentLevel_2 => 'Tecrübeli menajer';
+
+  @override
+  String get agentLevel_3 => 'Ünlü menajer';
+
+  @override
+  String agentInfo(String name, int percent) {
+    return '$name · komisyon %$percent';
+  }
+
+  @override
+  String get agentHire => 'Anlaş';
+
+  @override
+  String get agentFire => 'Ayrıl';
+
+  @override
+  String agentLocked(int min) {
+    return 'Genel güç $min gerekir';
+  }
+
+  @override
+  String get financeTitle => 'Finans';
+
+  @override
+  String get financeBalance => 'Bakiye';
+
+  @override
+  String get financeDebt => 'Borçtasın! Moralin her hafta düşüyor.';
+
+  @override
+  String financeWeekly(String income, String cost) {
+    return 'Haftalık gelir: $income · gider: $cost';
+  }
+
+  @override
+  String get lifestyleTitle => 'Yaşam tarzı';
+
+  @override
+  String get lifestyle_modest => 'Mütevazı';
+
+  @override
+  String get lifestyle_comfortable => 'Rahat';
+
+  @override
+  String get lifestyle_lavish => 'Lüks';
+
+  @override
+  String lifestyleInfo(String cost, String morale) {
+    return '$cost / hafta · moral $morale';
+  }
+
+  @override
+  String get tableTitle => 'Lig Tablosu';
+
+  @override
+  String get tableHeaderPlayed => 'O';
+
+  @override
+  String get tableHeaderGd => 'Av';
+
+  @override
+  String get tableHeaderPoints => 'P';
+
+  @override
+  String get tableEmpty => 'Henüz maç oynanmadı.';
+
+  @override
+  String get moneyTitle => 'Para';
+
+  @override
+  String get money_wage => 'Maaş';
+
+  @override
+  String get money_winBonus => 'Galibiyet primi';
+
+  @override
+  String get money_goalBonus => 'Gol primi';
+
+  @override
+  String get money_agentFee => 'Menajer komisyonu';
+
+  @override
+  String get money_living => 'Yaşam gideri';
+
+  @override
+  String get reason_lifestyle => 'Yaşam tarzı';
+
+  @override
+  String get reason_debt => 'Borç stresi';
+
+  @override
+  String get eventBenched => 'Bu hafta kadroda yer almadın.';
+
+  @override
+  String eventOfferReceived(String club) {
+    return '$club sana transfer teklifi yaptı. Kulüp sekmesinden bak.';
+  }
+
+  @override
+  String eventRenewalOffered(String club) {
+    return '$club sözleşmeni uzatmak istiyor. Kulüp sekmesinden bak.';
+  }
+
+  @override
+  String eventContractExpired(String club) {
+    return '$club ile sözleşmen bitti. Artık serbest oyuncusun.';
+  }
+
+  @override
+  String get benchedThisWeek => 'Bu hafta kadroda yoksun.';
+
+  @override
+  String get freeAgentNoMatch => 'Kulübün yok, bu hafta maç oynayamazsın.';
+
+  @override
+  String homeClubLine(String club, String league) {
+    return '$club · $league';
+  }
+
+  @override
+  String offersWaiting(int count) {
+    return '$count bekleyen teklif var';
+  }
 }

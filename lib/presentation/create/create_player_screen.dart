@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../app/l10n/app_localizations.dart';
 import '../../core/game_random.dart';
-import '../../domain/career/career_state.dart';
+import '../../domain/career/career_factory.dart';
 import '../../domain/player/player.dart';
 import '../../domain/player/player_factory.dart';
 import '../../domain/player/position.dart';
@@ -52,7 +52,7 @@ class _CreatePlayerScreenState extends ConsumerState<CreatePlayerScreen> {
     );
     await ref
         .read(activeCareerProvider.notifier)
-        .start(widget.slot, CareerState(player: player));
+        .start(widget.slot, CareerFactory.create(player, GameRandom()));
     if (!mounted) return;
     context.go('/game');
   }

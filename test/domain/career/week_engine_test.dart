@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:son_dusuk/core/game_random.dart';
 import 'package:son_dusuk/data/save_migrations.dart';
+import 'package:son_dusuk/domain/career/career_factory.dart';
 import 'package:son_dusuk/domain/career/career_state.dart';
 import 'package:son_dusuk/domain/career/player_status.dart';
 import 'package:son_dusuk/domain/career/season_calendar.dart';
@@ -400,7 +401,11 @@ void main() {
     });
 
     test('moral zamanla başlangıç seviyesine yaklaşır', () {
-      var s = newCareer(status: const PlayerStatus(morale: 10));
+      // Maaşlı bir oyuncu (serbest oyuncu borca girip moral kaybeder).
+      var s = CareerFactory.assignClub(
+        newCareer(status: const PlayerStatus(morale: 10)),
+        5,
+      );
       final random = GameRandom(1);
       for (var i = 0; i < 30; i++) {
         s = WeekEngine.advance(
@@ -520,7 +525,7 @@ void main() {
         },
       };
       final migrated = const SaveMigrator().migrate(v1);
-      expect(migrated['schemaVersion'], 3);
+      expect(migrated['schemaVersion'], currentSchemaVersion);
       final career = CareerState.fromJson(
         migrated['career'] as Map<String, dynamic>,
       );
@@ -545,7 +550,7 @@ void main() {
         },
       };
       final migrated = const SaveMigrator().migrate(v2);
-      expect(migrated['schemaVersion'], 3);
+      expect(migrated['schemaVersion'], currentSchemaVersion);
       final career = CareerState.fromJson(
         migrated['career'] as Map<String, dynamic>,
       );

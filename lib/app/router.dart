@@ -2,6 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../presentation/create/create_player_screen.dart';
+import '../presentation/game/club_tab.dart';
 import '../presentation/game/game_shell.dart';
 import '../presentation/game/home_tab.dart';
 import '../presentation/game/profile_tab.dart';
@@ -69,8 +70,7 @@ final routerProvider = Provider<GoRouter>((ref) {
             routes: [
               GoRoute(
                 path: '/game/club',
-                builder: (context, state) =>
-                    PlaceholderTab(title: AppLocalizations.of(context).navClub),
+                builder: (context, state) => const ClubTab(),
               ),
             ],
           ),

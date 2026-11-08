@@ -5,7 +5,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:son_dusuk/app/app.dart';
 import 'package:son_dusuk/app/router.dart';
 import 'package:son_dusuk/core/game_random.dart';
-import 'package:son_dusuk/domain/career/career_state.dart';
+import 'package:son_dusuk/domain/career/career_factory.dart';
+import 'package:son_dusuk/domain/club/contract.dart';
 import 'package:son_dusuk/domain/career/player_status.dart';
 import 'package:son_dusuk/domain/player/player.dart';
 import 'package:son_dusuk/domain/player/player_factory.dart';
@@ -28,8 +29,8 @@ Future<ProviderContainer> pumpGame(
   );
   addTearDown(container.dispose);
 
-  final career = CareerState(
-    player: PlayerFactory.create(
+  final base = CareerFactory.create(
+    PlayerFactory.create(
       name: 'Deniz',
       birthplace: 'Bursa',
       position: PlayerPosition.forward,
@@ -37,8 +38,13 @@ Future<ProviderContainer> pumpGame(
       appearance: const Appearance(),
       random: GameRandom(1),
     ),
+    GameRandom(1),
+  );
+  // Yıldız rolü: her lig haftasında kadroda (testler deterministik kalsın).
+  final career = base.copyWith(
     week: week,
     status: status,
+    contract: base.contract!.copyWith(role: SquadRole.star),
   );
   await container.read(activeCareerProvider.notifier).start(0, career);
 

@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../app/l10n/app_localizations.dart';
 import '../../domain/career/season_calendar.dart';
-import '../../domain/career/week_engine.dart';
+import '../../domain/club/squad.dart';
 import '../../domain/career/weekly_plan.dart';
 import '../l10n_labels.dart';
 import '../providers.dart';
@@ -56,7 +56,8 @@ class TrainingTab extends ConsumerWidget {
     final planNotifier = ref.read(weeklyPlanProvider.notifier);
     final status = career.status;
     final injured = status.isInjured;
-    final matchWeek = WeekEngine.hasMatch(career.week) && !injured;
+    final matchDay = Squad.matchDay(career);
+    final matchWeek = matchDay == MatchDay.play;
     final textTheme = Theme.of(context).textTheme;
 
     return ListView(
@@ -131,6 +132,9 @@ class TrainingTab extends ConsumerWidget {
             ],
           ),
         ),
+        if (matchDay == MatchDay.benched)
+          Text(l10n.benchedThisWeek, style: textTheme.bodySmall),
+        if (career.isFreeAgent) Text(l10n.freeAgentNoMatch, style: textTheme.bodySmall),
         Text(l10n.trainingHint, style: textTheme.bodySmall),
         const SizedBox(height: 16),
         FilledButton(

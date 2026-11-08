@@ -8,6 +8,10 @@ import '../core/game_random.dart';
 import '../domain/career/difficulty.dart';
 import '../domain/career/week_engine.dart';
 import '../domain/career/weekly_plan.dart';
+import '../domain/club/finance.dart';
+import '../domain/club/transfer_market.dart';
+import '../domain/club/transfer_offer.dart';
+import '../domain/league/club_world.dart';
 
 /// `main()` içinde gerçek örnekle, testlerde sahte örnekle override edilir.
 final sharedPreferencesProvider = Provider<SharedPreferences>(
@@ -106,6 +110,44 @@ class ActiveCareerNotifier extends Notifier<ActiveCareer?> {
     await update(WeekEngine.returnEarly(current.state));
   }
 
+  /// Teklifi [wage] maaşıyla imzalar.
+  Future<void> acceptOffer(TransferOffer offer, int wage) async {
+    final current = state;
+    if (current == null) return;
+    await update(TransferMarket.sign(current.state, offer, wage));
+  }
+
+  Future<void> declineOffer(TransferOffer offer) async {
+    final current = state;
+    if (current == null) return;
+    await update(ClubActions.declineOffer(current.state, offer));
+  }
+
+  /// Pazarlık hakkını harcar (karşı teklif sonrası kulüp aynı teklifte kalır).
+  Future<void> markNegotiated(TransferOffer offer) async {
+    final current = state;
+    if (current == null) return;
+    await update(ClubActions.markNegotiated(current.state, offer));
+  }
+
+  Future<void> hireAgent(int level) async {
+    final current = state;
+    if (current == null) return;
+    await update(ClubActions.hireAgent(current.state, level));
+  }
+
+  Future<void> fireAgent() async {
+    final current = state;
+    if (current == null) return;
+    await update(ClubActions.fireAgent(current.state));
+  }
+
+  Future<void> setLifestyle(Lifestyle l) async {
+    final current = state;
+    if (current == null) return;
+    await update(ClubActions.setLifestyle(current.state, l));
+  }
+
   void close() => state = null;
 }
 
@@ -164,3 +206,9 @@ class LastWeekNotifier extends Notifier<WeekResult?> {
 final lastWeekProvider = NotifierProvider<LastWeekNotifier, WeekResult?>(
   LastWeekNotifier.new,
 );
+
+/// Aktif kariyerin lig dünyası (seed aynı kaldıkça yeniden kurulmaz).
+final clubWorldProvider = Provider<ClubWorld?>((ref) {
+  final seed = ref.watch(activeCareerProvider.select((c) => c?.state.worldSeed));
+  return seed == null ? null : ClubWorld(seed);
+});

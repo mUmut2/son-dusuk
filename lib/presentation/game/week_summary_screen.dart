@@ -27,6 +27,9 @@ class WeekSummaryScreen extends ConsumerWidget {
     final before = result.before;
     final after = result.state.status;
     final textTheme = Theme.of(context).textTheme;
+    final world = ref.watch(clubWorldProvider);
+    String clubOf(WeekEvent e) =>
+        e.clubId == null ? '' : world!.team(e.clubId!).name;
 
     final statValues = {
       StatKind.condition: (before.condition, after.condition),
@@ -68,9 +71,15 @@ class WeekSummaryScreen extends ConsumerWidget {
                               WeekEventKind.newSeason => Icons.celebration,
                               WeekEventKind.trainingBlocked =>
                                 Icons.do_not_disturb_on,
+                              WeekEventKind.benched => Icons.event_seat,
+                              WeekEventKind.offerReceived ||
+                              WeekEventKind.renewalOffered => Icons.mail,
+                              WeekEventKind.contractExpired => Icons.description,
                               _ => Icons.healing,
                             }),
-                            title: Text(l10n.eventText(event)),
+                            title: Text(
+                              l10n.eventText(event, clubName: clubOf(event)),
+                            ),
                           ),
                         ),
                       Text(l10n.changesTitle, style: textTheme.titleMedium),
@@ -109,6 +118,43 @@ class WeekSummaryScreen extends ConsumerWidget {
                               ],
                             ),
                           ),
+                      ],
+                      if (report.money.lines.isNotEmpty) ...[
+                        const SizedBox(height: 16),
+                        Text(l10n.moneyTitle, style: textTheme.titleMedium),
+                        for (final line in report.money.lines)
+                          Padding(
+                            padding: const EdgeInsets.only(left: 8, top: 2),
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  child: Text(l10n.moneyKindName(line.kind)),
+                                ),
+                                Text(
+                                  '${line.amount >= 0 ? '+' : ''}'
+                                  '${l10n.money(line.amount)}',
+                                  style: TextStyle(
+                                    color: line.amount < 0
+                                        ? Theme.of(context).colorScheme.error
+                                        : null,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 8, top: 4),
+                          child: Row(
+                            children: [
+                              Expanded(child: Text(l10n.financeBalance)),
+                              Text(
+                                l10n.money(result.state.finance.balance),
+                                style: textTheme.titleSmall,
+                              ),
+                            ],
+                          ),
+                        ),
                       ],
                       if (report.attributeGains.isNotEmpty) ...[
                         const SizedBox(height: 16),

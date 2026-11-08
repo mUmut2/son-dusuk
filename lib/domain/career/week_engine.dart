@@ -1,9 +1,12 @@
 import 'dart:math' as math;
 
 import '../../core/game_random.dart';
+import '../club/club_engine.dart';
+import '../club/finance.dart';
 import '../player/player_development.dart';
 import '../player/position.dart';
 import 'career_state.dart';
+import 'match_record.dart';
 import 'player_status.dart';
 import 'season_calendar.dart';
 import 'week_balance.dart';
@@ -19,12 +22,18 @@ class WeekMatch {
     required this.goals,
     required this.assists,
     required this.result,
+    this.scoreFor = 0,
+    this.scoreAgainst = 0,
   });
 
   final double rating;
   final int goals;
   final int assists;
   final MatchResultKind result;
+
+  /// Takımın attığı ve yediği goller (puan durumu için).
+  final int scoreFor;
+  final int scoreAgainst;
 }
 
 class WeekResult {
@@ -71,6 +80,12 @@ abstract final class WeekEngine {
 
     if (injuredAtStart && plan.focus != TrainingFocus.rest) {
       events.add(const WeekEvent(WeekEventKind.trainingBlocked));
+    }
+    if (m == null &&
+        !injuredAtStart &&
+        state.contract != null &&
+        hasMatch(state.week)) {
+      events.add(const WeekEvent(WeekEventKind.benched));
     }
 
     // --- Antrenman: odaktaki nitelikler ---
@@ -229,6 +244,8 @@ abstract final class WeekEngine {
       morale(WeekBalance.moraleHardTraining, WeekReason.trainingHard);
     }
     morale(WeekBalance.socialMorale[plan.social]!, _socialReason(plan.social));
+    final (lifeMorale, inDebt) = Economy.moraleEffect(state.finance);
+    morale(lifeMorale, inDebt ? WeekReason.debt : WeekReason.lifestyle);
     morale(
       (WeekBalance.moraleBaseline - before.morale) * WeekBalance.moraleDrift,
       WeekReason.drift,
@@ -261,7 +278,29 @@ abstract final class WeekEngine {
       events.add(WeekEvent(WeekEventKind.newSeason, age: player.age));
     }
 
-    final next = state.copyWith(
+    // --- Para: maaş, prim, menajer komisyonu, yaşam gideri ---
+    final money = Economy.weekly(
+      contract: state.contract,
+      agent: state.agent,
+      lifestyle: state.finance.lifestyle,
+      won: m?.result == MatchResultKind.win,
+      goals: m?.goals ?? 0,
+    );
+
+    // --- Skor kaydı (puan durumu için) ---
+    final round = SeasonCalendar.leagueRoundOf(reportWeek);
+    final results = [
+      ...state.results,
+      if (m != null && state.contract != null && round != null)
+        MatchRecord(
+          round: round,
+          clubId: state.contract!.clubId,
+          scoreFor: m.scoreFor,
+          scoreAgainst: m.scoreAgainst,
+        ),
+    ];
+
+    final advanced = state.copyWith(
       player: player,
       season: season,
       week: week,
@@ -273,10 +312,22 @@ abstract final class WeekEngine {
               assists: m.assists,
               rating: m.rating,
             ),
+      finance: state.finance.copyWith(
+        balance: state.finance.balance + money.net,
+      ),
+      results: results,
     );
 
+    // --- Kulüp: sezon geçişi, teklifler, yenileme ---
+    final club = ClubEngine.process(
+      advanced,
+      newSeason: season > state.season,
+      random: random,
+    );
+    events.addAll(club.events);
+
     return WeekResult(
-      state: next,
+      state: club.state,
       before: before,
       report: WeekReport(
         season: reportSeason,
@@ -285,6 +336,7 @@ abstract final class WeekEngine {
         attributeGains: gains,
         events: events,
         playedMatch: m != null,
+        money: money,
       ),
     );
   }

@@ -685,7 +685,7 @@ abstract class AppLocalizations {
   /// No description provided for @matchTitle.
   ///
   /// In tr, this message translates to:
-  /// **'Hazırlık Maçı'**
+  /// **'Lig Maçı'**
   String get matchTitle;
 
   /// No description provided for @matchPlay.
@@ -981,12 +981,6 @@ abstract class AppLocalizations {
   /// In tr, this message translates to:
   /// **'Mükemmel zamanlama!'**
   String get shotPerfect;
-
-  /// No description provided for @nextMatchHint.
-  ///
-  /// In tr, this message translates to:
-  /// **'Şimdilik hazırlık maçı oynayabilirsin; lig maçları kulüp sistemiyle gelecek.'**
-  String get nextMatchHint;
 
   /// No description provided for @statCondition.
   ///
@@ -1527,6 +1521,444 @@ abstract class AppLocalizations {
   /// In tr, this message translates to:
   /// **'Otomatik Çöz'**
   String get momentAutoSkip;
+
+  /// No description provided for @moneyAmount.
+  ///
+  /// In tr, this message translates to:
+  /// **'{amount} ₺'**
+  String moneyAmount(String amount);
+
+  /// No description provided for @moneyPerWeek.
+  ///
+  /// In tr, this message translates to:
+  /// **'{amount} ₺ / hafta'**
+  String moneyPerWeek(String amount);
+
+  /// No description provided for @clubLeagueLine.
+  ///
+  /// In tr, this message translates to:
+  /// **'{league} · {pos}. sıra · {points} puan'**
+  String clubLeagueLine(String league, int pos, int points);
+
+  /// No description provided for @clubLeagueLineNoMatch.
+  ///
+  /// In tr, this message translates to:
+  /// **'{league} · henüz maç oynanmadı'**
+  String clubLeagueLineNoMatch(String league);
+
+  /// No description provided for @clubFreeAgentTitle.
+  ///
+  /// In tr, this message translates to:
+  /// **'Serbest oyuncusun'**
+  String get clubFreeAgentTitle;
+
+  /// No description provided for @clubFreeAgentBody.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bir kulübe imza atana kadar maç oynayamaz ve maaş alamazsın. Teklifler her hafta gelir.'**
+  String get clubFreeAgentBody;
+
+  /// No description provided for @contractTitle.
+  ///
+  /// In tr, this message translates to:
+  /// **'Sözleşme'**
+  String get contractTitle;
+
+  /// No description provided for @contractWage.
+  ///
+  /// In tr, this message translates to:
+  /// **'Maaş'**
+  String get contractWage;
+
+  /// No description provided for @contractRole.
+  ///
+  /// In tr, this message translates to:
+  /// **'Rol'**
+  String get contractRole;
+
+  /// No description provided for @contractEnds.
+  ///
+  /// In tr, this message translates to:
+  /// **'Sözleşme bitişi'**
+  String get contractEnds;
+
+  /// No description provided for @contractEndsValue.
+  ///
+  /// In tr, this message translates to:
+  /// **'Sezon {season} sonu'**
+  String contractEndsValue(int season);
+
+  /// No description provided for @marketValue.
+  ///
+  /// In tr, this message translates to:
+  /// **'Piyasa değeri'**
+  String get marketValue;
+
+  /// No description provided for @role_prospect.
+  ///
+  /// In tr, this message translates to:
+  /// **'Yedek (genç)'**
+  String get role_prospect;
+
+  /// No description provided for @role_rotation.
+  ///
+  /// In tr, this message translates to:
+  /// **'Rotasyon'**
+  String get role_rotation;
+
+  /// No description provided for @role_starter.
+  ///
+  /// In tr, this message translates to:
+  /// **'İlk 11'**
+  String get role_starter;
+
+  /// No description provided for @role_star.
+  ///
+  /// In tr, this message translates to:
+  /// **'Yıldız'**
+  String get role_star;
+
+  /// No description provided for @offersTitle.
+  ///
+  /// In tr, this message translates to:
+  /// **'Teklifler'**
+  String get offersTitle;
+
+  /// No description provided for @offersNone.
+  ///
+  /// In tr, this message translates to:
+  /// **'Şu an bekleyen teklif yok.'**
+  String get offersNone;
+
+  /// No description provided for @offersWindowHint.
+  ///
+  /// In tr, this message translates to:
+  /// **'Transfer pencereleri: sezonun ilk 6 haftası ve 22-24. haftalar. Pencere dışında yalnızca sözleşme yenileme teklifi gelebilir.'**
+  String get offersWindowHint;
+
+  /// No description provided for @offerTransferTitle.
+  ///
+  /// In tr, this message translates to:
+  /// **'{club} sana teklif yaptı'**
+  String offerTransferTitle(String club);
+
+  /// No description provided for @offerRenewalTitle.
+  ///
+  /// In tr, this message translates to:
+  /// **'{club} sözleşmeni uzatmak istiyor'**
+  String offerRenewalTitle(String club);
+
+  /// No description provided for @offerTerms.
+  ///
+  /// In tr, this message translates to:
+  /// **'{league} · {years} yıl · {role}'**
+  String offerTerms(String league, int years, String role);
+
+  /// No description provided for @offerExpires.
+  ///
+  /// In tr, this message translates to:
+  /// **'Son cevap: {weeks} hafta'**
+  String offerExpires(int weeks);
+
+  /// No description provided for @offerAccept.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kabul Et'**
+  String get offerAccept;
+
+  /// No description provided for @offerNegotiate.
+  ///
+  /// In tr, this message translates to:
+  /// **'Pazarlık Et'**
+  String get offerNegotiate;
+
+  /// No description provided for @offerDecline.
+  ///
+  /// In tr, this message translates to:
+  /// **'Reddet'**
+  String get offerDecline;
+
+  /// No description provided for @negotiateTitle.
+  ///
+  /// In tr, this message translates to:
+  /// **'Maaş pazarlığı'**
+  String get negotiateTitle;
+
+  /// No description provided for @negotiateAsk.
+  ///
+  /// In tr, this message translates to:
+  /// **'İstediğin maaş'**
+  String get negotiateAsk;
+
+  /// No description provided for @negotiateHint.
+  ///
+  /// In tr, this message translates to:
+  /// **'Fazla isteme: kulüp teklifi geri çekebilir. Pazarlık hakkı bir kez kullanılır.'**
+  String get negotiateHint;
+
+  /// No description provided for @negotiateSubmit.
+  ///
+  /// In tr, this message translates to:
+  /// **'Teklif Et'**
+  String get negotiateSubmit;
+
+  /// No description provided for @negotiateCounter.
+  ///
+  /// In tr, this message translates to:
+  /// **'{club} en fazla {wage} verebilir. Bu maaşla imzalar mısın?'**
+  String negotiateCounter(String club, String wage);
+
+  /// No description provided for @negotiateWalked.
+  ///
+  /// In tr, this message translates to:
+  /// **'{club} teklifi geri çekti.'**
+  String negotiateWalked(String club);
+
+  /// No description provided for @negotiateSignAt.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bu Maaşla İmzala'**
+  String get negotiateSignAt;
+
+  /// No description provided for @offerSigned.
+  ///
+  /// In tr, this message translates to:
+  /// **'{club} ile imzaladın!'**
+  String offerSigned(String club);
+
+  /// No description provided for @agentTitle.
+  ///
+  /// In tr, this message translates to:
+  /// **'Menajer'**
+  String get agentTitle;
+
+  /// No description provided for @agentNone.
+  ///
+  /// In tr, this message translates to:
+  /// **'Menajerin yok. Menajer daha çok ve daha iyi teklif getirir, pazarlıkta işini kolaylaştırır; karşılığında gelirinden komisyon alır.'**
+  String get agentNone;
+
+  /// No description provided for @agentLevel_1.
+  ///
+  /// In tr, this message translates to:
+  /// **'Amatör menajer'**
+  String get agentLevel_1;
+
+  /// No description provided for @agentLevel_2.
+  ///
+  /// In tr, this message translates to:
+  /// **'Tecrübeli menajer'**
+  String get agentLevel_2;
+
+  /// No description provided for @agentLevel_3.
+  ///
+  /// In tr, this message translates to:
+  /// **'Ünlü menajer'**
+  String get agentLevel_3;
+
+  /// No description provided for @agentInfo.
+  ///
+  /// In tr, this message translates to:
+  /// **'{name} · komisyon %{percent}'**
+  String agentInfo(String name, int percent);
+
+  /// No description provided for @agentHire.
+  ///
+  /// In tr, this message translates to:
+  /// **'Anlaş'**
+  String get agentHire;
+
+  /// No description provided for @agentFire.
+  ///
+  /// In tr, this message translates to:
+  /// **'Ayrıl'**
+  String get agentFire;
+
+  /// No description provided for @agentLocked.
+  ///
+  /// In tr, this message translates to:
+  /// **'Genel güç {min} gerekir'**
+  String agentLocked(int min);
+
+  /// No description provided for @financeTitle.
+  ///
+  /// In tr, this message translates to:
+  /// **'Finans'**
+  String get financeTitle;
+
+  /// No description provided for @financeBalance.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bakiye'**
+  String get financeBalance;
+
+  /// No description provided for @financeDebt.
+  ///
+  /// In tr, this message translates to:
+  /// **'Borçtasın! Moralin her hafta düşüyor.'**
+  String get financeDebt;
+
+  /// No description provided for @financeWeekly.
+  ///
+  /// In tr, this message translates to:
+  /// **'Haftalık gelir: {income} · gider: {cost}'**
+  String financeWeekly(String income, String cost);
+
+  /// No description provided for @lifestyleTitle.
+  ///
+  /// In tr, this message translates to:
+  /// **'Yaşam tarzı'**
+  String get lifestyleTitle;
+
+  /// No description provided for @lifestyle_modest.
+  ///
+  /// In tr, this message translates to:
+  /// **'Mütevazı'**
+  String get lifestyle_modest;
+
+  /// No description provided for @lifestyle_comfortable.
+  ///
+  /// In tr, this message translates to:
+  /// **'Rahat'**
+  String get lifestyle_comfortable;
+
+  /// No description provided for @lifestyle_lavish.
+  ///
+  /// In tr, this message translates to:
+  /// **'Lüks'**
+  String get lifestyle_lavish;
+
+  /// No description provided for @lifestyleInfo.
+  ///
+  /// In tr, this message translates to:
+  /// **'{cost} / hafta · moral {morale}'**
+  String lifestyleInfo(String cost, String morale);
+
+  /// No description provided for @tableTitle.
+  ///
+  /// In tr, this message translates to:
+  /// **'Lig Tablosu'**
+  String get tableTitle;
+
+  /// No description provided for @tableHeaderPlayed.
+  ///
+  /// In tr, this message translates to:
+  /// **'O'**
+  String get tableHeaderPlayed;
+
+  /// No description provided for @tableHeaderGd.
+  ///
+  /// In tr, this message translates to:
+  /// **'Av'**
+  String get tableHeaderGd;
+
+  /// No description provided for @tableHeaderPoints.
+  ///
+  /// In tr, this message translates to:
+  /// **'P'**
+  String get tableHeaderPoints;
+
+  /// No description provided for @tableEmpty.
+  ///
+  /// In tr, this message translates to:
+  /// **'Henüz maç oynanmadı.'**
+  String get tableEmpty;
+
+  /// No description provided for @moneyTitle.
+  ///
+  /// In tr, this message translates to:
+  /// **'Para'**
+  String get moneyTitle;
+
+  /// No description provided for @money_wage.
+  ///
+  /// In tr, this message translates to:
+  /// **'Maaş'**
+  String get money_wage;
+
+  /// No description provided for @money_winBonus.
+  ///
+  /// In tr, this message translates to:
+  /// **'Galibiyet primi'**
+  String get money_winBonus;
+
+  /// No description provided for @money_goalBonus.
+  ///
+  /// In tr, this message translates to:
+  /// **'Gol primi'**
+  String get money_goalBonus;
+
+  /// No description provided for @money_agentFee.
+  ///
+  /// In tr, this message translates to:
+  /// **'Menajer komisyonu'**
+  String get money_agentFee;
+
+  /// No description provided for @money_living.
+  ///
+  /// In tr, this message translates to:
+  /// **'Yaşam gideri'**
+  String get money_living;
+
+  /// No description provided for @reason_lifestyle.
+  ///
+  /// In tr, this message translates to:
+  /// **'Yaşam tarzı'**
+  String get reason_lifestyle;
+
+  /// No description provided for @reason_debt.
+  ///
+  /// In tr, this message translates to:
+  /// **'Borç stresi'**
+  String get reason_debt;
+
+  /// No description provided for @eventBenched.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bu hafta kadroda yer almadın.'**
+  String get eventBenched;
+
+  /// No description provided for @eventOfferReceived.
+  ///
+  /// In tr, this message translates to:
+  /// **'{club} sana transfer teklifi yaptı. Kulüp sekmesinden bak.'**
+  String eventOfferReceived(String club);
+
+  /// No description provided for @eventRenewalOffered.
+  ///
+  /// In tr, this message translates to:
+  /// **'{club} sözleşmeni uzatmak istiyor. Kulüp sekmesinden bak.'**
+  String eventRenewalOffered(String club);
+
+  /// No description provided for @eventContractExpired.
+  ///
+  /// In tr, this message translates to:
+  /// **'{club} ile sözleşmen bitti. Artık serbest oyuncusun.'**
+  String eventContractExpired(String club);
+
+  /// No description provided for @benchedThisWeek.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bu hafta kadroda yoksun.'**
+  String get benchedThisWeek;
+
+  /// No description provided for @freeAgentNoMatch.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kulübün yok, bu hafta maç oynayamazsın.'**
+  String get freeAgentNoMatch;
+
+  /// No description provided for @homeClubLine.
+  ///
+  /// In tr, this message translates to:
+  /// **'{club} · {league}'**
+  String homeClubLine(String club, String league);
+
+  /// No description provided for @offersWaiting.
+  ///
+  /// In tr, this message translates to:
+  /// **'{count} bekleyen teklif var'**
+  String offersWaiting(int count);
 }
 
 class _AppLocalizationsDelegate

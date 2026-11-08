@@ -17,7 +17,7 @@ Kurgusal, tamamen offline bir futbolcu kariyer oyunu (Flutter). 16 yaşında ba�
 
 ## Faz planı
 
-0 Hazırlık ✅ · 1 Oyuncu/kariyer çekirdeği ✅ · 2 Takvim+lig+maç simülasyonu ✅ · 3 Şut mini oyunu (Flame) ✅ · 4 Haftalık yaşam döngüsü ✅ · 5 Diğer mini oyunlar ✅ · 6 Transfer/kontrat/menajer/ekonomi · 7 Sosyal/olay motoru · 8 Milli takım/başarım/emeklilik · 9 Cila ve yayın (CI/CD, Pages, README görselleri, Android release).
+0 Hazırlık ✅ · 1 Oyuncu/kariyer çekirdeği ✅ · 2 Takvim+lig+maç simülasyonu ✅ · 3 Şut mini oyunu (Flame) ✅ · 4 Haftalık yaşam döngüsü ✅ · 5 Diğer mini oyunlar ✅ · 6 Transfer/kontrat/menajer/ekonomi ✅ · 7 Sosyal/olay motoru · 8 Milli takım/başarım/emeklilik · 9 Cila ve yayın (CI/CD, Pages, README görselleri, Android release).
 
 ## Mimari kuralları
 
@@ -44,6 +44,7 @@ lib/
 - Mini oyun deseni: fizik/sonuç `domain/match/<oyun>/` içinde saf Dart (`*_resolver.dart`, `*_balance.dart`), Flame oyunu `lib/game/<oyun>/` içinde yalnızca girdi + animasyon, swipe/koordinat mantığı `*_geometry.dart` (test edilebilir). Sonuç `MomentOutcome`'a çevrilir. Denge için `dart run tool/shot_stats.dart`.
 - Haftalık döngü: `WeekEngine.advance(state, plan, match, random)` tek giriş noktası; denge `week_balance.dart`. Kayıt şeması 2; şemayı değiştirince `save_migrations.dart`'a adım ekle. Mini oyunlar `PlayerStatus` (form/kondisyon/moral) kullanır.
 - Mini oyunlar: `MiniGameView` (lib/game/mini_game_view.dart) tür -> oyun fabrikasıdır; şut/bire bir/serbest vuruş/kafa `ShotGame` varyantı, diğerleri `MiniGameBase` alt sınıfları (penalty/, pass/, dribble/, tackle/). Dokunma katmanı `containsLocalPoint => true` olmalı. Yeni mini oyun: `mini_balance.dart` + `domain/match/minigames/<oyun>.dart` + Flame sınıfı + `tool/minigame_stats.dart` + `test/mini_games_widget_test.dart`. Flame oyunlarında `late` alan kullanma, boş girdiyle bitişi test et.
+- Kulüp sistemi (Faz 6): `domain/club/` (contract, transfer_offer, agent, finance, squad, transfer_market, club_engine, club_balance). Dünya `ClubWorld(worldSeed)` ile her seferinde aynı seed'den kurulur (takımlar kayda yazılmaz; sağlayıcı `clubWorldProvider`). Oyuncunun maçı kulübünün fikstüründen gelir; `Squad.matchDay` o hafta maç var mı (play/benched/injured/none) söyler. Kulüp/ekonomi parametreleri yalnızca `club_balance.dart`'ta; değiştirince `dart run tool/club_stats.dart`. Kayıt şeması 4 (v3→v4: `CareerFactory.assignClub`). Yeni kayıt alanı eklersen `currentSchemaVersion`'ı artır ve göç adımı yaz.
 - Form 0-10 (son 5 maç ortalaması, varsayılan 6.0); `PlayerStatus.formBonus` performansa çevirir.
 - Gizli nitelikler (potansiyel, sakatlanma eğilimi, profesyonellik) arayüzde gösterilmez.
 

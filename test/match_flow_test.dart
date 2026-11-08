@@ -6,7 +6,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:son_dusuk/app/l10n/app_localizations.dart';
 import 'package:son_dusuk/core/game_random.dart';
-import 'package:son_dusuk/domain/career/career_state.dart';
+import 'package:son_dusuk/domain/career/career_factory.dart';
 import 'package:son_dusuk/domain/player/player.dart';
 import 'package:son_dusuk/domain/player/player_factory.dart';
 import 'package:son_dusuk/domain/player/position.dart';
@@ -28,8 +28,8 @@ Future<void> pumpMatch(WidgetTester tester, int seed) async {
       .read(activeCareerProvider.notifier)
       .open(
         0,
-        CareerState(
-          player: PlayerFactory.create(
+        CareerFactory.create(
+          PlayerFactory.create(
             name: 'Test',
             birthplace: 'Ankara',
             position: PlayerPosition.forward,
@@ -37,7 +37,8 @@ Future<void> pumpMatch(WidgetTester tester, int seed) async {
             appearance: const Appearance(),
             random: GameRandom(1),
           ),
-        ),
+          GameRandom(1),
+        ).copyWith(week: 5),
       );
 
   await tester.pumpWidget(
@@ -62,7 +63,7 @@ Future<void> pumpMatch(WidgetTester tester, int seed) async {
 void main() {
   testWidgets('hızlı simülasyon doğrudan maç özetine götürür', (tester) async {
     await pumpMatch(tester, 1);
-    expect(find.text('Hazırlık Maçı'), findsOneWidget);
+    expect(find.text('Lig Maçı'), findsOneWidget);
 
     await tester.tap(find.text('Hızlı Simüle Et'));
     await tester.pumpAndSettle();

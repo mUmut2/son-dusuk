@@ -2,17 +2,18 @@
 
 16 yaşında başla, dünya yıldızı ol. Kurgusal bir futbolcu kariyer oyunu: maçta yalnızca kritik anları oynarsın, kararların uzun vadeli sonuçları olur.
 
-> **Durum:** Faz 5 — tüm mini oyunlar (şut, bire bir, penaltı, serbest vuruş, kafa, pas, dribling, müdahale) hazır. Önceki: Faz 4 — haftalık yaşam döngüsü (antrenman, kondisyon/form/moral, sakatlık, hafta özeti) hazır. Önceki: Faz 3 — şut mini oyunu (Flame) ve maç akışı (kritik an → mini oyun → özet) hazır; Ana Sayfa'daki "Maçı Oyna" ile denenebilir. Önceki: Faz 2 — oyuncu, kayıt, kurgusal lig piramidi, fikstür ve seed'li maç simülasyonu hazır (ana menüdeki "Lig Simülatörü" ile denenebilir); mini oyunlar henüz yok.
-> ▶ Oyna: _GitHub Pages bağlantısı Faz 9'da eklenecek._
+> **Durum:** Faz 8 tamam; Faz 9 (cila ve yayın) sürüyor. Tüm sistemler oynanabilir: kariyer, maç + mini oyunlar, transfer/ekonomi, olaylar, milli takım, başarımlar, emeklilik.
+> ▶ Oyna: GitHub Pages yayınlanınca `https://<kullanıcı>.github.io/<depo>/` adresinde (bkz. Yayın).
 
 **Felsefe:** reklam yok, gerçek para yok, enerji bekleme süresi yok. İlerleme yalnızca karar ve becerinle olur. Tüm kulüp, oyuncu ve lig isimleri kurguseldir.
 
-## Özellikler (planlanan)
+## Özellikler
 
 - Oyuncu gelişimi, yaş eğrisi, form / kondisyon / moral / sakatlık
 - Seed'li maç simülasyonu + Flame ile mini oyunlar (şut, penaltı, serbest vuruş, pas, dribling, kafa, savunma)
 - Transfer, kontrat, menajer, ekonomi
-- Olay motoru, basın, ilişkiler, başarımlar
+- Olay motoru, basın, ilişkiler
+- Milli takım turnuvaları, 32 başarım, kariyer özeti ve emeklilik
 - 3 kayıt slotu, tamamen offline
 
 Yol haritası ve tasarım: [`docs/GDD.md`](docs/GDD.md), mimari: [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md).
@@ -36,16 +37,22 @@ flutter test
 
 Gereksinim: Flutter 3.35+ (Dart 3.9+).
 
+## Yayın
+
+- **CI** (`.github/workflows/ci.yml`): her push/PR'da `flutter analyze` + `flutter test`.
+- **Web** (`pages.yml`): `main`'e push edilince testler geçerse GitHub Pages'e yayınlanır. Depo ayarlarında Pages kaynağını "GitHub Actions" yapın.
+- **Android** (`android.yml`): `v*` etiketi ya da elle tetikleme ile APK + AAB derler. İmza için `ANDROID_KEYSTORE_B64` ve `ANDROID_KEY_PROPERTIES` (storeFile, storePassword, keyAlias, keyPassword) sırlarını ekleyin; yoksa debug imzası kullanılır.
+
 ## Yol Haritası
 
-Faz 0 Hazırlık ✅ · 1 Oyuncu/kariyer ✅ · 2 Lig + simülasyon ✅ · 3 Şut ✅ · 4 Haftalık döngü ✅ · 5 Diğer mini oyunlar ✅ · 6 Transfer/ekonomi · 7 Olaylar/sosyal · 8 Milli takım/başarım · 9 Cila ve yayın
+Faz 0-8 ✅ · 9 Cila ve yayın (CI/CD, Pages, Android release hazır; ses ve ekran görüntüleri elle test sonrası)
 
 ## Lisans
 
-Henüz belirlenmedi (Faz 9'da eklenecek).
+Henüz belirlenmedi.
 
 ---
 
 ## English summary
 
-**Son Düdük** ("The Final Whistle") is an offline, single-player football career game built with Flutter and Flame, in the spirit of mobile career sims but with deeper long-term consequences and no ads, IAP, or energy timers. You play only the critical moments of each match; the rest is career management. All clubs, players, and leagues are fictional. In-game language is Turkish (localization-ready via ARB files). Currently at Phase 0 (project scaffold).
+**Son Düdük** ("The Final Whistle") is an offline, single-player football career game built with Flutter and Flame, in the spirit of mobile career sims but with deeper long-term consequences and no ads, IAP, or energy timers. You play only the critical moments of each match; the rest is career management. All clubs, players, and leagues are fictional. In-game language is Turkish (localization-ready via ARB files). All gameplay systems are implemented; the project is in its release-polish phase.

@@ -1,5 +1,6 @@
 import '../../../core/game_random.dart';
 import '../../career/difficulty.dart';
+import '../../career/player_status.dart';
 import '../../player/attribute.dart';
 import '../../player/player.dart';
 import 'shot_balance.dart';
@@ -40,12 +41,16 @@ class ShotProfile {
     required this.keeperSkillDelta,
   });
 
-  /// [formBonus]: Faz 4'te form (-10..+10) buradan küçük bir bonus verecek.
+  /// [status]: form hızı artırır; düşük kondisyon hız ve isabet cezası,
+  /// düşük moral küçük bir isabet cezası verir.
   factory ShotProfile.fromPlayer(
     Player player,
     Difficulty difficulty, {
-    double formBonus = 0,
+    PlayerStatus? status,
   }) {
+    final form = status?.form ?? 0;
+    final tired = (60 - (status?.condition ?? 100)).clamp(0.0, 60.0);
+    final lowMorale = (40 - (status?.morale ?? 60)).clamp(0.0, 40.0);
     double n(Attribute a) => player.attributes.raw(a) / 99;
     final shooting = n(Attribute.shooting);
     final finesse = n(Attribute.finesse);
@@ -72,15 +77,18 @@ class ShotProfile {
           ShotBalance.ringSecondsBase *
           (0.85 + ShotBalance.ringSecondsComposureSpan * composure) *
           ringDifficulty *
-          (1 + 0.01 * formBonus),
+          (1 + 0.01 * form) *
+          (1 - tired / 200),
       goodHalfWindow:
           ShotBalance.goodHalfWindow *
           (0.85 + 0.3 * shooting) *
           windowDifficulty,
       sigma:
-          ShotBalance.sigmaBase -
-          ShotBalance.sigmaFinesseGain * finesse -
-          ShotBalance.sigmaShootingGain * shooting,
+          (ShotBalance.sigmaBase -
+              ShotBalance.sigmaFinesseGain * finesse -
+              ShotBalance.sigmaShootingGain * shooting) *
+          (1 + tired / 100) *
+          (1 + lowMorale / 200),
       curveGain:
           ShotBalance.curveGainBase + ShotBalance.curveGainFinesse * finesse,
       powerEfficiency:

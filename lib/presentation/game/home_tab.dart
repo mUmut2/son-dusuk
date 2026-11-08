@@ -3,9 +3,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../app/l10n/app_localizations.dart';
+import '../../domain/career/week_engine.dart';
 import '../l10n_labels.dart';
 import '../providers.dart';
 import '../widgets/player_avatar.dart';
+import '../widgets/status_meters.dart';
 
 /// Ana sayfa: oyuncu kartı ve sıradaki maç yer tutucusu.
 class HomeTab extends ConsumerWidget {
@@ -51,17 +53,35 @@ class HomeTab extends ConsumerWidget {
             ),
           ),
         ),
-        const SizedBox(height: 16),
+        const SizedBox(height: 12),
+        if (career.status.isInjured)
+          InjuryBanner(injury: career.status.injury!),
+        Card(
+          child: Padding(
+            padding: const EdgeInsets.all(16),
+            child: StatusMeters(status: career.status),
+          ),
+        ),
+        const SizedBox(height: 12),
         Card(
           child: ListTile(
             leading: const Icon(Icons.sports_soccer),
-            title: Text(l10n.nextMatch),
-            subtitle: Text(l10n.nextMatchHint),
-            trailing: FilledButton(
-              onPressed: () => context.push('/game/match'),
-              child: Text(l10n.matchPlay),
+            title: Text('${l10n.thisWeek}: ${l10n.phaseName(career.week)}'),
+            subtitle: Text(
+              career.status.isInjured
+                  ? l10n.injuredNoMatch
+                  : WeekEngine.hasMatch(career.week)
+                  ? l10n.matchThisWeek
+                  : l10n.noMatchThisWeek,
             ),
           ),
+        ),
+        const SizedBox(height: 12),
+        FilledButton.icon(
+          style: FilledButton.styleFrom(minimumSize: const Size.fromHeight(56)),
+          icon: const Icon(Icons.event_available),
+          label: Text(l10n.goTraining),
+          onPressed: () => context.go('/game/training'),
         ),
       ],
     );

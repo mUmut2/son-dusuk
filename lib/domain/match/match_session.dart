@@ -101,10 +101,18 @@ class MatchSession {
   }
 
   /// Çözülmemiş tüm anları oyuncu niteliklerine göre otomatik oynatır.
-  void autoPlay(Player player, GameRandom random) {
+  void autoPlay(Player player, GameRandom random, {double performance = 1}) {
     for (final m in moments) {
       if (!_outcomes.containsKey(m)) {
-        resolve(m, MomentResolver.autoResolve(m, player, random));
+        resolve(
+          m,
+          MomentResolver.autoResolve(
+            m,
+            player,
+            random,
+            performance: performance,
+          ),
+        );
       }
     }
   }

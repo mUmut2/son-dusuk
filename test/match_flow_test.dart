@@ -69,7 +69,7 @@ void main() {
 
     expect(find.text('Maç Sonu'), findsOneWidget);
     expect(find.text('Oyuncu Reytingi'), findsOneWidget);
-    expect(find.text('Ana Sayfaya Dön'), findsOneWidget);
+    expect(find.text('Haftayı Bitir'), findsOneWidget);
   });
 
   testWidgets('an adım adım ilerler ve özete ulaşır', (tester) async {

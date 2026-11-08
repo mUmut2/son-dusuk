@@ -993,6 +993,444 @@ abstract class AppLocalizations {
   /// In tr, this message translates to:
   /// **'Şimdilik hazırlık maçı oynayabilirsin; lig maçları kulüp sistemiyle gelecek.'**
   String get nextMatchHint;
+
+  /// No description provided for @statCondition.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kondisyon'**
+  String get statCondition;
+
+  /// No description provided for @statForm.
+  ///
+  /// In tr, this message translates to:
+  /// **'Form'**
+  String get statForm;
+
+  /// No description provided for @statMorale.
+  ///
+  /// In tr, this message translates to:
+  /// **'Moral'**
+  String get statMorale;
+
+  /// No description provided for @injuryBanner.
+  ///
+  /// In tr, this message translates to:
+  /// **'Sakatsın: {type} · {weeks} hafta kaldı'**
+  String injuryBanner(String type, int weeks);
+
+  /// No description provided for @injury_muscle.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kas sakatlığı'**
+  String get injury_muscle;
+
+  /// No description provided for @injury_ligament.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bağ sakatlığı'**
+  String get injury_ligament;
+
+  /// No description provided for @injury_fracture.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kırık'**
+  String get injury_fracture;
+
+  /// No description provided for @trainingTitle.
+  ///
+  /// In tr, this message translates to:
+  /// **'Haftalık Plan'**
+  String get trainingTitle;
+
+  /// No description provided for @focusLabel.
+  ///
+  /// In tr, this message translates to:
+  /// **'Antrenman odağı'**
+  String get focusLabel;
+
+  /// No description provided for @focus_shooting.
+  ///
+  /// In tr, this message translates to:
+  /// **'Şut'**
+  String get focus_shooting;
+
+  /// No description provided for @focus_physical.
+  ///
+  /// In tr, this message translates to:
+  /// **'Fizik'**
+  String get focus_physical;
+
+  /// No description provided for @focus_technical.
+  ///
+  /// In tr, this message translates to:
+  /// **'Teknik'**
+  String get focus_technical;
+
+  /// No description provided for @focus_tactical.
+  ///
+  /// In tr, this message translates to:
+  /// **'Taktik'**
+  String get focus_tactical;
+
+  /// No description provided for @focus_rest.
+  ///
+  /// In tr, this message translates to:
+  /// **'Dinlenme'**
+  String get focus_rest;
+
+  /// No description provided for @intensityLabel.
+  ///
+  /// In tr, this message translates to:
+  /// **'Yoğunluk'**
+  String get intensityLabel;
+
+  /// No description provided for @intensity_light.
+  ///
+  /// In tr, this message translates to:
+  /// **'Hafif'**
+  String get intensity_light;
+
+  /// No description provided for @intensity_normal.
+  ///
+  /// In tr, this message translates to:
+  /// **'Orta'**
+  String get intensity_normal;
+
+  /// No description provided for @intensity_hard.
+  ///
+  /// In tr, this message translates to:
+  /// **'Sert'**
+  String get intensity_hard;
+
+  /// No description provided for @socialLabel.
+  ///
+  /// In tr, this message translates to:
+  /// **'Sosyal hayat'**
+  String get socialLabel;
+
+  /// No description provided for @social_none.
+  ///
+  /// In tr, this message translates to:
+  /// **'Yok'**
+  String get social_none;
+
+  /// No description provided for @social_family.
+  ///
+  /// In tr, this message translates to:
+  /// **'Aile'**
+  String get social_family;
+
+  /// No description provided for @social_friends.
+  ///
+  /// In tr, this message translates to:
+  /// **'Arkadaşlar'**
+  String get social_friends;
+
+  /// No description provided for @social_hobby.
+  ///
+  /// In tr, this message translates to:
+  /// **'Hobi'**
+  String get social_hobby;
+
+  /// No description provided for @trainingHint.
+  ///
+  /// In tr, this message translates to:
+  /// **'Sert antrenman daha çok geliştirir ama kondisyonu eritir ve sakatlık riskini artırır. Düşük kondisyon performansı ve sağlığı bozar.'**
+  String get trainingHint;
+
+  /// No description provided for @playWeekMatch.
+  ///
+  /// In tr, this message translates to:
+  /// **'Maçı Oyna ve Haftayı Bitir'**
+  String get playWeekMatch;
+
+  /// No description provided for @playWeekNoMatch.
+  ///
+  /// In tr, this message translates to:
+  /// **'Haftayı Geçir'**
+  String get playWeekNoMatch;
+
+  /// No description provided for @injuredNoTraining.
+  ///
+  /// In tr, this message translates to:
+  /// **'Sakatken antrenman yapamazsın; bu hafta dinlenmeye çevrilir.'**
+  String get injuredNoTraining;
+
+  /// No description provided for @earlyReturn.
+  ///
+  /// In tr, this message translates to:
+  /// **'Riskli Erken Dönüş'**
+  String get earlyReturn;
+
+  /// No description provided for @earlyReturnBody.
+  ///
+  /// In tr, this message translates to:
+  /// **'Hemen sahaya dönersin ama kondisyonun düşer ve birkaç hafta boyunca tekrar sakatlanma riskin çok yüksek olur. Tekrar sakatlanırsan çok daha uzun sürer.'**
+  String get earlyReturnBody;
+
+  /// No description provided for @earlyReturnConfirm.
+  ///
+  /// In tr, this message translates to:
+  /// **'Dön'**
+  String get earlyReturnConfirm;
+
+  /// No description provided for @weekHeader.
+  ///
+  /// In tr, this message translates to:
+  /// **'Sezon {season} · Hafta {week}'**
+  String weekHeader(int season, int week);
+
+  /// No description provided for @phase_preseason.
+  ///
+  /// In tr, this message translates to:
+  /// **'Hazırlık dönemi'**
+  String get phase_preseason;
+
+  /// No description provided for @phase_regularSeason.
+  ///
+  /// In tr, this message translates to:
+  /// **'Lig turu {round}'**
+  String phase_regularSeason(int round);
+
+  /// No description provided for @phase_offseason.
+  ///
+  /// In tr, this message translates to:
+  /// **'Sezon arası'**
+  String get phase_offseason;
+
+  /// No description provided for @transferWindowOpen.
+  ///
+  /// In tr, this message translates to:
+  /// **'Transfer penceresi açık'**
+  String get transferWindowOpen;
+
+  /// No description provided for @thisWeek.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bu hafta'**
+  String get thisWeek;
+
+  /// No description provided for @matchThisWeek.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bu hafta lig maçı var.'**
+  String get matchThisWeek;
+
+  /// No description provided for @noMatchThisWeek.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bu hafta maç yok.'**
+  String get noMatchThisWeek;
+
+  /// No description provided for @injuredNoMatch.
+  ///
+  /// In tr, this message translates to:
+  /// **'Sakatsın, bu hafta maçta yoksun.'**
+  String get injuredNoMatch;
+
+  /// No description provided for @goTraining.
+  ///
+  /// In tr, this message translates to:
+  /// **'Haftayı Planla'**
+  String get goTraining;
+
+  /// No description provided for @weekSummaryTitle.
+  ///
+  /// In tr, this message translates to:
+  /// **'Hafta Özeti'**
+  String get weekSummaryTitle;
+
+  /// No description provided for @summaryWeekOf.
+  ///
+  /// In tr, this message translates to:
+  /// **'Sezon {season}, Hafta {week}'**
+  String summaryWeekOf(int season, int week);
+
+  /// No description provided for @attributeGainsTitle.
+  ///
+  /// In tr, this message translates to:
+  /// **'Gelişim'**
+  String get attributeGainsTitle;
+
+  /// No description provided for @changesTitle.
+  ///
+  /// In tr, this message translates to:
+  /// **'Ne değişti, neden?'**
+  String get changesTitle;
+
+  /// No description provided for @statLine.
+  ///
+  /// In tr, this message translates to:
+  /// **'{stat}: {before} → {after}'**
+  String statLine(String stat, int before, int after);
+
+  /// No description provided for @reason_recovery.
+  ///
+  /// In tr, this message translates to:
+  /// **'Haftalık toparlanma'**
+  String get reason_recovery;
+
+  /// No description provided for @reason_trainingLight.
+  ///
+  /// In tr, this message translates to:
+  /// **'Hafif antrenman'**
+  String get reason_trainingLight;
+
+  /// No description provided for @reason_trainingNormal.
+  ///
+  /// In tr, this message translates to:
+  /// **'Orta antrenman'**
+  String get reason_trainingNormal;
+
+  /// No description provided for @reason_trainingHard.
+  ///
+  /// In tr, this message translates to:
+  /// **'Sert antrenman'**
+  String get reason_trainingHard;
+
+  /// No description provided for @reason_restFocus.
+  ///
+  /// In tr, this message translates to:
+  /// **'Dinlenme'**
+  String get reason_restFocus;
+
+  /// No description provided for @reason_match.
+  ///
+  /// In tr, this message translates to:
+  /// **'Maç yorgunluğu'**
+  String get reason_match;
+
+  /// No description provided for @reason_socialFamily.
+  ///
+  /// In tr, this message translates to:
+  /// **'Aileyle zaman'**
+  String get reason_socialFamily;
+
+  /// No description provided for @reason_socialFriends.
+  ///
+  /// In tr, this message translates to:
+  /// **'Arkadaşlarla zaman'**
+  String get reason_socialFriends;
+
+  /// No description provided for @reason_socialHobby.
+  ///
+  /// In tr, this message translates to:
+  /// **'Hobi'**
+  String get reason_socialHobby;
+
+  /// No description provided for @reason_matchWin.
+  ///
+  /// In tr, this message translates to:
+  /// **'Galibiyet'**
+  String get reason_matchWin;
+
+  /// No description provided for @reason_matchLoss.
+  ///
+  /// In tr, this message translates to:
+  /// **'Mağlubiyet'**
+  String get reason_matchLoss;
+
+  /// No description provided for @reason_greatPerformance.
+  ///
+  /// In tr, this message translates to:
+  /// **'Parlak performans'**
+  String get reason_greatPerformance;
+
+  /// No description provided for @reason_poorPerformance.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kötü performans'**
+  String get reason_poorPerformance;
+
+  /// No description provided for @reason_injured.
+  ///
+  /// In tr, this message translates to:
+  /// **'Sakatlık süreci'**
+  String get reason_injured;
+
+  /// No description provided for @reason_injuryOnset.
+  ///
+  /// In tr, this message translates to:
+  /// **'Sakatlanma'**
+  String get reason_injuryOnset;
+
+  /// No description provided for @reason_healed.
+  ///
+  /// In tr, this message translates to:
+  /// **'İyileşme'**
+  String get reason_healed;
+
+  /// No description provided for @reason_exhausted.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bitkinlik'**
+  String get reason_exhausted;
+
+  /// No description provided for @reason_formFromRatings.
+  ///
+  /// In tr, this message translates to:
+  /// **'Son maç reytingleri'**
+  String get reason_formFromRatings;
+
+  /// No description provided for @reason_formFades.
+  ///
+  /// In tr, this message translates to:
+  /// **'Maç yok, form sönüyor'**
+  String get reason_formFades;
+
+  /// No description provided for @reason_earlyReturn.
+  ///
+  /// In tr, this message translates to:
+  /// **'Erken dönüş'**
+  String get reason_earlyReturn;
+
+  /// No description provided for @reason_drift.
+  ///
+  /// In tr, this message translates to:
+  /// **'Zamanla dengelenme'**
+  String get reason_drift;
+
+  /// No description provided for @eventInjured.
+  ///
+  /// In tr, this message translates to:
+  /// **'Sakatlandın: {type} ({weeks} hafta).'**
+  String eventInjured(String type, int weeks);
+
+  /// No description provided for @eventRelapse.
+  ///
+  /// In tr, this message translates to:
+  /// **'Tekrar sakatlandın: {type} ({weeks} hafta).'**
+  String eventRelapse(String type, int weeks);
+
+  /// No description provided for @eventHealed.
+  ///
+  /// In tr, this message translates to:
+  /// **'Sakatlığın iyileşti, sahaya dönebilirsin.'**
+  String get eventHealed;
+
+  /// No description provided for @eventNewSeason.
+  ///
+  /// In tr, this message translates to:
+  /// **'Yeni sezon başladı! {age} yaşına girdin.'**
+  String eventNewSeason(int age);
+
+  /// No description provided for @eventTrainingBlocked.
+  ///
+  /// In tr, this message translates to:
+  /// **'Sakat olduğun için antrenman dinlenmeye çevrildi.'**
+  String get eventTrainingBlocked;
+
+  /// No description provided for @continueButton.
+  ///
+  /// In tr, this message translates to:
+  /// **'Devam'**
+  String get continueButton;
+
+  /// No description provided for @finishWeek.
+  ///
+  /// In tr, this message translates to:
+  /// **'Haftayı Bitir'**
+  String get finishWeek;
 }
 
 class _AppLocalizationsDelegate

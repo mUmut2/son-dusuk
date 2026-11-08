@@ -18,7 +18,7 @@
 | Kayıt sistemi (3 slot), ayarlar | 1 | Tamam |
 | Lig, fikstür, maç simülasyonu, kritik anlar | 2 | Tamam |
 | Şut mini oyunu (Flame) + maç akışı | 3 | Tamam (elle oynanış testi bekliyor) |
-| Form/kondisyon/moral/sakatlık, haftalık döngü | 4 | Planlı |
+| Form/kondisyon/moral/sakatlık, haftalık döngü | 4 | Tamam (elle oynanış testi bekliyor) |
 | Penaltı, serbest vuruş, pas, dribling, kafa, savunma | 5 | Planlı |
 | Transfer, kontrat, menajer, ekonomi | 6 | Planlı |
 | Sosyal sistemler, olay motoru, basın | 7 | Planlı |
@@ -102,6 +102,28 @@ Parametreler: `lib/domain/match/shot/shot_balance.dart`. Çözüm: `ShotResolver
 
 > Bilinen sınır: elle oynanış hissi (halka hızı, nişan toleransı) gerçek cihazda ayarlanmalı; değerler `shot_balance.dart` içindedir.
 
+
+### 3.5 Haftalık yaşam döngüsü (Faz 4)
+
+Parametreler: `lib/domain/career/week_balance.dart`. Motor: `WeekEngine.advance` (saf Dart, seed'li). Her hafta: **antrenman odağı** (Şut / Fizik / Teknik / Taktik / Dinlenme) + **yoğunluk** (Hafif / Orta / Sert) + **sosyal hayat** (Yok / Aile / Arkadaşlar / Hobi) seçilir; lig haftalarında (hafta 5-38) maç oynanır. Sonunda özet ekranı "ne değişti, neden" gösterir ve kayıt otomatik alınır.
+
+**Kondisyon (0-100):** haftalık toparlanma +30; antrenman -5 / -10 / -18; dinlenme odağı +15; maç -15; arkadaşlarla -3, hobi +2. Orta antrenman + maç dengededir; sürekli sert antrenman + maç kondisyonu eritir (ölçülen ort. 100 → 75).
+
+**Antrenman kazancı:** odaktaki her nitelik için hafta başına `0.05 × yoğunluk(0.6/1/1.5) × (0.6+0.8·profesyonellik) × yaş çarpanı(1/0.7/0.4/0.2) × tavan boşluğu`. Doğal yaşlanma gelişimi (yıllık) ayrıca sürer; antrenman bunun üstüne bonus ekler.
+
+**Sakatlık:** haftalık risk = `0.01 + 0.015·eğilim + düşük kondisyon (60 altında, 0'da +0.06) + maç 0.01 + yoğunluk (0 / 0.005 / 0.015) + tekrar riski`. Türler: kas %60 (1-4 hf), bağ %30 (4-10 hf), kırık %10 (8-16 hf). Sakatken antrenman dinlenmeye çevrilir, maç yok; dinlenme odağı iyileşmeyi %25 olasılıkla bir hafta kısaltır. Ölçülen: normal planda ~1.15 sakatlık/sezon, sürekli sert planda ~1.6.
+**Riskli erken dönüş:** sakatlık anında biter, kondisyon -10, tekrar sakatlanma riski 0.35 (haftalık yarıya iner); tekrar sakatlanma süreyi ×1.5 yapar. Testte dönüşten sonra sakatlanma ihtimali sağlıklı oyuncunun >5 katı.
+
+**Form (-10..+10):** son 5 maç reytinginin ortalaması: `(ort - 6) × 5`. Maç yoksa her hafta %20 söner; sakatken haftada 1 puan sıfıra yaklaşır.
+
+**Moral (0-100):** galibiyet +3, mağlubiyet -3, reyting ≥7.5 +3 / ≤5 -3, sakatlık sürerken -2/hf, sakatlanma anı -6, iyileşme +3, bitkinlik (kondisyon <30) -3, sert antrenman -1, sosyal: aile +4 / arkadaş +5 / hobi +3; ayrıca haftada boşluğun %8'i kadar 60'a doğru dengelenir.
+
+**Performans çarpanı:** `1 + 0.01·form − 0.004·(60−kondisyon) − 0.003·(40−moral)` (0.6-1.15). Mini oyunda form halkayı yavaşlatır; düşük kondisyon halkayı hızlandırıp sapmayı büyütür, düşük moral sapmayı biraz büyütür. Otomatik çözümde olasılıklar bu çarpanla çarpılır.
+
+**Zincir:** düşük kondisyon → sakatlık riski ↑ → sakatlık = maç yok → form sönümü → moral düşüşü → performans çarpanı ↓.
+
+Kayıt şeması 2'ye çıktı (durum + istatistik alanları); v1 kayıtları `SaveMigrator` ile varsayılan değerlerle yükseltilir. Medya ve sponsor kararları Faz 6-7'de eklenecek.
+
 ## 4. Tasarım kararları ve gerekçeleri
 
 | Karar | Gerekçe |
@@ -118,4 +140,6 @@ Parametreler: `lib/domain/match/shot/shot_balance.dart`. Çözüm: `ShotResolver
 | Nitelikler içeride `double`, dışarıda `int` | Yıllık küçük gelişimler yuvarlamada kaybolmaz; ileride haftalık antrenman da aynı modele oturur. |
 | Gizli nitelikler arayüzde gösterilmez | Potansiyel ve profesyonellik keşfedilen bir sürpriz olarak kalır. |
 | Kayıt zarfı `{schemaVersion, savedAt, career}` + `SaveMigrator` | Şema değişince eski kayıtlar adım adım yükseltilir; bozuk veya daha yeni sürüm kayıt çökmeden "bozuk" işaretlenir. |
+| Haftalık motor tek fonksiyon (`WeekEngine.advance`) | Tüm haftalık sonuçlar tek yerde, seed'li testlerle doğrulanır; UI yalnızca plan toplar ve raporu gösterir. Rapor her değişimin NEDENİNİ taşır. |
+| Zaman kısıtı: seçimlerin bedeli var | Sert antrenman + arkadaşlarla zaman kondisyonu eritir, dinlenmek gelişimi durdurur; ayrı bir 'zaman bütçesi' yerine bu ödünleşmeler kullanıldı. |
 | Zorluk yalnızca ayar | Ekonomi/ilerleme satın alınamaz; zorluk mini oyun toleransı ve rakip gücüne bağlanacak (Faz 3+). |

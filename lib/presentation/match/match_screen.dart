@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../app/l10n/app_localizations.dart';
 import '../../core/game_random.dart';
+import '../../domain/career/week_engine.dart';
 import '../../domain/league/league_factory.dart';
 import '../../domain/league/team.dart';
 import '../../domain/match/critical_moment.dart';
@@ -38,13 +39,15 @@ class _MatchScreenState extends ConsumerState<MatchScreen> {
   late final MatchSession _session;
 
   _Stage _stage = _Stage.preMatch;
+  bool _finishing = false;
   CriticalMoment? _moment;
   MomentOutcome? _lastOutcome;
 
   @override
   void initState() {
     super.initState();
-    final player = ref.read(activeCareerProvider)!.state.player;
+    final career = ref.read(activeCareerProvider)!.state;
+    final player = career.player;
     final league = LeagueFactory.createPyramid(_random).last; // amatör lig
     final i = _random.nextInt(league.teams.length);
     final j =
@@ -88,14 +91,46 @@ class _MatchScreenState extends ConsumerState<MatchScreen> {
   }
 
   void _autoResolve() {
-    final player = ref.read(activeCareerProvider)!.state.player;
-    _resolve(MomentResolver.autoResolve(_moment!, player, _random));
+    final career = ref.read(activeCareerProvider)!.state;
+    _resolve(
+      MomentResolver.autoResolve(
+        _moment!,
+        career.player,
+        _random,
+        performance: career.status.performanceMultiplier,
+      ),
+    );
   }
 
   void _quickSimRest() {
-    final player = ref.read(activeCareerProvider)!.state.player;
-    _session.autoPlay(player, _random);
+    final career = ref.read(activeCareerProvider)!.state;
+    _session.autoPlay(
+      career.player,
+      _random,
+      performance: career.status.performanceMultiplier,
+    );
     setState(() => _stage = _Stage.summary);
+  }
+
+  Future<void> _finishWeek(double rating, int own, int other) async {
+    setState(() => _finishing = true);
+    final goals = _session.result.goals;
+    await ref
+        .read(activeCareerProvider.notifier)
+        .playWeek(
+          WeekMatch(
+            rating: rating,
+            goals: goals.where((g) => g.byPlayer).length,
+            assists: goals.where((g) => g.assistedByPlayer).length,
+            result: own > other
+                ? MatchResultKind.win
+                : own < other
+                ? MatchResultKind.loss
+                : MatchResultKind.draw,
+          ),
+        );
+    if (!mounted) return;
+    context.go('/game/week');
   }
 
   void _onShotFinished(ShotResult result) {
@@ -140,10 +175,11 @@ class _MatchScreenState extends ConsumerState<MatchScreen> {
   }
 
   Widget _buildShotGame(AppLocalizations l10n) {
-    final player = ref.read(activeCareerProvider)!.state.player;
+    final career = ref.read(activeCareerProvider)!.state;
     final settings = ref.read(settingsProvider);
     return ShotGameView(
-      player: player,
+      player: career.player,
+      status: career.status,
       difficulty: settings.difficulty,
       vibration: settings.vibrationOn,
       random: _random,
@@ -347,8 +383,8 @@ class _MatchScreenState extends ConsumerState<MatchScreen> {
         ),
         FilledButton(
           style: FilledButton.styleFrom(minimumSize: const Size.fromHeight(56)),
-          onPressed: () => context.go('/game'),
-          child: Text(l10n.backHome),
+          onPressed: _finishing ? null : () => _finishWeek(rating, own, other),
+          child: Text(l10n.finishWeek),
         ),
       ],
     );

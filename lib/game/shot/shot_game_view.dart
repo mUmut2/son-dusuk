@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 
 import '../../core/game_random.dart';
 import '../../domain/career/difficulty.dart';
+import '../../domain/career/player_status.dart';
 import '../../domain/match/shot/shot_models.dart';
 import '../../domain/player/player.dart';
 import 'shot_game.dart';
@@ -13,6 +14,7 @@ class ShotGameView extends StatefulWidget {
   const ShotGameView({
     required this.player,
     required this.difficulty,
+    this.status,
     required this.labels,
     required this.onFinished,
     this.vibration = true,
@@ -22,6 +24,7 @@ class ShotGameView extends StatefulWidget {
 
   final Player player;
   final Difficulty difficulty;
+  final PlayerStatus? status;
   final ShotGameLabels labels;
   final void Function(ShotResult result) onFinished;
   final bool vibration;
@@ -40,7 +43,11 @@ class _ShotGameViewState extends State<ShotGameView> {
   void initState() {
     super.initState();
     final random = widget.random ?? GameRandom();
-    final profile = ShotProfile.fromPlayer(widget.player, widget.difficulty);
+    final profile = ShotProfile.fromPlayer(
+      widget.player,
+      widget.difficulty,
+      status: widget.status,
+    );
     _game = ShotGame(
       profile: profile,
       shotContext: ShotContext.random(

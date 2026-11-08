@@ -5,6 +5,8 @@ import '../presentation/create/create_player_screen.dart';
 import '../presentation/game/game_shell.dart';
 import '../presentation/game/home_tab.dart';
 import '../presentation/game/profile_tab.dart';
+import '../presentation/game/training_tab.dart';
+import '../presentation/game/week_summary_screen.dart';
 import '../presentation/match/match_screen.dart';
 import '../presentation/menu/main_menu_screen.dart';
 import '../presentation/providers.dart';
@@ -33,6 +35,10 @@ final routerProvider = Provider<GoRouter>((ref) {
         builder: (context, state) => const MatchScreen(),
       ),
       GoRoute(
+        path: '/game/week',
+        builder: (context, state) => const WeekSummaryScreen(),
+      ),
+      GoRoute(
         path: '/simulator',
         builder: (context, state) => const SeasonSimulatorScreen(),
       ),
@@ -55,9 +61,7 @@ final routerProvider = Provider<GoRouter>((ref) {
             routes: [
               GoRoute(
                 path: '/game/training',
-                builder: (context, state) => PlaceholderTab(
-                  title: AppLocalizations.of(context).navTraining,
-                ),
+                builder: (context, state) => const TrainingTab(),
               ),
             ],
           ),

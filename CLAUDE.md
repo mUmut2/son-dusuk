@@ -17,7 +17,7 @@ Kurgusal, tamamen offline bir futbolcu kariyer oyunu (Flutter). 16 yaşında ba�
 
 ## Faz planı
 
-0 Hazırlık ✅ · 1 Oyuncu/kariyer çekirdeği ✅ · 2 Takvim+lig+maç simülasyonu ✅ · 3 Şut mini oyunu (Flame) ✅ · 4 Haftalık yaşam döngüsü · 5 Diğer mini oyunlar · 6 Transfer/kontrat/menajer/ekonomi · 7 Sosyal/olay motoru · 8 Milli takım/başarım/emeklilik · 9 Cila ve yayın (CI/CD, Pages, README görselleri, Android release).
+0 Hazırlık ✅ · 1 Oyuncu/kariyer çekirdeği ✅ · 2 Takvim+lig+maç simülasyonu ✅ · 3 Şut mini oyunu (Flame) ✅ · 4 Haftalık yaşam döngüsü ✅ · 5 Diğer mini oyunlar · 6 Transfer/kontrat/menajer/ekonomi · 7 Sosyal/olay motoru · 8 Milli takım/başarım/emeklilik · 9 Cila ve yayın (CI/CD, Pages, README görselleri, Android release).
 
 ## Mimari kuralları
 
@@ -42,6 +42,7 @@ lib/
 - Maç denge parametreleri yalnızca `lib/domain/match/match_balance.dart`'ta; değiştirince `dart run tool/match_stats.dart` ile istatistiği kontrol et ve `test/domain/match` testlerini çalıştır.
 - Oyuncunun maçı `MatchSession` ile yürür (anlar -> `MomentOutcome` -> skor). Mini oyunlar `MomentOutcome` döndürür.
 - Mini oyun deseni: fizik/sonuç `domain/match/<oyun>/` içinde saf Dart (`*_resolver.dart`, `*_balance.dart`), Flame oyunu `lib/game/<oyun>/` içinde yalnızca girdi + animasyon, swipe/koordinat mantığı `*_geometry.dart` (test edilebilir). Sonuç `MomentOutcome`'a çevrilir. Denge için `dart run tool/shot_stats.dart`.
+- Haftalık döngü: `WeekEngine.advance(state, plan, match, random)` tek giriş noktası; denge `week_balance.dart`. Kayıt şeması 2; şemayı değiştirince `save_migrations.dart`'a adım ekle. Mini oyunlar `PlayerStatus` (form/kondisyon/moral) kullanır.
 - Gizli nitelikler (potansiyel, sakatlanma eğilimi, profesyonellik) arayüzde gösterilmez.
 
 ## Komutlar

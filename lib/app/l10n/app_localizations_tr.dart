@@ -497,4 +497,243 @@ class AppLocalizationsTr extends AppLocalizations {
   @override
   String get nextMatchHint =>
       'Şimdilik hazırlık maçı oynayabilirsin; lig maçları kulüp sistemiyle gelecek.';
+
+  @override
+  String get statCondition => 'Kondisyon';
+
+  @override
+  String get statForm => 'Form';
+
+  @override
+  String get statMorale => 'Moral';
+
+  @override
+  String injuryBanner(String type, int weeks) {
+    return 'Sakatsın: $type · $weeks hafta kaldı';
+  }
+
+  @override
+  String get injury_muscle => 'Kas sakatlığı';
+
+  @override
+  String get injury_ligament => 'Bağ sakatlığı';
+
+  @override
+  String get injury_fracture => 'Kırık';
+
+  @override
+  String get trainingTitle => 'Haftalık Plan';
+
+  @override
+  String get focusLabel => 'Antrenman odağı';
+
+  @override
+  String get focus_shooting => 'Şut';
+
+  @override
+  String get focus_physical => 'Fizik';
+
+  @override
+  String get focus_technical => 'Teknik';
+
+  @override
+  String get focus_tactical => 'Taktik';
+
+  @override
+  String get focus_rest => 'Dinlenme';
+
+  @override
+  String get intensityLabel => 'Yoğunluk';
+
+  @override
+  String get intensity_light => 'Hafif';
+
+  @override
+  String get intensity_normal => 'Orta';
+
+  @override
+  String get intensity_hard => 'Sert';
+
+  @override
+  String get socialLabel => 'Sosyal hayat';
+
+  @override
+  String get social_none => 'Yok';
+
+  @override
+  String get social_family => 'Aile';
+
+  @override
+  String get social_friends => 'Arkadaşlar';
+
+  @override
+  String get social_hobby => 'Hobi';
+
+  @override
+  String get trainingHint =>
+      'Sert antrenman daha çok geliştirir ama kondisyonu eritir ve sakatlık riskini artırır. Düşük kondisyon performansı ve sağlığı bozar.';
+
+  @override
+  String get playWeekMatch => 'Maçı Oyna ve Haftayı Bitir';
+
+  @override
+  String get playWeekNoMatch => 'Haftayı Geçir';
+
+  @override
+  String get injuredNoTraining =>
+      'Sakatken antrenman yapamazsın; bu hafta dinlenmeye çevrilir.';
+
+  @override
+  String get earlyReturn => 'Riskli Erken Dönüş';
+
+  @override
+  String get earlyReturnBody =>
+      'Hemen sahaya dönersin ama kondisyonun düşer ve birkaç hafta boyunca tekrar sakatlanma riskin çok yüksek olur. Tekrar sakatlanırsan çok daha uzun sürer.';
+
+  @override
+  String get earlyReturnConfirm => 'Dön';
+
+  @override
+  String weekHeader(int season, int week) {
+    return 'Sezon $season · Hafta $week';
+  }
+
+  @override
+  String get phase_preseason => 'Hazırlık dönemi';
+
+  @override
+  String phase_regularSeason(int round) {
+    return 'Lig turu $round';
+  }
+
+  @override
+  String get phase_offseason => 'Sezon arası';
+
+  @override
+  String get transferWindowOpen => 'Transfer penceresi açık';
+
+  @override
+  String get thisWeek => 'Bu hafta';
+
+  @override
+  String get matchThisWeek => 'Bu hafta lig maçı var.';
+
+  @override
+  String get noMatchThisWeek => 'Bu hafta maç yok.';
+
+  @override
+  String get injuredNoMatch => 'Sakatsın, bu hafta maçta yoksun.';
+
+  @override
+  String get goTraining => 'Haftayı Planla';
+
+  @override
+  String get weekSummaryTitle => 'Hafta Özeti';
+
+  @override
+  String summaryWeekOf(int season, int week) {
+    return 'Sezon $season, Hafta $week';
+  }
+
+  @override
+  String get attributeGainsTitle => 'Gelişim';
+
+  @override
+  String get changesTitle => 'Ne değişti, neden?';
+
+  @override
+  String statLine(String stat, int before, int after) {
+    return '$stat: $before → $after';
+  }
+
+  @override
+  String get reason_recovery => 'Haftalık toparlanma';
+
+  @override
+  String get reason_trainingLight => 'Hafif antrenman';
+
+  @override
+  String get reason_trainingNormal => 'Orta antrenman';
+
+  @override
+  String get reason_trainingHard => 'Sert antrenman';
+
+  @override
+  String get reason_restFocus => 'Dinlenme';
+
+  @override
+  String get reason_match => 'Maç yorgunluğu';
+
+  @override
+  String get reason_socialFamily => 'Aileyle zaman';
+
+  @override
+  String get reason_socialFriends => 'Arkadaşlarla zaman';
+
+  @override
+  String get reason_socialHobby => 'Hobi';
+
+  @override
+  String get reason_matchWin => 'Galibiyet';
+
+  @override
+  String get reason_matchLoss => 'Mağlubiyet';
+
+  @override
+  String get reason_greatPerformance => 'Parlak performans';
+
+  @override
+  String get reason_poorPerformance => 'Kötü performans';
+
+  @override
+  String get reason_injured => 'Sakatlık süreci';
+
+  @override
+  String get reason_injuryOnset => 'Sakatlanma';
+
+  @override
+  String get reason_healed => 'İyileşme';
+
+  @override
+  String get reason_exhausted => 'Bitkinlik';
+
+  @override
+  String get reason_formFromRatings => 'Son maç reytingleri';
+
+  @override
+  String get reason_formFades => 'Maç yok, form sönüyor';
+
+  @override
+  String get reason_earlyReturn => 'Erken dönüş';
+
+  @override
+  String get reason_drift => 'Zamanla dengelenme';
+
+  @override
+  String eventInjured(String type, int weeks) {
+    return 'Sakatlandın: $type ($weeks hafta).';
+  }
+
+  @override
+  String eventRelapse(String type, int weeks) {
+    return 'Tekrar sakatlandın: $type ($weeks hafta).';
+  }
+
+  @override
+  String get eventHealed => 'Sakatlığın iyileşti, sahaya dönebilirsin.';
+
+  @override
+  String eventNewSeason(int age) {
+    return 'Yeni sezon başladı! $age yaşına girdin.';
+  }
+
+  @override
+  String get eventTrainingBlocked =>
+      'Sakat olduğun için antrenman dinlenmeye çevrildi.';
+
+  @override
+  String get continueButton => 'Devam';
+
+  @override
+  String get finishWeek => 'Haftayı Bitir';
 }

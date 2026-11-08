@@ -1,3 +1,4 @@
+import '../domain/career/player_status.dart';
 import 'save_repository.dart';
 
 /// Şema [from] sürümünden bir üst sürüme dönüştüren adım.
@@ -7,9 +8,17 @@ typedef MigrationStep = Map<String, dynamic> Function(Map<String, dynamic> e);
 ///
 /// Şema değiştiğinde: [currentSchemaVersion]'ı artır ve `steps`'e
 /// `eskiSürüm: dönüştürücü` ekle.
-const int currentSchemaVersion = 1;
+const int currentSchemaVersion = 2;
 
-const Map<int, MigrationStep> _defaultSteps = {};
+const Map<int, MigrationStep> _defaultSteps = {1: _v1ToV2};
+
+/// v1 -> v2 (Faz 4): kondisyon/form/moral/sakatlık ve istatistik alanları.
+Map<String, dynamic> _v1ToV2(Map<String, dynamic> envelope) {
+  final career = Map<String, dynamic>.from(envelope['career'] as Map);
+  career.putIfAbsent('status', () => const PlayerStatus().toJson());
+  career.putIfAbsent('stats', () => const CareerStats().toJson());
+  return {...envelope, 'career': career};
+}
 
 class SaveMigrator {
   const SaveMigrator({

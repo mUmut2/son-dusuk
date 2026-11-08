@@ -270,5 +270,155 @@
   "shotWood": "Direkten döndü!",
   "shotTimeout": "Fırsat kaçtı!",
   "shotPerfect": "Mükemmel zamanlama!",
-  "nextMatchHint": "Şimdilik hazırlık maçı oynayabilirsin; lig maçları kulüp sistemiyle gelecek."
+  "nextMatchHint": "Şimdilik hazırlık maçı oynayabilirsin; lig maçları kulüp sistemiyle gelecek.",
+  "statCondition": "Kondisyon",
+  "statForm": "Form",
+  "statMorale": "Moral",
+  "injuryBanner": "Sakatsın: {type} · {weeks} hafta kaldı",
+  "@injuryBanner": {
+    "placeholders": {
+      "type": {
+        "type": "String"
+      },
+      "weeks": {
+        "type": "int"
+      }
+    }
+  },
+  "injury_muscle": "Kas sakatlığı",
+  "injury_ligament": "Bağ sakatlığı",
+  "injury_fracture": "Kırık",
+  "trainingTitle": "Haftalık Plan",
+  "focusLabel": "Antrenman odağı",
+  "focus_shooting": "Şut",
+  "focus_physical": "Fizik",
+  "focus_technical": "Teknik",
+  "focus_tactical": "Taktik",
+  "focus_rest": "Dinlenme",
+  "intensityLabel": "Yoğunluk",
+  "intensity_light": "Hafif",
+  "intensity_normal": "Orta",
+  "intensity_hard": "Sert",
+  "socialLabel": "Sosyal hayat",
+  "social_none": "Yok",
+  "social_family": "Aile",
+  "social_friends": "Arkadaşlar",
+  "social_hobby": "Hobi",
+  "trainingHint": "Sert antrenman daha çok geliştirir ama kondisyonu eritir ve sakatlık riskini artırır. Düşük kondisyon performansı ve sağlığı bozar.",
+  "playWeekMatch": "Maçı Oyna ve Haftayı Bitir",
+  "playWeekNoMatch": "Haftayı Geçir",
+  "injuredNoTraining": "Sakatken antrenman yapamazsın; bu hafta dinlenmeye çevrilir.",
+  "earlyReturn": "Riskli Erken Dönüş",
+  "earlyReturnBody": "Hemen sahaya dönersin ama kondisyonun düşer ve birkaç hafta boyunca tekrar sakatlanma riskin çok yüksek olur. Tekrar sakatlanırsan çok daha uzun sürer.",
+  "earlyReturnConfirm": "Dön",
+  "weekHeader": "Sezon {season} · Hafta {week}",
+  "@weekHeader": {
+    "placeholders": {
+      "season": {
+        "type": "int"
+      },
+      "week": {
+        "type": "int"
+      }
+    }
+  },
+  "phase_preseason": "Hazırlık dönemi",
+  "phase_regularSeason": "Lig turu {round}",
+  "@phase_regularSeason": {
+    "placeholders": {
+      "round": {
+        "type": "int"
+      }
+    }
+  },
+  "phase_offseason": "Sezon arası",
+  "transferWindowOpen": "Transfer penceresi açık",
+  "thisWeek": "Bu hafta",
+  "matchThisWeek": "Bu hafta lig maçı var.",
+  "noMatchThisWeek": "Bu hafta maç yok.",
+  "injuredNoMatch": "Sakatsın, bu hafta maçta yoksun.",
+  "goTraining": "Haftayı Planla",
+  "weekSummaryTitle": "Hafta Özeti",
+  "summaryWeekOf": "Sezon {season}, Hafta {week}",
+  "@summaryWeekOf": {
+    "placeholders": {
+      "season": {
+        "type": "int"
+      },
+      "week": {
+        "type": "int"
+      }
+    }
+  },
+  "attributeGainsTitle": "Gelişim",
+  "changesTitle": "Ne değişti, neden?",
+  "statLine": "{stat}: {before} → {after}",
+  "@statLine": {
+    "placeholders": {
+      "stat": {
+        "type": "String"
+      },
+      "before": {
+        "type": "int"
+      },
+      "after": {
+        "type": "int"
+      }
+    }
+  },
+  "reason_recovery": "Haftalık toparlanma",
+  "reason_trainingLight": "Hafif antrenman",
+  "reason_trainingNormal": "Orta antrenman",
+  "reason_trainingHard": "Sert antrenman",
+  "reason_restFocus": "Dinlenme",
+  "reason_match": "Maç yorgunluğu",
+  "reason_socialFamily": "Aileyle zaman",
+  "reason_socialFriends": "Arkadaşlarla zaman",
+  "reason_socialHobby": "Hobi",
+  "reason_matchWin": "Galibiyet",
+  "reason_matchLoss": "Mağlubiyet",
+  "reason_greatPerformance": "Parlak performans",
+  "reason_poorPerformance": "Kötü performans",
+  "reason_injured": "Sakatlık süreci",
+  "reason_injuryOnset": "Sakatlanma",
+  "reason_healed": "İyileşme",
+  "reason_exhausted": "Bitkinlik",
+  "reason_formFromRatings": "Son maç reytingleri",
+  "reason_formFades": "Maç yok, form sönüyor",
+  "reason_earlyReturn": "Erken dönüş",
+  "reason_drift": "Zamanla dengelenme",
+  "eventInjured": "Sakatlandın: {type} ({weeks} hafta).",
+  "@eventInjured": {
+    "placeholders": {
+      "type": {
+        "type": "String"
+      },
+      "weeks": {
+        "type": "int"
+      }
+    }
+  },
+  "eventRelapse": "Tekrar sakatlandın: {type} ({weeks} hafta).",
+  "@eventRelapse": {
+    "placeholders": {
+      "type": {
+        "type": "String"
+      },
+      "weeks": {
+        "type": "int"
+      }
+    }
+  },
+  "eventHealed": "Sakatlığın iyileşti, sahaya dönebilirsin.",
+  "eventNewSeason": "Yeni sezon başladı! {age} yaşına girdin.",
+  "@eventNewSeason": {
+    "placeholders": {
+      "age": {
+        "type": "int"
+      }
+    }
+  },
+  "eventTrainingBlocked": "Sakat olduğun için antrenman dinlenmeye çevrildi.",
+  "continueButton": "Devam",
+  "finishWeek": "Haftayı Bitir"
 }

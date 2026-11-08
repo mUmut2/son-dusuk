@@ -4,7 +4,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../data/save_repository.dart';
 import '../data/settings_repository.dart';
 import '../domain/career/career_state.dart';
+import '../core/game_random.dart';
 import '../domain/career/difficulty.dart';
+import '../domain/career/week_engine.dart';
+import '../domain/career/weekly_plan.dart';
 
 /// `main()` içinde gerçek örnekle, testlerde sahte örnekle override edilir.
 final sharedPreferencesProvider = Provider<SharedPreferences>(
@@ -73,6 +76,27 @@ class ActiveCareerNotifier extends Notifier<ActiveCareer?> {
     ref.read(saveSlotsProvider.notifier).refresh();
   }
 
+  /// Haftayı oynatır: plan + (varsa) maç sonucu -> yeni durum, otomatik kayıt.
+  Future<void> playWeek(WeekMatch? match) async {
+    final current = state;
+    if (current == null) return;
+    final result = WeekEngine.advance(
+      current.state,
+      ref.read(weeklyPlanProvider),
+      match,
+      GameRandom(),
+    );
+    ref.read(lastWeekProvider.notifier).set(result);
+    await update(result.state);
+  }
+
+  /// Riskli erken dönüş (sakatlığı bitirir, tekrar sakatlanma riski yaratır).
+  Future<void> returnEarly() async {
+    final current = state;
+    if (current == null) return;
+    await update(WeekEngine.returnEarly(current.state));
+  }
+
   void close() => state = null;
 }
 
@@ -100,4 +124,34 @@ class SettingsNotifier extends Notifier<GameSettings> {
 
 final settingsProvider = NotifierProvider<SettingsNotifier, GameSettings>(
   SettingsNotifier.new,
+);
+
+/// Bu hafta için seçilen plan (bellekte; hafta bitince sıfırlanmaz,
+/// oyuncu genelde aynı rutini sürdürür).
+class WeeklyPlanNotifier extends Notifier<WeeklyPlan> {
+  @override
+  WeeklyPlan build() => const WeeklyPlan();
+
+  void setFocus(TrainingFocus focus) => state = state.copyWith(focus: focus);
+
+  void setIntensity(TrainingIntensity i) =>
+      state = state.copyWith(intensity: i);
+
+  void setSocial(SocialActivity s) => state = state.copyWith(social: s);
+}
+
+final weeklyPlanProvider = NotifierProvider<WeeklyPlanNotifier, WeeklyPlan>(
+  WeeklyPlanNotifier.new,
+);
+
+/// Son oynanan haftanın sonucu (özet ekranı için).
+class LastWeekNotifier extends Notifier<WeekResult?> {
+  @override
+  WeekResult? build() => null;
+
+  void set(WeekResult? value) => state = value;
+}
+
+final lastWeekProvider = NotifierProvider<LastWeekNotifier, WeekResult?>(
+  LastWeekNotifier.new,
 );

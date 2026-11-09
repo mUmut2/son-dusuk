@@ -8,6 +8,7 @@ import 'package:son_dusuk/domain/match/minigames/mini_balance.dart';
 import 'package:son_dusuk/domain/match/minigames/pass.dart';
 import 'package:son_dusuk/domain/match/minigames/penalty.dart';
 import 'package:son_dusuk/domain/match/minigames/tackle.dart';
+import 'package:son_dusuk/domain/match/moment_resolver.dart';
 import 'package:son_dusuk/domain/match/shot/shot_models.dart';
 import 'package:son_dusuk/domain/player/attribute.dart';
 import 'package:son_dusuk/domain/player/attributes.dart';
@@ -317,57 +318,121 @@ void main() {
   });
 
   group('Dribling', () {
-    double beatenRate(
-      double timing,
-      bool dir, {
-      double skill = 0.5,
-      double defender = 0.5,
-    }) {
-      final r = GameRandom(6);
-      var ok = 0;
-      for (var i = 0; i < trials; i++) {
-        if (DribbleResolver.resolve(
-          timing: timing,
-          correctDirection: dir,
-          dribbling: skill,
-          agility: skill,
-          ballControl: skill,
-          defenderSkill: defender,
-          random: r,
-        ).beaten) {
-          ok++;
+    test('dalgalar sınırlar içinde, ulaşılabilir ve zamanla sıralı', () {
+      for (var seed = 1; seed <= 200; seed++) {
+        final waves = DribbleResolver.generateWaves(GameRandom(seed));
+        expect(waves, hasLength(MiniBalance.dribbleWaves));
+        for (var i = 0; i < waves.length; i++) {
+          final c = waves[i].gapCenter;
+          expect(
+            c,
+            inInclusiveRange(
+              MiniBalance.dribbleGapMin,
+              MiniBalance.dribbleGapMax,
+            ),
+          );
+          if (i > 0) {
+            final shift = (c - waves[i - 1].gapCenter).abs();
+            expect(
+              shift,
+              lessThanOrEqualTo(MiniBalance.dribbleMaxShift + 1e-9),
+            );
+            expect(waves[i].arrival, greaterThan(waves[i - 1].arrival));
+          }
         }
       }
-      return ok / trials;
-    }
-
-    test('zamanlama kalitesi: tepe ±pencere, sonra düşer', () {
-      expect(DribbleResolver.timingQuality(0), 1);
-      expect(DribbleResolver.timingQuality(0.05), 1);
-      expect(DribbleResolver.timingQuality(-0.05), 1);
-      expect(DribbleResolver.timingQuality(0.8), 0);
-      expect(DribbleResolver.timingQuality(0.3), inExclusiveRange(0, 1));
     });
 
-    test(
-      'yanlış yön doğru yönden belirgin biçimde daha zor (ama çocuklar için affedici)',
-      () {
-        expect(beatenRate(1, false), lessThan(0.5));
-        expect(beatenRate(1, false), lessThan(beatenRate(1, true) - 0.2));
-        expect(beatenRate(1, true), greaterThan(0.6));
-      },
-    );
+    test('tempo yükselince dalgalar daha sık gelir', () {
+      final slow = DribbleResolver.generateWaves(GameRandom(1), tempo: 0.8);
+      final fast = DribbleResolver.generateWaves(GameRandom(1), tempo: 1.25);
+      expect(fast.last.arrival, lessThan(slow.last.arrival));
+    });
 
-    test('iyi zamanlama, yetenek ve zayıf savunmacı başarıyı artırır', () {
-      expect(beatenRate(1, true), greaterThan(beatenRate(0.2, true) + 0.2));
+    test('geçit: yetenek ve kolay zorluk genişletir, zor daraltır', () {
+      final base = DribbleResolver.gapHalf(skill: 0.5);
+      expect(DribbleResolver.gapHalf(skill: 0.9), greaterThan(base));
+      expect(DribbleResolver.gapHalf(skill: 0.1), lessThan(base));
       expect(
-        beatenRate(0.6, true, skill: 0.9),
-        greaterThan(beatenRate(0.6, true, skill: 0.1)),
+        DribbleResolver.gapHalf(skill: 0.5, windowScale: 1.3),
+        greaterThan(base),
       );
       expect(
-        beatenRate(0.6, true, defender: 0.1),
-        greaterThan(beatenRate(0.6, true, defender: 0.9)),
+        DribbleResolver.gapHalf(skill: 0.5, windowScale: 0.8),
+        lessThan(base),
       );
+    });
+
+    test('geçidin içinden geçmek çarpmaz, dışı çarpar', () {
+      final wave = DribbleResolver.generateWaves(GameRandom(2)).first;
+      const gap = 0.15;
+      final c = DribbleResolver.gapCenterAt(wave, wave.arrival, 0.05);
+      bool hit(double x) => DribbleResolver.isHit(
+        playerX: x,
+        wave: wave,
+        amplitude: 0.05,
+        gapHalf: gap,
+      );
+      expect(hit(c), isFalse);
+      expect(hit(c + gap * 0.9), isFalse);
+      expect(hit(c - gap * 0.9), isFalse);
+      expect(hit(c + gap * 1.1), isTrue);
+      expect(hit(c - gap * 1.1), isTrue);
+    });
+
+    test('geçit merkezi her an oyuncunun hareket alanında (0.1-0.9) kalır', () {
+      for (var seed = 1; seed <= 100; seed++) {
+        for (final w in DribbleResolver.generateWaves(GameRandom(seed))) {
+          for (final amp in [0.0, DribbleResolver.swayAmplitude(0.65)]) {
+            final c = DribbleResolver.gapCenterAt(w, w.arrival, amp);
+            expect(c, inInclusiveRange(0.1, 0.9));
+          }
+        }
+      }
+    });
+
+    test('savunmacı ile oyuncu çizimleri geçit kenarında üst üste binmez', () {
+      // Kişi çizimi yarı genişliği: 1.5 x top yarıçapı x ölçek; top yarıçapı
+      // = en küçük kenarın %3.5'i (bu en kötü durumda genişliğe eşittir).
+      const unit = 0.035;
+      const defenderScale = 1.0;
+      const playerScale = 1.15;
+      final minGap = (1.5 * unit * defenderScale) + (1.5 * unit * playerScale);
+      expect(
+        MiniBalance.dribbleDefenderHalf + MiniBalance.dribblePlayerHalf,
+        greaterThan(minGap),
+      );
+    });
+
+    test('hiç çarpmadan geçmek çalımı tutturur, çarpmak kaptırır', () {
+      expect(
+        DribbleResolver.resolve(hits: 0, random: GameRandom(1)).beaten,
+        isTrue,
+      );
+      expect(
+        DribbleResolver.resolve(hits: 1, random: GameRandom(1)).beaten,
+        isFalse,
+      );
+      expect(
+        DribbleResolver.resolve(
+          hits: 1,
+          random: GameRandom(1),
+          allowedHits: 1,
+        ).beaten,
+        isTrue,
+      );
+    });
+
+    test('çalım sonrası asist nadirdir ama mümkündür', () {
+      final r = GameRandom(9);
+      var assists = 0;
+      for (var i = 0; i < trials; i++) {
+        if (DribbleResolver.resolve(hits: 0, random: r).outcome ==
+            MomentOutcome.assist) {
+          assists++;
+        }
+      }
+      expect(assists / trials, inInclusiveRange(0.03, 0.15));
     });
   });
 

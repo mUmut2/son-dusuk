@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 
 import '../presentation/achievements/achievements_screen.dart';
 import '../presentation/create/create_player_screen.dart';
+import '../presentation/equipment/equipment_screen.dart';
 import '../presentation/game/club_tab.dart';
 import '../presentation/game/game_shell.dart';
 import '../presentation/game/home_tab.dart';
@@ -57,6 +58,10 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: '/game/national',
         builder: (context, state) => const NationalScreen(),
+      ),
+      GoRoute(
+        path: '/game/equipment',
+        builder: (context, state) => const EquipmentScreen(),
       ),
       GoRoute(
         path: '/game/achievements',

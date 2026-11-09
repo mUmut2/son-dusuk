@@ -228,7 +228,8 @@ class _MiniGameViewState extends State<MiniGameView> {
           defenderSkill: opponentSkill,
           random: random,
           performance: perf,
-          telegraphScale: windowScale,
+          windowScale: windowScale,
+          tempo: meterSpeed,
           onFinished: widget.onFinished,
           onImpact: _vibrate,
         );

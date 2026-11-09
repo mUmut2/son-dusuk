@@ -200,7 +200,13 @@ void main() {
       tester,
       setup: (c, w) => c.copyWith(finance: const Finance(balance: 20000)),
     );
-    await tester.ensureVisible(find.text('Ekipman Mağazası'));
+    container.read(routerProvider).go('/game/equipment');
+    await tester.pumpAndSettle();
+    expect(
+      find.text('Henüz ekipmanın yok. İlk ekipmanını al, farkı hemen hisset!'),
+      findsOneWidget,
+    );
+
     // Krampon 6.000 ₺: alınır. Seviye 2 (50.000 ₺) alınamaz.
     final boots = find.text('Satın al · 6.000 ₺');
     expect(boots, findsOneWidget);
@@ -211,14 +217,39 @@ void main() {
     expect(state.equipment.levels['boots'], 1);
     expect(state.finance.balance, 14000);
     expect(find.text('Okul Kramponu'), findsOneWidget);
-    expect(find.text('Satın al · 50.000 ₺'), findsOneWidget);
+    // Özet çipi görünür, boş mesaj kalkar.
+    expect(find.text('Maç gücü +2'), findsOneWidget);
+    expect(find.textContaining('Henüz ekipmanın yok'), findsNothing);
+
+    final next = find.text('Satın al · 50.000 ₺');
+    expect(next, findsOneWidget);
+    expect(find.text('36.000 ₺ eksik'), findsOneWidget);
     final locked = tester.widget<ButtonStyleButton>(
       find.ancestor(
-        of: find.text('Satın al · 50.000 ₺'),
+        of: next,
         matching: find.byWidgetPredicate((w) => w is ButtonStyleButton),
       ),
     );
     expect(locked.onPressed, isNull);
+  });
+
+  testWidgets('ana sayfadaki kart ekipman mağazasını açar', (tester) async {
+    final container = await pumpClub(tester);
+    container.read(routerProvider).go('/game');
+    await tester.pumpAndSettle();
+    expect(
+      find.text('İlk ekipmanını al: maçlarda ve antrenmanda güçlen.'),
+      findsOneWidget,
+    );
+    await tester.ensureVisible(find.text('Ekipman Mağazası'));
+    await tester.tap(find.text('Ekipman Mağazası'));
+    await tester.pumpAndSettle();
+    expect(find.text('Aktif güçlendirmeler'), findsOneWidget);
+    expect(find.text('Krampon'), findsOneWidget);
+    // Kulüp sekmesinde artık mağaza yok.
+    container.read(routerProvider).go('/game/club');
+    await tester.pumpAndSettle();
+    expect(find.text('Ekipman Mağazası'), findsNothing);
   });
 
   testWidgets('serbest oyuncu uyarısı görünür ve antrenmanda maç yok', (

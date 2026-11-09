@@ -207,7 +207,9 @@ void main() {
     expect(tester.takeException(), isNull);
   });
 
-  testWidgets('dribling: hızlı yatay swipe çalımı çözer', (tester) async {
+  testWidgets('dribling: sürüklemek oyuncuyu taşır ve oyun biter', (
+    tester,
+  ) async {
     MiniGameFinish? finished;
     tester.view.physicalSize = const Size(800, 1600);
     tester.view.devicePixelRatio = 1;
@@ -237,8 +239,13 @@ void main() {
       ),
     );
     await tester.pump();
-    await run(tester, 1.8);
-    await tester.flingFrom(const Offset(400, 1300), const Offset(300, 0), 2500);
+    // Parmağı sağa sola sürükleyerek tut: oyun hata vermeden bitmeli.
+    final gesture = await tester.startGesture(const Offset(400, 1250));
+    for (var i = 0; i < 100; i++) {
+      await gesture.moveTo(Offset(i.isEven ? 250 : 550, 1250));
+      await tester.pump(const Duration(milliseconds: 100));
+    }
+    await gesture.up();
     await run(tester, 3);
     expect(finished, isNotNull);
     expect(tester.takeException(), isNull);

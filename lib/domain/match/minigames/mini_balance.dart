@@ -74,24 +74,42 @@ abstract final class MiniBalance {
   static const double visionRiskCut = 0.3;
 
   /// İbre isabeti: |güç - ideal| bu toleransın içindeyse kısmen doğru.
-  static const double passPowerTolerance = 0.6;
-  static const double passMeterPeriod = 2.2;
+  static const double passPowerTolerance = 0.45;
+  static const double passMeterPeriod = 2.0;
   static const double passMaxSeconds = 12;
 
-  // ---------------- DRIBLING ----------------
-  /// Savunmacı "atılma" gecikmesi (sn) ve çalım penceresi yarıçapı (sn).
-  static const double lungeDelayMin = 1.0;
-  static const double lungeDelayMax = 1.8;
-  static const double lungeTelegraph = 0.9;
-  static const double dribbleGoodWindow = 0.55;
-  static const double dribblePerfectWindow = 0.15;
+  // ---------------- DRIBLING (savunma hattından geç) ----------------
+  /// Dalga sayısı; ilk dalganın oyuncuya ulaşma anı ve dalgalar arası süre (sn).
+  static const int dribbleWaves = 4;
+  static const double dribbleFirstArrival = 2.0;
+  static const double dribbleWaveInterval = 1.25;
 
-  /// Başarı olasılığı = (taban + zamanlama x genişlik) x yetenek x savunmacı.
-  static const double dribbleBase = 0.45;
-  static const double dribbleSpan = 0.5;
-  static const double dribbleWrongDirection = 0.4;
-  static const double dribbleSkillSpread = 0.6;
-  static const double dribbleDefenderEdge = 0.35;
+  /// Savunmacıların ekranın tepesinden oyuncuya inme süresi (sn).
+  static const double dribbleTravelSeconds = 1.5;
+
+  /// Geçit (iki savunmacı arası) yarı genişliği, ekran genişliğinin oranı.
+  /// Yetenek: geçit x (1 - spread/2 + spread x yetenek).
+  static const double dribbleGapHalf = 0.15;
+  static const double dribbleGapSkillSpread = 0.3;
+
+  /// Çarpışma payı: savunmacı ve oyuncu yarı genişliği (ekran oranı).
+  /// Çizimlerin üst üste binmemesi için toplamı kişi çiziminin yarı
+  /// genişliklerinin toplamından büyük olmalı (bkz. dribble_test).
+  static const double dribbleDefenderHalf = 0.07;
+  static const double dribblePlayerHalf = 0.05;
+
+  /// Geçit merkezinin sınırları ve ardışık dalgalar arası kayma (ekran oranı).
+  static const double dribbleGapMin = 0.25;
+  static const double dribbleGapMax = 0.75;
+  static const double dribbleMinShift = 0.15;
+  static const double dribbleMaxShift = 0.4;
+
+  /// Savunmacı hattının yana salınımı: genlik = bu x savunmacı gücü; hız rad/sn.
+  static const double dribbleSway = 0.12;
+  static const double dribbleSwayRate = 2.2;
+
+  /// Oyuncunun en yüksek yanal hızı (ekran genişliği / sn).
+  static const double dribblePlayerSpeed = 1.8;
 
   /// Çalım sonrası asist olasılığı.
   static const double dribbleAssistGivenSuccess = 0.08;

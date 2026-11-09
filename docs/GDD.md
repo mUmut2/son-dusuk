@@ -234,5 +234,6 @@ Parametreler `lib/domain/national/national_balance.dart` ve `lib/domain/career/l
 | Milli takım rakipleri ve ülkesi kurgusal | Telif/gerçek ülke markası riski yok; `Anatolya` ve 15 uydurma ülke. |
 | Başarımlar durumdan hesaplanır | Sayaç tutmak yerine koşul her hafta durumdan yeniden değerlendirilir; yeni başarım eklemek kayıt göçü gerektirmez. |
 | Emeklilik kayıtta bayrak | Kariyer silinmez; kayıt yalnızca özet ekranını açar, kullanıcı başarımları ve sezonları sonradan da gezebilir. |
+| Dribling: savunmacı dalgalarından geçit bulma | Zamanlama/yön tahmini yerine parmakla sürükleyip geçitten geçme; beceri oyuncuda, nitelikler geçidi genişletir. Pas orta zorlukta (ibre toleransı daraltıldı), figürler sütunlara yerleşir ve çakışmaz. Ekipman mağazası Kulüp sekmesinden çıkarılıp ayrı ekrana (Ana Sayfa/Antrenman kartı) taşındı. |
 | Mini oyunlar çocuklar (9-15) için kolaylaştırıldı | Hedef kitle genç; dribling/pas/müdahale pencereleri genişletildi, yanlış yön affedici, varsayılan zorluk Kolay. Test geri bildirimiyle ayarlanır. |
 | Ekipman mağazası (krampon, antrenman, toparlanma, tekmelik) | Paranın harcanacağı yer ve oyun içi güç: tek seferlik alım, 3 seviye; yalnızca karar ve para, gerçek parayla satın alma yok. |

@@ -1447,7 +1447,7 @@ abstract class AppLocalizations {
   /// No description provided for @miniHint_dribble.
   ///
   /// In tr, this message translates to:
-  /// **'Savunmacının halkası kırmızıya dönerken, okun gösterdiğinin TERSİNE ekranı hızlıca kaydır!'**
+  /// **'Parmağını sağa sola sürükle! Kırmızı savunmacılara çarpmadan yeşil geçitten geç.'**
   String get miniHint_dribble;
 
   /// No description provided for @miniHint_tackle.
@@ -4412,6 +4412,66 @@ abstract class AppLocalizations {
   /// In tr, this message translates to:
   /// **'Akıllı Tekmelik'**
   String get equipName_shinGuards_3;
+
+  /// No description provided for @equipmentBonusTitle.
+  ///
+  /// In tr, this message translates to:
+  /// **'Aktif güçlendirmeler'**
+  String get equipmentBonusTitle;
+
+  /// No description provided for @equipmentBonusNone.
+  ///
+  /// In tr, this message translates to:
+  /// **'Henüz ekipmanın yok. İlk ekipmanını al, farkı hemen hisset!'**
+  String get equipmentBonusNone;
+
+  /// No description provided for @equipBonus_boots.
+  ///
+  /// In tr, this message translates to:
+  /// **'Maç gücü +{value}'**
+  String equipBonus_boots(String value);
+
+  /// No description provided for @equipBonus_trainingKit.
+  ///
+  /// In tr, this message translates to:
+  /// **'Antrenman +%{value}'**
+  String equipBonus_trainingKit(String value);
+
+  /// No description provided for @equipBonus_recoveryKit.
+  ///
+  /// In tr, this message translates to:
+  /// **'Toparlanma +{value}'**
+  String equipBonus_recoveryKit(String value);
+
+  /// No description provided for @equipBonus_shinGuards.
+  ///
+  /// In tr, this message translates to:
+  /// **'Sakatlık riski -%{value}'**
+  String equipBonus_shinGuards(String value);
+
+  /// No description provided for @equipmentShort.
+  ///
+  /// In tr, this message translates to:
+  /// **'{amount} eksik'**
+  String equipmentShort(String amount);
+
+  /// No description provided for @equipmentEmpty.
+  ///
+  /// In tr, this message translates to:
+  /// **'Henüz yok'**
+  String get equipmentEmpty;
+
+  /// No description provided for @equipmentCardNone.
+  ///
+  /// In tr, this message translates to:
+  /// **'İlk ekipmanını al: maçlarda ve antrenmanda güçlen.'**
+  String get equipmentCardNone;
+
+  /// No description provided for @equipmentCardOwned.
+  ///
+  /// In tr, this message translates to:
+  /// **'Ekipman seviyesi {owned}/{max}'**
+  String equipmentCardOwned(String owned, String max);
 }
 
 class _AppLocalizationsDelegate

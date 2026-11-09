@@ -466,6 +466,22 @@ extension L10nLabels on AppLocalizations {
     _ => equipmentSlotName(s),
   };
 
+  /// [level] seviyesindeki toplam etkinin kısa etiketi (özet çipleri için).
+  String equipmentBonusShort(EquipmentSlot s, int level) => switch (s) {
+    EquipmentSlot.boots => equipBonus_boots(
+      '${ClubBalance.bootsBonusPerLevel * level}',
+    ),
+    EquipmentSlot.trainingKit => equipBonus_trainingKit(
+      '${(ClubBalance.trainingKitPerLevel * level * 100).round()}',
+    ),
+    EquipmentSlot.recoveryKit => equipBonus_recoveryKit(
+      '${(ClubBalance.recoveryKitPerLevel * level).round()}',
+    ),
+    EquipmentSlot.shinGuards => equipBonus_shinGuards(
+      '${(ClubBalance.shinGuardsPerLevel * level * 100).round()}',
+    ),
+  };
+
   /// [level] seviyesindeki toplam etkinin metni.
   String equipmentEffect(EquipmentSlot s, int level) => switch (s) {
     EquipmentSlot.boots => equipEffect_boots(

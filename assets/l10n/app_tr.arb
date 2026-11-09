@@ -423,7 +423,7 @@
   "miniHint_header": "Top kafa hizasına gelince parmağını oyuncuya koy ve kale yönüne kaydır.",
   "miniHint_penalty": "Kaleye dokunarak köşeyi seç, sonra ibreyi yeşil bölgede durdurmak için aşağıya dokun.",
   "miniHint_keyPass": "Bir arkadaşına dokun, sonra çubuk yeşil alandayken aşağıya dokun. Rakibi küçük olan pas daha güvenli!",
-  "miniHint_dribble": "Savunmacının halkası kırmızıya dönerken, okun gösterdiğinin TERSİNE ekranı hızlıca kaydır!",
+  "miniHint_dribble": "Parmağını sağa sola sürükle! Kırmızı savunmacılara çarpmadan yeşil geçitten geç.",
   "miniHint_tackle": "Parmağınla rakibin önünde kal. Top ayağından en çok açıldığı anda parmağını bırak!",
   "shootButton": "Durdur",
   "tooEarly": "Çok erken!",
@@ -1620,5 +1620,60 @@
   },
   "equipName_shinGuards_1": "Plastik Tekmelik",
   "equipName_shinGuards_2": "Karbon Tekmelik",
-  "equipName_shinGuards_3": "Akıllı Tekmelik"
+  "equipName_shinGuards_3": "Akıllı Tekmelik",
+  "equipmentBonusTitle": "Aktif güçlendirmeler",
+  "equipmentBonusNone": "Henüz ekipmanın yok. İlk ekipmanını al, farkı hemen hisset!",
+  "equipBonus_boots": "Maç gücü +{value}",
+  "@equipBonus_boots": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "equipBonus_trainingKit": "Antrenman +%{value}",
+  "@equipBonus_trainingKit": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "equipBonus_recoveryKit": "Toparlanma +{value}",
+  "@equipBonus_recoveryKit": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "equipBonus_shinGuards": "Sakatlık riski -%{value}",
+  "@equipBonus_shinGuards": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "equipmentShort": "{amount} eksik",
+  "@equipmentShort": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "equipmentEmpty": "Henüz yok",
+  "equipmentCardNone": "İlk ekipmanını al: maçlarda ve antrenmanda güçlen.",
+  "equipmentCardOwned": "Ekipman seviyesi {owned}/{max}",
+  "@equipmentCardOwned": {
+    "placeholders": {
+      "owned": {
+        "type": "String"
+      },
+      "max": {
+        "type": "String"
+      }
+    }
+  }
 }

@@ -748,7 +748,7 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get miniHint_dribble =>
-      'Savunmacının halkası kırmızıya dönerken, okun gösterdiğinin TERSİNE ekranı hızlıca kaydır!';
+      'Parmağını sağa sola sürükle! Kırmızı savunmacılara çarpmadan yeşil geçitten geç.';
 
   @override
   String get miniHint_tackle =>
@@ -2446,4 +2446,48 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get equipName_shinGuards_3 => 'Akıllı Tekmelik';
+
+  @override
+  String get equipmentBonusTitle => 'Aktif güçlendirmeler';
+
+  @override
+  String get equipmentBonusNone =>
+      'Henüz ekipmanın yok. İlk ekipmanını al, farkı hemen hisset!';
+
+  @override
+  String equipBonus_boots(String value) {
+    return 'Maç gücü +$value';
+  }
+
+  @override
+  String equipBonus_trainingKit(String value) {
+    return 'Antrenman +%$value';
+  }
+
+  @override
+  String equipBonus_recoveryKit(String value) {
+    return 'Toparlanma +$value';
+  }
+
+  @override
+  String equipBonus_shinGuards(String value) {
+    return 'Sakatlık riski -%$value';
+  }
+
+  @override
+  String equipmentShort(String amount) {
+    return '$amount eksik';
+  }
+
+  @override
+  String get equipmentEmpty => 'Henüz yok';
+
+  @override
+  String get equipmentCardNone =>
+      'İlk ekipmanını al: maçlarda ve antrenmanda güçlen.';
+
+  @override
+  String equipmentCardOwned(String owned, String max) {
+    return 'Ekipman seviyesi $owned/$max';
+  }
 }

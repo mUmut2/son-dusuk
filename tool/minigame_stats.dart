@@ -185,29 +185,37 @@ void main() {
       'akıllı seçim asist ${pct(goodPick.assist)} (tamam. ${pct(goodPick.complete)})',
     );
 
-    // Dribling
-    double dribble(double timing, bool dir) {
+    // Dribling: beceri oyuncuda; bot geçide ne kadar iyi girdiğini model eder.
+    // [error] oyuncunun geçit merkezinden en fazla sapması (ekran genişliği oranı).
+    double dribble(double error, {double scale = 1}) {
       final r = GameRandom(6);
       var ok = 0;
       for (var i = 0; i < n; i++) {
-        if (DribbleResolver.resolve(
-          timing: timing == -1 ? r.nextDouble() : timing,
-          correctDirection: dir,
-          dribbling: l,
-          agility: l,
-          ballControl: l,
-          defenderSkill: 0.5,
-          random: r,
-        ).beaten) {
-          ok++;
+        final waves = DribbleResolver.generateWaves(r);
+        final gap = DribbleResolver.gapHalf(skill: l, windowScale: scale);
+        final amp = DribbleResolver.swayAmplitude(0.5);
+        var hits = 0;
+        for (final w in waves) {
+          final c = DribbleResolver.gapCenterAt(w, w.arrival, amp);
+          final x = c + (r.nextDouble() * 2 - 1) * error;
+          if (DribbleResolver.isHit(
+            playerX: x,
+            wave: w,
+            amplitude: amp,
+            gapHalf: gap,
+          )) {
+            hits++;
+          }
         }
+        if (DribbleResolver.resolve(hits: hits, random: r).beaten) ok++;
       }
       return ok / n;
     }
 
     print(
-      'Dribling: mükemmel ${pct(dribble(1, true))}, rastgele ${pct(dribble(-1, true))}, '
-      'yanlış yön ${pct(dribble(1, false))}',
+      'Dribling (4 dalga): sapma 0.10 ${pct(dribble(0.10))}, '
+      '0.15 ${pct(dribble(0.15))}, 0.22 ${pct(dribble(0.22))} | '
+      'sapma 0.15: kolay ${pct(dribble(0.15, scale: 1.3))}, zor ${pct(dribble(0.15, scale: 0.8))}',
     );
 
     // Müdahale

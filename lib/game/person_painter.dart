@@ -1,5 +1,12 @@
 import 'dart:ui';
 
+/// [paintPerson] çiziminin kapladığı dikdörtgen (gölge hariç). Yerleşimlerin
+/// üst üste binmediğini doğrulamak için kullanılır.
+Rect personBounds(double x, double y, double unit, {double scale = 1}) {
+  final r = unit * scale;
+  return Rect.fromLTRB(x - r * 1.5, y - r * 3.3, x + r * 1.5, y + r * 2.6);
+}
+
 /// Mini oyunların ortak karakter çizimi. (x, y) gövdenin merkezi, [unit] top
 /// yarıçapıdır; toplam boy ≈ 5.8 x [unit] x [scale].
 void paintPerson(

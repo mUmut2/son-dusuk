@@ -7,6 +7,7 @@ import '../../domain/career/season_calendar.dart';
 import '../../domain/club/squad.dart';
 import '../../domain/national/national_engine.dart';
 import '../../domain/career/weekly_plan.dart';
+import '../equipment/equipment_screen.dart';
 import '../l10n_labels.dart';
 import '../providers.dart';
 import '../widgets/status_meters.dart';
@@ -148,6 +149,8 @@ class TrainingTab extends ConsumerWidget {
         if (career.isFreeAgent)
           Text(l10n.freeAgentNoMatch, style: textTheme.bodySmall),
         Text(l10n.trainingHint, style: textTheme.bodySmall),
+        const SizedBox(height: 16),
+        const EquipmentCard(),
         const SizedBox(height: 16),
         FilledButton(
           style: FilledButton.styleFrom(minimumSize: const Size.fromHeight(56)),

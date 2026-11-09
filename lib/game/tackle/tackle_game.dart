@@ -59,9 +59,14 @@ class TackleGame extends MiniGameBase {
       layout.ballX +
       math.sin(_clock * _weaveSpeed + _weavePhase) * layout.width * 0.26;
 
+  /// Rakip en fazla bu kadar (top yarıçapı) kadar yaklaşır: oyuncuyla arasında
+  /// top için yer kalır ve iki figür üst üste binmez.
+  static const double _closestDistance = 12;
+
   double get _attackerY =>
       layout.height * 0.16 +
-      (_playerY - layout.height * 0.16 - layout.ballRadius * 5) * _progress;
+      (_playerY - layout.height * 0.16 - layout.ballRadius * _closestDistance) *
+          _progress;
 
   /// Top ayaktan uzaklığı (0 yakın .. 1 en uzak).
   double get _ballOpen =>
@@ -89,7 +94,7 @@ class TackleGame extends MiniGameBase {
   void _tackle() {
     if (_phase != _Phase.approach) return;
     // Rakip henüz menzile girmediyse müdahale boşa gider (faul riski).
-    final inRange = _attackerY > _playerY - layout.height * 0.3;
+    final inRange = _progress >= 0.75;
     if (!inRange) showToast(labels.tooEarly);
 
     final maxDist = layout.width * 0.22;
@@ -179,8 +184,8 @@ class TackleGame extends MiniGameBase {
         case TackleKind.foul:
           tilt = -0.9 * t;
         case TackleKind.beaten:
-          ax += (ax >= l.ballX ? 1 : -1) * l.width * 0.12 * t;
-          ay += l.height * 0.12 * t;
+          ax += (ax >= l.ballX ? 1 : -1) * l.width * 0.16 * t;
+          ay += l.height * 0.05 * t;
           ballX = ax;
           ballY = ay + l.ballRadius * 2;
       }

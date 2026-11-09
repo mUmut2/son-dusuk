@@ -7,6 +7,7 @@ import '../../domain/career/career_state.dart';
 import '../../domain/club/squad.dart';
 import '../../domain/national/national_balance.dart';
 import '../../domain/national/national_engine.dart';
+import '../equipment/equipment_screen.dart';
 import '../l10n_labels.dart';
 import '../providers.dart';
 import '../widgets/player_avatar.dart';
@@ -96,6 +97,8 @@ class HomeTab extends ConsumerWidget {
           ),
         ),
         _NationalCard(career: career),
+        const SizedBox(height: 12),
+        const EquipmentCard(),
         if (career.pendingEvents.isNotEmpty) ...[
           const SizedBox(height: 12),
           Card(

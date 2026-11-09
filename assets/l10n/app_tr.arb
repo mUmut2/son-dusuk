@@ -422,8 +422,8 @@
   "miniHint_freeKick": "Duvarın üstünden aş ya da yanından kavisle dolan. Topa dokun ve kaydır; yolu bükersen falso olur.",
   "miniHint_header": "Top kafa hizasına gelince parmağını oyuncuya koy ve kale yönüne kaydır.",
   "miniHint_penalty": "Kaleye dokunarak köşeyi seç, sonra ibreyi yeşil bölgede durdurmak için aşağıya dokun.",
-  "miniHint_keyPass": "Bir arkadaşını seç, sonra ibreyi yeşil bölgede durdurmak için aşağıya dokun.",
-  "miniHint_dribble": "Sürükleyerek yönlendir. Savunmacı atılmadan hemen önce, atıldığı yanın tersine hızlıca kaydır!",
+  "miniHint_keyPass": "Bir arkadaşına dokun, sonra çubuk yeşil alandayken aşağıya dokun. Rakibi küçük olan pas daha güvenli!",
+  "miniHint_dribble": "Savunmacının halkası kırmızıya dönerken, okun gösterdiğinin TERSİNE ekranı hızlıca kaydır!",
   "miniHint_tackle": "Parmağınla rakibin önünde kal. Top ayağından en çok açıldığı anda parmağını bırak!",
   "shootButton": "Durdur",
   "tooEarly": "Çok erken!",
@@ -1534,5 +1534,91 @@
   "ach_globetrotter_title": "Gezgin",
   "ach_globetrotter_desc": "Kariyerinde 6 kez kulüp değiştir.",
   "ach_nationalVeteran_title": "Milli Gurur",
-  "ach_nationalVeteran_desc": "Milli takımla 8 maça çık."
+  "ach_nationalVeteran_desc": "Milli takımla 8 maça çık.",
+  "equipmentTitle": "Ekipman Mağazası",
+  "equipmentIntro": "Ekipmanlar bir kez alınır ve kariyerin boyunca seninle kalır.",
+  "equipmentLevel": "Seviye {level}/{max}",
+  "@equipmentLevel": {
+    "placeholders": {
+      "level": {
+        "type": "String"
+      },
+      "max": {
+        "type": "String"
+      }
+    }
+  },
+  "equipmentBuy": "Satın al · {price}",
+  "@equipmentBuy": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "equipmentMaxed": "En üst seviye",
+  "equipmentBought": "{name} alındı!",
+  "@equipmentBought": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "equipmentNext": "Sıradaki: {name}",
+  "@equipmentNext": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "equip_boots": "Krampon",
+  "equipEffect_boots": "Maçlarda şut, dribling, hız ve top kontrolü +{value}",
+  "@equipEffect_boots": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "equipName_boots_1": "Okul Kramponu",
+  "equipName_boots_2": "Profesyonel Krampon",
+  "equipName_boots_3": "Altın Krampon",
+  "equip_trainingKit": "Antrenman ekipmanı",
+  "equipEffect_trainingKit": "Antrenman kazancı +%{value}",
+  "@equipEffect_trainingKit": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "equipName_trainingKit_1": "Antrenman Çantası",
+  "equipName_trainingKit_2": "Pro Antrenman Seti",
+  "equipName_trainingKit_3": "Elit Performans Seti",
+  "equip_recoveryKit": "Toparlanma ekipmanı",
+  "equipEffect_recoveryKit": "Haftalık toparlanma +{value} kondisyon",
+  "@equipEffect_recoveryKit": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "equipName_recoveryKit_1": "Buz Torbası",
+  "equipName_recoveryKit_2": "Masaj Tabancası",
+  "equipName_recoveryKit_3": "Toparlanma Odası",
+  "equip_shinGuards": "Koruyucu ekipman",
+  "equipEffect_shinGuards": "Sakatlanma riski -%{value}",
+  "@equipEffect_shinGuards": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "equipName_shinGuards_1": "Plastik Tekmelik",
+  "equipName_shinGuards_2": "Karbon Tekmelik",
+  "equipName_shinGuards_3": "Akıllı Tekmelik"
 }

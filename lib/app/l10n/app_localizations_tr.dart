@@ -744,11 +744,11 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get miniHint_keyPass =>
-      'Bir arkadaşını seç, sonra ibreyi yeşil bölgede durdurmak için aşağıya dokun.';
+      'Bir arkadaşına dokun, sonra çubuk yeşil alandayken aşağıya dokun. Rakibi küçük olan pas daha güvenli!';
 
   @override
   String get miniHint_dribble =>
-      'Sürükleyerek yönlendir. Savunmacı atılmadan hemen önce, atıldığı yanın tersine hızlıca kaydır!';
+      'Savunmacının halkası kırmızıya dönerken, okun gösterdiğinin TERSİNE ekranı hızlıca kaydır!';
 
   @override
   String get miniHint_tackle =>
@@ -2348,4 +2348,102 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get ach_nationalVeteran_desc => 'Milli takımla 8 maça çık.';
+
+  @override
+  String get equipmentTitle => 'Ekipman Mağazası';
+
+  @override
+  String get equipmentIntro =>
+      'Ekipmanlar bir kez alınır ve kariyerin boyunca seninle kalır.';
+
+  @override
+  String equipmentLevel(String level, String max) {
+    return 'Seviye $level/$max';
+  }
+
+  @override
+  String equipmentBuy(String price) {
+    return 'Satın al · $price';
+  }
+
+  @override
+  String get equipmentMaxed => 'En üst seviye';
+
+  @override
+  String equipmentBought(String name) {
+    return '$name alındı!';
+  }
+
+  @override
+  String equipmentNext(String name) {
+    return 'Sıradaki: $name';
+  }
+
+  @override
+  String get equip_boots => 'Krampon';
+
+  @override
+  String equipEffect_boots(String value) {
+    return 'Maçlarda şut, dribling, hız ve top kontrolü +$value';
+  }
+
+  @override
+  String get equipName_boots_1 => 'Okul Kramponu';
+
+  @override
+  String get equipName_boots_2 => 'Profesyonel Krampon';
+
+  @override
+  String get equipName_boots_3 => 'Altın Krampon';
+
+  @override
+  String get equip_trainingKit => 'Antrenman ekipmanı';
+
+  @override
+  String equipEffect_trainingKit(String value) {
+    return 'Antrenman kazancı +%$value';
+  }
+
+  @override
+  String get equipName_trainingKit_1 => 'Antrenman Çantası';
+
+  @override
+  String get equipName_trainingKit_2 => 'Pro Antrenman Seti';
+
+  @override
+  String get equipName_trainingKit_3 => 'Elit Performans Seti';
+
+  @override
+  String get equip_recoveryKit => 'Toparlanma ekipmanı';
+
+  @override
+  String equipEffect_recoveryKit(String value) {
+    return 'Haftalık toparlanma +$value kondisyon';
+  }
+
+  @override
+  String get equipName_recoveryKit_1 => 'Buz Torbası';
+
+  @override
+  String get equipName_recoveryKit_2 => 'Masaj Tabancası';
+
+  @override
+  String get equipName_recoveryKit_3 => 'Toparlanma Odası';
+
+  @override
+  String get equip_shinGuards => 'Koruyucu ekipman';
+
+  @override
+  String equipEffect_shinGuards(String value) {
+    return 'Sakatlanma riski -%$value';
+  }
+
+  @override
+  String get equipName_shinGuards_1 => 'Plastik Tekmelik';
+
+  @override
+  String get equipName_shinGuards_2 => 'Karbon Tekmelik';
+
+  @override
+  String get equipName_shinGuards_3 => 'Akıllı Tekmelik';
 }

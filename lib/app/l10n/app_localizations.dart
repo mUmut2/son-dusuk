@@ -1441,13 +1441,13 @@ abstract class AppLocalizations {
   /// No description provided for @miniHint_keyPass.
   ///
   /// In tr, this message translates to:
-  /// **'Bir arkadaşını seç, sonra ibreyi yeşil bölgede durdurmak için aşağıya dokun.'**
+  /// **'Bir arkadaşına dokun, sonra çubuk yeşil alandayken aşağıya dokun. Rakibi küçük olan pas daha güvenli!'**
   String get miniHint_keyPass;
 
   /// No description provided for @miniHint_dribble.
   ///
   /// In tr, this message translates to:
-  /// **'Sürükleyerek yönlendir. Savunmacı atılmadan hemen önce, atıldığı yanın tersine hızlıca kaydır!'**
+  /// **'Savunmacının halkası kırmızıya dönerken, okun gösterdiğinin TERSİNE ekranı hızlıca kaydır!'**
   String get miniHint_dribble;
 
   /// No description provided for @miniHint_tackle.
@@ -4250,6 +4250,168 @@ abstract class AppLocalizations {
   /// In tr, this message translates to:
   /// **'Milli takımla 8 maça çık.'**
   String get ach_nationalVeteran_desc;
+
+  /// No description provided for @equipmentTitle.
+  ///
+  /// In tr, this message translates to:
+  /// **'Ekipman Mağazası'**
+  String get equipmentTitle;
+
+  /// No description provided for @equipmentIntro.
+  ///
+  /// In tr, this message translates to:
+  /// **'Ekipmanlar bir kez alınır ve kariyerin boyunca seninle kalır.'**
+  String get equipmentIntro;
+
+  /// No description provided for @equipmentLevel.
+  ///
+  /// In tr, this message translates to:
+  /// **'Seviye {level}/{max}'**
+  String equipmentLevel(String level, String max);
+
+  /// No description provided for @equipmentBuy.
+  ///
+  /// In tr, this message translates to:
+  /// **'Satın al · {price}'**
+  String equipmentBuy(String price);
+
+  /// No description provided for @equipmentMaxed.
+  ///
+  /// In tr, this message translates to:
+  /// **'En üst seviye'**
+  String get equipmentMaxed;
+
+  /// No description provided for @equipmentBought.
+  ///
+  /// In tr, this message translates to:
+  /// **'{name} alındı!'**
+  String equipmentBought(String name);
+
+  /// No description provided for @equipmentNext.
+  ///
+  /// In tr, this message translates to:
+  /// **'Sıradaki: {name}'**
+  String equipmentNext(String name);
+
+  /// No description provided for @equip_boots.
+  ///
+  /// In tr, this message translates to:
+  /// **'Krampon'**
+  String get equip_boots;
+
+  /// No description provided for @equipEffect_boots.
+  ///
+  /// In tr, this message translates to:
+  /// **'Maçlarda şut, dribling, hız ve top kontrolü +{value}'**
+  String equipEffect_boots(String value);
+
+  /// No description provided for @equipName_boots_1.
+  ///
+  /// In tr, this message translates to:
+  /// **'Okul Kramponu'**
+  String get equipName_boots_1;
+
+  /// No description provided for @equipName_boots_2.
+  ///
+  /// In tr, this message translates to:
+  /// **'Profesyonel Krampon'**
+  String get equipName_boots_2;
+
+  /// No description provided for @equipName_boots_3.
+  ///
+  /// In tr, this message translates to:
+  /// **'Altın Krampon'**
+  String get equipName_boots_3;
+
+  /// No description provided for @equip_trainingKit.
+  ///
+  /// In tr, this message translates to:
+  /// **'Antrenman ekipmanı'**
+  String get equip_trainingKit;
+
+  /// No description provided for @equipEffect_trainingKit.
+  ///
+  /// In tr, this message translates to:
+  /// **'Antrenman kazancı +%{value}'**
+  String equipEffect_trainingKit(String value);
+
+  /// No description provided for @equipName_trainingKit_1.
+  ///
+  /// In tr, this message translates to:
+  /// **'Antrenman Çantası'**
+  String get equipName_trainingKit_1;
+
+  /// No description provided for @equipName_trainingKit_2.
+  ///
+  /// In tr, this message translates to:
+  /// **'Pro Antrenman Seti'**
+  String get equipName_trainingKit_2;
+
+  /// No description provided for @equipName_trainingKit_3.
+  ///
+  /// In tr, this message translates to:
+  /// **'Elit Performans Seti'**
+  String get equipName_trainingKit_3;
+
+  /// No description provided for @equip_recoveryKit.
+  ///
+  /// In tr, this message translates to:
+  /// **'Toparlanma ekipmanı'**
+  String get equip_recoveryKit;
+
+  /// No description provided for @equipEffect_recoveryKit.
+  ///
+  /// In tr, this message translates to:
+  /// **'Haftalık toparlanma +{value} kondisyon'**
+  String equipEffect_recoveryKit(String value);
+
+  /// No description provided for @equipName_recoveryKit_1.
+  ///
+  /// In tr, this message translates to:
+  /// **'Buz Torbası'**
+  String get equipName_recoveryKit_1;
+
+  /// No description provided for @equipName_recoveryKit_2.
+  ///
+  /// In tr, this message translates to:
+  /// **'Masaj Tabancası'**
+  String get equipName_recoveryKit_2;
+
+  /// No description provided for @equipName_recoveryKit_3.
+  ///
+  /// In tr, this message translates to:
+  /// **'Toparlanma Odası'**
+  String get equipName_recoveryKit_3;
+
+  /// No description provided for @equip_shinGuards.
+  ///
+  /// In tr, this message translates to:
+  /// **'Koruyucu ekipman'**
+  String get equip_shinGuards;
+
+  /// No description provided for @equipEffect_shinGuards.
+  ///
+  /// In tr, this message translates to:
+  /// **'Sakatlanma riski -%{value}'**
+  String equipEffect_shinGuards(String value);
+
+  /// No description provided for @equipName_shinGuards_1.
+  ///
+  /// In tr, this message translates to:
+  /// **'Plastik Tekmelik'**
+  String get equipName_shinGuards_1;
+
+  /// No description provided for @equipName_shinGuards_2.
+  ///
+  /// In tr, this message translates to:
+  /// **'Karbon Tekmelik'**
+  String get equipName_shinGuards_2;
+
+  /// No description provided for @equipName_shinGuards_3.
+  ///
+  /// In tr, this message translates to:
+  /// **'Akıllı Tekmelik'**
+  String get equipName_shinGuards_3;
 }
 
 class _AppLocalizationsDelegate

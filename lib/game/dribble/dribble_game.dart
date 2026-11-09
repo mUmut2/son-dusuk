@@ -41,7 +41,7 @@ class DribbleGame extends MiniGameBase {
   /// Zorluk: <1 savunmacının hamlesi daha az belli olur.
   final double telegraphScale;
 
-  static const double _minSwipeSpeed = 550;
+  static const double _minSwipeSpeed = 300;
 
   _Phase _phase = _Phase.approach;
   double _clock = 0;
@@ -204,6 +204,22 @@ class DribbleGame extends MiniGameBase {
 
     drawPerson(canvas, dx, dy, const Color(0xFFC62828), scale: 1.3, tilt: lean);
     drawPerson(canvas, px, py, const Color(0xFF1565C0), scale: 1.2);
-    drawBall(canvas, px + l.ballRadius * 1.5, py - l.ballRadius * 3);
+    // Top oyuncunun ayağının yanında (kafayla üst üste binmez).
+    drawBall(canvas, px + l.ballRadius * 2.2, py + l.ballRadius * 2.6);
+
+    // Savunmacının atılacağı yönü gösteren ok.
+    if (_phase == _Phase.telegraph) {
+      final ax = dx + _lungeDir * l.ballRadius * 4.5;
+      final ay = dy - l.ballRadius * 1.5;
+      final s = l.ballRadius * 1.1;
+      canvas.drawPath(
+        Path()
+          ..moveTo(ax + _lungeDir * s, ay)
+          ..lineTo(ax - _lungeDir * s * 0.6, ay - s)
+          ..lineTo(ax - _lungeDir * s * 0.6, ay + s)
+          ..close(),
+        Paint()..color = const Color(0xFFFFEB3B),
+      );
+    }
   }
 }

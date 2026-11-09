@@ -13,6 +13,7 @@ import '../../domain/match/shot/shot_balance.dart';
 import '../../domain/match/shot/shot_models.dart';
 import '../../domain/match/shot/shot_resolver.dart';
 import '../mini_game_types.dart';
+import '../person_painter.dart';
 import 'shot_geometry.dart';
 
 /// Şut mini oyununun varyantları: aynı girdi/animasyon, farklı engel ve çözüm.
@@ -371,29 +372,15 @@ class ShotGame extends FlameGame {
       ky = ky + (target.y - ky) * dive * 0.6;
       tilt = (r.keeperX) * 0.9 * dive;
     }
-    canvas
-      ..save()
-      ..translate(kx, ky)
-      ..rotate(tilt);
-    final body = Paint()..color = const Color(0xFFFFB300);
-    canvas
-      ..drawRRect(
-        RRect.fromRectAndRadius(
-          Rect.fromCenter(
-            center: Offset.zero,
-            width: l.ballRadius * 2.4,
-            height: l.ballRadius * 3.6,
-          ),
-          Radius.circular(l.ballRadius),
-        ),
-        body,
-      )
-      ..drawCircle(
-        Offset(0, -l.ballRadius * 2.2),
-        l.ballRadius * 0.9,
-        Paint()..color = const Color(0xFFD9A47A),
-      )
-      ..restore();
+    paintPerson(
+      canvas,
+      kx,
+      ky,
+      l.ballRadius,
+      const Color(0xFFFFB300),
+      scale: 0.9,
+      tilt: tilt,
+    );
   }
 
   void _drawWall(Canvas canvas) {
@@ -401,33 +388,22 @@ class ShotGame extends FlameGame {
     final w = wall!;
     final center = l.defenderPosition(w.centerX);
     final halfPx = w.halfWidth * l.goalHalfWidth * 0.5;
-    final count = math.max(3, (halfPx * 2 / (l.ballRadius * 2.6)).round());
+    // Oyuncular birbirine binmesin: sabit aralık, sayı duvar genişliğinden.
+    final spacing = l.ballRadius * 2.8;
+    final count = math.max(3, (halfPx * 2 / spacing).round());
     final jump = w.jumps && _phase != _Phase.aiming
         ? -l.ballRadius * 2 * (_flightT > 0.15 ? 1 : 0)
         : 0.0;
     for (var i = 0; i < count; i++) {
-      final x =
-          center.x - halfPx + (count == 1 ? 0 : halfPx * 2 * i / (count - 1));
-      canvas
-        ..save()
-        ..translate(x, center.y + jump)
-        ..drawRRect(
-          RRect.fromRectAndRadius(
-            Rect.fromCenter(
-              center: Offset.zero,
-              width: l.ballRadius * 2.2,
-              height: l.ballRadius * 3.4,
-            ),
-            Radius.circular(l.ballRadius),
-          ),
-          Paint()..color = const Color(0xFF1565C0),
-        )
-        ..drawCircle(
-          Offset(0, -l.ballRadius * 2.1),
-          l.ballRadius * 0.85,
-          Paint()..color = const Color(0xFFD9A47A),
-        )
-        ..restore();
+      final x = center.x + (i - (count - 1) / 2) * spacing;
+      paintPerson(
+        canvas,
+        x,
+        center.y + jump,
+        l.ballRadius,
+        const Color(0xFF1565C0),
+        scale: 0.85,
+      );
     }
   }
 
@@ -443,27 +419,14 @@ class ShotGame extends FlameGame {
     }
     // Baskı arttıkça savunmacı daha belirgin/iri çizilir.
     final scale = 0.8 + 0.5 * shotContext.pressure;
-    canvas
-      ..save()
-      ..translate(pos.x, pos.y);
-    canvas
-      ..drawRRect(
-        RRect.fromRectAndRadius(
-          Rect.fromCenter(
-            center: Offset.zero,
-            width: l.ballRadius * 2.4 * scale,
-            height: l.ballRadius * 3.6 * scale,
-          ),
-          Radius.circular(l.ballRadius),
-        ),
-        Paint()..color = const Color(0xFF1565C0),
-      )
-      ..drawCircle(
-        Offset(0, -l.ballRadius * 2.2 * scale),
-        l.ballRadius * 0.9 * scale,
-        Paint()..color = const Color(0xFFD9A47A),
-      )
-      ..restore();
+    paintPerson(
+      canvas,
+      pos.x,
+      pos.y,
+      l.ballRadius,
+      const Color(0xFF1565C0),
+      scale: scale,
+    );
   }
 
   void _drawRing(Canvas canvas) {

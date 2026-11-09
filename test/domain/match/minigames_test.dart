@@ -264,7 +264,7 @@ void main() {
     test('ibre ideal güçte tepe yapar', () {
       final o = PassResolver.generateOptions(50, GameRandom(1))[1];
       expect(PassResolver.accuracy(o, o.idealPower, 0.5), 1);
-      expect(PassResolver.accuracy(o, o.idealPower + 0.5, 0.5), 0);
+      expect(PassResolver.accuracy(o, o.idealPower + 0.7, 0.5), 0);
       expect(
         PassResolver.accuracy(o, o.idealPower + 0.1, 0.9),
         greaterThan(PassResolver.accuracy(o, o.idealPower + 0.1, 0.1)),
@@ -345,14 +345,18 @@ void main() {
       expect(DribbleResolver.timingQuality(0), 1);
       expect(DribbleResolver.timingQuality(0.05), 1);
       expect(DribbleResolver.timingQuality(-0.05), 1);
-      expect(DribbleResolver.timingQuality(0.5), 0);
-      expect(DribbleResolver.timingQuality(0.15), inExclusiveRange(0, 1));
+      expect(DribbleResolver.timingQuality(0.8), 0);
+      expect(DribbleResolver.timingQuality(0.3), inExclusiveRange(0, 1));
     });
 
-    test('yanlış yön neredeyse hiç başarılı değil', () {
-      expect(beatenRate(1, false), lessThan(0.08));
-      expect(beatenRate(1, true), greaterThan(0.6));
-    });
+    test(
+      'yanlış yön doğru yönden belirgin biçimde daha zor (ama çocuklar için affedici)',
+      () {
+        expect(beatenRate(1, false), lessThan(0.5));
+        expect(beatenRate(1, false), lessThan(beatenRate(1, true) - 0.2));
+        expect(beatenRate(1, true), greaterThan(0.6));
+      },
+    );
 
     test('iyi zamanlama, yetenek ve zayıf savunmacı başarıyı artırır', () {
       expect(beatenRate(1, true), greaterThan(beatenRate(0.2, true) + 0.2));

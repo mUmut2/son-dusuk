@@ -7,7 +7,7 @@ class GameSettings {
   const GameSettings({
     this.soundOn = true,
     this.vibrationOn = true,
-    this.difficulty = Difficulty.normal,
+    this.difficulty = Difficulty.easy,
   });
 
   final bool soundOn;
@@ -35,7 +35,7 @@ class SettingsRepository {
     return GameSettings(
       soundOn: _prefs.getBool('settings_sound') ?? true,
       vibrationOn: _prefs.getBool('settings_vibration') ?? true,
-      difficulty: Difficulty.values.asNameMap()[name] ?? Difficulty.normal,
+      difficulty: Difficulty.values.asNameMap()[name] ?? Difficulty.easy,
     );
   }
 

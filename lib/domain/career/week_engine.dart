@@ -105,6 +105,7 @@ abstract final class WeekEngine {
       var attrs = player.attributes;
       final gainBase =
           WeekBalance.trainingGainBase *
+          state.equipment.trainingMultiplier *
           WeekBalance.intensityGain[intensity]! *
           (0.6 + 0.8 * player.professionalism) *
           WeekBalance.ageGainMultiplier(player.age);
@@ -130,7 +131,10 @@ abstract final class WeekEngine {
       if (d != 0) changes.add(StatChange(StatKind.condition, d, why));
     }
 
-    cond(WeekBalance.weeklyRecovery, WeekReason.recovery);
+    cond(
+      WeekBalance.weeklyRecovery + state.equipment.recoveryBonus,
+      WeekReason.recovery,
+    );
     if (!training) {
       cond(WeekBalance.restRecovery, WeekReason.restFocus);
     } else {
@@ -167,12 +171,13 @@ abstract final class WeekEngine {
               .clamp(0.0, 1.0) *
           WeekBalance.lowConditionRisk;
       final risk =
-          WeekBalance.injuryBase +
-          WeekBalance.injuryProneGain * player.injuryProneness +
-          lowCondition +
-          (m != null ? WeekBalance.matchRisk : 0) +
-          (training ? WeekBalance.intensityRisk[intensity]! : 0) +
-          before.relapseRisk;
+          state.equipment.injuryMultiplier *
+          (WeekBalance.injuryBase +
+              WeekBalance.injuryProneGain * player.injuryProneness +
+              lowCondition +
+              (m != null ? WeekBalance.matchRisk : 0) +
+              (training ? WeekBalance.intensityRisk[intensity]! : 0) +
+              before.relapseRisk);
       if (random.chance(risk)) {
         final type = _pickInjuryType(random);
         final range = WeekBalance.injuryWeeks[type]!;

@@ -110,7 +110,8 @@ void main() {
     SharedPreferences.setMockInitialValues({});
     final prefs = await SharedPreferences.getInstance();
     final s = SettingsRepository(prefs);
-    expect(s.load().difficulty, Difficulty.normal);
+    // Çocuk dostu: varsayılan zorluk kolay.
+    expect(s.load().difficulty, Difficulty.easy);
     expect(s.load().soundOn, isTrue);
 
     await s.save(

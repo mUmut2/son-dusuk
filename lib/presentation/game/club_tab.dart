@@ -12,6 +12,7 @@ import '../../domain/club/transfer_offer.dart';
 import '../../domain/league/club_world.dart';
 import '../../domain/league/league_table.dart';
 import '../l10n_labels.dart';
+import 'equipment_section.dart';
 import '../providers.dart';
 
 /// Kulüp sekmesi: sözleşme, teklifler, menajer, finans ve lig tablosu.
@@ -509,6 +510,8 @@ class _FinanceSection extends ConsumerWidget {
           ),
           style: textTheme.bodySmall,
         ),
+        const SizedBox(height: 16),
+        const EquipmentSection(),
       ],
     );
   }

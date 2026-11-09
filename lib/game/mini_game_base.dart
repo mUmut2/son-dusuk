@@ -6,6 +6,7 @@ import 'package:flame/game.dart';
 import 'package:flutter/painting.dart';
 
 import 'mini_game_types.dart';
+import 'person_painter.dart';
 import 'shot/shot_geometry.dart';
 
 /// Şut dışındaki mini oyunların ortak tabanı: yerleşim, dokunma, sonuç
@@ -174,6 +175,7 @@ abstract class MiniGameBase extends FlameGame {
     );
   }
 
+  /// Sevimli bir oyuncu çizer (bkz. [paintPerson]).
   void drawPerson(
     Canvas canvas,
     double x,
@@ -182,27 +184,23 @@ abstract class MiniGameBase extends FlameGame {
     double scale = 1,
     double tilt = 0,
     String? label,
+    Color skin = const Color(0xFFE0AC83),
+    Color hair = const Color(0xFF3E2723),
   }) {
     final r = layout.ballRadius * scale;
-    canvas
-      ..save()
-      ..translate(x, y)
-      ..rotate(tilt)
-      ..drawRRect(
-        RRect.fromRectAndRadius(
-          Rect.fromCenter(center: Offset.zero, width: r * 2.4, height: r * 3.6),
-          Radius.circular(r),
-        ),
-        Paint()..color = shirt,
-      )
-      ..drawCircle(
-        Offset(0, -r * 2.2),
-        r * 0.9,
-        Paint()..color = const Color(0xFFD9A47A),
-      )
-      ..restore();
+    paintPerson(
+      canvas,
+      x,
+      y,
+      layout.ballRadius,
+      shirt,
+      scale: scale,
+      tilt: tilt,
+      skin: skin,
+      hair: hair,
+    );
     if (label != null) {
-      drawText(canvas, label, x, y, size: r * 1.3, bold: true);
+      drawText(canvas, label, x, y - r * 0.3, size: r * 1.3, bold: true);
     }
   }
 

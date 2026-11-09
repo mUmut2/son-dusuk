@@ -56,16 +56,16 @@ abstract final class MiniBalance {
   static const double visionThree = 70;
 
   /// Pas türleri: risk (kesilme), ödül (asist olasılığı), ideal güç.
-  static const double safeRisk = 0.08;
+  static const double safeRisk = 0.05;
   static const double safeReward = 0.04;
   static const double safePower = 0.35;
-  static const double forwardRisk = 0.2;
+  static const double forwardRisk = 0.12;
   static const double forwardReward = 0.09;
   static const double forwardPower = 0.55;
-  static const double throughRisk = 0.5;
+  static const double throughRisk = 0.3;
   static const double throughReward = 0.16;
   static const double throughPower = 0.7;
-  static const double switchRisk = 0.3;
+  static const double switchRisk = 0.18;
   static const double switchReward = 0.10;
   static const double switchPower = 0.85;
 
@@ -74,22 +74,22 @@ abstract final class MiniBalance {
   static const double visionRiskCut = 0.3;
 
   /// İbre isabeti: |güç - ideal| bu toleransın içindeyse kısmen doğru.
-  static const double passPowerTolerance = 0.35;
-  static const double passMeterPeriod = 1.4;
-  static const double passMaxSeconds = 8;
+  static const double passPowerTolerance = 0.6;
+  static const double passMeterPeriod = 2.2;
+  static const double passMaxSeconds = 12;
 
   // ---------------- DRIBLING ----------------
   /// Savunmacı "atılma" gecikmesi (sn) ve çalım penceresi yarıçapı (sn).
-  static const double lungeDelayMin = 1.4;
-  static const double lungeDelayMax = 2.6;
-  static const double lungeTelegraph = 0.55;
-  static const double dribbleGoodWindow = 0.28;
-  static const double dribblePerfectWindow = 0.06;
+  static const double lungeDelayMin = 1.0;
+  static const double lungeDelayMax = 1.8;
+  static const double lungeTelegraph = 0.9;
+  static const double dribbleGoodWindow = 0.55;
+  static const double dribblePerfectWindow = 0.15;
 
   /// Başarı olasılığı = (taban + zamanlama x genişlik) x yetenek x savunmacı.
-  static const double dribbleBase = 0.2;
-  static const double dribbleSpan = 0.7;
-  static const double dribbleWrongDirection = 0.05;
+  static const double dribbleBase = 0.45;
+  static const double dribbleSpan = 0.5;
+  static const double dribbleWrongDirection = 0.4;
   static const double dribbleSkillSpread = 0.6;
   static const double dribbleDefenderEdge = 0.35;
 
@@ -98,13 +98,13 @@ abstract final class MiniBalance {
 
   // ---------------- MUDAHALE ----------------
   /// Rakip topu ayağından bu periyotla açar; en uzak an müdahale penceresidir.
-  static const double tacklePeriod = 0.9;
-  static const double tackleApproachSeconds = 4.5;
-  static const double tackleGoodWindow = 0.3;
+  static const double tacklePeriod = 1.3;
+  static const double tackleApproachSeconds = 6;
+  static const double tackleGoodWindow = 0.45;
 
   /// Hizalama bu değerin altındaysa rakip geçer.
-  static const double tackleMinAlignment = 0.3;
-  static const double tackleBase = 0.5;
+  static const double tackleMinAlignment = 0.12;
+  static const double tackleBase = 0.6;
   static const double tackleSpan = 0.6;
   static const double tackleSkillSpread = 0.6;
   static const double tackleAttackerEdge = 0.3;

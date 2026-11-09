@@ -6,7 +6,9 @@ import '../domain/career/player_status.dart';
 import '../domain/career/season_calendar.dart';
 import '../domain/career/week_report.dart';
 import '../domain/career/weekly_plan.dart';
+import '../domain/club/club_balance.dart';
 import '../domain/club/contract.dart';
+import '../domain/club/equipment.dart';
 import '../domain/club/finance.dart';
 import '../domain/national/nation.dart';
 import '../domain/national/national_engine.dart';
@@ -440,6 +442,46 @@ extension L10nLabels on AppLocalizations {
   };
 
   /// 1234567 -> "1.234.567 ₺" (eksi değerlerde "-").
+  String equipmentSlotName(EquipmentSlot s) => switch (s) {
+    EquipmentSlot.boots => equip_boots,
+    EquipmentSlot.trainingKit => equip_trainingKit,
+    EquipmentSlot.recoveryKit => equip_recoveryKit,
+    EquipmentSlot.shinGuards => equip_shinGuards,
+  };
+
+  /// [level] 1-3: o seviyedeki ekipmanın adı.
+  String equipmentItemName(EquipmentSlot s, int level) => switch ((s, level)) {
+    (EquipmentSlot.boots, 1) => equipName_boots_1,
+    (EquipmentSlot.boots, 2) => equipName_boots_2,
+    (EquipmentSlot.boots, 3) => equipName_boots_3,
+    (EquipmentSlot.trainingKit, 1) => equipName_trainingKit_1,
+    (EquipmentSlot.trainingKit, 2) => equipName_trainingKit_2,
+    (EquipmentSlot.trainingKit, 3) => equipName_trainingKit_3,
+    (EquipmentSlot.recoveryKit, 1) => equipName_recoveryKit_1,
+    (EquipmentSlot.recoveryKit, 2) => equipName_recoveryKit_2,
+    (EquipmentSlot.recoveryKit, 3) => equipName_recoveryKit_3,
+    (EquipmentSlot.shinGuards, 1) => equipName_shinGuards_1,
+    (EquipmentSlot.shinGuards, 2) => equipName_shinGuards_2,
+    (EquipmentSlot.shinGuards, 3) => equipName_shinGuards_3,
+    _ => equipmentSlotName(s),
+  };
+
+  /// [level] seviyesindeki toplam etkinin metni.
+  String equipmentEffect(EquipmentSlot s, int level) => switch (s) {
+    EquipmentSlot.boots => equipEffect_boots(
+      '${ClubBalance.bootsBonusPerLevel * level}',
+    ),
+    EquipmentSlot.trainingKit => equipEffect_trainingKit(
+      '${(ClubBalance.trainingKitPerLevel * level * 100).round()}',
+    ),
+    EquipmentSlot.recoveryKit => equipEffect_recoveryKit(
+      '${(ClubBalance.recoveryKitPerLevel * level).round()}',
+    ),
+    EquipmentSlot.shinGuards => equipEffect_shinGuards(
+      '${(ClubBalance.shinGuardsPerLevel * level * 100).round()}',
+    ),
+  };
+
   String money(int value) => moneyAmount(_grouped(value));
 
   String moneyWeek(int value) => moneyPerWeek(_grouped(value));

@@ -1,5 +1,6 @@
 import '../club/agent.dart';
 import '../club/contract.dart';
+import '../club/equipment.dart';
 import '../club/finance.dart';
 import '../club/transfer_offer.dart';
 import '../national/national_career.dart';
@@ -34,6 +35,7 @@ class CareerState {
     this.national = const NationalCareer(),
     this.achievements = const {},
     this.retired = false,
+    this.equipment = const Equipment(),
   });
 
   factory CareerState.fromJson(Map<String, dynamic> json) => CareerState(
@@ -92,6 +94,9 @@ class CareerState {
       (json['achievements'] as Map<String, dynamic>?) ?? const {},
     ),
     retired: json['retired'] as bool? ?? false,
+    equipment: json['equipment'] == null
+        ? const Equipment()
+        : Equipment.fromJson(json['equipment'] as Map<String, dynamic>),
   );
 
   final Player player;
@@ -139,6 +144,9 @@ class CareerState {
   /// Kariyer bitti (emeklilik); oyun yalnızca kariyer özetini gösterir.
   final bool retired;
 
+  /// Satın alınan ekipmanlar (krampon, antrenman seti, ...).
+  final Equipment equipment;
+
   bool get isFreeAgent => contract == null;
 
   /// Sezonlar boyunca artan hafta sayacı (tekliflerin son geçerlilik günü için).
@@ -167,6 +175,7 @@ class CareerState {
     NationalCareer? national,
     Map<String, int>? achievements,
     bool? retired,
+    Equipment? equipment,
   }) => CareerState(
     player: player ?? this.player,
     season: season ?? this.season,
@@ -188,6 +197,7 @@ class CareerState {
     national: national ?? this.national,
     achievements: achievements ?? this.achievements,
     retired: retired ?? this.retired,
+    equipment: equipment ?? this.equipment,
   );
 
   Map<String, dynamic> toJson() => {
@@ -211,5 +221,6 @@ class CareerState {
     'national': national.toJson(),
     'achievements': achievements,
     'retired': retired,
+    'equipment': equipment.toJson(),
   };
 }

@@ -193,6 +193,34 @@ void main() {
     expect(notifier, isNotNull);
   });
 
+  testWidgets('ekipman mağazası: para yetmezse kilitli, yetince satın alınır', (
+    tester,
+  ) async {
+    final container = await pumpClub(
+      tester,
+      setup: (c, w) => c.copyWith(finance: const Finance(balance: 20000)),
+    );
+    await tester.ensureVisible(find.text('Ekipman Mağazası'));
+    // Krampon 6.000 ₺: alınır. Seviye 2 (50.000 ₺) alınamaz.
+    final boots = find.text('Satın al · 6.000 ₺');
+    expect(boots, findsOneWidget);
+    await tester.ensureVisible(boots);
+    await tester.tap(boots);
+    await tester.pumpAndSettle();
+    final state = container.read(activeCareerProvider)!.state;
+    expect(state.equipment.levels['boots'], 1);
+    expect(state.finance.balance, 14000);
+    expect(find.text('Okul Kramponu'), findsOneWidget);
+    expect(find.text('Satın al · 50.000 ₺'), findsOneWidget);
+    final locked = tester.widget<ButtonStyleButton>(
+      find.ancestor(
+        of: find.text('Satın al · 50.000 ₺'),
+        matching: find.byWidgetPredicate((w) => w is ButtonStyleButton),
+      ),
+    );
+    expect(locked.onPressed, isNull);
+  });
+
   testWidgets('serbest oyuncu uyarısı görünür ve antrenmanda maç yok', (
     tester,
   ) async {

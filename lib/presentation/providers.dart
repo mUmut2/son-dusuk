@@ -9,6 +9,7 @@ import '../domain/career/difficulty.dart';
 import '../domain/career/retirement.dart';
 import '../domain/career/week_engine.dart';
 import '../domain/career/weekly_plan.dart';
+import '../domain/club/equipment.dart';
 import '../domain/club/finance.dart';
 import '../domain/club/transfer_market.dart';
 import '../domain/club/transfer_offer.dart';
@@ -143,6 +144,12 @@ class ActiveCareerNotifier extends Notifier<ActiveCareer?> {
     final current = state;
     if (current == null) return;
     await update(ClubActions.fireAgent(current.state));
+  }
+
+  Future<void> buyEquipment(EquipmentSlot slot) async {
+    final current = state;
+    if (current == null) return;
+    await update(ClubActions.buyEquipment(current.state, slot));
   }
 
   Future<void> setLifestyle(Lifestyle l) async {

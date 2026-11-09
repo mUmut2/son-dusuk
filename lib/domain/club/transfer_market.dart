@@ -10,6 +10,7 @@ import '../player/player.dart';
 import 'agent.dart';
 import 'club_balance.dart';
 import 'contract.dart';
+import 'equipment.dart';
 import 'finance.dart';
 import '../social/event_models.dart';
 import '../social/social_engine.dart';
@@ -256,6 +257,17 @@ abstract final class ClubActions {
   }
 
   static CareerState fireAgent(CareerState s) => s.copyWith(clearAgent: true);
+
+  /// Ekipmanın bir sonraki seviyesini satın alır; para yetmezse ya da son
+  /// seviyedeyse durumu değiştirmez.
+  static CareerState buyEquipment(CareerState s, EquipmentSlot slot) {
+    final price = s.equipment.nextPrice(slot);
+    if (price == null || s.finance.balance < price) return s;
+    return s.copyWith(
+      equipment: s.equipment.upgrade(slot),
+      finance: s.finance.copyWith(balance: s.finance.balance - price),
+    );
+  }
 
   static CareerState setLifestyle(CareerState s, Lifestyle l) =>
       s.copyWith(finance: s.finance.copyWith(lifestyle: l));

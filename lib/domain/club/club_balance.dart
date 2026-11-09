@@ -1,4 +1,6 @@
+import '../player/attribute.dart';
 import 'contract.dart';
+import 'equipment.dart';
 import 'finance.dart';
 
 /// Kulüp, kontrat, transfer ve ekonomi denge parametreleri (tek yer).
@@ -137,6 +139,37 @@ abstract final class ClubBalance {
     Lifestyle.comfortable: 1,
     Lifestyle.lavish: 2.5,
   };
+
+  // --- Ekipman (Faz 9) ---
+  static const int equipmentMaxLevel = 3;
+
+  /// Seviye başına fiyat (1., 2., 3. seviye). Kademe/gelir eğrisine göre.
+  static const Map<EquipmentSlot, List<int>> equipmentPrice = {
+    EquipmentSlot.boots: [6000, 50000, 400000],
+    EquipmentSlot.trainingKit: [5000, 40000, 300000],
+    EquipmentSlot.recoveryKit: [5000, 35000, 280000],
+    EquipmentSlot.shinGuards: [4000, 30000, 250000],
+  };
+
+  /// Krampon: seviye başına maç niteliklerine artı ve artı alan nitelikler.
+  static const int bootsBonusPerLevel = 2;
+  static const List<Attribute> bootsAttributes = [
+    Attribute.shooting,
+    Attribute.finesse,
+    Attribute.dribbling,
+    Attribute.pace,
+    Attribute.agility,
+    Attribute.ballControl,
+  ];
+
+  /// Antrenman seti: seviye başına kazanç artışı (oran).
+  static const double trainingKitPerLevel = 0.12;
+
+  /// Toparlanma seti: seviye başına haftalık ek kondisyon.
+  static const double recoveryKitPerLevel = 4;
+
+  /// Tekmelik: seviye başına sakatlanma riski azalması (oran).
+  static const double shinGuardsPerLevel = 0.1;
 
   /// Bakiye eksideyken haftalık moral cezası.
   static const double debtMorale = -2;

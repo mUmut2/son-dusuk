@@ -56,6 +56,16 @@ abstract final class PassResolver {
         : 4;
     final v = (vision / 99).clamp(0.0, 1.0);
 
+    // Her seçeneğe ayrı bir şerit: oyuncular birbirinin üstüne binmesin.
+    final lanes = [-0.75, -0.25, 0.25, 0.75];
+    for (var i = lanes.length - 1; i > 0; i--) {
+      final j = random.nextInt(i + 1);
+      final t = lanes[i];
+      lanes[i] = lanes[j];
+      lanes[j] = t;
+    }
+    var laneIndex = 0;
+
     PassOption make(
       PassType type,
       double risk,
@@ -65,7 +75,9 @@ abstract final class PassResolver {
     ) {
       return PassOption(
         type: type,
-        x: (random.nextDouble() * 2 - 1) * 0.8,
+        x:
+            lanes[laneIndex++ % lanes.length] +
+            (random.nextDouble() - 0.5) * 0.1,
         depth: depth,
         risk: (risk * (1 - MiniBalance.visionRiskCut * v)).clamp(0.0, 0.95),
         reward: reward * (1 + MiniBalance.visionRewardGain * v),

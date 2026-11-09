@@ -219,7 +219,7 @@ class _MatchScreenState extends ConsumerState<MatchScreen> {
     final settings = ref.read(settingsProvider);
     return MiniGameView(
       type: _moment!.type,
-      player: career.player,
+      player: career.equipment.applyToPlayer(career.player),
       status: career.status,
       difficulty: settings.difficulty,
       vibration: settings.vibrationOn,

@@ -153,7 +153,32 @@ void main() {
       route: '/game/event/pressWin',
     );
     expect(find.textContaining('Rakip SK karşısında 2-1'), findsOneWidget);
-    expect(find.text('Basın toplantısı'), findsOneWidget);
+    expect(find.text('Röportaj'), findsOneWidget);
+  });
+
+  testWidgets('röportaj: muhabir sorusu, ton etiketleri, gazete manşeti', (
+    tester,
+  ) async {
+    await pumpSocial(
+      tester,
+      events: ['pressFood'],
+      route: '/game/event/pressFood',
+    );
+    expect(find.text('Muhabir'), findsOneWidget);
+    expect(find.text('Menüde ne vardı?'), findsOneWidget);
+    expect(find.text('Cevabını seç'), findsOneWidget);
+    // Her cevapta tavır rozeti.
+    expect(find.text('Dürüst'), findsOneWidget);
+    expect(find.text('Komik'), findsOneWidget);
+    expect(find.text('Havalı'), findsOneWidget);
+
+    await tester.tap(find.textContaining('Şampiyonların yemeği'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('GÜNÜN GAZETESİ'), findsOneWidget);
+    expect(find.text('SIR YEMEK GÜNDEMDE!'), findsOneWidget);
+    expect(find.text('Gizemli cevabın bütün gün konuşuldu.'), findsOneWidget);
+    expect(tester.takeException(), isNull);
   });
 
   testWidgets('olmayan olay açılırsa sosyal sekmesine döner', (tester) async {

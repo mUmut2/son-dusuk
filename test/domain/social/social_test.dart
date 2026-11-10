@@ -95,6 +95,54 @@ void main() {
       }
     });
 
+    test('röportajlar: her cevabın tavrı ve her sonucun manşeti var', () async {
+      final l10n = await AppLocalizations.delegate.load(const Locale('tr'));
+      final press = EventCatalog.all.where((t) => t.kind == EventKind.press);
+      expect(press.length, greaterThanOrEqualTo(10));
+      for (final t in press) {
+        final x = l10n.eventTexts(t.id, const {
+          'opponent': 'A',
+          'score': '1-0',
+        });
+        expect(x.headlines, hasLength(t.choices.length), reason: t.id);
+        for (var i = 0; i < t.choices.length; i++) {
+          expect(t.choices[i].tone, isNotNull, reason: '${t.id} c$i');
+          expect(x.headlines[i], isNotEmpty, reason: '${t.id} h$i');
+          expect(
+            x.headlines[i],
+            x.headlines[i].toUpperCase(),
+            reason: '${t.id} manşeti büyük harfle yazılır',
+          );
+        }
+      }
+    });
+
+    test('yeni röportajlar doğru koşulda çıkar', () {
+      final s = newCareer();
+      bool fits(String id, EventContext c) => EventCatalog.byId(id).when(c);
+      // Beraberlik: maç oynandı, ne galibiyet ne yenilgi.
+      expect(fits('pressDraw', EventContext(state: s, rating: 6)), isTrue);
+      expect(
+        fits('pressDraw', EventContext(state: s, rating: 6, won: true)),
+        isFalse,
+      );
+      expect(fits('pressDraw', EventContext(state: s)), isFalse);
+      // Gol sevinci: en az bir gol.
+      expect(
+        fits('pressCelebration', EventContext(state: s, rating: 7, goals: 1)),
+        isTrue,
+      );
+      expect(
+        fits('pressCelebration', EventContext(state: s, rating: 7)),
+        isFalse,
+      );
+      // Eğlenceli sorular: yalnızca maç oynanınca.
+      for (final id in ['pressFood', 'pressRival', 'pressMascot']) {
+        expect(fits(id, EventContext(state: s, rating: 6)), isTrue, reason: id);
+        expect(fits(id, EventContext(state: s)), isFalse, reason: id);
+      }
+    });
+
     test('basın olayları maç sonucuna göre uygun şablonu seçer', () {
       final s = newCareer();
       bool fits(String id, EventContext c) => EventCatalog.byId(id).when(c);

@@ -13,6 +13,7 @@ import '../../domain/social/social_engine.dart';
 import '../event_texts.dart';
 import '../l10n_labels.dart';
 import '../providers.dart';
+import 'interview_widgets.dart';
 import 'social_visuals.dart';
 
 /// Tek bir olay: soru -> seçenekler -> sonuç. [eventId] bekleyen olayın kimliği.
@@ -94,6 +95,7 @@ class _EventScreenState extends ConsumerState<EventScreen> {
                       key: const ValueKey('outcome'),
                       result: _result!,
                       texts: texts,
+                      press: template.kind == EventKind.press,
                     ),
             ),
           ),
@@ -123,52 +125,92 @@ class _Question extends StatelessWidget {
     final scheme = Theme.of(context).colorScheme;
     final textTheme = Theme.of(context).textTheme;
 
+    final press = template.kind == EventKind.press;
+
     return ListView(
       padding: const EdgeInsets.all(16),
       children: [
-        Container(
-          padding: const EdgeInsets.all(20),
-          decoration: BoxDecoration(
-            color: scheme.primaryContainer,
-            borderRadius: BorderRadius.circular(20),
-          ),
-          child: Column(
+        if (press)
+          Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              CircleAvatar(
-                radius: 26,
-                backgroundColor: scheme.primary,
-                foregroundColor: scheme.onPrimary,
-                child: Icon(eventKindIcon(template.kind), size: 28),
+              Column(
+                children: [
+                  const ReporterAvatar(size: 80),
+                  Text(l10n.interviewReporter, style: textTheme.labelSmall),
+                ],
               ),
-              const SizedBox(height: 16),
-              Text(
-                texts.title,
-                style: textTheme.headlineSmall?.copyWith(
-                  color: scheme.onPrimaryContainer,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-              const SizedBox(height: 8),
-              Text(
-                texts.body,
-                style: textTheme.bodyLarge?.copyWith(
-                  color: scheme.onPrimaryContainer,
-                  height: 1.4,
+              const SizedBox(width: 14),
+              Expanded(
+                child: SpeechBubble(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        texts.title,
+                        style: textTheme.titleMedium?.copyWith(
+                          color: scheme.onPrimaryContainer,
+                          fontWeight: FontWeight.w800,
+                        ),
+                      ),
+                      const SizedBox(height: 6),
+                      Text(
+                        texts.body,
+                        style: textTheme.bodyLarge?.copyWith(
+                          color: scheme.onPrimaryContainer,
+                          height: 1.4,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ],
+          )
+        else
+          Container(
+            padding: const EdgeInsets.all(20),
+            decoration: BoxDecoration(
+              color: scheme.primaryContainer,
+              borderRadius: BorderRadius.circular(20),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                CircleAvatar(
+                  radius: 26,
+                  backgroundColor: scheme.primary,
+                  foregroundColor: scheme.onPrimary,
+                  child: Icon(eventKindIcon(template.kind), size: 28),
+                ),
+                const SizedBox(height: 16),
+                Text(
+                  texts.title,
+                  style: textTheme.headlineSmall?.copyWith(
+                    color: scheme.onPrimaryContainer,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  texts.body,
+                  style: textTheme.bodyLarge?.copyWith(
+                    color: scheme.onPrimaryContainer,
+                    height: 1.4,
+                  ),
+                ),
+              ],
+            ),
           ),
-        ),
         const SizedBox(height: 20),
         Text(
-          l10n.eventChooseHint,
+          press ? l10n.interviewPickHint : l10n.eventChooseHint,
           style: textTheme.bodySmall?.copyWith(color: scheme.onSurfaceVariant),
         ),
         const SizedBox(height: 8),
         for (var i = 0; i < template.choices.length; i++)
           _ChoiceCard(
-            label: texts.choices[i],
+            label: press ? '“${texts.choices[i]}”' : texts.choices[i],
             choice: template.choices[i],
             enabled: !busy,
             onTap: () => onChoose(i),
@@ -214,6 +256,10 @@ class _ChoiceCard extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              if (choice.tone != null) ...[
+                ToneChip(tone: choice.tone!),
+                const SizedBox(height: 8),
+              ],
               Text(label, style: textTheme.titleMedium),
               if (affected.isNotEmpty || touchesMoney || choice.risky) ...[
                 const SizedBox(height: 10),
@@ -281,10 +327,18 @@ class _Tag extends StatelessWidget {
 }
 
 class _Outcome extends StatelessWidget {
-  const _Outcome({required this.result, required this.texts, super.key});
+  const _Outcome({
+    required this.result,
+    required this.texts,
+    required this.press,
+    super.key,
+  });
 
   final ResolveResult result;
   final EventTexts texts;
+
+  /// Röportajsa sonuç gazete manşeti olarak gösterilir.
+  final bool press;
 
   @override
   Widget build(BuildContext context) {
@@ -332,33 +386,43 @@ class _Outcome extends StatelessWidget {
       padding: const EdgeInsets.all(16),
       children: [
         const SizedBox(height: 16),
-        Icon(
-          backfired ? Icons.warning_amber_rounded : Icons.check_circle_outline,
-          size: 64,
-          color: backfired ? scheme.error : scheme.primary,
-        ),
-        const SizedBox(height: 12),
-        if (backfired)
-          Text(
-            l10n.eventBackfired,
-            textAlign: TextAlign.center,
-            style: textTheme.headlineSmall?.copyWith(
-              color: scheme.error,
-              fontWeight: FontWeight.w700,
-            ),
-          )
-        else
-          Text(
-            l10n.eventResult,
-            textAlign: TextAlign.center,
-            style: textTheme.titleMedium,
+        if (press && texts.headlines.length > i) ...[
+          NewspaperCard(
+            headline: texts.headlines[i],
+            story: story,
+            backfired: backfired,
           ),
-        const SizedBox(height: 12),
-        Text(
-          story,
-          textAlign: TextAlign.center,
-          style: textTheme.bodyLarge?.copyWith(height: 1.4),
-        ),
+        ] else ...[
+          Icon(
+            backfired
+                ? Icons.warning_amber_rounded
+                : Icons.check_circle_outline,
+            size: 64,
+            color: backfired ? scheme.error : scheme.primary,
+          ),
+          const SizedBox(height: 12),
+          if (backfired)
+            Text(
+              l10n.eventBackfired,
+              textAlign: TextAlign.center,
+              style: textTheme.headlineSmall?.copyWith(
+                color: scheme.error,
+                fontWeight: FontWeight.w700,
+              ),
+            )
+          else
+            Text(
+              l10n.eventResult,
+              textAlign: TextAlign.center,
+              style: textTheme.titleMedium,
+            ),
+          const SizedBox(height: 12),
+          Text(
+            story,
+            textAlign: TextAlign.center,
+            style: textTheme.bodyLarge?.copyWith(height: 1.4),
+          ),
+        ],
         const SizedBox(height: 24),
         Card(
           child: Padding(

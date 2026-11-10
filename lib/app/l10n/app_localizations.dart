@@ -2953,7 +2953,7 @@ abstract class AppLocalizations {
   /// No description provided for @eventKind_press.
   ///
   /// In tr, this message translates to:
-  /// **'Basın toplantısı'**
+  /// **'Röportaj'**
   String get eventKind_press;
 
   /// No description provided for @eventKind_personal.
@@ -4670,6 +4670,642 @@ abstract class AppLocalizations {
   /// In tr, this message translates to:
   /// **'Maç başlayınca spiker burada konuşacak.'**
   String get commentaryEmpty;
+
+  /// No description provided for @ev_pressDraw_title.
+  ///
+  /// In tr, this message translates to:
+  /// **'Beraberlik sonrası mikrofon'**
+  String get ev_pressDraw_title;
+
+  /// No description provided for @ev_pressDraw_body.
+  ///
+  /// In tr, this message translates to:
+  /// **'Maç berabere bitti. Muhabir mikrofonu uzattı: \"Bu bir puan mı, yoksa iki puan kaybı mı?\"'**
+  String get ev_pressDraw_body;
+
+  /// No description provided for @ev_pressDraw_c0.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bir puan da puandır, ileriye bakıyoruz.'**
+  String get ev_pressDraw_c0;
+
+  /// No description provided for @ev_pressDraw_r0.
+  ///
+  /// In tr, this message translates to:
+  /// **'Olumlu tavrın soyunma odasını güldürdü.'**
+  String get ev_pressDraw_r0;
+
+  /// No description provided for @ev_pressDraw_h0.
+  ///
+  /// In tr, this message translates to:
+  /// **'BİR PUAN DA PUAN!'**
+  String get ev_pressDraw_h0;
+
+  /// No description provided for @ev_pressDraw_c1.
+  ///
+  /// In tr, this message translates to:
+  /// **'İkisi de değil! Gelecek maçta üç puanı toptan alacağız!'**
+  String get ev_pressDraw_c1;
+
+  /// No description provided for @ev_pressDraw_r1.
+  ///
+  /// In tr, this message translates to:
+  /// **'Muhabir güldü, taraftarlar alkışladı.'**
+  String get ev_pressDraw_r1;
+
+  /// No description provided for @ev_pressDraw_h1.
+  ///
+  /// In tr, this message translates to:
+  /// **'ÜÇ PUAN SÖZÜ VERDİ!'**
+  String get ev_pressDraw_h1;
+
+  /// No description provided for @ev_pressDraw_c2.
+  ///
+  /// In tr, this message translates to:
+  /// **'Hakem düdüğü biraz erken çaldı, bence biz kazanmıştık.'**
+  String get ev_pressDraw_c2;
+
+  /// No description provided for @ev_pressDraw_r2.
+  ///
+  /// In tr, this message translates to:
+  /// **'Sözlerin manşetlere çıktı.'**
+  String get ev_pressDraw_r2;
+
+  /// No description provided for @ev_pressDraw_b2.
+  ///
+  /// In tr, this message translates to:
+  /// **'Hakem komitesi açıklamandan hoşlanmadı, hoca seni uyardı.'**
+  String get ev_pressDraw_b2;
+
+  /// No description provided for @ev_pressDraw_h2.
+  ///
+  /// In tr, this message translates to:
+  /// **'HAKEME GÖNDERME!'**
+  String get ev_pressDraw_h2;
+
+  /// No description provided for @ev_pressFood_title.
+  ///
+  /// In tr, this message translates to:
+  /// **'Menüde ne vardı?'**
+  String get ev_pressFood_title;
+
+  /// No description provided for @ev_pressFood_body.
+  ///
+  /// In tr, this message translates to:
+  /// **'Muhabir mikrofonu uzattı: \"Maçtan önce ne yedin? Tribündeki herkes merak ediyor!\"'**
+  String get ev_pressFood_body;
+
+  /// No description provided for @ev_pressFood_c0.
+  ///
+  /// In tr, this message translates to:
+  /// **'Annemin yaptığı makarna, başka bir şey yemem.'**
+  String get ev_pressFood_c0;
+
+  /// No description provided for @ev_pressFood_r0.
+  ///
+  /// In tr, this message translates to:
+  /// **'Anneler duyunca duygulandı, makarna satışları arttı.'**
+  String get ev_pressFood_r0;
+
+  /// No description provided for @ev_pressFood_h0.
+  ///
+  /// In tr, this message translates to:
+  /// **'MAKARNALI SIR ORTAYA ÇIKTI!'**
+  String get ev_pressFood_h0;
+
+  /// No description provided for @ev_pressFood_c1.
+  ///
+  /// In tr, this message translates to:
+  /// **'Sadece iki lahmacun ve on altı bardak çay!'**
+  String get ev_pressFood_c1;
+
+  /// No description provided for @ev_pressFood_r1.
+  ///
+  /// In tr, this message translates to:
+  /// **'Herkes kahkaha attı, çay üreticileri teşekkür mesajı yolladı.'**
+  String get ev_pressFood_r1;
+
+  /// No description provided for @ev_pressFood_b1.
+  ///
+  /// In tr, this message translates to:
+  /// **'Beslenme uzmanı duydu, hoca seni masaya oturttu ve listeni değiştirdi.'**
+  String get ev_pressFood_b1;
+
+  /// No description provided for @ev_pressFood_h1.
+  ///
+  /// In tr, this message translates to:
+  /// **'ON ALTI BARDAK ÇAY REKORU!'**
+  String get ev_pressFood_h1;
+
+  /// No description provided for @ev_pressFood_c2.
+  ///
+  /// In tr, this message translates to:
+  /// **'Şampiyonların yemeği sırdır, söylemem.'**
+  String get ev_pressFood_c2;
+
+  /// No description provided for @ev_pressFood_r2.
+  ///
+  /// In tr, this message translates to:
+  /// **'Gizemli cevabın bütün gün konuşuldu.'**
+  String get ev_pressFood_r2;
+
+  /// No description provided for @ev_pressFood_h2.
+  ///
+  /// In tr, this message translates to:
+  /// **'SIR YEMEK GÜNDEMDE!'**
+  String get ev_pressFood_h2;
+
+  /// No description provided for @ev_pressCelebration_title.
+  ///
+  /// In tr, this message translates to:
+  /// **'O gol sevinci!'**
+  String get ev_pressCelebration_title;
+
+  /// No description provided for @ev_pressCelebration_body.
+  ///
+  /// In tr, this message translates to:
+  /// **'Muhabir: \"Attığın golden sonra yaptığın sevinç çok eğlenceliydi! Nasıl akıl ettin?\"'**
+  String get ev_pressCelebration_body;
+
+  /// No description provided for @ev_pressCelebration_c0.
+  ///
+  /// In tr, this message translates to:
+  /// **'Doğaçlama oldu, çok mutluydum.'**
+  String get ev_pressCelebration_c0;
+
+  /// No description provided for @ev_pressCelebration_r0.
+  ///
+  /// In tr, this message translates to:
+  /// **'Samimi cevabın taraftarların kalbini kazandı.'**
+  String get ev_pressCelebration_r0;
+
+  /// No description provided for @ev_pressCelebration_h0.
+  ///
+  /// In tr, this message translates to:
+  /// **'SEVİNÇ DOĞAÇLAMAYMIŞ!'**
+  String get ev_pressCelebration_h0;
+
+  /// No description provided for @ev_pressCelebration_c1.
+  ///
+  /// In tr, this message translates to:
+  /// **'Aylardır evde aynanın karşısında çalışıyorum!'**
+  String get ev_pressCelebration_c1;
+
+  /// No description provided for @ev_pressCelebration_r1.
+  ///
+  /// In tr, this message translates to:
+  /// **'Muhabir gülmekten mikrofonu düşürdü, video herkese yayıldı.'**
+  String get ev_pressCelebration_r1;
+
+  /// No description provided for @ev_pressCelebration_h1.
+  ///
+  /// In tr, this message translates to:
+  /// **'AYNA ÖNÜNDE PROVA!'**
+  String get ev_pressCelebration_h1;
+
+  /// No description provided for @ev_pressCelebration_c2.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bir sonraki golde daha büyük bir sürpriz hazırladım.'**
+  String get ev_pressCelebration_c2;
+
+  /// No description provided for @ev_pressCelebration_r2.
+  ///
+  /// In tr, this message translates to:
+  /// **'Taraftarlar bir sonraki golü iple çekiyor.'**
+  String get ev_pressCelebration_r2;
+
+  /// No description provided for @ev_pressCelebration_h2.
+  ///
+  /// In tr, this message translates to:
+  /// **'YENİ SEVİNÇ GELİYOR!'**
+  String get ev_pressCelebration_h2;
+
+  /// No description provided for @ev_pressRival_title.
+  ///
+  /// In tr, this message translates to:
+  /// **'Rakibe mesaj'**
+  String get ev_pressRival_title;
+
+  /// No description provided for @ev_pressRival_body.
+  ///
+  /// In tr, this message translates to:
+  /// **'Muhabir: \"Karşı takıma bir mesajın var mı? Canlı yayında hepsi seni dinliyor!\"'**
+  String get ev_pressRival_body;
+
+  /// No description provided for @ev_pressRival_c0.
+  ///
+  /// In tr, this message translates to:
+  /// **'Çok iyi oynadılar, onlara saygı duyuyoruz.'**
+  String get ev_pressRival_c0;
+
+  /// No description provided for @ev_pressRival_r0.
+  ///
+  /// In tr, this message translates to:
+  /// **'Centilmenliğin alkış topladı.'**
+  String get ev_pressRival_r0;
+
+  /// No description provided for @ev_pressRival_h0.
+  ///
+  /// In tr, this message translates to:
+  /// **'SAYGI DOLU MESAJ!'**
+  String get ev_pressRival_h0;
+
+  /// No description provided for @ev_pressRival_c1.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bir dahaki sefere sandviçlerimizi paylaşırız ama topu paylaşmayız!'**
+  String get ev_pressRival_c1;
+
+  /// No description provided for @ev_pressRival_r1.
+  ///
+  /// In tr, this message translates to:
+  /// **'Herkes güldü, rakip takım da esprili bir cevap verdi.'**
+  String get ev_pressRival_r1;
+
+  /// No description provided for @ev_pressRival_h1.
+  ///
+  /// In tr, this message translates to:
+  /// **'SANDVİÇ PAYLAŞILIR, TOP PAYLAŞILMAZ!'**
+  String get ev_pressRival_h1;
+
+  /// No description provided for @ev_pressRival_c2.
+  ///
+  /// In tr, this message translates to:
+  /// **'Gelecek maça daha hazırlıklı gelsinler.'**
+  String get ev_pressRival_c2;
+
+  /// No description provided for @ev_pressRival_r2.
+  ///
+  /// In tr, this message translates to:
+  /// **'Meydan okuman gündem oldu.'**
+  String get ev_pressRival_r2;
+
+  /// No description provided for @ev_pressRival_b2.
+  ///
+  /// In tr, this message translates to:
+  /// **'Rakip kulüp sert bir açıklama yaptı, hoca seni uyardı.'**
+  String get ev_pressRival_b2;
+
+  /// No description provided for @ev_pressRival_h2.
+  ///
+  /// In tr, this message translates to:
+  /// **'MEYDAN OKUMA!'**
+  String get ev_pressRival_h2;
+
+  /// No description provided for @ev_pressMascot_title.
+  ///
+  /// In tr, this message translates to:
+  /// **'Maskot sorusu'**
+  String get ev_pressMascot_title;
+
+  /// No description provided for @ev_pressMascot_body.
+  ///
+  /// In tr, this message translates to:
+  /// **'Muhabir: \"Takımın maskotu seni çok seviyor. Sen onu seviyor musun?\"'**
+  String get ev_pressMascot_body;
+
+  /// No description provided for @ev_pressMascot_c0.
+  ///
+  /// In tr, this message translates to:
+  /// **'Maskotumuz benim en iyi arkadaşım, ona sarıldım bile.'**
+  String get ev_pressMascot_c0;
+
+  /// No description provided for @ev_pressMascot_r0.
+  ///
+  /// In tr, this message translates to:
+  /// **'Maskot sevinçten dans etti, çocuklar bayıldı.'**
+  String get ev_pressMascot_r0;
+
+  /// No description provided for @ev_pressMascot_h0.
+  ///
+  /// In tr, this message translates to:
+  /// **'MASKOTA BÜYÜK SEVGİ!'**
+  String get ev_pressMascot_h0;
+
+  /// No description provided for @ev_pressMascot_c1.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kostümün içinde kim var, hâlâ çözemedim!'**
+  String get ev_pressMascot_c1;
+
+  /// No description provided for @ev_pressMascot_r1.
+  ///
+  /// In tr, this message translates to:
+  /// **'Maskot kostümün içinden kahkaha attı.'**
+  String get ev_pressMascot_r1;
+
+  /// No description provided for @ev_pressMascot_h1.
+  ///
+  /// In tr, this message translates to:
+  /// **'KOSTÜMÜN İÇİNDEKİ GİZEM!'**
+  String get ev_pressMascot_h1;
+
+  /// No description provided for @ev_pressMascot_c2.
+  ///
+  /// In tr, this message translates to:
+  /// **'Maskot sahaya girmese iyi olur, topu kapıp kaçıyor!'**
+  String get ev_pressMascot_c2;
+
+  /// No description provided for @ev_pressMascot_r2.
+  ///
+  /// In tr, this message translates to:
+  /// **'Maskot intikam dansı yaptı, tribünler gülmekten kırıldı.'**
+  String get ev_pressMascot_r2;
+
+  /// No description provided for @ev_pressMascot_h2.
+  ///
+  /// In tr, this message translates to:
+  /// **'MASKOT TOP ÇALIYOR!'**
+  String get ev_pressMascot_h2;
+
+  /// No description provided for @ev_pressPower_title.
+  ///
+  /// In tr, this message translates to:
+  /// **'Süper güç sorusu'**
+  String get ev_pressPower_title;
+
+  /// No description provided for @ev_pressPower_body.
+  ///
+  /// In tr, this message translates to:
+  /// **'Muhabir: \"Bir süper gücün olsaydı ne olmasını isterdin?\"'**
+  String get ev_pressPower_body;
+
+  /// No description provided for @ev_pressPower_c0.
+  ///
+  /// In tr, this message translates to:
+  /// **'Işık hızında koşmak! Rakipler beni göremezdi.'**
+  String get ev_pressPower_c0;
+
+  /// No description provided for @ev_pressPower_r0.
+  ///
+  /// In tr, this message translates to:
+  /// **'Hızlı koşan oyuncu başlığı seninle anıldı.'**
+  String get ev_pressPower_r0;
+
+  /// No description provided for @ev_pressPower_h0.
+  ///
+  /// In tr, this message translates to:
+  /// **'IŞIK HIZINDA OYUNCU!'**
+  String get ev_pressPower_h0;
+
+  /// No description provided for @ev_pressPower_c1.
+  ///
+  /// In tr, this message translates to:
+  /// **'Görünmez olmak, böylece hakem faul çaldırırken beni bulamazdı.'**
+  String get ev_pressPower_c1;
+
+  /// No description provided for @ev_pressPower_r1.
+  ///
+  /// In tr, this message translates to:
+  /// **'Hakem de duyunca gülümsedi.'**
+  String get ev_pressPower_r1;
+
+  /// No description provided for @ev_pressPower_h1.
+  ///
+  /// In tr, this message translates to:
+  /// **'GÖRÜNMEZ FUTBOLCU!'**
+  String get ev_pressPower_h1;
+
+  /// No description provided for @ev_pressPower_c2.
+  ///
+  /// In tr, this message translates to:
+  /// **'Zamanı durdurmak ve her maçı doksan saat oynamak!'**
+  String get ev_pressPower_c2;
+
+  /// No description provided for @ev_pressPower_r2.
+  ///
+  /// In tr, this message translates to:
+  /// **'Takım arkadaşların yorulmaktan şikayet etti ama taraftarlar güldü.'**
+  String get ev_pressPower_r2;
+
+  /// No description provided for @ev_pressPower_h2.
+  ///
+  /// In tr, this message translates to:
+  /// **'DOKSAN SAATLİK MAÇ!'**
+  String get ev_pressPower_h2;
+
+  /// No description provided for @ev_pressKids_title.
+  ///
+  /// In tr, this message translates to:
+  /// **'Küçük taraftarlara mesaj'**
+  String get ev_pressKids_title;
+
+  /// No description provided for @ev_pressKids_body.
+  ///
+  /// In tr, this message translates to:
+  /// **'Muhabir: \"Seni izleyen çocuklara ne söylemek istersin?\"'**
+  String get ev_pressKids_body;
+
+  /// No description provided for @ev_pressKids_c0.
+  ///
+  /// In tr, this message translates to:
+  /// **'Çok çalışın, pes etmeyin ve derslerinizi de ihmal etmeyin!'**
+  String get ev_pressKids_c0;
+
+  /// No description provided for @ev_pressKids_r0.
+  ///
+  /// In tr, this message translates to:
+  /// **'Öğretmenler teşekkür etti, aileler sana hayran kaldı.'**
+  String get ev_pressKids_r0;
+
+  /// No description provided for @ev_pressKids_h0.
+  ///
+  /// In tr, this message translates to:
+  /// **'ÇOCUKLARA ALTIN ÖĞÜT!'**
+  String get ev_pressKids_h0;
+
+  /// No description provided for @ev_pressKids_c1.
+  ///
+  /// In tr, this message translates to:
+  /// **'Sebzelerinizi yiyin, ben bu yüzden bu kadar hızlıyım!'**
+  String get ev_pressKids_c1;
+
+  /// No description provided for @ev_pressKids_r1.
+  ///
+  /// In tr, this message translates to:
+  /// **'Anneler seni çok sevdi, çocuklar brokoliyi sevmeye başladı.'**
+  String get ev_pressKids_r1;
+
+  /// No description provided for @ev_pressKids_h1.
+  ///
+  /// In tr, this message translates to:
+  /// **'BROKOLİ HIZLANDIRIR!'**
+  String get ev_pressKids_h1;
+
+  /// No description provided for @ev_pressKids_c2.
+  ///
+  /// In tr, this message translates to:
+  /// **'Futbol oynamak için önce en çok eğlenin!'**
+  String get ev_pressKids_c2;
+
+  /// No description provided for @ev_pressKids_r2.
+  ///
+  /// In tr, this message translates to:
+  /// **'Küçük taraftarlar seni tezahüratla karşıladı.'**
+  String get ev_pressKids_r2;
+
+  /// No description provided for @ev_pressKids_h2.
+  ///
+  /// In tr, this message translates to:
+  /// **'ÖNCE EĞLEN!'**
+  String get ev_pressKids_h2;
+
+  /// No description provided for @ev_pressWin_h0.
+  ///
+  /// In tr, this message translates to:
+  /// **'TAKIM RUHU KAZANDI!'**
+  String get ev_pressWin_h0;
+
+  /// No description provided for @ev_pressWin_h1.
+  ///
+  /// In tr, this message translates to:
+  /// **'GÜNÜN KAHRAMANI KONUŞTU!'**
+  String get ev_pressWin_h1;
+
+  /// No description provided for @ev_pressWin_h2.
+  ///
+  /// In tr, this message translates to:
+  /// **'RAKİBE SERT MESAJ!'**
+  String get ev_pressWin_h2;
+
+  /// No description provided for @ev_pressLoss_h0.
+  ///
+  /// In tr, this message translates to:
+  /// **'TOPARLANMA SÖZÜ!'**
+  String get ev_pressLoss_h0;
+
+  /// No description provided for @ev_pressLoss_h1.
+  ///
+  /// In tr, this message translates to:
+  /// **'HAKEM TARTIŞMASI ALEVLENDİ!'**
+  String get ev_pressLoss_h1;
+
+  /// No description provided for @ev_pressLoss_h2.
+  ///
+  /// In tr, this message translates to:
+  /// **'SUSKUNLUK GÜNDEM OLDU!'**
+  String get ev_pressLoss_h2;
+
+  /// No description provided for @ev_pressStar_h0.
+  ///
+  /// In tr, this message translates to:
+  /// **'MÜTEVAZI YILDIZ!'**
+  String get ev_pressStar_h0;
+
+  /// No description provided for @ev_pressStar_h1.
+  ///
+  /// In tr, this message translates to:
+  /// **'BÜYÜK KULÜPLER İZLİYOR!'**
+  String get ev_pressStar_h1;
+
+  /// No description provided for @ev_pressStar_h2.
+  ///
+  /// In tr, this message translates to:
+  /// **'HOCADAN TAM NOT!'**
+  String get ev_pressStar_h2;
+
+  /// No description provided for @ev_pressPoor_h0.
+  ///
+  /// In tr, this message translates to:
+  /// **'DÜRÜST İTİRAF!'**
+  String get ev_pressPoor_h0;
+
+  /// No description provided for @ev_pressPoor_h1.
+  ///
+  /// In tr, this message translates to:
+  /// **'MEYDAN OKUDU!'**
+  String get ev_pressPoor_h1;
+
+  /// No description provided for @ev_pressPoor_h2.
+  ///
+  /// In tr, this message translates to:
+  /// **'KISA KESTİ, MERAK ARTTI!'**
+  String get ev_pressPoor_h2;
+
+  /// No description provided for @ev_pressBench_h0.
+  ///
+  /// In tr, this message translates to:
+  /// **'SABIR VE UMUT!'**
+  String get ev_pressBench_h0;
+
+  /// No description provided for @ev_pressBench_h1.
+  ///
+  /// In tr, this message translates to:
+  /// **'DAHA FAZLA SÜRE İSTİYOR!'**
+  String get ev_pressBench_h1;
+
+  /// No description provided for @ev_pressBench_h2.
+  ///
+  /// In tr, this message translates to:
+  /// **'ÖNCE TAKIM!'**
+  String get ev_pressBench_h2;
+
+  /// No description provided for @tone_humble.
+  ///
+  /// In tr, this message translates to:
+  /// **'Mütevazı'**
+  String get tone_humble;
+
+  /// No description provided for @tone_funny.
+  ///
+  /// In tr, this message translates to:
+  /// **'Komik'**
+  String get tone_funny;
+
+  /// No description provided for @tone_cool.
+  ///
+  /// In tr, this message translates to:
+  /// **'Havalı'**
+  String get tone_cool;
+
+  /// No description provided for @tone_harsh.
+  ///
+  /// In tr, this message translates to:
+  /// **'Sert'**
+  String get tone_harsh;
+
+  /// No description provided for @tone_honest.
+  ///
+  /// In tr, this message translates to:
+  /// **'Dürüst'**
+  String get tone_honest;
+
+  /// No description provided for @tone_silent.
+  ///
+  /// In tr, this message translates to:
+  /// **'Sessiz'**
+  String get tone_silent;
+
+  /// No description provided for @interviewReporter.
+  ///
+  /// In tr, this message translates to:
+  /// **'Muhabir'**
+  String get interviewReporter;
+
+  /// No description provided for @interviewPickHint.
+  ///
+  /// In tr, this message translates to:
+  /// **'Cevabını seç'**
+  String get interviewPickHint;
+
+  /// No description provided for @interviewNewspaper.
+  ///
+  /// In tr, this message translates to:
+  /// **'GÜNÜN GAZETESİ'**
+  String get interviewNewspaper;
+
+  /// No description provided for @interviewBackfireHeadline.
+  ///
+  /// In tr, this message translates to:
+  /// **'ŞOK AÇIKLAMA!'**
+  String get interviewBackfireHeadline;
+
+  /// No description provided for @summaryInterviewNow.
+  ///
+  /// In tr, this message translates to:
+  /// **'Mikrofonlar seni bekliyor: röportaja git'**
+  String get summaryInterviewNow;
 }
 
 class _AppLocalizationsDelegate

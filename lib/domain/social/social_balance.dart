@@ -7,7 +7,7 @@ abstract final class SocialBalance {
   static const int pendingCap = 3;
 
   /// Maç sonrası basın sorusu gelme olasılığı (olağan / dikkat çekici maç).
-  static const double pressChance = 0.45;
+  static const double pressChance = 0.5;
   static const double pressChanceNotable = 0.9;
 
   /// Maçtan bağımsız haftalık olay olasılığı.

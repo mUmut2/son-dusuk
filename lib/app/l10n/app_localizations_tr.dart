@@ -1595,7 +1595,7 @@ class AppLocalizationsTr extends AppLocalizations {
   }
 
   @override
-  String get eventKind_press => 'Basın toplantısı';
+  String get eventKind_press => 'Röportaj';
 
   @override
   String get eventKind_personal => 'Kişisel';
@@ -2617,4 +2617,355 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get commentaryEmpty => 'Maç başlayınca spiker burada konuşacak.';
+
+  @override
+  String get ev_pressDraw_title => 'Beraberlik sonrası mikrofon';
+
+  @override
+  String get ev_pressDraw_body =>
+      'Maç berabere bitti. Muhabir mikrofonu uzattı: \"Bu bir puan mı, yoksa iki puan kaybı mı?\"';
+
+  @override
+  String get ev_pressDraw_c0 => 'Bir puan da puandır, ileriye bakıyoruz.';
+
+  @override
+  String get ev_pressDraw_r0 => 'Olumlu tavrın soyunma odasını güldürdü.';
+
+  @override
+  String get ev_pressDraw_h0 => 'BİR PUAN DA PUAN!';
+
+  @override
+  String get ev_pressDraw_c1 =>
+      'İkisi de değil! Gelecek maçta üç puanı toptan alacağız!';
+
+  @override
+  String get ev_pressDraw_r1 => 'Muhabir güldü, taraftarlar alkışladı.';
+
+  @override
+  String get ev_pressDraw_h1 => 'ÜÇ PUAN SÖZÜ VERDİ!';
+
+  @override
+  String get ev_pressDraw_c2 =>
+      'Hakem düdüğü biraz erken çaldı, bence biz kazanmıştık.';
+
+  @override
+  String get ev_pressDraw_r2 => 'Sözlerin manşetlere çıktı.';
+
+  @override
+  String get ev_pressDraw_b2 =>
+      'Hakem komitesi açıklamandan hoşlanmadı, hoca seni uyardı.';
+
+  @override
+  String get ev_pressDraw_h2 => 'HAKEME GÖNDERME!';
+
+  @override
+  String get ev_pressFood_title => 'Menüde ne vardı?';
+
+  @override
+  String get ev_pressFood_body =>
+      'Muhabir mikrofonu uzattı: \"Maçtan önce ne yedin? Tribündeki herkes merak ediyor!\"';
+
+  @override
+  String get ev_pressFood_c0 => 'Annemin yaptığı makarna, başka bir şey yemem.';
+
+  @override
+  String get ev_pressFood_r0 =>
+      'Anneler duyunca duygulandı, makarna satışları arttı.';
+
+  @override
+  String get ev_pressFood_h0 => 'MAKARNALI SIR ORTAYA ÇIKTI!';
+
+  @override
+  String get ev_pressFood_c1 => 'Sadece iki lahmacun ve on altı bardak çay!';
+
+  @override
+  String get ev_pressFood_r1 =>
+      'Herkes kahkaha attı, çay üreticileri teşekkür mesajı yolladı.';
+
+  @override
+  String get ev_pressFood_b1 =>
+      'Beslenme uzmanı duydu, hoca seni masaya oturttu ve listeni değiştirdi.';
+
+  @override
+  String get ev_pressFood_h1 => 'ON ALTI BARDAK ÇAY REKORU!';
+
+  @override
+  String get ev_pressFood_c2 => 'Şampiyonların yemeği sırdır, söylemem.';
+
+  @override
+  String get ev_pressFood_r2 => 'Gizemli cevabın bütün gün konuşuldu.';
+
+  @override
+  String get ev_pressFood_h2 => 'SIR YEMEK GÜNDEMDE!';
+
+  @override
+  String get ev_pressCelebration_title => 'O gol sevinci!';
+
+  @override
+  String get ev_pressCelebration_body =>
+      'Muhabir: \"Attığın golden sonra yaptığın sevinç çok eğlenceliydi! Nasıl akıl ettin?\"';
+
+  @override
+  String get ev_pressCelebration_c0 => 'Doğaçlama oldu, çok mutluydum.';
+
+  @override
+  String get ev_pressCelebration_r0 =>
+      'Samimi cevabın taraftarların kalbini kazandı.';
+
+  @override
+  String get ev_pressCelebration_h0 => 'SEVİNÇ DOĞAÇLAMAYMIŞ!';
+
+  @override
+  String get ev_pressCelebration_c1 =>
+      'Aylardır evde aynanın karşısında çalışıyorum!';
+
+  @override
+  String get ev_pressCelebration_r1 =>
+      'Muhabir gülmekten mikrofonu düşürdü, video herkese yayıldı.';
+
+  @override
+  String get ev_pressCelebration_h1 => 'AYNA ÖNÜNDE PROVA!';
+
+  @override
+  String get ev_pressCelebration_c2 =>
+      'Bir sonraki golde daha büyük bir sürpriz hazırladım.';
+
+  @override
+  String get ev_pressCelebration_r2 =>
+      'Taraftarlar bir sonraki golü iple çekiyor.';
+
+  @override
+  String get ev_pressCelebration_h2 => 'YENİ SEVİNÇ GELİYOR!';
+
+  @override
+  String get ev_pressRival_title => 'Rakibe mesaj';
+
+  @override
+  String get ev_pressRival_body =>
+      'Muhabir: \"Karşı takıma bir mesajın var mı? Canlı yayında hepsi seni dinliyor!\"';
+
+  @override
+  String get ev_pressRival_c0 => 'Çok iyi oynadılar, onlara saygı duyuyoruz.';
+
+  @override
+  String get ev_pressRival_r0 => 'Centilmenliğin alkış topladı.';
+
+  @override
+  String get ev_pressRival_h0 => 'SAYGI DOLU MESAJ!';
+
+  @override
+  String get ev_pressRival_c1 =>
+      'Bir dahaki sefere sandviçlerimizi paylaşırız ama topu paylaşmayız!';
+
+  @override
+  String get ev_pressRival_r1 =>
+      'Herkes güldü, rakip takım da esprili bir cevap verdi.';
+
+  @override
+  String get ev_pressRival_h1 => 'SANDVİÇ PAYLAŞILIR, TOP PAYLAŞILMAZ!';
+
+  @override
+  String get ev_pressRival_c2 => 'Gelecek maça daha hazırlıklı gelsinler.';
+
+  @override
+  String get ev_pressRival_r2 => 'Meydan okuman gündem oldu.';
+
+  @override
+  String get ev_pressRival_b2 =>
+      'Rakip kulüp sert bir açıklama yaptı, hoca seni uyardı.';
+
+  @override
+  String get ev_pressRival_h2 => 'MEYDAN OKUMA!';
+
+  @override
+  String get ev_pressMascot_title => 'Maskot sorusu';
+
+  @override
+  String get ev_pressMascot_body =>
+      'Muhabir: \"Takımın maskotu seni çok seviyor. Sen onu seviyor musun?\"';
+
+  @override
+  String get ev_pressMascot_c0 =>
+      'Maskotumuz benim en iyi arkadaşım, ona sarıldım bile.';
+
+  @override
+  String get ev_pressMascot_r0 =>
+      'Maskot sevinçten dans etti, çocuklar bayıldı.';
+
+  @override
+  String get ev_pressMascot_h0 => 'MASKOTA BÜYÜK SEVGİ!';
+
+  @override
+  String get ev_pressMascot_c1 => 'Kostümün içinde kim var, hâlâ çözemedim!';
+
+  @override
+  String get ev_pressMascot_r1 => 'Maskot kostümün içinden kahkaha attı.';
+
+  @override
+  String get ev_pressMascot_h1 => 'KOSTÜMÜN İÇİNDEKİ GİZEM!';
+
+  @override
+  String get ev_pressMascot_c2 =>
+      'Maskot sahaya girmese iyi olur, topu kapıp kaçıyor!';
+
+  @override
+  String get ev_pressMascot_r2 =>
+      'Maskot intikam dansı yaptı, tribünler gülmekten kırıldı.';
+
+  @override
+  String get ev_pressMascot_h2 => 'MASKOT TOP ÇALIYOR!';
+
+  @override
+  String get ev_pressPower_title => 'Süper güç sorusu';
+
+  @override
+  String get ev_pressPower_body =>
+      'Muhabir: \"Bir süper gücün olsaydı ne olmasını isterdin?\"';
+
+  @override
+  String get ev_pressPower_c0 =>
+      'Işık hızında koşmak! Rakipler beni göremezdi.';
+
+  @override
+  String get ev_pressPower_r0 => 'Hızlı koşan oyuncu başlığı seninle anıldı.';
+
+  @override
+  String get ev_pressPower_h0 => 'IŞIK HIZINDA OYUNCU!';
+
+  @override
+  String get ev_pressPower_c1 =>
+      'Görünmez olmak, böylece hakem faul çaldırırken beni bulamazdı.';
+
+  @override
+  String get ev_pressPower_r1 => 'Hakem de duyunca gülümsedi.';
+
+  @override
+  String get ev_pressPower_h1 => 'GÖRÜNMEZ FUTBOLCU!';
+
+  @override
+  String get ev_pressPower_c2 =>
+      'Zamanı durdurmak ve her maçı doksan saat oynamak!';
+
+  @override
+  String get ev_pressPower_r2 =>
+      'Takım arkadaşların yorulmaktan şikayet etti ama taraftarlar güldü.';
+
+  @override
+  String get ev_pressPower_h2 => 'DOKSAN SAATLİK MAÇ!';
+
+  @override
+  String get ev_pressKids_title => 'Küçük taraftarlara mesaj';
+
+  @override
+  String get ev_pressKids_body =>
+      'Muhabir: \"Seni izleyen çocuklara ne söylemek istersin?\"';
+
+  @override
+  String get ev_pressKids_c0 =>
+      'Çok çalışın, pes etmeyin ve derslerinizi de ihmal etmeyin!';
+
+  @override
+  String get ev_pressKids_r0 =>
+      'Öğretmenler teşekkür etti, aileler sana hayran kaldı.';
+
+  @override
+  String get ev_pressKids_h0 => 'ÇOCUKLARA ALTIN ÖĞÜT!';
+
+  @override
+  String get ev_pressKids_c1 =>
+      'Sebzelerinizi yiyin, ben bu yüzden bu kadar hızlıyım!';
+
+  @override
+  String get ev_pressKids_r1 =>
+      'Anneler seni çok sevdi, çocuklar brokoliyi sevmeye başladı.';
+
+  @override
+  String get ev_pressKids_h1 => 'BROKOLİ HIZLANDIRIR!';
+
+  @override
+  String get ev_pressKids_c2 => 'Futbol oynamak için önce en çok eğlenin!';
+
+  @override
+  String get ev_pressKids_r2 => 'Küçük taraftarlar seni tezahüratla karşıladı.';
+
+  @override
+  String get ev_pressKids_h2 => 'ÖNCE EĞLEN!';
+
+  @override
+  String get ev_pressWin_h0 => 'TAKIM RUHU KAZANDI!';
+
+  @override
+  String get ev_pressWin_h1 => 'GÜNÜN KAHRAMANI KONUŞTU!';
+
+  @override
+  String get ev_pressWin_h2 => 'RAKİBE SERT MESAJ!';
+
+  @override
+  String get ev_pressLoss_h0 => 'TOPARLANMA SÖZÜ!';
+
+  @override
+  String get ev_pressLoss_h1 => 'HAKEM TARTIŞMASI ALEVLENDİ!';
+
+  @override
+  String get ev_pressLoss_h2 => 'SUSKUNLUK GÜNDEM OLDU!';
+
+  @override
+  String get ev_pressStar_h0 => 'MÜTEVAZI YILDIZ!';
+
+  @override
+  String get ev_pressStar_h1 => 'BÜYÜK KULÜPLER İZLİYOR!';
+
+  @override
+  String get ev_pressStar_h2 => 'HOCADAN TAM NOT!';
+
+  @override
+  String get ev_pressPoor_h0 => 'DÜRÜST İTİRAF!';
+
+  @override
+  String get ev_pressPoor_h1 => 'MEYDAN OKUDU!';
+
+  @override
+  String get ev_pressPoor_h2 => 'KISA KESTİ, MERAK ARTTI!';
+
+  @override
+  String get ev_pressBench_h0 => 'SABIR VE UMUT!';
+
+  @override
+  String get ev_pressBench_h1 => 'DAHA FAZLA SÜRE İSTİYOR!';
+
+  @override
+  String get ev_pressBench_h2 => 'ÖNCE TAKIM!';
+
+  @override
+  String get tone_humble => 'Mütevazı';
+
+  @override
+  String get tone_funny => 'Komik';
+
+  @override
+  String get tone_cool => 'Havalı';
+
+  @override
+  String get tone_harsh => 'Sert';
+
+  @override
+  String get tone_honest => 'Dürüst';
+
+  @override
+  String get tone_silent => 'Sessiz';
+
+  @override
+  String get interviewReporter => 'Muhabir';
+
+  @override
+  String get interviewPickHint => 'Cevabını seç';
+
+  @override
+  String get interviewNewspaper => 'GÜNÜN GAZETESİ';
+
+  @override
+  String get interviewBackfireHeadline => 'ŞOK AÇIKLAMA!';
+
+  @override
+  String get summaryInterviewNow => 'Mikrofonlar seni bekliyor: röportaja git';
 }

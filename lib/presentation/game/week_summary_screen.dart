@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../app/l10n/app_localizations.dart';
 import '../../domain/career/week_report.dart';
 import '../../domain/social/event_catalog.dart';
+import '../../domain/social/event_models.dart';
 import '../event_texts.dart';
 import '../l10n_labels.dart';
 import '../providers.dart';
@@ -222,7 +223,14 @@ class WeekSummaryScreen extends ConsumerWidget {
                           ).kind,
                         ),
                       ),
-                      label: Text(l10n.summaryAnswerNow),
+                      label: Text(
+                        EventCatalog.byId(
+                                  result.state.pendingEvents.first.id,
+                                ).kind ==
+                                EventKind.press
+                            ? l10n.summaryInterviewNow
+                            : l10n.summaryAnswerNow,
+                      ),
                       onPressed: () => context.go(
                         '/game/event/${result.state.pendingEvents.first.id}',
                       ),

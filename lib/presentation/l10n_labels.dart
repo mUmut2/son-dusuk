@@ -220,6 +220,15 @@ extension L10nLabels on AppLocalizations {
     _ => relLevel_4,
   };
 
+  String toneName(EventTone t) => switch (t) {
+    EventTone.humble => tone_humble,
+    EventTone.funny => tone_funny,
+    EventTone.cool => tone_cool,
+    EventTone.harsh => tone_harsh,
+    EventTone.honest => tone_honest,
+    EventTone.silent => tone_silent,
+  };
+
   String eventKindName(EventKind k) => switch (k) {
     EventKind.press => eventKind_press,
     EventKind.personal => eventKind_personal,

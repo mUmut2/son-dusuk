@@ -8,6 +8,7 @@ class EventTexts {
     required this.choices,
     required this.results,
     required this.backfires,
+    this.headlines = const [],
   });
 
   final String title;
@@ -19,6 +20,9 @@ class EventTexts {
 
   /// Seçenek başına "ters tepti" cümlesi (riskli olmayanlarda null).
   final List<String?> backfires;
+
+  /// Seçenek başına gazete manşeti (yalnızca röportajlarda dolu).
+  final List<String> headlines;
 }
 
 extension EventTextLookup on AppLocalizations {
@@ -27,6 +31,7 @@ extension EventTextLookup on AppLocalizations {
     return switch (id) {
       'pressWin' => EventTexts(
         title: l.ev_pressWin_title,
+        headlines: [l.ev_pressWin_h0, l.ev_pressWin_h1, l.ev_pressWin_h2],
         body: l.ev_pressWin_body(p['opponent'] ?? '', p['score'] ?? ''),
         choices: [l.ev_pressWin_c0, l.ev_pressWin_c1, l.ev_pressWin_c2],
         results: [l.ev_pressWin_r0, l.ev_pressWin_r1, l.ev_pressWin_r2],
@@ -34,6 +39,7 @@ extension EventTextLookup on AppLocalizations {
       ),
       'pressLoss' => EventTexts(
         title: l.ev_pressLoss_title,
+        headlines: [l.ev_pressLoss_h0, l.ev_pressLoss_h1, l.ev_pressLoss_h2],
         body: l.ev_pressLoss_body(p['opponent'] ?? '', p['score'] ?? ''),
         choices: [l.ev_pressLoss_c0, l.ev_pressLoss_c1, l.ev_pressLoss_c2],
         results: [l.ev_pressLoss_r0, l.ev_pressLoss_r1, l.ev_pressLoss_r2],
@@ -41,6 +47,7 @@ extension EventTextLookup on AppLocalizations {
       ),
       'pressStar' => EventTexts(
         title: l.ev_pressStar_title,
+        headlines: [l.ev_pressStar_h0, l.ev_pressStar_h1, l.ev_pressStar_h2],
         body: l.ev_pressStar_body(p['opponent'] ?? '', p['score'] ?? ''),
         choices: [l.ev_pressStar_c0, l.ev_pressStar_c1, l.ev_pressStar_c2],
         results: [l.ev_pressStar_r0, l.ev_pressStar_r1, l.ev_pressStar_r2],
@@ -48,6 +55,7 @@ extension EventTextLookup on AppLocalizations {
       ),
       'pressPoor' => EventTexts(
         title: l.ev_pressPoor_title,
+        headlines: [l.ev_pressPoor_h0, l.ev_pressPoor_h1, l.ev_pressPoor_h2],
         body: l.ev_pressPoor_body(p['opponent'] ?? '', p['score'] ?? ''),
         choices: [l.ev_pressPoor_c0, l.ev_pressPoor_c1, l.ev_pressPoor_c2],
         results: [l.ev_pressPoor_r0, l.ev_pressPoor_r1, l.ev_pressPoor_r2],
@@ -55,9 +63,90 @@ extension EventTextLookup on AppLocalizations {
       ),
       'pressBench' => EventTexts(
         title: l.ev_pressBench_title,
+        headlines: [l.ev_pressBench_h0, l.ev_pressBench_h1, l.ev_pressBench_h2],
         body: l.ev_pressBench_body,
         choices: [l.ev_pressBench_c0, l.ev_pressBench_c1, l.ev_pressBench_c2],
         results: [l.ev_pressBench_r0, l.ev_pressBench_r1, l.ev_pressBench_r2],
+        backfires: [null, null, null],
+      ),
+      'pressDraw' => EventTexts(
+        title: l.ev_pressDraw_title,
+        body: l.ev_pressDraw_body,
+        headlines: [l.ev_pressDraw_h0, l.ev_pressDraw_h1, l.ev_pressDraw_h2],
+        choices: [l.ev_pressDraw_c0, l.ev_pressDraw_c1, l.ev_pressDraw_c2],
+        results: [l.ev_pressDraw_r0, l.ev_pressDraw_r1, l.ev_pressDraw_r2],
+        backfires: [null, null, l.ev_pressDraw_b2],
+      ),
+      'pressFood' => EventTexts(
+        title: l.ev_pressFood_title,
+        body: l.ev_pressFood_body,
+        headlines: [l.ev_pressFood_h0, l.ev_pressFood_h1, l.ev_pressFood_h2],
+        choices: [l.ev_pressFood_c0, l.ev_pressFood_c1, l.ev_pressFood_c2],
+        results: [l.ev_pressFood_r0, l.ev_pressFood_r1, l.ev_pressFood_r2],
+        backfires: [null, l.ev_pressFood_b1, null],
+      ),
+      'pressCelebration' => EventTexts(
+        title: l.ev_pressCelebration_title,
+        body: l.ev_pressCelebration_body,
+        headlines: [
+          l.ev_pressCelebration_h0,
+          l.ev_pressCelebration_h1,
+          l.ev_pressCelebration_h2,
+        ],
+        choices: [
+          l.ev_pressCelebration_c0,
+          l.ev_pressCelebration_c1,
+          l.ev_pressCelebration_c2,
+        ],
+        results: [
+          l.ev_pressCelebration_r0,
+          l.ev_pressCelebration_r1,
+          l.ev_pressCelebration_r2,
+        ],
+        backfires: [null, null, null],
+      ),
+      'pressRival' => EventTexts(
+        title: l.ev_pressRival_title,
+        body: l.ev_pressRival_body,
+        headlines: [l.ev_pressRival_h0, l.ev_pressRival_h1, l.ev_pressRival_h2],
+        choices: [l.ev_pressRival_c0, l.ev_pressRival_c1, l.ev_pressRival_c2],
+        results: [l.ev_pressRival_r0, l.ev_pressRival_r1, l.ev_pressRival_r2],
+        backfires: [null, null, l.ev_pressRival_b2],
+      ),
+      'pressMascot' => EventTexts(
+        title: l.ev_pressMascot_title,
+        body: l.ev_pressMascot_body,
+        headlines: [
+          l.ev_pressMascot_h0,
+          l.ev_pressMascot_h1,
+          l.ev_pressMascot_h2,
+        ],
+        choices: [
+          l.ev_pressMascot_c0,
+          l.ev_pressMascot_c1,
+          l.ev_pressMascot_c2,
+        ],
+        results: [
+          l.ev_pressMascot_r0,
+          l.ev_pressMascot_r1,
+          l.ev_pressMascot_r2,
+        ],
+        backfires: [null, null, null],
+      ),
+      'pressPower' => EventTexts(
+        title: l.ev_pressPower_title,
+        body: l.ev_pressPower_body,
+        headlines: [l.ev_pressPower_h0, l.ev_pressPower_h1, l.ev_pressPower_h2],
+        choices: [l.ev_pressPower_c0, l.ev_pressPower_c1, l.ev_pressPower_c2],
+        results: [l.ev_pressPower_r0, l.ev_pressPower_r1, l.ev_pressPower_r2],
+        backfires: [null, null, null],
+      ),
+      'pressKids' => EventTexts(
+        title: l.ev_pressKids_title,
+        body: l.ev_pressKids_body,
+        headlines: [l.ev_pressKids_h0, l.ev_pressKids_h1, l.ev_pressKids_h2],
+        choices: [l.ev_pressKids_c0, l.ev_pressKids_c1, l.ev_pressKids_c2],
+        results: [l.ev_pressKids_r0, l.ev_pressKids_r1, l.ev_pressKids_r2],
         backfires: [null, null, null],
       ),
       'familyDinner' => EventTexts(

@@ -6,22 +6,28 @@ import 'social_balance.dart';
 /// `ev_<id>_c<n>` (seçenek etiketi) anahtarlarıyla tutulur.
 abstract final class EventCatalog {
   static final List<EventTemplate> all = [
-    // --- Basın toplantısı (maç sonrası) ---
+    // --- Maç sonu röportajları ---
     EventTemplate(
       id: 'pressWin',
       kind: EventKind.press,
       when: (c) => c.won,
+      weight: 2.0,
       cooldownWeeks: 3,
       ignore: const EventEffect(media: -2),
       choices: const [
-        EventChoice(EventEffect(teammates: 4, coach: 2, media: 1, morale: 1)),
+        EventChoice(
+          EventEffect(teammates: 4, coach: 2, media: 1, morale: 1),
+          tone: EventTone.humble,
+        ),
         EventChoice(
           EventEffect(fans: 3, media: 3, teammates: -3, coach: -1, morale: 3),
+          tone: EventTone.cool,
         ),
         EventChoice(
           EventEffect(media: 5, fans: 2, teammates: -4),
           alt: EventEffect(media: -6, coach: -3, fans: -2),
           altChance: 0.35,
+          tone: EventTone.harsh,
         ),
       ],
     ),
@@ -29,44 +35,61 @@ abstract final class EventCatalog {
       id: 'pressLoss',
       kind: EventKind.press,
       when: (c) => c.lost,
+      weight: 2.0,
       cooldownWeeks: 3,
       ignore: const EventEffect(media: -2),
       choices: const [
-        EventChoice(EventEffect(coach: 3, teammates: 2, fans: 1, morale: -1)),
+        EventChoice(
+          EventEffect(coach: 3, teammates: 2, fans: 1, morale: -1),
+          tone: EventTone.humble,
+        ),
         EventChoice(
           EventEffect(fans: 3, media: 2),
           alt: EventEffect(coach: -5, media: -3, teammates: -2),
           altChance: 0.5,
+          tone: EventTone.harsh,
         ),
-        EventChoice(EventEffect(media: -1)),
+        EventChoice(EventEffect(media: -1), tone: EventTone.silent),
       ],
     ),
     EventTemplate(
       id: 'pressStar',
       kind: EventKind.press,
       when: (c) => c.goals >= SocialBalance.notableGoals,
+      weight: 3.0,
       cooldownWeeks: 3,
       ignore: const EventEffect(media: -1),
       choices: const [
-        EventChoice(EventEffect(fans: 3, teammates: 2, media: 2)),
+        EventChoice(
+          EventEffect(fans: 3, teammates: 2, media: 2),
+          tone: EventTone.humble,
+        ),
         EventChoice(
           EventEffect(fans: 4, media: 4, teammates: -1),
           alt: EventEffect(media: -2, teammates: -3, fans: 1),
           altChance: 0.25,
+          tone: EventTone.cool,
         ),
-        EventChoice(EventEffect(coach: 2, morale: 2, media: 1)),
+        EventChoice(
+          EventEffect(coach: 2, morale: 2, media: 1),
+          tone: EventTone.humble,
+        ),
       ],
     ),
     EventTemplate(
       id: 'pressPoor',
       kind: EventKind.press,
       when: (c) => (c.rating ?? 10) <= SocialBalance.notableRatingLow,
+      weight: 3.0,
       cooldownWeeks: 3,
       ignore: const EventEffect(media: -2),
       choices: const [
-        EventChoice(EventEffect(coach: 3, fans: 2)),
-        EventChoice(EventEffect(media: -3, fans: 1, morale: 2)),
-        EventChoice(EventEffect(media: -1, morale: -1)),
+        EventChoice(EventEffect(coach: 3, fans: 2), tone: EventTone.honest),
+        EventChoice(
+          EventEffect(media: -3, fans: 1, morale: 2),
+          tone: EventTone.cool,
+        ),
+        EventChoice(EventEffect(media: -1, morale: -1), tone: EventTone.silent),
       ],
     ),
     EventTemplate(
@@ -76,9 +99,145 @@ abstract final class EventCatalog {
       cooldownWeeks: 6,
       ignore: const EventEffect(media: -1),
       choices: const [
-        EventChoice(EventEffect(coach: 3, morale: -1)),
-        EventChoice(EventEffect(coach: -3, media: 3, morale: 2)),
-        EventChoice(EventEffect(teammates: 2, coach: 1)),
+        EventChoice(EventEffect(coach: 3, morale: -1), tone: EventTone.humble),
+        EventChoice(
+          EventEffect(coach: -3, media: 3, morale: 2),
+          tone: EventTone.cool,
+        ),
+        EventChoice(
+          EventEffect(teammates: 2, coach: 1),
+          tone: EventTone.humble,
+        ),
+      ],
+    ),
+    EventTemplate(
+      id: 'pressDraw',
+      kind: EventKind.press,
+      when: (c) => c.drawn,
+      weight: 2.0,
+      cooldownWeeks: 3,
+      ignore: const EventEffect(media: -1),
+      choices: const [
+        EventChoice(
+          EventEffect(teammates: 3, coach: 1, morale: 1),
+          tone: EventTone.humble,
+        ),
+        EventChoice(
+          EventEffect(fans: 3, media: 2, morale: 1),
+          tone: EventTone.funny,
+        ),
+        EventChoice(
+          EventEffect(media: 3, fans: 2, coach: -1),
+          alt: EventEffect(media: -4, coach: -3),
+          altChance: 0.3,
+          tone: EventTone.harsh,
+        ),
+      ],
+    ),
+    EventTemplate(
+      id: 'pressFood',
+      kind: EventKind.press,
+      when: (c) => c.playedMatch,
+      weight: 0.5,
+      cooldownWeeks: 5,
+      ignore: const EventEffect(media: -1),
+      choices: const [
+        EventChoice(
+          EventEffect(family: 3, fans: 2, media: 1),
+          tone: EventTone.honest,
+        ),
+        EventChoice(
+          EventEffect(fans: 4, media: 3),
+          alt: EventEffect(coach: -3, media: 1),
+          altChance: 0.2,
+          tone: EventTone.funny,
+        ),
+        EventChoice(EventEffect(media: 2, fans: 1), tone: EventTone.cool),
+      ],
+    ),
+    EventTemplate(
+      id: 'pressCelebration',
+      kind: EventKind.press,
+      when: (c) => c.goals >= 1,
+      weight: 1.5,
+      cooldownWeeks: 4,
+      ignore: const EventEffect(media: -1),
+      choices: const [
+        EventChoice(EventEffect(fans: 3, media: 1), tone: EventTone.humble),
+        EventChoice(
+          EventEffect(fans: 4, media: 3, teammates: 1),
+          tone: EventTone.funny,
+        ),
+        EventChoice(EventEffect(fans: 3, morale: 2), tone: EventTone.cool),
+      ],
+    ),
+    EventTemplate(
+      id: 'pressRival',
+      kind: EventKind.press,
+      when: (c) => c.playedMatch,
+      weight: 0.5,
+      cooldownWeeks: 5,
+      ignore: const EventEffect(media: -1),
+      choices: const [
+        EventChoice(
+          EventEffect(media: 3, fans: 1, coach: 2),
+          tone: EventTone.humble,
+        ),
+        EventChoice(EventEffect(fans: 3, media: 3), tone: EventTone.funny),
+        EventChoice(
+          EventEffect(media: 4, fans: 2, teammates: -1),
+          alt: EventEffect(media: -4, coach: -2),
+          altChance: 0.3,
+          tone: EventTone.harsh,
+        ),
+      ],
+    ),
+    EventTemplate(
+      id: 'pressMascot',
+      kind: EventKind.press,
+      when: (c) => c.playedMatch,
+      weight: 0.5,
+      cooldownWeeks: 6,
+      ignore: const EventEffect(),
+      choices: const [
+        EventChoice(EventEffect(fans: 4, family: 1), tone: EventTone.humble),
+        EventChoice(EventEffect(fans: 3, media: 2), tone: EventTone.funny),
+        EventChoice(EventEffect(fans: 2, media: 3), tone: EventTone.cool),
+      ],
+    ),
+    EventTemplate(
+      id: 'pressPower',
+      kind: EventKind.press,
+      when: (c) => c.playedMatch,
+      weight: 0.5,
+      cooldownWeeks: 6,
+      ignore: const EventEffect(),
+      choices: const [
+        EventChoice(
+          EventEffect(media: 2, fans: 2, morale: 1),
+          tone: EventTone.cool,
+        ),
+        EventChoice(EventEffect(media: 3, fans: 2), tone: EventTone.funny),
+        EventChoice(
+          EventEffect(fans: 3, media: 2, teammates: -2),
+          tone: EventTone.funny,
+        ),
+      ],
+    ),
+    EventTemplate(
+      id: 'pressKids',
+      kind: EventKind.press,
+      when: (c) => c.playedMatch,
+      weight: 0.5,
+      cooldownWeeks: 6,
+      ignore: const EventEffect(),
+      choices: const [
+        EventChoice(
+          EventEffect(family: 2, fans: 4, media: 2),
+          tone: EventTone.humble,
+        ),
+        EventChoice(EventEffect(fans: 3, family: 3), tone: EventTone.funny),
+        EventChoice(EventEffect(fans: 4, morale: 2), tone: EventTone.cool),
       ],
     ),
 

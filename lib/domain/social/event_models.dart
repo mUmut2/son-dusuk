@@ -3,6 +3,9 @@ import 'relationships.dart';
 
 enum EventKind { press, personal, career, money }
 
+/// Röportaj cevabının tavrı (yalnızca arayüzde etiket olarak gösterilir).
+enum EventTone { humble, funny, cool, harsh, honest, silent }
+
 /// Bir seçimin sonucu. Değerler bir kerelik değişimdir.
 class EventEffect {
   const EventEffect({
@@ -58,9 +61,12 @@ class EventEffect {
 
 /// Bir seçenek. [alt] varsa [altChance] olasılıkla asıl sonuç yerine o olur.
 class EventChoice {
-  const EventChoice(this.effect, {this.alt, this.altChance = 0});
+  const EventChoice(this.effect, {this.alt, this.altChance = 0, this.tone});
 
   final EventEffect effect;
+
+  /// Cevabın tavrı (röportaj sorularında).
+  final EventTone? tone;
   final EventEffect? alt;
   final double altChance;
 
@@ -112,6 +118,9 @@ class EventContext {
   final bool benched;
 
   bool get playedMatch => rating != null;
+
+  /// Bu hafta maç oynandı ve berabere bitti.
+  bool get drawn => playedMatch && !won && !lost;
 }
 
 /// Oyuncunun cevap bekleyen olayı.

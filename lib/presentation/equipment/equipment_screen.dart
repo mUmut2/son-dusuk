@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../app/l10n/app_localizations.dart';
 import '../../domain/club/club_balance.dart';
 import '../../domain/club/equipment.dart';
+import '../../game/sound_service.dart';
 import '../l10n_labels.dart';
 import '../providers.dart';
 
@@ -319,6 +320,7 @@ class _BuyButton extends ConsumerWidget {
                   await ref
                       .read(activeCareerProvider.notifier)
                       .buyEquipment(slot);
+                  ref.playSfx(Sfx.buy);
                   messenger
                     ..hideCurrentSnackBar()
                     ..showSnackBar(

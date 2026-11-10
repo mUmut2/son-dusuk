@@ -20,6 +20,7 @@ import 'mini_game_types.dart';
 import 'pass/pass_game.dart';
 import 'penalty/penalty_game.dart';
 import 'shot/shot_game.dart';
+import 'sound_service.dart';
 import 'tackle/tackle_game.dart';
 
 /// Kritik an türüne uygun mini oyunu kurar ve Flutter ağacına gömer.
@@ -35,6 +36,7 @@ class MiniGameView extends StatefulWidget {
     required this.penaltyHistory,
     required this.onFinished,
     this.vibration = true,
+    this.onSound,
     this.random,
     super.key,
   });
@@ -50,6 +52,9 @@ class MiniGameView extends StatefulWidget {
   final void Function(MiniGameFinish finish) onFinished;
   final bool vibration;
 
+  /// Sonuç sesi: gol, başarı ya da başarısızlık.
+  final void Function(Sfx sfx)? onSound;
+
   /// Testler/günlük zorluk için seed'li rastgelelik.
   final GameRandom? random;
 
@@ -60,7 +65,14 @@ class MiniGameView extends StatefulWidget {
 class _MiniGameViewState extends State<MiniGameView> {
   late final FlameGame _game;
 
-  void _vibrate(bool good) {
+  void _vibrate(bool good, {bool goal = false}) {
+    widget.onSound?.call(
+      goal
+          ? Sfx.goal
+          : good
+          ? Sfx.good
+          : Sfx.bad,
+    );
     if (!widget.vibration) return;
     if (good) {
       HapticFeedback.heavyImpact();
@@ -120,7 +132,8 @@ class _MiniGameViewState extends State<MiniGameView> {
           random: random,
           labels: labels,
           onFinished: shotFinish,
-          onImpact: (o) => _vibrate(o == ShotOutcome.goal),
+          onImpact: (o) =>
+              _vibrate(o == ShotOutcome.goal, goal: o == ShotOutcome.goal),
         );
       case MomentType.oneOnOne:
         return ShotGame(
@@ -137,7 +150,8 @@ class _MiniGameViewState extends State<MiniGameView> {
           labels: labels,
           variant: ShotVariant.oneOnOne,
           onFinished: shotFinish,
-          onImpact: (o) => _vibrate(o == ShotOutcome.goal),
+          onImpact: (o) =>
+              _vibrate(o == ShotOutcome.goal, goal: o == ShotOutcome.goal),
         );
       case MomentType.freeKick:
         final profile = ShotProfile.freeKick(player, d, status: status);
@@ -161,7 +175,8 @@ class _MiniGameViewState extends State<MiniGameView> {
             random: random,
           ),
           onFinished: shotFinish,
-          onImpact: (o) => _vibrate(o == ShotOutcome.goal),
+          onImpact: (o) =>
+              _vibrate(o == ShotOutcome.goal, goal: o == ShotOutcome.goal),
         );
       case MomentType.header:
         final profile = ShotProfile.header(player, d, status: status);
@@ -186,7 +201,8 @@ class _MiniGameViewState extends State<MiniGameView> {
             random: random,
           ),
           onFinished: shotFinish,
-          onImpact: (o) => _vibrate(o == ShotOutcome.goal),
+          onImpact: (o) =>
+              _vibrate(o == ShotOutcome.goal, goal: o == ShotOutcome.goal),
         );
       case MomentType.penalty:
         return PenaltyGame(

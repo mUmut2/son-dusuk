@@ -17,6 +17,7 @@ import '../../domain/match/moment_resolver.dart';
 import '../../domain/match/player_rating.dart';
 import '../../game/mini_game_types.dart';
 import '../../game/mini_game_view.dart';
+import '../../game/sound_service.dart';
 import '../l10n_labels.dart';
 import '../providers.dart';
 
@@ -99,6 +100,8 @@ class _MatchScreenState extends ConsumerState<MatchScreen> {
 
   void _next() {
     final m = _session.nextMoment;
+    // Düdük: maçın ilk anında başlangıç, son anında bitiş.
+    if (_stage == _Stage.preMatch || m == null) ref.playSfx(Sfx.whistle);
     setState(() {
       _moment = m;
       _stage = m == null ? _Stage.summary : _Stage.momentIntro;
@@ -132,6 +135,7 @@ class _MatchScreenState extends ConsumerState<MatchScreen> {
       _random,
       performance: career.status.performanceMultiplier,
     );
+    ref.playSfx(Sfx.whistle);
     setState(() => _stage = _Stage.summary);
   }
 
@@ -223,6 +227,7 @@ class _MatchScreenState extends ConsumerState<MatchScreen> {
       status: career.status,
       difficulty: settings.difficulty,
       vibration: settings.vibrationOn,
+      onSound: ref.playSfx,
       penaltyHistory: career.stats.penaltyZones,
       random: _random,
       labels: MiniGameLabels(

@@ -16,6 +16,7 @@ import '../domain/club/transfer_offer.dart';
 import '../domain/league/club_world.dart';
 import '../domain/social/event_models.dart';
 import '../domain/social/social_engine.dart';
+import '../game/sound_service.dart';
 
 /// `main()` içinde gerçek örnekle, testlerde sahte örnekle override edilir.
 final sharedPreferencesProvider = Provider<SharedPreferences>(
@@ -207,6 +208,20 @@ class SettingsNotifier extends Notifier<GameSettings> {
 final settingsProvider = NotifierProvider<SettingsNotifier, GameSettings>(
   SettingsNotifier.new,
 );
+
+final soundServiceProvider = Provider<SoundService>((ref) {
+  final service = SoundService();
+  ref.onDispose(service.dispose);
+  return service;
+});
+
+extension SoundRef on WidgetRef {
+  /// Ayarlardaki "Ses" açıksa efekti çalar.
+  void playSfx(Sfx sfx) {
+    if (!read(settingsProvider).soundOn) return;
+    read(soundServiceProvider).play(sfx);
+  }
+}
 
 /// Bu hafta için seçilen plan (bellekte; hafta bitince sıfırlanmaz,
 /// oyuncu genelde aynı rutini sürdürür).

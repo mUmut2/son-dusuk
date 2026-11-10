@@ -2490,4 +2490,131 @@ class AppLocalizationsTr extends AppLocalizations {
   String equipmentCardOwned(String owned, String max) {
     return 'Ekipman seviyesi $owned/$max';
   }
+
+  @override
+  String get cm_kickoff =>
+      'Hakem düdüğü çaldı, maç başladı! Tribünler ayakta, heyecan dorukta!|Top ortaya kondu ve mücadele başlıyor! İki takım da hazır görünüyor.|Başladı başladı! Çimler yeşil, toplar yuvarlak, bugün her şey olabilir!';
+
+  @override
+  String get cm_halftime =>
+      'İlk yarı sona erdi! Oyuncular soyunma odasına gidiyor, ben de bir bardak su içeceğim.|Hakem devre arası için düdüğü çaldı. İkinci yarıda neler olacak, hep birlikte göreceğiz!|Devre arası! Teknik direktörler taktik tahtasının başına geçti, çaylar tazelendi.';
+
+  @override
+  String get cm_fulltimeWin =>
+      'Maç bitti ve %team% kazandı! Tribünlerde bayram havası var!|Final düdüğü çaldı, galibiyet %team% için! Ne maçtı arkadaşlar!|Üç puan %team% takımının! Bu galibiyet uzun süre konuşulacak.';
+
+  @override
+  String get cm_fulltimeLoss =>
+      'Maç sona erdi, bu kez kazanan %other%. Ama futbol bu, bir sonraki maç yeni bir hikaye!|Düdük çaldı, galibiyeti %other% aldı. %team% için moral çalışması zamanı!|Final düdüğü! Bugün şans %other% tarafındaydı, %team% başını dik tutmalı.';
+
+  @override
+  String get cm_fulltimeDraw =>
+      'Maç berabere bitti! İki takım da puanı paylaştı.|Final düdüğü çaldı, skor eşit! Kimse kaybetmedi ama kimse tam kazanamadı.|Beraberlik! Tribünler alkışlıyor, iki takım da elinden geleni yaptı.';
+
+  @override
+  String get cm_midfield =>
+      'Top orta sahada el değiştiriyor, iki takım da sabırlı oynuyor.|%team% topu ayağında tutup paslaşarak ilerliyor.|Orta alanda sıkı bir mücadele var, kimse top vermek istemiyor!|%team% kanattan hızlı bir hücuma çıkıyor, savunma tetikte!';
+
+  @override
+  String get cm_corner =>
+      'Köşe vuruşu %team% lehine! Ortaya çok sayıda oyuncu yığıldı.|Korner kazandı %team%! Top ceza sahasına havalanıyor... ve savunma uzaklaştırdı.|Kale çizgisinden çıkan top korner! %team% yeni bir fırsat yakaladı.';
+
+  @override
+  String get cm_foul =>
+      'Hakem düdüğü çaldı, serbest vuruş! Oyun biraz durdu.|Sert bir müdahale! Hakem oyunu durdurdu, oyuncular birbirini ayağa kaldırıyor.|Faul var! %team% serbest vuruşla oyunu yeniden başlatıyor.';
+
+  @override
+  String get cm_offside =>
+      'Yan hakem bayrağı kaldırdı, ofsayt! Gol sevinci yarım kaldı.|Ofsayt! %team% forveti biraz erken koşmuş.|Bayrak havada! Ofsayt pozisyonu, hakem oyunu durdurdu.';
+
+  @override
+  String get cm_wide =>
+      '%team% şutu denedi ama top yan direğin yanından dışarı gitti!|Uzaktan sert bir şut! Top kalenin üstünden aşıp tribünlere gitti.|%team% bir fırsat yakaladı ama şut dışarıda kaldı. Az kalsın!';
+
+  @override
+  String get cm_keeperSave =>
+      'Harika kurtarış! %team% şutu attı ama kaleci son anda topu çıkardı!|Kaleci yere atıldı ve topu çeldi! %team% gole çok yaklaşmıştı.|Direk dibinde nefes kesen bir kurtarış! %team% şaşkın.';
+
+  @override
+  String get cm_crowd =>
+      'Tribünler coşuyor! Taraftarlar bütün güçleriyle takımlarını destekliyor.|Tribünlerden büyük bir tezahürat yükseliyor, ses yer yerinden oynuyor!|Sahaya bir balon top girdi, herkes gülüyor! Görevliler topu kaptı, oyun devam ediyor.';
+
+  @override
+  String get cm_teamGoal =>
+      'GOOOL! %team% ağları buldu! Müthiş bir vuruş!|Gol! %team% ağları sarstı, yedek kulübesi ayakta!|GOL! %team% golcüsü bu işi bitirdi, tribünler çılgına döndü!|Top ağlarda! %team% sevinç çığlıkları atıyor!';
+
+  @override
+  String get cm_oppGoal =>
+      'Gol! %team% rakip ağları buldu. Savunma biraz daha dikkatli olmalı!|Eyvah! %team% golü attı. Tribüne bir an sessizlik çöktü.|%team% buldu! Kaleci elini uzattı ama yetişemedi.|Gol! %team% sevinç içinde, maçın havası değişiyor!';
+
+  @override
+  String get cm_introShot =>
+      'Top %player% önünde! Kaleye doğru güzel bir açı var, şut zamanı!|Ceza sahasının önünde %player% topla buluştu, kaleci bekliyor!|Fırsat geldi! %player% şut pozisyonuna girdi, herkes nefesini tuttu.';
+
+  @override
+  String get cm_introOneOnOne =>
+      'Kaleciyle karşı karşıya! %player% kaleciyle baş başa kaldı!|Savunma arkada kaldı, %player% kaleciyle yalnız! Sakin ol, sakin...|Muhteşem bir ara pas ve %player% kaleciyle bire bir!';
+
+  @override
+  String get cm_introHeader =>
+      'Orta geliyor ve top havada! %player% yükseldi, kafa vuruşuna hazır!|Köşe vuruşundan gelen topa en iyi %player% yükselecek gibi, herkes ona bakıyor!|Kale önü karıştı! Top havada, %player% kafayı vurmaya hazırlanıyor!';
+
+  @override
+  String get cm_introFreeKick =>
+      'Hakem serbest vuruşu verdi. Topun başında %player% var, duvar dizildi!|Tehlikeli bölgeden serbest vuruş! %player% topun başına geçti, tribünler susuyor.|Duvar kuruldu, kaleci eldivenlerini sıkıyor, %player% koşuya hazırlanıyor!';
+
+  @override
+  String get cm_introPenalty =>
+      'PENALTI! Hakem noktayı gösterdi, topun başında %player% var!|Büyük an! %player% penaltı noktasında, kaleci çizgide hazır, tüm stat sessiz...|Penaltı kazanıldı! %player% topu noktaya koydu. Şimdi sinirlere hakim olma zamanı!';
+
+  @override
+  String get cm_introKeyPass =>
+      'Orta sahada top %player% ayağında! Önünde net bir pas fırsatı var, kime verecek?|%player% kafasını kaldırdı, arkadaşları boşta. Hangi yöne pas çıkacak?|Çok iyi bir görüş açısı var, %player% bir şeyler çevirmek istiyor!';
+
+  @override
+  String get cm_introDribble =>
+      '%player% topu sürüyor, önünde savunmacılar sıralandı! Çalım yapabilecek mi?|Hızlı bir atak! %player% rakiplerin arasından sıyrılmaya çalışıyor.|%player% topu ayağına yapıştırdı, savunma dizilmiş. Çalım zamanı!';
+
+  @override
+  String get cm_introTackle =>
+      'Rakip hücumda, tehlike büyüyor! %player% son savunmacı, müdahale zamanı!|Hızlı bir kontra atak! %player% topu kapmak için koşuyor!|Rakip forvet ceza sahasına giriyor, %player% topu almaya hazır!';
+
+  @override
+  String get cm_playerGoal =>
+      'GOOOOL! %player% topu ağlara gönderdi! İnanılmaz bir an!|%player% attı, gol! Tribünler yıkılıyor, takım arkadaşları üstüne atladı!|Muhteşem! %player% kaleciyi çaresiz bıraktı, %team% sevinç içinde!|GOL GOL GOL! %player% harika bir iş çıkardı, adını hepimiz hatırlayacağız!';
+
+  @override
+  String get cm_playerAssist =>
+      'Harika bir pas! %player% golü hazırladı, asist onun!|%player% öyle bir ara pas verdi ki arkadaşı topu ağlara yolladı, gol!|Ne vizyon! %player% pasıyla golün yolunu açtı.';
+
+  @override
+  String get cm_conceded =>
+      'Eyvah, rakip golü buldu! %team% bu fırsatı kaçırmadı.|Olmadı... %team% golü attı, ama maç daha bitmedi!|Gol yedik! %team% skoru değiştirdi, hemen toparlanmak lazım.';
+
+  @override
+  String get cm_missShot =>
+      'Yazık oldu, top ağlara gitmedi! Az kalsın!|Şut kaleye gitmedi, tribünlerden ohh sesleri yükseldi.|Kaleci buna yetişti, olmadı bu sefer! Bir sonraki fırsatta olacak.';
+
+  @override
+  String get cm_missPlay =>
+      'Pozisyon devam ediyor ama ortada net bir fırsat çıkmadı.|Oyun yine orta alanda, bu atak sonuç vermedi.|Top el değiştirdi, maç hızla devam ediyor!';
+
+  @override
+  String get cm_tackleOk =>
+      'Harika bir müdahale! %player% tehlikeyi bertaraf etti.|Çok sağlam! %player% araya girdi ve gol fırsatı doğmadan topu kesti.|%player% rakibi durdurdu, savunmada kale gibi!';
+
+  @override
+  String get commentaryTitle => 'Canlı Anlatım';
+
+  @override
+  String get commentaryLive => 'CANLI';
+
+  @override
+  String get commentarySkip => 'Geç';
+
+  @override
+  String get commentaryToSummary => 'Maç Özeti';
+
+  @override
+  String get commentaryEmpty => 'Maç başlayınca spiker burada konuşacak.';
 }

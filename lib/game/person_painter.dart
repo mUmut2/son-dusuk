@@ -60,7 +60,10 @@ void paintPerson(
     ..strokeJoin = StrokeJoin.round
     ..strokeCap = StrokeCap.round;
   Paint gradient(Rect rect, Color top, Color bottom) => Paint()
-    ..shader = Gradient.linear(rect.topCenter, rect.bottomCenter, [top, bottom]);
+    ..shader = Gradient.linear(rect.topCenter, rect.bottomCenter, [
+      top,
+      bottom,
+    ]);
 
   void rrect(Rect rect, double radius, Paint paint, Color outline) {
     final rr = RRect.fromRectAndRadius(rect, Radius.circular(r * radius));
@@ -137,7 +140,11 @@ void paintPerson(
       ink,
     );
     canvas
-      ..drawCircle(Offset(side * r * 1.22, r * 0.36), r * handR, fill(handColor))
+      ..drawCircle(
+        Offset(side * r * 1.22, r * 0.36),
+        r * handR,
+        fill(handColor),
+      )
       ..drawCircle(
         Offset(side * r * 1.22, r * 0.36),
         r * handR,
@@ -194,10 +201,10 @@ void paintPerson(
       for (var i = 0; i < 5; i++) {
         final a = math.pi * (1.15 + 0.175 * i);
         final tip = head + Offset(math.cos(a), math.sin(a)) * (headR * 1.27);
-        final b1 = head +
-            Offset(math.cos(a - 0.2), math.sin(a - 0.2)) * (headR * 1.0);
-        final b2 = head +
-            Offset(math.cos(a + 0.2), math.sin(a + 0.2)) * (headR * 1.0);
+        final b1 =
+            head + Offset(math.cos(a - 0.2), math.sin(a - 0.2)) * (headR * 1.0);
+        final b2 =
+            head + Offset(math.cos(a + 0.2), math.sin(a + 0.2)) * (headR * 1.0);
         canvas.drawPath(
           Path()
             ..moveTo(b1.dx, b1.dy)
@@ -216,7 +223,10 @@ void paintPerson(
       }
     case 3: // kısa, alnı açık
       canvas.drawArc(
-        Rect.fromCircle(center: head.translate(0, -r * 0.18), radius: headR * 1.03),
+        Rect.fromCircle(
+          center: head.translate(0, -r * 0.18),
+          radius: headR * 1.03,
+        ),
         math.pi * 1.02,
         math.pi * 0.96,
         true,
@@ -244,13 +254,7 @@ void paintPerson(
           fill(hairColor),
         );
   }
-  canvas.drawArc(
-    top,
-    math.pi,
-    math.pi,
-    false,
-    line(hairInk, 0.05),
-  );
+  canvas.drawArc(top, math.pi, math.pi, false, line(hairInk, 0.05));
 
   // Yüz: iri parlak gözler, kaşlar, yanaklar, gülümseme.
   for (final side in const [-1.0, 1.0]) {

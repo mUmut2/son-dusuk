@@ -10,8 +10,15 @@ import 'package:son_dusuk/domain/career/career_factory.dart';
 import 'package:son_dusuk/domain/player/player.dart';
 import 'package:son_dusuk/domain/player/player_factory.dart';
 import 'package:son_dusuk/domain/player/position.dart';
+import 'package:son_dusuk/game/sound_service.dart';
 import 'package:son_dusuk/presentation/match/match_screen.dart';
 import 'package:son_dusuk/presentation/providers.dart';
+
+/// Testte gerçek ses eklentisi yok; sessiz servis kullanılır.
+class _NoSound extends SoundService {
+  @override
+  Future<void> play(Sfx sfx) async {}
+}
 
 Future<void> pumpMatch(WidgetTester tester, int seed) async {
   tester.view.physicalSize = const Size(800, 1600);
@@ -21,7 +28,10 @@ Future<void> pumpMatch(WidgetTester tester, int seed) async {
   SharedPreferences.setMockInitialValues({});
   final prefs = await SharedPreferences.getInstance();
   final container = ProviderContainer(
-    overrides: [sharedPreferencesProvider.overrideWithValue(prefs)],
+    overrides: [
+      sharedPreferencesProvider.overrideWithValue(prefs),
+      soundServiceProvider.overrideWithValue(_NoSound()),
+    ],
   );
   addTearDown(container.dispose);
   container
@@ -80,6 +90,12 @@ void main() {
 
     var guard = 0;
     while (find.text('Maç Sonu').evaluate().isEmpty && guard++ < 20) {
+      // Son an çözüldüyse maç bitimine kadar anlatım akar; özete geç.
+      if (find.text('Maç Özeti').evaluate().isNotEmpty) {
+        await tester.tap(find.text('Maç Özeti'));
+        await tester.pumpAndSettle();
+        continue;
+      }
       expect(find.textContaining('. dakika'), findsOneWidget);
       if (find.text('Otomatik Çöz').evaluate().isNotEmpty) {
         await tester.tap(find.text('Otomatik Çöz'));
@@ -94,6 +110,31 @@ void main() {
       }
     }
     expect(find.text('Maç Sonu'), findsOneWidget);
+  });
+
+  testWidgets('canlı anlatım: açılış satırı, Geç ile atlama, an girişi', (
+    tester,
+  ) async {
+    await pumpMatch(tester, 2);
+    await tester.tap(find.text('Maça Başla'));
+    await tester.pump(const Duration(milliseconds: 50));
+
+    // Canlı aşama: panel, rozet, atlama düğmesi ve 0. dakikadaki açılış satırı.
+    expect(find.text('Canlı Anlatım'), findsOneWidget);
+    expect(find.text('CANLI'), findsOneWidget);
+    expect(find.text('Geç'), findsOneWidget);
+    // Dakika hem saatte hem satır rozetinde görünür.
+    expect(find.text("0'"), findsNWidgets(2));
+
+    await tester.tap(find.text('Geç'));
+    await tester.pumpAndSettle();
+
+    // İlk kritik an: panel yerinde, an girişi anlatımı eklenmiş.
+    expect(find.textContaining('. dakika'), findsOneWidget);
+    expect(find.text('Canlı Anlatım'), findsOneWidget);
+    expect(find.text('CANLI'), findsNothing);
+    expect(find.text('Geç'), findsNothing);
+    expect(tester.takeException(), isNull);
   });
 
   testWidgets('şut anında "Oyna" Flame oyununu açar', (tester) async {

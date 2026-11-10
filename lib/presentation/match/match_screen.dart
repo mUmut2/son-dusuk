@@ -10,6 +10,8 @@ import '../../domain/league/team.dart';
 import '../../domain/national/nation.dart';
 import '../../domain/national/national_engine.dart';
 import '../../domain/national/tournament.dart';
+import '../../domain/match/commentary.dart';
+import '../../domain/match/commentary_balance.dart';
 import '../../domain/match/critical_moment.dart';
 import '../../domain/match/match_session.dart';
 import '../../domain/match/match_simulator.dart';
@@ -20,8 +22,10 @@ import '../../game/mini_game_view.dart';
 import '../../game/sound_service.dart';
 import '../l10n_labels.dart';
 import '../providers.dart';
+import 'commentary_feed.dart';
+import 'commentary_texts.dart';
 
-enum _Stage { preMatch, momentIntro, miniGame, momentResult, summary }
+enum _Stage { preMatch, live, momentIntro, miniGame, momentResult, summary }
 
 /// Lig maçı akışı: kritik an -> mini oyun -> sonuç -> maç özeti.
 class MatchScreen extends ConsumerStatefulWidget {
@@ -34,8 +38,15 @@ class MatchScreen extends ConsumerStatefulWidget {
   ConsumerState<MatchScreen> createState() => _MatchScreenState();
 }
 
-class _MatchScreenState extends ConsumerState<MatchScreen> {
+class _MatchScreenState extends ConsumerState<MatchScreen>
+    with SingleTickerProviderStateMixin {
   late final GameRandom _random = GameRandom(widget.seed);
+
+  /// Spiker için ayrı rastgelelik: maç sonuçlarının akışını etkilemez.
+  late final GameRandom _talkRandom = GameRandom(
+    widget.seed == null ? null : widget.seed! + 7919,
+  );
+  late final AnimationController _liveCtrl = AnimationController(vsync: this);
   late final Team _playerTeam;
   late final Team _opponent;
   late final Side _playerSide;
@@ -51,9 +62,26 @@ class _MatchScreenState extends ConsumerState<MatchScreen> {
   CriticalMoment? _moment;
   MomentOutcome? _lastOutcome;
 
+  // Canlı anlatım: maç dakikası ilerler, spiker satırları sırayla düşer.
+  final List<CommentaryLine> _feed = [];
+  List<CommentaryLine> _liveLines = const [];
+  int _liveShown = 0;
+  int _liveFrom = 0;
+  int _liveTo = 0;
+  CriticalMoment? _liveNext;
+  bool _liveDone = false;
+
+  /// Maçın şu anki dakikası.
+  int _clock = 0;
+
   @override
   void initState() {
     super.initState();
+    _liveCtrl
+      ..addListener(_onLiveTick)
+      ..addStatusListener((status) {
+        if (status == AnimationStatus.completed) _onLiveCompleted();
+      });
     final career = ref.read(activeCareerProvider)!.state;
     final player = career.player;
     _isNational = NationalEngine.dayOf(career) == NationalDay.play;
@@ -90,26 +118,126 @@ class _MatchScreenState extends ConsumerState<MatchScreen> {
     );
   }
 
+  @override
+  void dispose() {
+    _liveCtrl.dispose();
+    super.dispose();
+  }
+
   Team get _home => _playerSide == Side.home ? _playerTeam : _opponent;
   Team get _away => _playerSide == Side.home ? _opponent : _playerTeam;
 
   /// Maçın o ana kadarki skoru (gelecekteki golleri göstermez).
   int _goalsAt(Side side) => _session.result.goals
-      .where((g) => g.side == side && g.minute <= _moment!.minute)
+      .where((g) => g.side == side && g.minute <= _clock)
       .length;
 
+  String get _playerName => ref.read(activeCareerProvider)!.state.player.name;
+
+  String _talk(AppLocalizations l10n, CommentaryLine line) => l10n.commentary(
+    line,
+    home: _home.name,
+    away: _away.name,
+    player: _playerName,
+  );
+
+  Widget _feedView(AppLocalizations l10n, {bool live = false}) =>
+      CommentaryFeed(
+        lines: _feed,
+        live: live,
+        textOf: (line) => _talk(l10n, line),
+      );
+
+  /// Sıradaki ana kadar maçı canlı anlatımla oynatır; an yoksa maçın sonuna.
   void _next() {
-    final m = _session.nextMoment;
-    // Düdük: maçın ilk anında başlangıç, son anında bitiş.
-    if (_stage == _Stage.preMatch || m == null) ref.playSfx(Sfx.whistle);
+    final next = _session.nextMoment;
+    final first = _stage == _Stage.preMatch;
+    if (first) ref.playSfx(Sfx.whistle);
+    _liveFrom = _clock;
+    _liveTo = next?.minute ?? CommentaryBalance.matchMinutes;
+    _liveNext = next;
+    _liveDone = false;
+    _liveShown = 0;
+    _liveLines = MatchCommentator.segment(
+      from: _liveFrom,
+      to: _liveTo,
+      goals: _session.result.goals,
+      playerSide: _playerSide,
+      random: _talkRandom,
+      kickoff: first,
+      fullTime: next == null,
+    );
+    final minutes = (_liveTo - _liveFrom).clamp(
+      1,
+      CommentaryBalance.matchMinutes,
+    );
+    setState(() => _stage = _Stage.live);
+    _liveCtrl
+      ..duration = Duration(
+        milliseconds: (minutes * CommentaryBalance.secondsPerMinute * 1000)
+            .round(),
+      )
+      ..value = 0
+      ..forward();
+    _revealLines(_liveFrom);
+  }
+
+  void _revealLines(int minute) {
+    var changed = false;
+    while (_liveShown < _liveLines.length &&
+        _liveLines[_liveShown].minute <= minute) {
+      final line = _liveLines[_liveShown++];
+      _feed.add(line);
+      changed = true;
+      if (line.kind == CommentaryKind.teamGoal) ref.playSfx(Sfx.goal);
+      if (line.kind == CommentaryKind.oppGoal) ref.playSfx(Sfx.bad);
+    }
+    if (changed || minute != _clock) {
+      setState(() => _clock = minute);
+    }
+  }
+
+  void _onLiveTick() {
+    if (_stage != _Stage.live) return;
+    final minute =
+        _liveFrom + ((_liveTo - _liveFrom) * _liveCtrl.value).floor();
+    _revealLines(minute);
+  }
+
+  void _onLiveCompleted() {
+    if (_stage != _Stage.live) return;
+    _revealLines(_liveTo);
+    final next = _liveNext;
+    if (next == null) {
+      ref.playSfx(Sfx.whistle);
+      setState(() => _liveDone = true);
+      return;
+    }
+    _feed.add(MatchCommentator.momentIntro(next, _playerSide, _talkRandom));
     setState(() {
-      _moment = m;
-      _stage = m == null ? _Stage.summary : _Stage.momentIntro;
+      _moment = next;
+      _stage = _Stage.momentIntro;
     });
   }
 
+  /// "Geç": kalan dakikaları bekletmeden anlatım satırlarını hemen göster.
+  void _skipLive() {
+    if (_stage != _Stage.live || _liveDone) return;
+    _liveCtrl.value = 1;
+  }
+
+  void _showSummary() => setState(() => _stage = _Stage.summary);
+
   void _resolve(MomentOutcome outcome) {
     _session.resolve(_moment!, outcome);
+    _feed.add(
+      MatchCommentator.momentResult(
+        _moment!,
+        outcome,
+        _playerSide,
+        _talkRandom,
+      ),
+    );
     setState(() {
       _lastOutcome = outcome;
       _stage = _Stage.momentResult;
@@ -206,6 +334,7 @@ class _MatchScreenState extends ConsumerState<MatchScreen> {
               padding: const EdgeInsets.all(16),
               child: switch (_stage) {
                 _Stage.preMatch => _buildPreMatch(l10n),
+                _Stage.live => _buildLive(l10n),
                 _Stage.momentIntro => _buildIntro(l10n),
                 _Stage.momentResult => _buildMomentResult(l10n),
                 _Stage.summary => _buildSummary(l10n),
@@ -303,6 +432,57 @@ class _MatchScreenState extends ConsumerState<MatchScreen> {
     );
   }
 
+  Widget _buildLive(AppLocalizations l10n) {
+    final scheme = Theme.of(context).colorScheme;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        _ScoreBoard(
+          home: _home.name,
+          away: _away.name,
+          homeGoals: _goalsAt(Side.home),
+          awayGoals: _goalsAt(Side.away),
+        ),
+        const SizedBox(height: 8),
+        Row(
+          children: [
+            Text("$_clock'", style: Theme.of(context).textTheme.titleMedium),
+            const SizedBox(width: 12),
+            Expanded(
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(6),
+                child: LinearProgressIndicator(
+                  minHeight: 10,
+                  value: _clock / CommentaryBalance.matchMinutes,
+                  backgroundColor: scheme.surfaceContainerHighest,
+                ),
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 12),
+        Expanded(child: _feedView(l10n, live: !_liveDone)),
+        const SizedBox(height: 12),
+        if (_liveDone)
+          FilledButton(
+            style: FilledButton.styleFrom(
+              minimumSize: const Size.fromHeight(56),
+            ),
+            onPressed: _showSummary,
+            child: Text(l10n.commentaryToSummary),
+          )
+        else
+          OutlinedButton(
+            style: OutlinedButton.styleFrom(
+              minimumSize: const Size.fromHeight(48),
+            ),
+            onPressed: _skipLive,
+            child: Text(l10n.commentarySkip),
+          ),
+      ],
+    );
+  }
+
   Widget _buildIntro(AppLocalizations l10n) {
     final moment = _moment!;
     final textTheme = Theme.of(context).textTheme;
@@ -315,7 +495,9 @@ class _MatchScreenState extends ConsumerState<MatchScreen> {
           homeGoals: _goalsAt(Side.home),
           awayGoals: _goalsAt(Side.away),
         ),
-        const Spacer(),
+        const SizedBox(height: 8),
+        Expanded(child: _feedView(l10n)),
+        const SizedBox(height: 12),
         Text(
           l10n.matchMinute(moment.minute),
           textAlign: TextAlign.center,
@@ -329,27 +511,38 @@ class _MatchScreenState extends ConsumerState<MatchScreen> {
         ),
         const SizedBox(height: 16),
         Text(_momentIntro(l10n, moment.type), textAlign: TextAlign.center),
-        const Spacer(),
+        const SizedBox(height: 16),
         FilledButton(
           style: FilledButton.styleFrom(minimumSize: const Size.fromHeight(56)),
           onPressed: () => setState(() => _stage = _Stage.miniGame),
           child: Text(l10n.momentPlay),
         ),
         const SizedBox(height: 12),
-        OutlinedButton(
-          style: OutlinedButton.styleFrom(
-            minimumSize: const Size.fromHeight(48),
-          ),
-          onPressed: _autoResolve,
-          child: Text(l10n.momentAuto),
-        ),
-        const SizedBox(height: 12),
-        OutlinedButton(
-          style: OutlinedButton.styleFrom(
-            minimumSize: const Size.fromHeight(48),
-          ),
-          onPressed: _quickSimRest,
-          child: Text(l10n.matchQuickSimRest),
+        Row(
+          children: [
+            Expanded(
+              child: OutlinedButton(
+                style: OutlinedButton.styleFrom(
+                  minimumSize: const Size.fromHeight(48),
+                ),
+                onPressed: _autoResolve,
+                child: Text(l10n.momentAuto, textAlign: TextAlign.center),
+              ),
+            ),
+            const SizedBox(width: 12),
+            Expanded(
+              child: OutlinedButton(
+                style: OutlinedButton.styleFrom(
+                  minimumSize: const Size.fromHeight(48),
+                ),
+                onPressed: _quickSimRest,
+                child: Text(
+                  l10n.matchQuickSimRest,
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            ),
+          ],
         ),
       ],
     );
@@ -373,13 +566,15 @@ class _MatchScreenState extends ConsumerState<MatchScreen> {
           homeGoals: _goalsAt(Side.home),
           awayGoals: _goalsAt(Side.away),
         ),
-        const Spacer(),
+        const SizedBox(height: 8),
+        Expanded(child: _feedView(l10n)),
+        const SizedBox(height: 12),
         Text(
           text,
           textAlign: TextAlign.center,
           style: Theme.of(context).textTheme.headlineMedium,
         ),
-        const Spacer(),
+        const SizedBox(height: 16),
         FilledButton(
           style: FilledButton.styleFrom(minimumSize: const Size.fromHeight(56)),
           onPressed: _next,

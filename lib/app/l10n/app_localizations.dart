@@ -4472,6 +4472,204 @@ abstract class AppLocalizations {
   /// In tr, this message translates to:
   /// **'Ekipman seviyesi {owned}/{max}'**
   String equipmentCardOwned(String owned, String max);
+
+  /// No description provided for @cm_kickoff.
+  ///
+  /// In tr, this message translates to:
+  /// **'Hakem düdüğü çaldı, maç başladı! Tribünler ayakta, heyecan dorukta!|Top ortaya kondu ve mücadele başlıyor! İki takım da hazır görünüyor.|Başladı başladı! Çimler yeşil, toplar yuvarlak, bugün her şey olabilir!'**
+  String get cm_kickoff;
+
+  /// No description provided for @cm_halftime.
+  ///
+  /// In tr, this message translates to:
+  /// **'İlk yarı sona erdi! Oyuncular soyunma odasına gidiyor, ben de bir bardak su içeceğim.|Hakem devre arası için düdüğü çaldı. İkinci yarıda neler olacak, hep birlikte göreceğiz!|Devre arası! Teknik direktörler taktik tahtasının başına geçti, çaylar tazelendi.'**
+  String get cm_halftime;
+
+  /// No description provided for @cm_fulltimeWin.
+  ///
+  /// In tr, this message translates to:
+  /// **'Maç bitti ve %team% kazandı! Tribünlerde bayram havası var!|Final düdüğü çaldı, galibiyet %team% için! Ne maçtı arkadaşlar!|Üç puan %team% takımının! Bu galibiyet uzun süre konuşulacak.'**
+  String get cm_fulltimeWin;
+
+  /// No description provided for @cm_fulltimeLoss.
+  ///
+  /// In tr, this message translates to:
+  /// **'Maç sona erdi, bu kez kazanan %other%. Ama futbol bu, bir sonraki maç yeni bir hikaye!|Düdük çaldı, galibiyeti %other% aldı. %team% için moral çalışması zamanı!|Final düdüğü! Bugün şans %other% tarafındaydı, %team% başını dik tutmalı.'**
+  String get cm_fulltimeLoss;
+
+  /// No description provided for @cm_fulltimeDraw.
+  ///
+  /// In tr, this message translates to:
+  /// **'Maç berabere bitti! İki takım da puanı paylaştı.|Final düdüğü çaldı, skor eşit! Kimse kaybetmedi ama kimse tam kazanamadı.|Beraberlik! Tribünler alkışlıyor, iki takım da elinden geleni yaptı.'**
+  String get cm_fulltimeDraw;
+
+  /// No description provided for @cm_midfield.
+  ///
+  /// In tr, this message translates to:
+  /// **'Top orta sahada el değiştiriyor, iki takım da sabırlı oynuyor.|%team% topu ayağında tutup paslaşarak ilerliyor.|Orta alanda sıkı bir mücadele var, kimse top vermek istemiyor!|%team% kanattan hızlı bir hücuma çıkıyor, savunma tetikte!'**
+  String get cm_midfield;
+
+  /// No description provided for @cm_corner.
+  ///
+  /// In tr, this message translates to:
+  /// **'Köşe vuruşu %team% lehine! Ortaya çok sayıda oyuncu yığıldı.|Korner kazandı %team%! Top ceza sahasına havalanıyor... ve savunma uzaklaştırdı.|Kale çizgisinden çıkan top korner! %team% yeni bir fırsat yakaladı.'**
+  String get cm_corner;
+
+  /// No description provided for @cm_foul.
+  ///
+  /// In tr, this message translates to:
+  /// **'Hakem düdüğü çaldı, serbest vuruş! Oyun biraz durdu.|Sert bir müdahale! Hakem oyunu durdurdu, oyuncular birbirini ayağa kaldırıyor.|Faul var! %team% serbest vuruşla oyunu yeniden başlatıyor.'**
+  String get cm_foul;
+
+  /// No description provided for @cm_offside.
+  ///
+  /// In tr, this message translates to:
+  /// **'Yan hakem bayrağı kaldırdı, ofsayt! Gol sevinci yarım kaldı.|Ofsayt! %team% forveti biraz erken koşmuş.|Bayrak havada! Ofsayt pozisyonu, hakem oyunu durdurdu.'**
+  String get cm_offside;
+
+  /// No description provided for @cm_wide.
+  ///
+  /// In tr, this message translates to:
+  /// **'%team% şutu denedi ama top yan direğin yanından dışarı gitti!|Uzaktan sert bir şut! Top kalenin üstünden aşıp tribünlere gitti.|%team% bir fırsat yakaladı ama şut dışarıda kaldı. Az kalsın!'**
+  String get cm_wide;
+
+  /// No description provided for @cm_keeperSave.
+  ///
+  /// In tr, this message translates to:
+  /// **'Harika kurtarış! %team% şutu attı ama kaleci son anda topu çıkardı!|Kaleci yere atıldı ve topu çeldi! %team% gole çok yaklaşmıştı.|Direk dibinde nefes kesen bir kurtarış! %team% şaşkın.'**
+  String get cm_keeperSave;
+
+  /// No description provided for @cm_crowd.
+  ///
+  /// In tr, this message translates to:
+  /// **'Tribünler coşuyor! Taraftarlar bütün güçleriyle takımlarını destekliyor.|Tribünlerden büyük bir tezahürat yükseliyor, ses yer yerinden oynuyor!|Sahaya bir balon top girdi, herkes gülüyor! Görevliler topu kaptı, oyun devam ediyor.'**
+  String get cm_crowd;
+
+  /// No description provided for @cm_teamGoal.
+  ///
+  /// In tr, this message translates to:
+  /// **'GOOOL! %team% ağları buldu! Müthiş bir vuruş!|Gol! %team% ağları sarstı, yedek kulübesi ayakta!|GOL! %team% golcüsü bu işi bitirdi, tribünler çılgına döndü!|Top ağlarda! %team% sevinç çığlıkları atıyor!'**
+  String get cm_teamGoal;
+
+  /// No description provided for @cm_oppGoal.
+  ///
+  /// In tr, this message translates to:
+  /// **'Gol! %team% rakip ağları buldu. Savunma biraz daha dikkatli olmalı!|Eyvah! %team% golü attı. Tribüne bir an sessizlik çöktü.|%team% buldu! Kaleci elini uzattı ama yetişemedi.|Gol! %team% sevinç içinde, maçın havası değişiyor!'**
+  String get cm_oppGoal;
+
+  /// No description provided for @cm_introShot.
+  ///
+  /// In tr, this message translates to:
+  /// **'Top %player% önünde! Kaleye doğru güzel bir açı var, şut zamanı!|Ceza sahasının önünde %player% topla buluştu, kaleci bekliyor!|Fırsat geldi! %player% şut pozisyonuna girdi, herkes nefesini tuttu.'**
+  String get cm_introShot;
+
+  /// No description provided for @cm_introOneOnOne.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kaleciyle karşı karşıya! %player% kaleciyle baş başa kaldı!|Savunma arkada kaldı, %player% kaleciyle yalnız! Sakin ol, sakin...|Muhteşem bir ara pas ve %player% kaleciyle bire bir!'**
+  String get cm_introOneOnOne;
+
+  /// No description provided for @cm_introHeader.
+  ///
+  /// In tr, this message translates to:
+  /// **'Orta geliyor ve top havada! %player% yükseldi, kafa vuruşuna hazır!|Köşe vuruşundan gelen topa en iyi %player% yükselecek gibi, herkes ona bakıyor!|Kale önü karıştı! Top havada, %player% kafayı vurmaya hazırlanıyor!'**
+  String get cm_introHeader;
+
+  /// No description provided for @cm_introFreeKick.
+  ///
+  /// In tr, this message translates to:
+  /// **'Hakem serbest vuruşu verdi. Topun başında %player% var, duvar dizildi!|Tehlikeli bölgeden serbest vuruş! %player% topun başına geçti, tribünler susuyor.|Duvar kuruldu, kaleci eldivenlerini sıkıyor, %player% koşuya hazırlanıyor!'**
+  String get cm_introFreeKick;
+
+  /// No description provided for @cm_introPenalty.
+  ///
+  /// In tr, this message translates to:
+  /// **'PENALTI! Hakem noktayı gösterdi, topun başında %player% var!|Büyük an! %player% penaltı noktasında, kaleci çizgide hazır, tüm stat sessiz...|Penaltı kazanıldı! %player% topu noktaya koydu. Şimdi sinirlere hakim olma zamanı!'**
+  String get cm_introPenalty;
+
+  /// No description provided for @cm_introKeyPass.
+  ///
+  /// In tr, this message translates to:
+  /// **'Orta sahada top %player% ayağında! Önünde net bir pas fırsatı var, kime verecek?|%player% kafasını kaldırdı, arkadaşları boşta. Hangi yöne pas çıkacak?|Çok iyi bir görüş açısı var, %player% bir şeyler çevirmek istiyor!'**
+  String get cm_introKeyPass;
+
+  /// No description provided for @cm_introDribble.
+  ///
+  /// In tr, this message translates to:
+  /// **'%player% topu sürüyor, önünde savunmacılar sıralandı! Çalım yapabilecek mi?|Hızlı bir atak! %player% rakiplerin arasından sıyrılmaya çalışıyor.|%player% topu ayağına yapıştırdı, savunma dizilmiş. Çalım zamanı!'**
+  String get cm_introDribble;
+
+  /// No description provided for @cm_introTackle.
+  ///
+  /// In tr, this message translates to:
+  /// **'Rakip hücumda, tehlike büyüyor! %player% son savunmacı, müdahale zamanı!|Hızlı bir kontra atak! %player% topu kapmak için koşuyor!|Rakip forvet ceza sahasına giriyor, %player% topu almaya hazır!'**
+  String get cm_introTackle;
+
+  /// No description provided for @cm_playerGoal.
+  ///
+  /// In tr, this message translates to:
+  /// **'GOOOOL! %player% topu ağlara gönderdi! İnanılmaz bir an!|%player% attı, gol! Tribünler yıkılıyor, takım arkadaşları üstüne atladı!|Muhteşem! %player% kaleciyi çaresiz bıraktı, %team% sevinç içinde!|GOL GOL GOL! %player% harika bir iş çıkardı, adını hepimiz hatırlayacağız!'**
+  String get cm_playerGoal;
+
+  /// No description provided for @cm_playerAssist.
+  ///
+  /// In tr, this message translates to:
+  /// **'Harika bir pas! %player% golü hazırladı, asist onun!|%player% öyle bir ara pas verdi ki arkadaşı topu ağlara yolladı, gol!|Ne vizyon! %player% pasıyla golün yolunu açtı.'**
+  String get cm_playerAssist;
+
+  /// No description provided for @cm_conceded.
+  ///
+  /// In tr, this message translates to:
+  /// **'Eyvah, rakip golü buldu! %team% bu fırsatı kaçırmadı.|Olmadı... %team% golü attı, ama maç daha bitmedi!|Gol yedik! %team% skoru değiştirdi, hemen toparlanmak lazım.'**
+  String get cm_conceded;
+
+  /// No description provided for @cm_missShot.
+  ///
+  /// In tr, this message translates to:
+  /// **'Yazık oldu, top ağlara gitmedi! Az kalsın!|Şut kaleye gitmedi, tribünlerden ohh sesleri yükseldi.|Kaleci buna yetişti, olmadı bu sefer! Bir sonraki fırsatta olacak.'**
+  String get cm_missShot;
+
+  /// No description provided for @cm_missPlay.
+  ///
+  /// In tr, this message translates to:
+  /// **'Pozisyon devam ediyor ama ortada net bir fırsat çıkmadı.|Oyun yine orta alanda, bu atak sonuç vermedi.|Top el değiştirdi, maç hızla devam ediyor!'**
+  String get cm_missPlay;
+
+  /// No description provided for @cm_tackleOk.
+  ///
+  /// In tr, this message translates to:
+  /// **'Harika bir müdahale! %player% tehlikeyi bertaraf etti.|Çok sağlam! %player% araya girdi ve gol fırsatı doğmadan topu kesti.|%player% rakibi durdurdu, savunmada kale gibi!'**
+  String get cm_tackleOk;
+
+  /// No description provided for @commentaryTitle.
+  ///
+  /// In tr, this message translates to:
+  /// **'Canlı Anlatım'**
+  String get commentaryTitle;
+
+  /// No description provided for @commentaryLive.
+  ///
+  /// In tr, this message translates to:
+  /// **'CANLI'**
+  String get commentaryLive;
+
+  /// No description provided for @commentarySkip.
+  ///
+  /// In tr, this message translates to:
+  /// **'Geç'**
+  String get commentarySkip;
+
+  /// No description provided for @commentaryToSummary.
+  ///
+  /// In tr, this message translates to:
+  /// **'Maç Özeti'**
+  String get commentaryToSummary;
+
+  /// No description provided for @commentaryEmpty.
+  ///
+  /// In tr, this message translates to:
+  /// **'Maç başlayınca spiker burada konuşacak.'**
+  String get commentaryEmpty;
 }
 
 class _AppLocalizationsDelegate

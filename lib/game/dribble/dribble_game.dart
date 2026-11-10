@@ -198,7 +198,14 @@ class DribbleGame extends MiniGameBase {
           tilt = side * 0.5 * t;
         }
         if (dx < l.width * 0.02 || dx > l.width * 0.98) continue;
-        drawPerson(canvas, dx, y, const Color(0xFFC62828), tilt: tilt);
+        drawPerson(
+          canvas,
+          dx,
+          y,
+          const Color(0xFFC62828),
+          tilt: tilt,
+          variant: i * 2 + (side > 0 ? 1 : 0) + 1,
+        );
       }
     }
 

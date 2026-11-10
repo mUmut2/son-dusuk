@@ -380,6 +380,8 @@ class ShotGame extends FlameGame {
       const Color(0xFFFFB300),
       scale: 0.9,
       tilt: tilt,
+      keeper: true,
+      variant: 3,
     );
   }
 
@@ -403,6 +405,7 @@ class ShotGame extends FlameGame {
         l.ballRadius,
         const Color(0xFF1565C0),
         scale: 0.85,
+        variant: i + 1,
       );
     }
   }

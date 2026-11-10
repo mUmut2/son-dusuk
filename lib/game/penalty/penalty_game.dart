@@ -226,6 +226,14 @@ class PenaltyGame extends MiniGameBase {
       ky += (t.y - ky) * dive * 0.7;
       tilt = PenaltyResolver.zoneX(r.keeperZone) * 0.9 * dive;
     }
-    drawPerson(canvas, kx, ky, const Color(0xFFFFB300), tilt: tilt);
+    drawPerson(
+      canvas,
+      kx,
+      ky,
+      const Color(0xFFFFB300),
+      tilt: tilt,
+      keeper: true,
+      variant: 3,
+    );
   }
 }

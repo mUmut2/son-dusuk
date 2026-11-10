@@ -184,8 +184,8 @@ abstract class MiniGameBase extends FlameGame {
     double scale = 1,
     double tilt = 0,
     String? label,
-    Color skin = const Color(0xFFE0AC83),
-    Color hair = const Color(0xFF3E2723),
+    int variant = 0,
+    bool keeper = false,
   }) {
     final r = layout.ballRadius * scale;
     paintPerson(
@@ -196,8 +196,8 @@ abstract class MiniGameBase extends FlameGame {
       shirt,
       scale: scale,
       tilt: tilt,
-      skin: skin,
-      hair: hair,
+      variant: variant,
+      keeper: keeper,
     );
     if (label != null) {
       drawText(canvas, label, x, y - r * 0.3, size: r * 1.3, bold: true);

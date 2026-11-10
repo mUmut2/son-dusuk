@@ -192,6 +192,7 @@ class PassGame extends MiniGameBase {
         s.defenderY,
         const Color(0xFFC62828),
         scale: s.defenderScale,
+        variant: i + 1,
       );
       drawPerson(
         canvas,
@@ -202,6 +203,7 @@ class PassGame extends MiniGameBase {
             : const Color(0xFF1565C0),
         scale: PassGeometry.mateScale,
         label: '${i + 1}',
+        variant: i + 4,
       );
     }
 

@@ -203,7 +203,15 @@ class TackleGame extends MiniGameBase {
       );
     }
 
-    drawPerson(canvas, ax, ay, const Color(0xFFC62828), scale: 1.2, tilt: tilt);
+    drawPerson(
+      canvas,
+      ax,
+      ay,
+      const Color(0xFFC62828),
+      scale: 1.2,
+      tilt: tilt,
+      variant: 5,
+    );
     drawBall(canvas, ballX, ballY);
     drawPerson(canvas, _playerX, _playerY, const Color(0xFF1565C0), scale: 1.2);
   }

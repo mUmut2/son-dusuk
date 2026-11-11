@@ -4,6 +4,9 @@ import '../career/week_report.dart';
 import '../club/club_balance.dart';
 import 'event_catalog.dart';
 import 'event_models.dart';
+import 'feed_balance.dart';
+import 'feed_engine.dart';
+import 'feed_models.dart';
 import 'relationships.dart';
 import 'social_balance.dart';
 
@@ -29,6 +32,15 @@ class ResolveResult {
 
   /// Gerçekten uygulanan sonuç (ters tepmişse alternatif).
   final EventEffect effect;
+  final bool backfired;
+}
+
+class OwnPostResult {
+  const OwnPostResult(this.state, this.backfired);
+
+  final CareerState state;
+
+  /// Paylaşım ters tepti mi (tepki ve ilişkiler olumsuz).
   final bool backfired;
 }
 
@@ -154,6 +166,23 @@ abstract final class SocialEngine {
     }
     s = s.copyWith(news: news);
 
+    // 2b) Sosyal ağ akışı: paylaşımlar, yorumlar, takipçiler
+    s = FeedEngine.afterWeek(
+      prev,
+      s,
+      FeedWeekInput(
+        rating: input.rating,
+        goals: input.goals,
+        won: input.won,
+        lost: input.lost,
+        scoreFor: input.scoreFor,
+        scoreAgainst: input.scoreAgainst,
+        opponent: input.opponent,
+        benched: input.benched,
+      ),
+      random,
+    );
+
     // 3) Süresi dolan olaylar (cevapsız): "yok say" sonucu uygulanır.
     final now = s.absoluteWeek;
     final live = <PendingEvent>[];
@@ -275,12 +304,38 @@ abstract final class SocialEngine {
         ),
       ),
     );
+    if (template.kind == EventKind.press) {
+      next = FeedEngine.interviewPost(
+        next,
+        p.id,
+        choiceIndex,
+        backfired,
+        random,
+      );
+    }
     return ResolveResult(
       state: next,
       template: template,
       choiceIndex: choiceIndex,
       effect: effect,
       backfired: backfired,
+    );
+  }
+
+  /// Oyuncu kendi hesabından [kind] türünde paylaşım yapar (haftada bir).
+  /// Yapamıyorsa null döner.
+  static OwnPostResult? postToFeed(
+    CareerState s,
+    FeedKind kind,
+    GameRandom random,
+  ) {
+    final rule = FeedBalance.ownRules[kind];
+    if (rule == null || !FeedEngine.canPostOwn(s)) return null;
+    final backfired = rule.alt != null && random.chance(rule.altChance);
+    final applied = applyEffect(s, backfired ? rule.alt! : rule.effect);
+    return OwnPostResult(
+      FeedEngine.ownPost(applied, kind, backfired, random),
+      backfired,
     );
   }
 

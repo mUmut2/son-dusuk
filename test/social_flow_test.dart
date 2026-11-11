@@ -10,6 +10,7 @@ import 'package:son_dusuk/domain/player/player.dart';
 import 'package:son_dusuk/domain/player/player_factory.dart';
 import 'package:son_dusuk/domain/player/position.dart';
 import 'package:son_dusuk/domain/social/event_models.dart';
+import 'package:son_dusuk/domain/social/feed_models.dart';
 import 'package:son_dusuk/domain/social/relationships.dart';
 import 'package:son_dusuk/presentation/providers.dart';
 
@@ -17,6 +18,7 @@ Future<ProviderContainer> pumpSocial(
   WidgetTester tester, {
   List<String> events = const [],
   String route = '/game/social',
+  SocialFeed feed = const SocialFeed(),
 }) async {
   tester.view.physicalSize = const Size(800, 2400);
   tester.view.devicePixelRatio = 1;
@@ -41,6 +43,7 @@ Future<ProviderContainer> pumpSocial(
     GameRandom(1),
   ).copyWith(week: 10);
   final career = base.copyWith(
+    feed: feed,
     pendingEvents: [
       for (final id in events)
         PendingEvent(
@@ -213,5 +216,93 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.text('Tamam'), findsOneWidget);
     expect(tester.takeException(), isNull);
+  });
+
+  group('sosyal ağ akışı', () {
+    const post = FeedPost(
+      kind: FeedKind.hatTrick,
+      source: FeedSource.journalist,
+      author: 0,
+      variant: 0,
+      season: 1,
+      week: 9,
+      likes: 1234,
+      params: {'opponent': 'Rakip SK', 'score': '4-1', 'goals': '3'},
+      comments: [
+        FeedComment(author: 0, tone: CommentTone.praise, variant: 0, likes: 5),
+        FeedComment(author: 1, tone: CommentTone.joke, variant: 1, likes: 2),
+      ],
+    );
+
+    testWidgets('Akış sekmesi: takipçi, paylaşım ve açılır yorumlar', (
+      tester,
+    ) async {
+      await pumpSocial(
+        tester,
+        feed: const SocialFeed(posts: [post], followers: 12400),
+      );
+      await tester.tap(find.text('Akış'));
+      await tester.pumpAndSettle();
+
+      expect(find.text('12,4 B'), findsOneWidget);
+      expect(find.text('takipçi'), findsOneWidget);
+      expect(find.text('Paylaşım yap'), findsOneWidget);
+      expect(find.textContaining('HAT-TRICK'), findsOneWidget);
+      expect(find.text('1,2 B'), findsOneWidget);
+
+      expect(find.textContaining('Harikasın Deniz'), findsNothing);
+      await tester.tap(find.text('Yorumları göster'));
+      await tester.pumpAndSettle();
+      expect(find.textContaining('Harikasın Deniz'), findsOneWidget);
+      await tester.tap(find.text('Yorumları gizle'));
+      await tester.pumpAndSettle();
+      expect(find.textContaining('Harikasın Deniz'), findsNothing);
+    });
+
+    testWidgets('dar telefon ekranında akış taşmaz', (tester) async {
+      await pumpSocial(
+        tester,
+        feed: const SocialFeed(posts: [post, post], followers: 3400000),
+      );
+      tester.view.physicalSize = const Size(320, 568);
+      await tester.tap(find.text('Akış'));
+      await tester.pumpAndSettle();
+      expect(tester.takeException(), isNull);
+      await tester.tap(find.text('Yorumları göster').first);
+      await tester.pumpAndSettle();
+      expect(tester.takeException(), isNull);
+      await tester.tap(find.text('Paylaşım yap'));
+      await tester.pumpAndSettle();
+      expect(tester.takeException(), isNull);
+    });
+
+    testWidgets('boş akışta açıklama görünür', (tester) async {
+      await pumpSocial(tester);
+      await tester.tap(find.text('Akış'));
+      await tester.pumpAndSettle();
+      expect(find.textContaining('Henüz paylaşım yok'), findsOneWidget);
+    });
+
+    testWidgets('paylaşım yapılır, akışta görünür ve hafta kilitlenir', (
+      tester,
+    ) async {
+      final container = await pumpSocial(tester);
+      await tester.tap(find.text('Akış'));
+      await tester.pumpAndSettle();
+
+      await tester.tap(find.text('Paylaşım yap'));
+      await tester.pumpAndSettle();
+      expect(find.text('Ne paylaşmak istersin?'), findsOneWidget);
+      await tester.tap(find.text('Teşekkür mesajı'));
+      await tester.pumpAndSettle();
+
+      final career = container.read(activeCareerProvider)!.state;
+      expect(career.feed.posts.first.kind, FeedKind.ownThanks);
+      expect(find.text('Paylaşımın yayında! Akışa bak.'), findsOneWidget);
+      expect(
+        find.text('Bu hafta paylaştın, gelecek hafta yine gel'),
+        findsOneWidget,
+      );
+    });
   });
 }

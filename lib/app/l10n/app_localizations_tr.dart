@@ -2968,4 +2968,209 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get summaryInterviewNow => 'Mikrofonlar seni bekliyor: röportaja git';
+
+  @override
+  String get sm_post_win =>
+      '%opponent% karşısında %score%! Takım harikaydı, %player% de sahadaydı!|Üç puan cepte! %score% biten maçta tribünler coştu.|%score% galibiyet! Bu takımla gurur duyuyoruz.|Rakip %opponent% mağlup oldu, keyfimiz yerinde! Skor %score%.';
+
+  @override
+  String get sm_post_loss =>
+      '%opponent% maçı %score% bitti. Moralimizi bozmayalım, devam!|Bugün olmadı: %score%. Ama bu takım toparlanır.|%score%... Zor bir akşamdı, taraftar yine de yanımızdaydı.|Maç sonu skor %score%. Hocadan açıklama bekliyoruz.';
+
+  @override
+  String get sm_post_draw =>
+      '%score% berabere! %opponent% karşısında bir puan aldık.|Eşitlik bozulmadı: %score%. Ne kazandık ne kaybettik.|Dolu dolu bir maç, skor %score%. Bir puana razıyız.';
+
+  @override
+  String get sm_post_scorer =>
+      '%player% bu akşam %goals% golle parladı! %opponent% maçı %score% bitti.|Gol sesleri geliyor! %player% ağları havalandırdı, skor %score%.|Golcümüz %player% yine yaptı yapacağını. Attığı gol sayısı: %goals%!';
+
+  @override
+  String get sm_post_hatTrick =>
+      'HAT-TRICK! %player% bu akşam %goals% gol attı, topu cebine koydu!|%goals% gol birden! %player% bu maçı kimse unutmayacak.|Maçın adamı belli: %player%! %goals% gol, skor %score%.';
+
+  @override
+  String get sm_post_star =>
+      '%player% bu maçta bambaşkaydı! Herkes onu konuşuyor.|Bugünün yıldızı %player%. Onu izlemek bir ziyafetti.|Maç puanına bakın! %player% neredeyse tam not aldı, %opponent% savunması şaşırdı.';
+
+  @override
+  String get sm_post_flop =>
+      '%player% için zor bir akşamdı, ama yarın yeni bir gün.|Bugün %player% için gün değildi. Toparlanır, eminiz.|Kötü bir maç herkesin başına gelir. %player%, başını dik tut!';
+
+  @override
+  String get sm_post_benched =>
+      '%player% bu hafta yedek kaldı. Sabırla bekliyor, şansı gelecek.|Kadroda yoktu ama taraftarlar %player% için tezahürat yapıyor.|Yedek kulübesindeki %player% de bu takımın parçası!';
+
+  @override
+  String get sm_post_injury =>
+      'Geçmiş olsun %player%! %type%, tahmini %weeks% hafta sahalardan uzak.|Kulüp açıklaması: %player% sakatlandı (%type%). Bekleme süresi %weeks% hafta.|Hızlı iyileş şampiyon! %weeks% hafta sonra sahada görüşürüz.';
+
+  @override
+  String get sm_post_signed =>
+      'Resmen açıklandı: %player% artık %club% formasını giyiyor!|Yeni takımı belli oldu: %club%! Hoş geldin %player%.|%club% ailesine hoş geldin %player%! Yeni dönem başlıyor.';
+
+  @override
+  String get sm_post_interview =>
+      'MANŞET: %headline%|Gazetede bugün: %headline%|Günün gündemi bu: %headline%';
+
+  @override
+  String get sm_post_achievement =>
+      'Yeni rozet! %player% \"%ach%\" başarımının sahibi oldu.|Bir başarım daha: %ach%! Tebrikler %player%.|Kupa dolabına yeni bir rozet eklendi: %ach%.';
+
+  @override
+  String get sm_post_national =>
+      'Milli formayla %tournament%: %player% için gözler ekranda!|%player% milli takımda! %tournament% yolunda herkes onu konuşuyor.|Bayrak dalgalanıyor! %tournament% için gözler %player% üzerinde.';
+
+  @override
+  String get sm_post_ownThanks =>
+      'Bu destek için hepinize teşekkürler! Sizin için oynuyorum.|Tribünlere büyük teşekkür, siz olmasanız bu oyun olmazdı!|Aileme, takım arkadaşlarıma ve size teşekkürler. Yola devam!';
+
+  @override
+  String get sm_post_ownFunny =>
+      'Soyunma odasında en komik kim? Cevap: kesinlikle ben!|Antrenmanda topu kaleye atamadım ama kameraya gülümsemeyi başardım.|Bugünün sorusu: top mu benden kaçıyor, ben mi toptan?';
+
+  @override
+  String get sm_post_ownTraining =>
+      'Sabah antrenmanı tamam! Çalışmaya devam.|Bugün ekstra koşu yaptım, yarın daha güçlüyüm!|Antrenman sahasından selamlar. Sezon uzun, hazırlıklıyız.';
+
+  @override
+  String get sm_post_ownSpicy =>
+      'Bu sezon kimse beni durduramaz, yazın bir kenara!|Rakipler hazır olsun, bu sezon bizim sezonumuz!|Eleştirenlere cevabım sahada: izleyin ve görün.';
+
+  @override
+  String get sm_names_fan =>
+      'Tribün Kartalı|Gece Taraftarı|Golcü Kemal|Mahalle Maçı|Ceren Futbol Aşkı|Kale Arkası|Efe Tribün|Sarı Şal|Süper Teyze|Dev Davul|Miniklerin Kralı|Pas Ustası Selin|Forma Koleksiyoncusu|Deplasman Dayısı|Çimen Kokusu';
+
+  @override
+  String get sm_names_journalist =>
+      'Gündem Spor|Saha Kenarı|Son Düdük Gazetesi|Haftanın Maçı|Spor Bülteni|Kulis Raporu';
+
+  @override
+  String get sm_names_teammate =>
+      'Kaptan Ali|Kaleci Murat|Orta Saha Emre|Stoper Barış';
+
+  @override
+  String get sm_names_club => 'Kulüp Resmi Hesabı|Kulüp Medya|Basın Bürosu';
+
+  @override
+  String get sm_names_meme =>
+      'Futbol Karikatür|Gülen Top|Tribün Mizah|Ofsayt Espri|Kırmızı Kart Komedi';
+
+  @override
+  String get sm_names_family => 'Annem|Babam|Kardeşim|Dedem';
+
+  @override
+  String get sm_name_you => 'Sen';
+
+  @override
+  String get sm_names_commenter =>
+      'ahmet_k|futbolsever34|zeynepin_golleri|tribun_baba|kaleci_can|minik_taraftar|golkralı_ege|mahalle_hakemi|forma_bey|derbi_delisi|sari_lacivert_2|taktik_hoca|pasci_deniz|kornerci_murat|top_tutan_ali|ofsayt_yok|bol_gollu|calim_atan|efe_futbol|gece_maci';
+
+  @override
+  String get sm_comment_praise =>
+      'Harikasın %player%!|Aferin sana, böyle devam!|Bu takımın en iyisi sensin.|Bravo, tribünler seninle.|Bugün şov yaptın.|Gurur duyduk, tebrikler!|Efsane gibi oynadın.|Aynen böyle devam şampiyon.|Seni izlemek bir zevk.|Sana güveniyoruz!';
+
+  @override
+  String get sm_comment_joke =>
+      'Annem seni televizyondan görünce ağladı, sevinçten tabii.|Topu bana da pas versen!|Bu gol değil, sanat eseri.|Menajerin sanırım zam isteyecek.|Ben de sahaya çıksam bu kadar iyi olurdum. Belki.|Çay içerken izledim, çayı döktüm.|Kalecinin yüzü görülmeye değerdi.|Mahalle maçında da böyle oynasana.|Poster yaptırıyorum, odama asacağım.|Bu hızla giderse kendi marka ayakkabısı çıkar.';
+
+  @override
+  String get sm_comment_jeer =>
+      'Bugün çok kötüydün, ne oldu?|Daha çok çalışman lazım.|Bu performansla olmaz kardeşim.|Yedek kulübesi seni bekliyor.|Beklentim bu değildi.|Boş vaatler yeter, sahada göster.|Bu maç böyle oynanmaz.|Abartılmış bir oyuncu bence.|Topu hiç görmedi sanki.|Biraz daha gayret!';
+
+  @override
+  String get sm_comment_support =>
+      'Geçmiş olsun, hızlı iyileş!|Toparlanırsın, biz buradayız.|Bir maçla bir şey olmaz, başını dik tut.|Moralini bozma, güçlü dönersin.|Sabret, şansın gelecek.|Herkese olur, sen yine de en iyisisin.|Seni her zaman destekleriz.|Dinlen, kendine iyi bak.|Bu da geçer, yola devam.|Takım seninle.';
+
+  @override
+  String get feedSegmentEvents => 'Gelişmeler';
+
+  @override
+  String get feedSegmentFeed => 'Akış';
+
+  @override
+  String get feedFollowers => 'takipçi';
+
+  @override
+  String get feedPostCount => 'paylaşım';
+
+  @override
+  String get feedPostButton => 'Paylaşım yap';
+
+  @override
+  String get feedPostedThisWeek => 'Bu hafta paylaştın, gelecek hafta yine gel';
+
+  @override
+  String get feedSheetTitle => 'Ne paylaşmak istersin?';
+
+  @override
+  String get feedOwnTitle_ownThanks => 'Teşekkür mesajı';
+
+  @override
+  String get feedOwnDesc_ownThanks => 'Güvenli: taraftarlar ve aile sever.';
+
+  @override
+  String get feedOwnTitle_ownFunny => 'Komik bir paylaşım';
+
+  @override
+  String get feedOwnDesc_ownFunny =>
+      'Çok beğeni alır ama hoca bazen şakayı sevmez.';
+
+  @override
+  String get feedOwnTitle_ownTraining => 'Antrenman fotoğrafı';
+
+  @override
+  String get feedOwnDesc_ownTraining => 'Güvenli: hoca çalışkanlığını görür.';
+
+  @override
+  String get feedOwnTitle_ownSpicy => 'İddialı çıkış';
+
+  @override
+  String get feedOwnDesc_ownSpicy =>
+      'Çok takipçi kazandırır ama büyük risk taşır.';
+
+  @override
+  String get feedPostDone => 'Paylaşımın yayında! Akışa bak.';
+
+  @override
+  String get feedPostBackfired => 'Ters tepti! Yorumlar pek olumlu değil.';
+
+  @override
+  String get feedEmpty => 'Henüz paylaşım yok. Maç oynadıkça akış canlanır.';
+
+  @override
+  String get feedYourAccount => 'Senin hesabın';
+
+  @override
+  String get feedSource_fan => 'Taraftar';
+
+  @override
+  String get feedSource_journalist => 'Gazeteci';
+
+  @override
+  String get feedSource_teammate => 'Takım arkadaşı';
+
+  @override
+  String get feedSource_club => 'Kulüp';
+
+  @override
+  String get feedSource_meme => 'Mizah sayfası';
+
+  @override
+  String get feedSource_family => 'Aile';
+
+  @override
+  String get feedSource_you => 'Sen';
+
+  @override
+  String get feedShowComments => 'Yorumları göster';
+
+  @override
+  String get feedHideComments => 'Yorumları gizle';
+
+  @override
+  String get feedCountThousand => 'B';
+
+  @override
+  String get feedCountMillion => 'Mn';
 }

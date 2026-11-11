@@ -5306,6 +5306,360 @@ abstract class AppLocalizations {
   /// In tr, this message translates to:
   /// **'Mikrofonlar seni bekliyor: röportaja git'**
   String get summaryInterviewNow;
+
+  /// No description provided for @sm_post_win.
+  ///
+  /// In tr, this message translates to:
+  /// **'%opponent% karşısında %score%! Takım harikaydı, %player% de sahadaydı!|Üç puan cepte! %score% biten maçta tribünler coştu.|%score% galibiyet! Bu takımla gurur duyuyoruz.|Rakip %opponent% mağlup oldu, keyfimiz yerinde! Skor %score%.'**
+  String get sm_post_win;
+
+  /// No description provided for @sm_post_loss.
+  ///
+  /// In tr, this message translates to:
+  /// **'%opponent% maçı %score% bitti. Moralimizi bozmayalım, devam!|Bugün olmadı: %score%. Ama bu takım toparlanır.|%score%... Zor bir akşamdı, taraftar yine de yanımızdaydı.|Maç sonu skor %score%. Hocadan açıklama bekliyoruz.'**
+  String get sm_post_loss;
+
+  /// No description provided for @sm_post_draw.
+  ///
+  /// In tr, this message translates to:
+  /// **'%score% berabere! %opponent% karşısında bir puan aldık.|Eşitlik bozulmadı: %score%. Ne kazandık ne kaybettik.|Dolu dolu bir maç, skor %score%. Bir puana razıyız.'**
+  String get sm_post_draw;
+
+  /// No description provided for @sm_post_scorer.
+  ///
+  /// In tr, this message translates to:
+  /// **'%player% bu akşam %goals% golle parladı! %opponent% maçı %score% bitti.|Gol sesleri geliyor! %player% ağları havalandırdı, skor %score%.|Golcümüz %player% yine yaptı yapacağını. Attığı gol sayısı: %goals%!'**
+  String get sm_post_scorer;
+
+  /// No description provided for @sm_post_hatTrick.
+  ///
+  /// In tr, this message translates to:
+  /// **'HAT-TRICK! %player% bu akşam %goals% gol attı, topu cebine koydu!|%goals% gol birden! %player% bu maçı kimse unutmayacak.|Maçın adamı belli: %player%! %goals% gol, skor %score%.'**
+  String get sm_post_hatTrick;
+
+  /// No description provided for @sm_post_star.
+  ///
+  /// In tr, this message translates to:
+  /// **'%player% bu maçta bambaşkaydı! Herkes onu konuşuyor.|Bugünün yıldızı %player%. Onu izlemek bir ziyafetti.|Maç puanına bakın! %player% neredeyse tam not aldı, %opponent% savunması şaşırdı.'**
+  String get sm_post_star;
+
+  /// No description provided for @sm_post_flop.
+  ///
+  /// In tr, this message translates to:
+  /// **'%player% için zor bir akşamdı, ama yarın yeni bir gün.|Bugün %player% için gün değildi. Toparlanır, eminiz.|Kötü bir maç herkesin başına gelir. %player%, başını dik tut!'**
+  String get sm_post_flop;
+
+  /// No description provided for @sm_post_benched.
+  ///
+  /// In tr, this message translates to:
+  /// **'%player% bu hafta yedek kaldı. Sabırla bekliyor, şansı gelecek.|Kadroda yoktu ama taraftarlar %player% için tezahürat yapıyor.|Yedek kulübesindeki %player% de bu takımın parçası!'**
+  String get sm_post_benched;
+
+  /// No description provided for @sm_post_injury.
+  ///
+  /// In tr, this message translates to:
+  /// **'Geçmiş olsun %player%! %type%, tahmini %weeks% hafta sahalardan uzak.|Kulüp açıklaması: %player% sakatlandı (%type%). Bekleme süresi %weeks% hafta.|Hızlı iyileş şampiyon! %weeks% hafta sonra sahada görüşürüz.'**
+  String get sm_post_injury;
+
+  /// No description provided for @sm_post_signed.
+  ///
+  /// In tr, this message translates to:
+  /// **'Resmen açıklandı: %player% artık %club% formasını giyiyor!|Yeni takımı belli oldu: %club%! Hoş geldin %player%.|%club% ailesine hoş geldin %player%! Yeni dönem başlıyor.'**
+  String get sm_post_signed;
+
+  /// No description provided for @sm_post_interview.
+  ///
+  /// In tr, this message translates to:
+  /// **'MANŞET: %headline%|Gazetede bugün: %headline%|Günün gündemi bu: %headline%'**
+  String get sm_post_interview;
+
+  /// No description provided for @sm_post_achievement.
+  ///
+  /// In tr, this message translates to:
+  /// **'Yeni rozet! %player% \"%ach%\" başarımının sahibi oldu.|Bir başarım daha: %ach%! Tebrikler %player%.|Kupa dolabına yeni bir rozet eklendi: %ach%.'**
+  String get sm_post_achievement;
+
+  /// No description provided for @sm_post_national.
+  ///
+  /// In tr, this message translates to:
+  /// **'Milli formayla %tournament%: %player% için gözler ekranda!|%player% milli takımda! %tournament% yolunda herkes onu konuşuyor.|Bayrak dalgalanıyor! %tournament% için gözler %player% üzerinde.'**
+  String get sm_post_national;
+
+  /// No description provided for @sm_post_ownThanks.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bu destek için hepinize teşekkürler! Sizin için oynuyorum.|Tribünlere büyük teşekkür, siz olmasanız bu oyun olmazdı!|Aileme, takım arkadaşlarıma ve size teşekkürler. Yola devam!'**
+  String get sm_post_ownThanks;
+
+  /// No description provided for @sm_post_ownFunny.
+  ///
+  /// In tr, this message translates to:
+  /// **'Soyunma odasında en komik kim? Cevap: kesinlikle ben!|Antrenmanda topu kaleye atamadım ama kameraya gülümsemeyi başardım.|Bugünün sorusu: top mu benden kaçıyor, ben mi toptan?'**
+  String get sm_post_ownFunny;
+
+  /// No description provided for @sm_post_ownTraining.
+  ///
+  /// In tr, this message translates to:
+  /// **'Sabah antrenmanı tamam! Çalışmaya devam.|Bugün ekstra koşu yaptım, yarın daha güçlüyüm!|Antrenman sahasından selamlar. Sezon uzun, hazırlıklıyız.'**
+  String get sm_post_ownTraining;
+
+  /// No description provided for @sm_post_ownSpicy.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bu sezon kimse beni durduramaz, yazın bir kenara!|Rakipler hazır olsun, bu sezon bizim sezonumuz!|Eleştirenlere cevabım sahada: izleyin ve görün.'**
+  String get sm_post_ownSpicy;
+
+  /// No description provided for @sm_names_fan.
+  ///
+  /// In tr, this message translates to:
+  /// **'Tribün Kartalı|Gece Taraftarı|Golcü Kemal|Mahalle Maçı|Ceren Futbol Aşkı|Kale Arkası|Efe Tribün|Sarı Şal|Süper Teyze|Dev Davul|Miniklerin Kralı|Pas Ustası Selin|Forma Koleksiyoncusu|Deplasman Dayısı|Çimen Kokusu'**
+  String get sm_names_fan;
+
+  /// No description provided for @sm_names_journalist.
+  ///
+  /// In tr, this message translates to:
+  /// **'Gündem Spor|Saha Kenarı|Son Düdük Gazetesi|Haftanın Maçı|Spor Bülteni|Kulis Raporu'**
+  String get sm_names_journalist;
+
+  /// No description provided for @sm_names_teammate.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kaptan Ali|Kaleci Murat|Orta Saha Emre|Stoper Barış'**
+  String get sm_names_teammate;
+
+  /// No description provided for @sm_names_club.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kulüp Resmi Hesabı|Kulüp Medya|Basın Bürosu'**
+  String get sm_names_club;
+
+  /// No description provided for @sm_names_meme.
+  ///
+  /// In tr, this message translates to:
+  /// **'Futbol Karikatür|Gülen Top|Tribün Mizah|Ofsayt Espri|Kırmızı Kart Komedi'**
+  String get sm_names_meme;
+
+  /// No description provided for @sm_names_family.
+  ///
+  /// In tr, this message translates to:
+  /// **'Annem|Babam|Kardeşim|Dedem'**
+  String get sm_names_family;
+
+  /// No description provided for @sm_name_you.
+  ///
+  /// In tr, this message translates to:
+  /// **'Sen'**
+  String get sm_name_you;
+
+  /// No description provided for @sm_names_commenter.
+  ///
+  /// In tr, this message translates to:
+  /// **'ahmet_k|futbolsever34|zeynepin_golleri|tribun_baba|kaleci_can|minik_taraftar|golkralı_ege|mahalle_hakemi|forma_bey|derbi_delisi|sari_lacivert_2|taktik_hoca|pasci_deniz|kornerci_murat|top_tutan_ali|ofsayt_yok|bol_gollu|calim_atan|efe_futbol|gece_maci'**
+  String get sm_names_commenter;
+
+  /// No description provided for @sm_comment_praise.
+  ///
+  /// In tr, this message translates to:
+  /// **'Harikasın %player%!|Aferin sana, böyle devam!|Bu takımın en iyisi sensin.|Bravo, tribünler seninle.|Bugün şov yaptın.|Gurur duyduk, tebrikler!|Efsane gibi oynadın.|Aynen böyle devam şampiyon.|Seni izlemek bir zevk.|Sana güveniyoruz!'**
+  String get sm_comment_praise;
+
+  /// No description provided for @sm_comment_joke.
+  ///
+  /// In tr, this message translates to:
+  /// **'Annem seni televizyondan görünce ağladı, sevinçten tabii.|Topu bana da pas versen!|Bu gol değil, sanat eseri.|Menajerin sanırım zam isteyecek.|Ben de sahaya çıksam bu kadar iyi olurdum. Belki.|Çay içerken izledim, çayı döktüm.|Kalecinin yüzü görülmeye değerdi.|Mahalle maçında da böyle oynasana.|Poster yaptırıyorum, odama asacağım.|Bu hızla giderse kendi marka ayakkabısı çıkar.'**
+  String get sm_comment_joke;
+
+  /// No description provided for @sm_comment_jeer.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bugün çok kötüydün, ne oldu?|Daha çok çalışman lazım.|Bu performansla olmaz kardeşim.|Yedek kulübesi seni bekliyor.|Beklentim bu değildi.|Boş vaatler yeter, sahada göster.|Bu maç böyle oynanmaz.|Abartılmış bir oyuncu bence.|Topu hiç görmedi sanki.|Biraz daha gayret!'**
+  String get sm_comment_jeer;
+
+  /// No description provided for @sm_comment_support.
+  ///
+  /// In tr, this message translates to:
+  /// **'Geçmiş olsun, hızlı iyileş!|Toparlanırsın, biz buradayız.|Bir maçla bir şey olmaz, başını dik tut.|Moralini bozma, güçlü dönersin.|Sabret, şansın gelecek.|Herkese olur, sen yine de en iyisisin.|Seni her zaman destekleriz.|Dinlen, kendine iyi bak.|Bu da geçer, yola devam.|Takım seninle.'**
+  String get sm_comment_support;
+
+  /// No description provided for @feedSegmentEvents.
+  ///
+  /// In tr, this message translates to:
+  /// **'Gelişmeler'**
+  String get feedSegmentEvents;
+
+  /// No description provided for @feedSegmentFeed.
+  ///
+  /// In tr, this message translates to:
+  /// **'Akış'**
+  String get feedSegmentFeed;
+
+  /// No description provided for @feedFollowers.
+  ///
+  /// In tr, this message translates to:
+  /// **'takipçi'**
+  String get feedFollowers;
+
+  /// No description provided for @feedPostCount.
+  ///
+  /// In tr, this message translates to:
+  /// **'paylaşım'**
+  String get feedPostCount;
+
+  /// No description provided for @feedPostButton.
+  ///
+  /// In tr, this message translates to:
+  /// **'Paylaşım yap'**
+  String get feedPostButton;
+
+  /// No description provided for @feedPostedThisWeek.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bu hafta paylaştın, gelecek hafta yine gel'**
+  String get feedPostedThisWeek;
+
+  /// No description provided for @feedSheetTitle.
+  ///
+  /// In tr, this message translates to:
+  /// **'Ne paylaşmak istersin?'**
+  String get feedSheetTitle;
+
+  /// No description provided for @feedOwnTitle_ownThanks.
+  ///
+  /// In tr, this message translates to:
+  /// **'Teşekkür mesajı'**
+  String get feedOwnTitle_ownThanks;
+
+  /// No description provided for @feedOwnDesc_ownThanks.
+  ///
+  /// In tr, this message translates to:
+  /// **'Güvenli: taraftarlar ve aile sever.'**
+  String get feedOwnDesc_ownThanks;
+
+  /// No description provided for @feedOwnTitle_ownFunny.
+  ///
+  /// In tr, this message translates to:
+  /// **'Komik bir paylaşım'**
+  String get feedOwnTitle_ownFunny;
+
+  /// No description provided for @feedOwnDesc_ownFunny.
+  ///
+  /// In tr, this message translates to:
+  /// **'Çok beğeni alır ama hoca bazen şakayı sevmez.'**
+  String get feedOwnDesc_ownFunny;
+
+  /// No description provided for @feedOwnTitle_ownTraining.
+  ///
+  /// In tr, this message translates to:
+  /// **'Antrenman fotoğrafı'**
+  String get feedOwnTitle_ownTraining;
+
+  /// No description provided for @feedOwnDesc_ownTraining.
+  ///
+  /// In tr, this message translates to:
+  /// **'Güvenli: hoca çalışkanlığını görür.'**
+  String get feedOwnDesc_ownTraining;
+
+  /// No description provided for @feedOwnTitle_ownSpicy.
+  ///
+  /// In tr, this message translates to:
+  /// **'İddialı çıkış'**
+  String get feedOwnTitle_ownSpicy;
+
+  /// No description provided for @feedOwnDesc_ownSpicy.
+  ///
+  /// In tr, this message translates to:
+  /// **'Çok takipçi kazandırır ama büyük risk taşır.'**
+  String get feedOwnDesc_ownSpicy;
+
+  /// No description provided for @feedPostDone.
+  ///
+  /// In tr, this message translates to:
+  /// **'Paylaşımın yayında! Akışa bak.'**
+  String get feedPostDone;
+
+  /// No description provided for @feedPostBackfired.
+  ///
+  /// In tr, this message translates to:
+  /// **'Ters tepti! Yorumlar pek olumlu değil.'**
+  String get feedPostBackfired;
+
+  /// No description provided for @feedEmpty.
+  ///
+  /// In tr, this message translates to:
+  /// **'Henüz paylaşım yok. Maç oynadıkça akış canlanır.'**
+  String get feedEmpty;
+
+  /// No description provided for @feedYourAccount.
+  ///
+  /// In tr, this message translates to:
+  /// **'Senin hesabın'**
+  String get feedYourAccount;
+
+  /// No description provided for @feedSource_fan.
+  ///
+  /// In tr, this message translates to:
+  /// **'Taraftar'**
+  String get feedSource_fan;
+
+  /// No description provided for @feedSource_journalist.
+  ///
+  /// In tr, this message translates to:
+  /// **'Gazeteci'**
+  String get feedSource_journalist;
+
+  /// No description provided for @feedSource_teammate.
+  ///
+  /// In tr, this message translates to:
+  /// **'Takım arkadaşı'**
+  String get feedSource_teammate;
+
+  /// No description provided for @feedSource_club.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kulüp'**
+  String get feedSource_club;
+
+  /// No description provided for @feedSource_meme.
+  ///
+  /// In tr, this message translates to:
+  /// **'Mizah sayfası'**
+  String get feedSource_meme;
+
+  /// No description provided for @feedSource_family.
+  ///
+  /// In tr, this message translates to:
+  /// **'Aile'**
+  String get feedSource_family;
+
+  /// No description provided for @feedSource_you.
+  ///
+  /// In tr, this message translates to:
+  /// **'Sen'**
+  String get feedSource_you;
+
+  /// No description provided for @feedShowComments.
+  ///
+  /// In tr, this message translates to:
+  /// **'Yorumları göster'**
+  String get feedShowComments;
+
+  /// No description provided for @feedHideComments.
+  ///
+  /// In tr, this message translates to:
+  /// **'Yorumları gizle'**
+  String get feedHideComments;
+
+  /// No description provided for @feedCountThousand.
+  ///
+  /// In tr, this message translates to:
+  /// **'B'**
+  String get feedCountThousand;
+
+  /// No description provided for @feedCountMillion.
+  ///
+  /// In tr, this message translates to:
+  /// **'Mn'**
+  String get feedCountMillion;
 }
 
 class _AppLocalizationsDelegate

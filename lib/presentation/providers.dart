@@ -15,6 +15,7 @@ import '../domain/club/transfer_market.dart';
 import '../domain/club/transfer_offer.dart';
 import '../domain/league/club_world.dart';
 import '../domain/social/event_models.dart';
+import '../domain/social/feed_models.dart';
 import '../domain/social/social_engine.dart';
 import '../game/sound_service.dart';
 
@@ -169,6 +170,16 @@ class ActiveCareerNotifier extends Notifier<ActiveCareer?> {
       choice,
       GameRandom(),
     );
+    await update(result.state);
+    return result;
+  }
+
+  /// Kendi hesabından paylaşım yapar; yapamazsa (haftada bir) null döner.
+  Future<OwnPostResult?> postToFeed(FeedKind kind) async {
+    final current = state;
+    if (current == null) return null;
+    final result = SocialEngine.postToFeed(current.state, kind, GameRandom());
+    if (result == null) return null;
     await update(result.state);
     return result;
   }

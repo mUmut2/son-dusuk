@@ -10,11 +10,57 @@ import '../../domain/social/relationships.dart';
 import '../event_texts.dart';
 import '../l10n_labels.dart';
 import '../providers.dart';
+import 'feed_widgets.dart';
 import 'social_visuals.dart';
 
-/// Sosyal sekmesi: cevap bekleyen gelişmeler, ilişkiler, haber akışı.
-class SocialTab extends ConsumerWidget {
+/// Sosyal sekmesi: "Gelişmeler" (cevap bekleyenler, ilişkiler, haberler) ve
+/// "Akış" (sosyal ağ paylaşımları ve yorumlar).
+class SocialTab extends ConsumerStatefulWidget {
   const SocialTab({super.key});
+
+  @override
+  ConsumerState<SocialTab> createState() => _SocialTabState();
+}
+
+class _SocialTabState extends ConsumerState<SocialTab> {
+  bool _feed = false;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.fromLTRB(16, 12, 16, 0),
+          child: SizedBox(
+            width: double.infinity,
+            child: SegmentedButton<bool>(
+              showSelectedIcon: false,
+              segments: [
+                ButtonSegment(
+                  value: false,
+                  icon: const Icon(Icons.forum_outlined),
+                  label: Text(l10n.feedSegmentEvents),
+                ),
+                ButtonSegment(
+                  value: true,
+                  icon: const Icon(Icons.alternate_email),
+                  label: Text(l10n.feedSegmentFeed),
+                ),
+              ],
+              selected: {_feed},
+              onSelectionChanged: (v) => setState(() => _feed = v.first),
+            ),
+          ),
+        ),
+        Expanded(child: _feed ? const FeedView() : const _EventsView()),
+      ],
+    );
+  }
+}
+
+class _EventsView extends ConsumerWidget {
+  const _EventsView();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

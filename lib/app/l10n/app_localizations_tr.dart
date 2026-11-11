@@ -3173,4 +3173,233 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get feedCountMillion => 'Mn';
+
+  @override
+  String get sm_post_shopping =>
+      '%player% yeni bir şey aldı: %item%! Herkes bunu konuşuyor.|Yeni %item%: futbolcunun keyfi yerinde!|Gösteriş mi yatırım mı? %player% %item% aldı.';
+
+  @override
+  String get sm_post_donation =>
+      '%player% yardım kuruluşuna bağış yaptı. Tebrikler!|Güzel yürekli futbolcu: bağış haberi gündemde.|Sahada da sahanın dışında da örnek: %player% bağış yaptı.';
+
+  @override
+  String get sm_post_betFined =>
+      'Bahis skandalı! Kulüp %player% için ceza kararı verdi.|Bahis düşkünlüğü gündemde: %player% yine konuşuluyor.|Futbolcu uyarıldı: bahis oynamak zarar verir.';
+
+  @override
+  String get prop_watch => 'Saat';
+
+  @override
+  String get prop_car => 'Araba';
+
+  @override
+  String get prop_flat => 'Daire';
+
+  @override
+  String get prop_villa => 'Villa';
+
+  @override
+  String get prop_yacht => 'Yat';
+
+  @override
+  String get propDesc_watch => 'Küçük bir keyif: moral biraz artar.';
+
+  @override
+  String get propDesc_car => 'Moral artar, taraftar ve medya fark eder.';
+
+  @override
+  String get propDesc_flat => 'Aile çok mutlu olur, moral artar.';
+
+  @override
+  String get propDesc_villa => 'Aile, moral ve medya için büyük adım.';
+
+  @override
+  String get propDesc_yacht =>
+      'Büyük gösteriş: medya konuşur, ama takım arkadaşları kıskanabilir.';
+
+  @override
+  String get donation_charity => 'Yardım kuruluşuna bağış';
+
+  @override
+  String get donationDesc_charity => 'Taraftar ve medya sever.';
+
+  @override
+  String get donation_familyGift => 'Aileye hediye';
+
+  @override
+  String get donationDesc_familyGift => 'Aile çok mutlu olur.';
+
+  @override
+  String get newsBetWarned => 'Kulüp bahis alışkanlığın yüzünden seni uyardı';
+
+  @override
+  String get newsBetFined => 'Bahis alışkanlığın yüzünden para cezası aldın';
+
+  @override
+  String get newsBetSuspended => 'Bahis yüzünden kadro dışı bırakıldın';
+
+  @override
+  String eventBetWon(String amount) {
+    return 'Bahislerinden $amount kazandın';
+  }
+
+  @override
+  String eventBetLost(String amount) {
+    return 'Bahislerinde $amount kaybettin';
+  }
+
+  @override
+  String get eventBetWarning =>
+      'Kulüp bahis alışkanlığın konusunda seni uyardı';
+
+  @override
+  String eventBetFined(String amount) {
+    return 'Bahis cezası: kulüp $amount kesti';
+  }
+
+  @override
+  String eventBetSuspended(int weeks) {
+    return 'Bahis yüzünden $weeks hafta kadro dışı kaldın ve yardım programına alındın';
+  }
+
+  @override
+  String get eventSuspended => 'Kadro dışısın: bahis cezan sürüyor';
+
+  @override
+  String get suspendedThisWeek => 'Bahis cezası: bu hafta kadro dışısın';
+
+  @override
+  String get spendTitle => 'Harcama ve Şans Köşesi';
+
+  @override
+  String get spendCardHint => 'Mülk al, bağış yap, şansını dene';
+
+  @override
+  String spendCardOwned(String count, String level) {
+    return '$count mülk · alışkanlık: $level';
+  }
+
+  @override
+  String get spendIntro =>
+      'Paranı akıllıca harca. Şans köşesi tamamen kurgusaldır; kazanç garantisi yoktur.';
+
+  @override
+  String get spendPropertiesTitle => 'Mülkler';
+
+  @override
+  String get spendOwned => 'Sahipsin';
+
+  @override
+  String get spendBuy => 'Satın al';
+
+  @override
+  String get spendBought => 'Satın aldın!';
+
+  @override
+  String get spendDonationsTitle => 'Bağış ve hediye';
+
+  @override
+  String get spendDonationWait => 'Biraz bekle: üst üste bağış yapamazsın.';
+
+  @override
+  String get spendDonate => 'Yap';
+
+  @override
+  String get spendDonated => 'Teşekkürler! İyiliğin duyuldu.';
+
+  @override
+  String get betTitle => 'Şans Köşesi';
+
+  @override
+  String get betRules =>
+      'Kurgusal oyun parasıyla oynanır. Oranlar bürodan gelir, uzun vadede kaybedersin. Kendi takımının maçına bahis yok. Çok bahis oynarsan ceza alırsın.';
+
+  @override
+  String get betCouponTitle => 'Haftanın kuponu';
+
+  @override
+  String get betNoCoupon =>
+      'Bu hafta kupon yok: lig maçı haftası değil ya da kulübün yok.';
+
+  @override
+  String get betStakeLabel => 'Bahis tutarı';
+
+  @override
+  String get betPick_home => 'Ev sahibi';
+
+  @override
+  String get betPick_draw => 'Beraberlik';
+
+  @override
+  String get betPick_away => 'Deplasman';
+
+  @override
+  String betPlaced(String odds) {
+    return 'Bahis yapıldı: $odds oranla';
+  }
+
+  @override
+  String get betAlready => 'Bu maça bahis yaptın';
+
+  @override
+  String get betYourBets => 'Bu haftaki bahislerin';
+
+  @override
+  String betBetLine(String pick, String stake, String odds) {
+    return '$pick · $stake · oran $odds';
+  }
+
+  @override
+  String get betResultsTitle => 'Son sonuçlar';
+
+  @override
+  String get betNoResults => 'Henüz sonuçlanan bahsin yok.';
+
+  @override
+  String get betWon => 'Kazandı';
+
+  @override
+  String get betLost => 'Kaybetti';
+
+  @override
+  String betResultLine(String pick, String stake, String payout) {
+    return '$pick · yatırılan $stake · geri ödeme $payout';
+  }
+
+  @override
+  String get habitTitle => 'Şans alışkanlığı';
+
+  @override
+  String get habitLevel_0 => 'Sakin';
+
+  @override
+  String get habitLevel_1 => 'Dikkat';
+
+  @override
+  String get habitLevel_2 => 'Tehlikeli';
+
+  @override
+  String get habitLevel_3 => 'Kritik';
+
+  @override
+  String get habitHint_0 => 'Şans köşesine ara sıra uğramak sorun değil.';
+
+  @override
+  String get habitHint_1 => 'Kulüp seni izliyor. Biraz yavaşla!';
+
+  @override
+  String get habitHint_2 => 'Para cezası kapıda. Bahsi bırak!';
+
+  @override
+  String get habitHint_3 => 'Kadro dışı kalma riski var!';
+
+  @override
+  String habitSuspended(int weeks) {
+    return 'Kadro dışısın: $weeks hafta';
+  }
+
+  @override
+  String habitStats(String staked, String won, String fines) {
+    return 'Yatırılan: $staked · Kazanılan: $won · Cezalar: $fines';
+  }
 }

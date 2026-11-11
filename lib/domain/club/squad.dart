@@ -55,8 +55,9 @@ abstract final class Squad {
     }
     if (s.contract == null) return MatchDay.none;
     if (s.status.isInjured) return MatchDay.injured;
+    if (s.spending.suspended) return MatchDay.suspended;
     return isSelected(s) ? MatchDay.play : MatchDay.benched;
   }
 }
 
-enum MatchDay { none, injured, benched, play }
+enum MatchDay { none, injured, suspended, benched, play }

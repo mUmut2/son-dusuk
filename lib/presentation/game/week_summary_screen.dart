@@ -89,6 +89,11 @@ class WeekSummaryScreen extends ConsumerWidget {
                               WeekEventKind.nationalChampion ||
                               WeekEventKind.achievement => Icons.emoji_events,
                               WeekEventKind.retired => Icons.sports_score,
+                              WeekEventKind.betSettled => Icons.casino,
+                              WeekEventKind.betWarning ||
+                              WeekEventKind.betFined ||
+                              WeekEventKind.betSuspended ||
+                              WeekEventKind.suspended => Icons.gavel,
                               _ => Icons.healing,
                             }),
                             title: Text(

@@ -88,6 +88,7 @@ abstract final class SocialEngine {
   /// Moralin yöneldiği taban (aile ve takım arkadaşlarıyla kayar).
   static double moraleBaseline(CareerState s, double baseline) =>
       baseline +
+      s.spending.moraleBonus +
       (s.relations[Relation.family] - 50) * SocialBalance.familyMoraleShare +
       (s.relations[Relation.teammates] - 50) * SocialBalance.teamMoraleShare;
 

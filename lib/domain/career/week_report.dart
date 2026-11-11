@@ -64,6 +64,11 @@ enum WeekEventKind {
   nationalChampion,
   achievement,
   retired,
+  betSettled,
+  betWarning,
+  betFined,
+  betSuspended,
+  suspended,
 }
 
 class WeekEvent {

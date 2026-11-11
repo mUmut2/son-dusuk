@@ -21,7 +21,7 @@ Her alt faz kendi commit'i ve onayıyla ilerler.
   metinler ARB `sm_*`/`feed*`, denge `feed_balance.dart`, araç `tool/feed_stats.dart`.
 - Kayıt şeması 8.
 
-## 10b — Harcama ve Şans Köşesi (öneri)
+## 10b — Harcama ve Şans Köşesi ✅
 - **Harcama mağazası:** ev, araba, saat, bağış, aileye hediye (moral/aile/
   taraftar/medya etkisi, hepsi para sinki; kalıcı "mülk" rafı).
 - **Bahis (kurgusal):** haftanın fikstüründeki maçlara oyun parasıyla tahmin.
@@ -46,7 +46,10 @@ Her alt faz kendi commit'i ve onayıyla ilerler.
 - Akışa "gündem" paylaşımları: transfer dedikodusu, rakip oyuncu, derbi
   heyecanı (maçsız haftalar da canlı olsun).
 
-## Açık sorular (10b için)
+## Kararlar (10b)
+Önerilen tasarım onaylandı: maç bahsi kurgusal oyun parasıyla var; sözleşme feshi yok (para cezası + kadro dışı + yardım programı); mülkler tek seferlik etki + küçük haftalık moral katkısı verir. Denge: ara sıra (4 haftada bir) oynayan ceza almaz, haftada bir küçük bahis çoğunlukla ceza almaz, haftada 2+ bahis ya da büyük tutar uyarı → ceza → kadro dışına gider.
+
+## Eski sorular (cevaplandı)
 1. Bahis hedef kitle (9-15) için uygun mu, yoksa "şans köşesi" yalnızca at
    yarışı + kurgusal çekiliş olarak mı kalsın (maç bahsi yok)?
 2. Ceza şiddeti: para cezası + kadro dışı kalma yeterli mi, yoksa sözleşme

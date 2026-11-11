@@ -47,6 +47,9 @@ abstract final class FeedEngine {
     FeedKind.interview: [FeedSource.journalist],
     FeedKind.achievement: [FeedSource.club, FeedSource.fan],
     FeedKind.national: [FeedSource.journalist, FeedSource.club],
+    FeedKind.shopping: [FeedSource.meme, FeedSource.fan, FeedSource.journalist],
+    FeedKind.donation: [FeedSource.fan, FeedSource.club, FeedSource.journalist],
+    FeedKind.betFined: [FeedSource.journalist, FeedSource.fan, FeedSource.club],
   };
 
   /// Bu hafta oyuncu paylaşım yapabilir mi (haftada bir).
@@ -137,11 +140,34 @@ abstract final class FeedEngine {
         case NewsKind.match:
         case NewsKind.event:
         case NewsKind.retired:
+        case NewsKind.betting:
           break;
       }
     }
 
     return _commit(next, posts, growth, random);
+  }
+
+  /// Oyuncunun bir davranışına (alışveriş, bağış, ceza) hesaplardan tepki.
+  static CareerState react(
+    CareerState s,
+    FeedKind kind,
+    Map<String, String> params,
+    GameRandom random, {
+    double growth = 0,
+  }) {
+    final post = _post(
+      kind: kind,
+      source: random.pick(_sources[kind]!),
+      season: s.season,
+      week: s.week,
+      followers: s.feed.followers,
+      fans: s.relations[Relation.fans],
+      params: params,
+      random: random,
+      backfired: kind == FeedKind.betFined,
+    );
+    return _commit(s, [post], growth, random);
   }
 
   /// Cevaplanan röportajın gazetedeki yankısı.

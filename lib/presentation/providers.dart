@@ -17,6 +17,8 @@ import '../domain/league/club_world.dart';
 import '../domain/social/event_models.dart';
 import '../domain/social/feed_models.dart';
 import '../domain/social/social_engine.dart';
+import '../domain/spending/spending_engine.dart';
+import '../domain/spending/spending_models.dart';
 import '../game/sound_service.dart';
 
 /// `main()` içinde gerçek örnekle, testlerde sahte örnekle override edilir.
@@ -172,6 +174,41 @@ class ActiveCareerNotifier extends Notifier<ActiveCareer?> {
     );
     await update(result.state);
     return result;
+  }
+
+  /// Mülk satın alır; alamazsa false döner.
+  Future<bool> buyProperty(Property p) async {
+    final current = state;
+    if (current == null) return false;
+    final next = SpendingEngine.buyProperty(current.state, p, GameRandom());
+    if (next == null) return false;
+    await update(next);
+    return true;
+  }
+
+  Future<bool> donate(Donation d) async {
+    final current = state;
+    if (current == null) return false;
+    final next = SpendingEngine.donate(current.state, d, GameRandom());
+    if (next == null) return false;
+    await update(next);
+    return true;
+  }
+
+  /// Kuponun [matchIndex]. maçına bahis yapar; geçersizse false döner.
+  Future<bool> placeBet(int matchIndex, BetPick pick, int stake) async {
+    final current = state;
+    if (current == null) return false;
+    final next = SpendingEngine.placeBet(
+      current.state,
+      ClubWorld(current.state.worldSeed),
+      matchIndex,
+      pick,
+      stake,
+    );
+    if (next == null) return false;
+    await update(next);
+    return true;
   }
 
   /// Kendi hesabından paylaşım yapar; yapamazsa (haftada bir) null döner.

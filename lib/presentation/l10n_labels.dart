@@ -16,6 +16,8 @@ import '../domain/national/national_career.dart';
 import '../domain/player/attribute.dart';
 import '../domain/social/event_models.dart';
 import '../domain/social/relationships.dart';
+import '../domain/spending/spending_balance.dart';
+import '../domain/spending/spending_models.dart';
 import 'event_texts.dart';
 import '../domain/player/position.dart';
 
@@ -175,6 +177,16 @@ extension L10nLabels on AppLocalizations {
       achievementTitle(Achievement.values.byName(e.detail!)),
     ),
     WeekEventKind.retired => eventRetired,
+    WeekEventKind.betSettled =>
+      (int.tryParse(e.detail ?? '') ?? 0) >= 0
+          ? eventBetWon(money(int.tryParse(e.detail ?? '') ?? 0))
+          : eventBetLost(money(-(int.tryParse(e.detail ?? '') ?? 0))),
+    WeekEventKind.betWarning => eventBetWarning,
+    WeekEventKind.betFined => eventBetFined(
+      money(int.tryParse(e.detail ?? '') ?? 0),
+    ),
+    WeekEventKind.betSuspended => eventBetSuspended(e.weeks ?? 0),
+    WeekEventKind.suspended => eventSuspended,
   };
 
   String _nationalMatchText(WeekEvent e) {
@@ -268,6 +280,11 @@ extension L10nLabels on AppLocalizations {
       ),
     ),
     NewsKind.retired => newsRetired(n.params['age'] ?? ''),
+    NewsKind.betting => switch (n.params['stage']) {
+      'suspended' => newsBetSuspended,
+      'fined' => newsBetFined,
+      _ => newsBetWarned,
+    },
     NewsKind.event => () {
       final t = eventTexts(n.params['id'] ?? '', const {});
       final i = int.tryParse(n.params['choice'] ?? '') ?? 0;
@@ -505,6 +522,61 @@ extension L10nLabels on AppLocalizations {
     EquipmentSlot.shinGuards => equipEffect_shinGuards(
       '${(ClubBalance.shinGuardsPerLevel * level * 100).round()}',
     ),
+  };
+
+  String propertyName(Property p) => switch (p) {
+    Property.watch => prop_watch,
+    Property.car => prop_car,
+    Property.flat => prop_flat,
+    Property.villa => prop_villa,
+    Property.yacht => prop_yacht,
+  };
+
+  String propertyDesc(Property p) => switch (p) {
+    Property.watch => propDesc_watch,
+    Property.car => propDesc_car,
+    Property.flat => propDesc_flat,
+    Property.villa => propDesc_villa,
+    Property.yacht => propDesc_yacht,
+  };
+
+  String donationName(Donation d) => switch (d) {
+    Donation.charity => donation_charity,
+    Donation.familyGift => donation_familyGift,
+  };
+
+  String donationDesc(Donation d) => switch (d) {
+    Donation.charity => donationDesc_charity,
+    Donation.familyGift => donationDesc_familyGift,
+  };
+
+  String betPickName(BetPick p) => switch (p) {
+    BetPick.home => betPick_home,
+    BetPick.draw => betPick_draw,
+    BetPick.away => betPick_away,
+  };
+
+  /// Şans alışkanlığının düzeyi: 0 sakin, 1 dikkat, 2 tehlikeli, 3 kritik.
+  static int habitLevel(double habit) => habit >= SpendingBalance.banAt
+      ? 3
+      : habit >= SpendingBalance.fineAt
+      ? 2
+      : habit >= SpendingBalance.warnAt
+      ? 1
+      : 0;
+
+  String habitLevelName(double habit) => switch (habitLevel(habit)) {
+    0 => habitLevel_0,
+    1 => habitLevel_1,
+    2 => habitLevel_2,
+    _ => habitLevel_3,
+  };
+
+  String habitHint(double habit) => switch (habitLevel(habit)) {
+    0 => habitHint_0,
+    1 => habitHint_1,
+    2 => habitHint_2,
+    _ => habitHint_3,
   };
 
   String money(int value) => moneyAmount(_grouped(value));

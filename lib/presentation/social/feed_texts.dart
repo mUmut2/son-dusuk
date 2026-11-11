@@ -3,6 +3,7 @@ import '../../domain/achievements/achievements.dart';
 import '../../domain/career/player_status.dart';
 import '../../domain/national/national_career.dart';
 import '../../domain/social/feed_models.dart';
+import '../../domain/spending/spending_models.dart';
 import '../event_texts.dart';
 import '../l10n_labels.dart';
 
@@ -27,6 +28,9 @@ extension FeedTexts on AppLocalizations {
     FeedKind.interview => sm_post_interview,
     FeedKind.achievement => sm_post_achievement,
     FeedKind.national => sm_post_national,
+    FeedKind.shopping => sm_post_shopping,
+    FeedKind.donation => sm_post_donation,
+    FeedKind.betFined => sm_post_betFined,
     FeedKind.ownThanks => sm_post_ownThanks,
     FeedKind.ownFunny => sm_post_ownFunny,
     FeedKind.ownTraining => sm_post_ownTraining,
@@ -129,6 +133,12 @@ extension FeedTexts on AppLocalizations {
           ),
         ),
         FeedKind.interview => text.replaceAll('%headline%', _headline(p)),
+        FeedKind.shopping => text.replaceAll(
+          '%item%',
+          propertyName(
+            Property.values.byName(q['item'] ?? Property.watch.name),
+          ),
+        ),
         _ => text,
       };
     }

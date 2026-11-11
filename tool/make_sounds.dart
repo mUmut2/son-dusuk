@@ -29,7 +29,12 @@ List<double> note(
 }
 
 /// Frekansı [from]'dan [to]'ya kayan ses (düşüş/yükseliş).
-List<double> glide(double from, double to, double seconds, {double volume = 0.6}) {
+List<double> glide(
+  double from,
+  double to,
+  double seconds, {
+  double volume = 0.6,
+}) {
   final n = (seconds * sampleRate).round();
   final out = List<double>.filled(n, 0);
   var phase = 0.0;
@@ -109,11 +114,7 @@ void main() {
 
   final sounds = <String, List<double>>{
     // Başarı: kısa yükselen üç nota.
-    'good': concat([
-      note(c5, 0.09),
-      note(e5, 0.09),
-      note(g5, 0.2, decay: 4),
-    ]),
+    'good': concat([note(c5, 0.09), note(e5, 0.09), note(g5, 0.2, decay: 4)]),
     // Başarısızlık: alçalan boğuk ton.
     'bad': glide(330, 150, 0.35, volume: 0.5),
     // Gol: dört notalık küçük fanfar.
@@ -131,7 +132,8 @@ void main() {
 
   final dir = Directory('assets/sounds')..createSync(recursive: true);
   for (final e in sounds.entries) {
-    final file = File('${dir.path}/${e.key}.wav')..writeAsBytesSync(wav(e.value));
+    final file = File('${dir.path}/${e.key}.wav')
+      ..writeAsBytesSync(wav(e.value));
     stdout.writeln('${file.path}  ${file.lengthSync()} bayt');
   }
 }

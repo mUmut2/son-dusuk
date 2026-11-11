@@ -5660,6 +5660,408 @@ abstract class AppLocalizations {
   /// In tr, this message translates to:
   /// **'Mn'**
   String get feedCountMillion;
+
+  /// No description provided for @sm_post_shopping.
+  ///
+  /// In tr, this message translates to:
+  /// **'%player% yeni bir şey aldı: %item%! Herkes bunu konuşuyor.|Yeni %item%: futbolcunun keyfi yerinde!|Gösteriş mi yatırım mı? %player% %item% aldı.'**
+  String get sm_post_shopping;
+
+  /// No description provided for @sm_post_donation.
+  ///
+  /// In tr, this message translates to:
+  /// **'%player% yardım kuruluşuna bağış yaptı. Tebrikler!|Güzel yürekli futbolcu: bağış haberi gündemde.|Sahada da sahanın dışında da örnek: %player% bağış yaptı.'**
+  String get sm_post_donation;
+
+  /// No description provided for @sm_post_betFined.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bahis skandalı! Kulüp %player% için ceza kararı verdi.|Bahis düşkünlüğü gündemde: %player% yine konuşuluyor.|Futbolcu uyarıldı: bahis oynamak zarar verir.'**
+  String get sm_post_betFined;
+
+  /// No description provided for @prop_watch.
+  ///
+  /// In tr, this message translates to:
+  /// **'Saat'**
+  String get prop_watch;
+
+  /// No description provided for @prop_car.
+  ///
+  /// In tr, this message translates to:
+  /// **'Araba'**
+  String get prop_car;
+
+  /// No description provided for @prop_flat.
+  ///
+  /// In tr, this message translates to:
+  /// **'Daire'**
+  String get prop_flat;
+
+  /// No description provided for @prop_villa.
+  ///
+  /// In tr, this message translates to:
+  /// **'Villa'**
+  String get prop_villa;
+
+  /// No description provided for @prop_yacht.
+  ///
+  /// In tr, this message translates to:
+  /// **'Yat'**
+  String get prop_yacht;
+
+  /// No description provided for @propDesc_watch.
+  ///
+  /// In tr, this message translates to:
+  /// **'Küçük bir keyif: moral biraz artar.'**
+  String get propDesc_watch;
+
+  /// No description provided for @propDesc_car.
+  ///
+  /// In tr, this message translates to:
+  /// **'Moral artar, taraftar ve medya fark eder.'**
+  String get propDesc_car;
+
+  /// No description provided for @propDesc_flat.
+  ///
+  /// In tr, this message translates to:
+  /// **'Aile çok mutlu olur, moral artar.'**
+  String get propDesc_flat;
+
+  /// No description provided for @propDesc_villa.
+  ///
+  /// In tr, this message translates to:
+  /// **'Aile, moral ve medya için büyük adım.'**
+  String get propDesc_villa;
+
+  /// No description provided for @propDesc_yacht.
+  ///
+  /// In tr, this message translates to:
+  /// **'Büyük gösteriş: medya konuşur, ama takım arkadaşları kıskanabilir.'**
+  String get propDesc_yacht;
+
+  /// No description provided for @donation_charity.
+  ///
+  /// In tr, this message translates to:
+  /// **'Yardım kuruluşuna bağış'**
+  String get donation_charity;
+
+  /// No description provided for @donationDesc_charity.
+  ///
+  /// In tr, this message translates to:
+  /// **'Taraftar ve medya sever.'**
+  String get donationDesc_charity;
+
+  /// No description provided for @donation_familyGift.
+  ///
+  /// In tr, this message translates to:
+  /// **'Aileye hediye'**
+  String get donation_familyGift;
+
+  /// No description provided for @donationDesc_familyGift.
+  ///
+  /// In tr, this message translates to:
+  /// **'Aile çok mutlu olur.'**
+  String get donationDesc_familyGift;
+
+  /// No description provided for @newsBetWarned.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kulüp bahis alışkanlığın yüzünden seni uyardı'**
+  String get newsBetWarned;
+
+  /// No description provided for @newsBetFined.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bahis alışkanlığın yüzünden para cezası aldın'**
+  String get newsBetFined;
+
+  /// No description provided for @newsBetSuspended.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bahis yüzünden kadro dışı bırakıldın'**
+  String get newsBetSuspended;
+
+  /// No description provided for @eventBetWon.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bahislerinden {amount} kazandın'**
+  String eventBetWon(String amount);
+
+  /// No description provided for @eventBetLost.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bahislerinde {amount} kaybettin'**
+  String eventBetLost(String amount);
+
+  /// No description provided for @eventBetWarning.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kulüp bahis alışkanlığın konusunda seni uyardı'**
+  String get eventBetWarning;
+
+  /// No description provided for @eventBetFined.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bahis cezası: kulüp {amount} kesti'**
+  String eventBetFined(String amount);
+
+  /// No description provided for @eventBetSuspended.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bahis yüzünden {weeks} hafta kadro dışı kaldın ve yardım programına alındın'**
+  String eventBetSuspended(int weeks);
+
+  /// No description provided for @eventSuspended.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kadro dışısın: bahis cezan sürüyor'**
+  String get eventSuspended;
+
+  /// No description provided for @suspendedThisWeek.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bahis cezası: bu hafta kadro dışısın'**
+  String get suspendedThisWeek;
+
+  /// No description provided for @spendTitle.
+  ///
+  /// In tr, this message translates to:
+  /// **'Harcama ve Şans Köşesi'**
+  String get spendTitle;
+
+  /// No description provided for @spendCardHint.
+  ///
+  /// In tr, this message translates to:
+  /// **'Mülk al, bağış yap, şansını dene'**
+  String get spendCardHint;
+
+  /// No description provided for @spendCardOwned.
+  ///
+  /// In tr, this message translates to:
+  /// **'{count} mülk · alışkanlık: {level}'**
+  String spendCardOwned(String count, String level);
+
+  /// No description provided for @spendIntro.
+  ///
+  /// In tr, this message translates to:
+  /// **'Paranı akıllıca harca. Şans köşesi tamamen kurgusaldır; kazanç garantisi yoktur.'**
+  String get spendIntro;
+
+  /// No description provided for @spendPropertiesTitle.
+  ///
+  /// In tr, this message translates to:
+  /// **'Mülkler'**
+  String get spendPropertiesTitle;
+
+  /// No description provided for @spendOwned.
+  ///
+  /// In tr, this message translates to:
+  /// **'Sahipsin'**
+  String get spendOwned;
+
+  /// No description provided for @spendBuy.
+  ///
+  /// In tr, this message translates to:
+  /// **'Satın al'**
+  String get spendBuy;
+
+  /// No description provided for @spendBought.
+  ///
+  /// In tr, this message translates to:
+  /// **'Satın aldın!'**
+  String get spendBought;
+
+  /// No description provided for @spendDonationsTitle.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bağış ve hediye'**
+  String get spendDonationsTitle;
+
+  /// No description provided for @spendDonationWait.
+  ///
+  /// In tr, this message translates to:
+  /// **'Biraz bekle: üst üste bağış yapamazsın.'**
+  String get spendDonationWait;
+
+  /// No description provided for @spendDonate.
+  ///
+  /// In tr, this message translates to:
+  /// **'Yap'**
+  String get spendDonate;
+
+  /// No description provided for @spendDonated.
+  ///
+  /// In tr, this message translates to:
+  /// **'Teşekkürler! İyiliğin duyuldu.'**
+  String get spendDonated;
+
+  /// No description provided for @betTitle.
+  ///
+  /// In tr, this message translates to:
+  /// **'Şans Köşesi'**
+  String get betTitle;
+
+  /// No description provided for @betRules.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kurgusal oyun parasıyla oynanır. Oranlar bürodan gelir, uzun vadede kaybedersin. Kendi takımının maçına bahis yok. Çok bahis oynarsan ceza alırsın.'**
+  String get betRules;
+
+  /// No description provided for @betCouponTitle.
+  ///
+  /// In tr, this message translates to:
+  /// **'Haftanın kuponu'**
+  String get betCouponTitle;
+
+  /// No description provided for @betNoCoupon.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bu hafta kupon yok: lig maçı haftası değil ya da kulübün yok.'**
+  String get betNoCoupon;
+
+  /// No description provided for @betStakeLabel.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bahis tutarı'**
+  String get betStakeLabel;
+
+  /// No description provided for @betPick_home.
+  ///
+  /// In tr, this message translates to:
+  /// **'Ev sahibi'**
+  String get betPick_home;
+
+  /// No description provided for @betPick_draw.
+  ///
+  /// In tr, this message translates to:
+  /// **'Beraberlik'**
+  String get betPick_draw;
+
+  /// No description provided for @betPick_away.
+  ///
+  /// In tr, this message translates to:
+  /// **'Deplasman'**
+  String get betPick_away;
+
+  /// No description provided for @betPlaced.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bahis yapıldı: {odds} oranla'**
+  String betPlaced(String odds);
+
+  /// No description provided for @betAlready.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bu maça bahis yaptın'**
+  String get betAlready;
+
+  /// No description provided for @betYourBets.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bu haftaki bahislerin'**
+  String get betYourBets;
+
+  /// No description provided for @betBetLine.
+  ///
+  /// In tr, this message translates to:
+  /// **'{pick} · {stake} · oran {odds}'**
+  String betBetLine(String pick, String stake, String odds);
+
+  /// No description provided for @betResultsTitle.
+  ///
+  /// In tr, this message translates to:
+  /// **'Son sonuçlar'**
+  String get betResultsTitle;
+
+  /// No description provided for @betNoResults.
+  ///
+  /// In tr, this message translates to:
+  /// **'Henüz sonuçlanan bahsin yok.'**
+  String get betNoResults;
+
+  /// No description provided for @betWon.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kazandı'**
+  String get betWon;
+
+  /// No description provided for @betLost.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kaybetti'**
+  String get betLost;
+
+  /// No description provided for @betResultLine.
+  ///
+  /// In tr, this message translates to:
+  /// **'{pick} · yatırılan {stake} · geri ödeme {payout}'**
+  String betResultLine(String pick, String stake, String payout);
+
+  /// No description provided for @habitTitle.
+  ///
+  /// In tr, this message translates to:
+  /// **'Şans alışkanlığı'**
+  String get habitTitle;
+
+  /// No description provided for @habitLevel_0.
+  ///
+  /// In tr, this message translates to:
+  /// **'Sakin'**
+  String get habitLevel_0;
+
+  /// No description provided for @habitLevel_1.
+  ///
+  /// In tr, this message translates to:
+  /// **'Dikkat'**
+  String get habitLevel_1;
+
+  /// No description provided for @habitLevel_2.
+  ///
+  /// In tr, this message translates to:
+  /// **'Tehlikeli'**
+  String get habitLevel_2;
+
+  /// No description provided for @habitLevel_3.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kritik'**
+  String get habitLevel_3;
+
+  /// No description provided for @habitHint_0.
+  ///
+  /// In tr, this message translates to:
+  /// **'Şans köşesine ara sıra uğramak sorun değil.'**
+  String get habitHint_0;
+
+  /// No description provided for @habitHint_1.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kulüp seni izliyor. Biraz yavaşla!'**
+  String get habitHint_1;
+
+  /// No description provided for @habitHint_2.
+  ///
+  /// In tr, this message translates to:
+  /// **'Para cezası kapıda. Bahsi bırak!'**
+  String get habitHint_2;
+
+  /// No description provided for @habitHint_3.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kadro dışı kalma riski var!'**
+  String get habitHint_3;
+
+  /// No description provided for @habitSuspended.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kadro dışısın: {weeks} hafta'**
+  String habitSuspended(int weeks);
+
+  /// No description provided for @habitStats.
+  ///
+  /// In tr, this message translates to:
+  /// **'Yatırılan: {staked} · Kazanılan: {won} · Cezalar: {fines}'**
+  String habitStats(String staked, String won, String fines);
 }
 
 class _AppLocalizationsDelegate

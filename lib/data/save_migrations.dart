@@ -10,7 +10,7 @@ typedef MigrationStep = Map<String, dynamic> Function(Map<String, dynamic> e);
 ///
 /// Şema değiştiğinde: [currentSchemaVersion]'ı artır ve `steps`'e
 /// `eskiSürüm: dönüştürücü` ekle.
-const int currentSchemaVersion = 8;
+const int currentSchemaVersion = 9;
 
 const Map<int, MigrationStep> _defaultSteps = {
   1: _v1ToV2,
@@ -20,6 +20,7 @@ const Map<int, MigrationStep> _defaultSteps = {
   5: _v5ToV6,
   6: _v6ToV7,
   7: _v7ToV8,
+  8: _v8ToV9,
 };
 
 /// v1 -> v2 (Faz 4): kondisyon/form/moral/sakatlık ve istatistik alanları.
@@ -76,6 +77,9 @@ Map<String, dynamic> _v6ToV7(Map<String, dynamic> envelope) => envelope;
 
 /// v7 -> v8 (Faz 10): sosyal ağ akışı. Eksik alan boş akışla yüklenir.
 Map<String, dynamic> _v7ToV8(Map<String, dynamic> envelope) => envelope;
+
+/// v8 -> v9 (Faz 10b): mülk, bahis, alışkanlık. Eksik alan boş durumla yüklenir.
+Map<String, dynamic> _v8ToV9(Map<String, dynamic> envelope) => envelope;
 
 class SaveMigrator {
   const SaveMigrator({

@@ -8,6 +8,7 @@ import '../../domain/club/squad.dart';
 import '../../domain/national/national_balance.dart';
 import '../../domain/national/national_engine.dart';
 import '../equipment/equipment_screen.dart';
+import '../spending/spending_screen.dart';
 import '../l10n_labels.dart';
 import '../providers.dart';
 import '../widgets/player_avatar.dart';
@@ -82,6 +83,7 @@ class HomeTab extends ConsumerWidget {
             title: Text('${l10n.thisWeek}: ${l10n.phaseName(career.week)}'),
             subtitle: Text(switch (Squad.matchDay(career)) {
               MatchDay.injured => l10n.injuredNoMatch,
+              MatchDay.suspended => l10n.suspendedThisWeek,
               MatchDay.benched => l10n.benchedThisWeek,
               MatchDay.play => l10n.matchThisWeek,
               MatchDay.none =>
@@ -99,6 +101,7 @@ class HomeTab extends ConsumerWidget {
         _NationalCard(career: career),
         const SizedBox(height: 12),
         const EquipmentCard(),
+        const SpendingCard(),
         if (career.pendingEvents.isNotEmpty) ...[
           const SizedBox(height: 12),
           Card(

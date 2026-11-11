@@ -7,6 +7,7 @@ import '../club/finance.dart';
 import '../league/club_world.dart';
 import '../national/national_engine.dart';
 import '../social/social_engine.dart';
+import '../spending/spending_engine.dart';
 import '../player/player_development.dart';
 import '../player/position.dart';
 import 'career_state.dart';
@@ -96,7 +97,13 @@ abstract final class WeekEngine {
         !injuredAtStart &&
         state.contract != null &&
         hasMatch(state.week)) {
-      events.add(const WeekEvent(WeekEventKind.benched));
+      events.add(
+        WeekEvent(
+          state.spending.suspended
+              ? WeekEventKind.suspended
+              : WeekEventKind.benched,
+        ),
+      );
     }
 
     // --- Antrenman: odaktaki nitelikler ---
@@ -389,6 +396,7 @@ abstract final class WeekEngine {
         benched:
             m == null &&
             !injuredAtStart &&
+            !state.spending.suspended &&
             state.contract != null &&
             hasMatch(state.week),
       ),
@@ -396,8 +404,12 @@ abstract final class WeekEngine {
     );
     events.addAll(social.events);
 
+    // --- Harcama: bahis sonuçları, şans alışkanlığı ve cezalar ---
+    final spend = SpendingEngine.afterWeek(state, social.state, random);
+    events.addAll(spend.events);
+
     // --- Başarımlar ve zorunlu emeklilik ---
-    var finalState = social.state;
+    var finalState = spend.state;
     final contract = finalState.contract;
     final ach = AchievementEngine.sync(
       finalState,

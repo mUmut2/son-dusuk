@@ -13,6 +13,9 @@ enum FeedKind {
   interview,
   achievement,
   national,
+  shopping,
+  donation,
+  betFined,
   // Oyuncunun kendi paylaşımları
   ownThanks,
   ownFunny,

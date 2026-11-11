@@ -1873,5 +1873,163 @@
   "feedShowComments": "Yorumları göster",
   "feedHideComments": "Yorumları gizle",
   "feedCountThousand": "B",
-  "feedCountMillion": "Mn"
+  "feedCountMillion": "Mn",
+  "sm_post_shopping": "%player% yeni bir şey aldı: %item%! Herkes bunu konuşuyor.|Yeni %item%: futbolcunun keyfi yerinde!|Gösteriş mi yatırım mı? %player% %item% aldı.",
+  "sm_post_donation": "%player% yardım kuruluşuna bağış yaptı. Tebrikler!|Güzel yürekli futbolcu: bağış haberi gündemde.|Sahada da sahanın dışında da örnek: %player% bağış yaptı.",
+  "sm_post_betFined": "Bahis skandalı! Kulüp %player% için ceza kararı verdi.|Bahis düşkünlüğü gündemde: %player% yine konuşuluyor.|Futbolcu uyarıldı: bahis oynamak zarar verir.",
+  "prop_watch": "Saat",
+  "prop_car": "Araba",
+  "prop_flat": "Daire",
+  "prop_villa": "Villa",
+  "prop_yacht": "Yat",
+  "propDesc_watch": "Küçük bir keyif: moral biraz artar.",
+  "propDesc_car": "Moral artar, taraftar ve medya fark eder.",
+  "propDesc_flat": "Aile çok mutlu olur, moral artar.",
+  "propDesc_villa": "Aile, moral ve medya için büyük adım.",
+  "propDesc_yacht": "Büyük gösteriş: medya konuşur, ama takım arkadaşları kıskanabilir.",
+  "donation_charity": "Yardım kuruluşuna bağış",
+  "donationDesc_charity": "Taraftar ve medya sever.",
+  "donation_familyGift": "Aileye hediye",
+  "donationDesc_familyGift": "Aile çok mutlu olur.",
+  "newsBetWarned": "Kulüp bahis alışkanlığın yüzünden seni uyardı",
+  "newsBetFined": "Bahis alışkanlığın yüzünden para cezası aldın",
+  "newsBetSuspended": "Bahis yüzünden kadro dışı bırakıldın",
+  "eventBetWon": "Bahislerinden {amount} kazandın",
+  "@eventBetWon": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "eventBetLost": "Bahislerinde {amount} kaybettin",
+  "@eventBetLost": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "eventBetWarning": "Kulüp bahis alışkanlığın konusunda seni uyardı",
+  "eventBetFined": "Bahis cezası: kulüp {amount} kesti",
+  "@eventBetFined": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "eventBetSuspended": "Bahis yüzünden {weeks} hafta kadro dışı kaldın ve yardım programına alındın",
+  "@eventBetSuspended": {
+    "placeholders": {
+      "weeks": {
+        "type": "int"
+      }
+    }
+  },
+  "eventSuspended": "Kadro dışısın: bahis cezan sürüyor",
+  "suspendedThisWeek": "Bahis cezası: bu hafta kadro dışısın",
+  "spendTitle": "Harcama ve Şans Köşesi",
+  "spendCardHint": "Mülk al, bağış yap, şansını dene",
+  "spendCardOwned": "{count} mülk · alışkanlık: {level}",
+  "@spendCardOwned": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      },
+      "level": {
+        "type": "String"
+      }
+    }
+  },
+  "spendIntro": "Paranı akıllıca harca. Şans köşesi tamamen kurgusaldır; kazanç garantisi yoktur.",
+  "spendPropertiesTitle": "Mülkler",
+  "spendOwned": "Sahipsin",
+  "spendBuy": "Satın al",
+  "spendBought": "Satın aldın!",
+  "spendDonationsTitle": "Bağış ve hediye",
+  "spendDonationWait": "Biraz bekle: üst üste bağış yapamazsın.",
+  "spendDonate": "Yap",
+  "spendDonated": "Teşekkürler! İyiliğin duyuldu.",
+  "betTitle": "Şans Köşesi",
+  "betRules": "Kurgusal oyun parasıyla oynanır. Oranlar bürodan gelir, uzun vadede kaybedersin. Kendi takımının maçına bahis yok. Çok bahis oynarsan ceza alırsın.",
+  "betCouponTitle": "Haftanın kuponu",
+  "betNoCoupon": "Bu hafta kupon yok: lig maçı haftası değil ya da kulübün yok.",
+  "betStakeLabel": "Bahis tutarı",
+  "betPick_home": "Ev sahibi",
+  "betPick_draw": "Beraberlik",
+  "betPick_away": "Deplasman",
+  "betPlaced": "Bahis yapıldı: {odds} oranla",
+  "@betPlaced": {
+    "placeholders": {
+      "odds": {
+        "type": "String"
+      }
+    }
+  },
+  "betAlready": "Bu maça bahis yaptın",
+  "betYourBets": "Bu haftaki bahislerin",
+  "betBetLine": "{pick} · {stake} · oran {odds}",
+  "@betBetLine": {
+    "placeholders": {
+      "pick": {
+        "type": "String"
+      },
+      "stake": {
+        "type": "String"
+      },
+      "odds": {
+        "type": "String"
+      }
+    }
+  },
+  "betResultsTitle": "Son sonuçlar",
+  "betNoResults": "Henüz sonuçlanan bahsin yok.",
+  "betWon": "Kazandı",
+  "betLost": "Kaybetti",
+  "betResultLine": "{pick} · yatırılan {stake} · geri ödeme {payout}",
+  "@betResultLine": {
+    "placeholders": {
+      "pick": {
+        "type": "String"
+      },
+      "stake": {
+        "type": "String"
+      },
+      "payout": {
+        "type": "String"
+      }
+    }
+  },
+  "habitTitle": "Şans alışkanlığı",
+  "habitLevel_0": "Sakin",
+  "habitLevel_1": "Dikkat",
+  "habitLevel_2": "Tehlikeli",
+  "habitLevel_3": "Kritik",
+  "habitHint_0": "Şans köşesine ara sıra uğramak sorun değil.",
+  "habitHint_1": "Kulüp seni izliyor. Biraz yavaşla!",
+  "habitHint_2": "Para cezası kapıda. Bahsi bırak!",
+  "habitHint_3": "Kadro dışı kalma riski var!",
+  "habitSuspended": "Kadro dışısın: {weeks} hafta",
+  "@habitSuspended": {
+    "placeholders": {
+      "weeks": {
+        "type": "int"
+      }
+    }
+  },
+  "habitStats": "Yatırılan: {staked} · Kazanılan: {won} · Cezalar: {fines}",
+  "@habitStats": {
+    "placeholders": {
+      "staked": {
+        "type": "String"
+      },
+      "won": {
+        "type": "String"
+      },
+      "fines": {
+        "type": "String"
+      }
+    }
+  }
 }

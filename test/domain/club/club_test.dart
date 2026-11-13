@@ -194,7 +194,11 @@ void main() {
       final s = newCareer();
       final r = WeekEngine.advance(s, const WeeklyPlan(), null, GameRandom(3));
       expect(r.report.money.net, isNot(0));
-      expect(r.state.finance.balance, s.finance.balance + r.report.money.net);
+      // Haftalık hedef ödülü gelir tablosunun dışında, ayrıca eklenir.
+      expect(
+        r.state.finance.balance,
+        s.finance.balance + r.report.money.net + r.state.goals.lastReward,
+      );
     });
   });
 

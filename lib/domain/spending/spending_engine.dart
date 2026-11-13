@@ -141,6 +141,7 @@ abstract final class SpendingEngine {
         ],
         habit: habit,
         totalStaked: sp.totalStaked + stake,
+        weekStaked: sp.weekStaked + stake,
       ),
     );
   }
@@ -195,6 +196,7 @@ abstract final class SpendingEngine {
         habit: stake > 0 ? _habitAfterBet(sp, stake, s.finance.balance) : null,
         totalStaked: sp.totalStaked + stake,
         totalWon: sp.totalWon + payout,
+        weekStaked: sp.weekStaked + stake,
       ),
     );
     if (stake > 0 && payout >= stake * SpendingBalance.horseBigWinMultiple) {
@@ -251,6 +253,8 @@ abstract final class SpendingEngine {
         SpendingBalance.habitMax,
       ),
     );
+
+    sp = sp.copyWith(weekStaked: 0);
 
     // 2) Kadro dışı süresi.
     if (sp.suspendedWeeks > 0) {

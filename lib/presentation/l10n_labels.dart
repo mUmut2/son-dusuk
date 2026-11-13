@@ -14,6 +14,8 @@ import '../domain/national/nation.dart';
 import '../domain/national/national_engine.dart';
 import '../domain/national/national_career.dart';
 import '../domain/player/attribute.dart';
+import '../domain/goals/goal_balance.dart';
+import '../domain/goals/goal_models.dart';
 import '../domain/social/event_models.dart';
 import '../domain/social/relationships.dart';
 import '../domain/spending/spending_balance.dart';
@@ -187,6 +189,13 @@ extension L10nLabels on AppLocalizations {
     ),
     WeekEventKind.betSuspended => eventBetSuspended(e.weeks ?? 0),
     WeekEventKind.suspended => eventSuspended,
+    WeekEventKind.goalsReport => eventGoalsReport(
+      e.detail ?? '0',
+      '${GoalBalance.perWeek}',
+      e.weeks ?? 0,
+      money(int.tryParse(e.detail2 ?? '') ?? 0),
+    ),
+    WeekEventKind.goalStreak => eventGoalStreak(e.weeks ?? 0),
   };
 
   String _nationalMatchText(WeekEvent e) {
@@ -522,6 +531,16 @@ extension L10nLabels on AppLocalizations {
     EquipmentSlot.shinGuards => equipEffect_shinGuards(
       '${(ClubBalance.shinGuardsPerLevel * level * 100).round()}',
     ),
+  };
+
+  String goalName(GoalKind k) => switch (k) {
+    GoalKind.scoreGoal => goal_scoreGoal,
+    GoalKind.assist => goal_assist,
+    GoalKind.rating7 => goal_rating7,
+    GoalKind.winMatch => goal_winMatch,
+    GoalKind.trainHard => goal_trainHard,
+    GoalKind.postFeed => goal_postFeed,
+    GoalKind.noBetting => goal_noBetting,
   };
 
   /// At ismi: ARB'deki `|` ile ayrılmış listeden.

@@ -2081,5 +2081,87 @@
   "raceWatchedHit": "Seçtiğin at tuttu! Bahis yapsaydın kazanacaktın",
   "raceWatchedMiss": "Seçtiğin at tutmadı. İyi ki bahis yapmadın!",
   "raceAgainNextWeek": "Bu haftanın yarışı bitti. Gelecek hafta yeni bir yarış var.",
-  "raceDone": "Bu hafta yarışı izledin. Gelecek hafta yeniden gel."
+  "raceDone": "Bu hafta yarışı izledin. Gelecek hafta yeniden gel.",
+  "sm_post_rumor": "Kulis: büyük kulüpler %player% için masaya oturdu, iddia bu!|Transfer dedikodusu: %player% hakkında yeni iddialar var.|Duyduk duyduk: %player% için sürpriz bir teklif konuşuluyor!",
+  "sm_post_hype": "Hafta sonu için tribünler hazır, herkes sahaya bakıyor!|Gelecek maç için bilet kuyrukları başladı bile!|Takımın hazırlığı tam gaz sürüyor, taraftar heyecanlı.",
+  "sm_post_fanArt": "Bir taraftar %player% için çizim yaptı, harika olmuş!|Mahalle duvarına %player% posteri asıldı!|Minik bir taraftardan %player% için sevgi dolu bir mektup geldi.",
+  "sm_post_streak": "%streak% haftadır hedeflerini tamamlıyor: %player% durmuyor!|Seri devam ediyor: %streak% hafta üst üste! Tebrikler %player%.|Hedef makinesi %player%: %streak% haftalık seri!",
+  "goal_scoreGoal": "Maçta gol at",
+  "goal_assist": "Maçta asist yap",
+  "goal_rating7": "Maç puanın 7,0 ve üzeri olsun",
+  "goal_winMatch": "Takımın maçı kazansın",
+  "goal_trainHard": "Ağır tempoda antrenman yap",
+  "goal_postFeed": "Sosyal ağda paylaşım yap",
+  "goal_noBetting": "Bu hafta hiç bahis oynama",
+  "goalsTitle": "Haftalık hedefler",
+  "goalsHint": "Haftada en az 2 hedefi tamamla, serin büyüsün!",
+  "goalsStreak": "Seri: {weeks} hafta",
+  "@goalsStreak": {
+    "placeholders": {
+      "weeks": {
+        "type": "int"
+      }
+    }
+  },
+  "goalsBest": "En iyi seri: {weeks}",
+  "@goalsBest": {
+    "placeholders": {
+      "weeks": {
+        "type": "int"
+      }
+    }
+  },
+  "goalsReward": "Her hedef {each}, hepsi tamamlanırsa {bonus} ek ödül",
+  "@goalsReward": {
+    "placeholders": {
+      "each": {
+        "type": "String"
+      },
+      "bonus": {
+        "type": "String"
+      }
+    }
+  },
+  "goalsLastWeek": "Geçen hafta: {done}/{total} hedef, ödül {reward}",
+  "@goalsLastWeek": {
+    "placeholders": {
+      "done": {
+        "type": "String"
+      },
+      "total": {
+        "type": "String"
+      },
+      "reward": {
+        "type": "String"
+      }
+    }
+  },
+  "goalDone": "Tamamlandı",
+  "goalFailed": "Kaçırıldı",
+  "goalPending": "Devam ediyor",
+  "eventGoalsReport": "Hedefler: {done}/{total} tamamlandı, seri {streak} hafta, ödül {reward}",
+  "@eventGoalsReport": {
+    "placeholders": {
+      "done": {
+        "type": "String"
+      },
+      "total": {
+        "type": "String"
+      },
+      "streak": {
+        "type": "int"
+      },
+      "reward": {
+        "type": "String"
+      }
+    }
+  },
+  "eventGoalStreak": "{weeks} haftalık seri! Bonus ödül kazandın",
+  "@eventGoalStreak": {
+    "placeholders": {
+      "weeks": {
+        "type": "int"
+      }
+    }
+  }
 }

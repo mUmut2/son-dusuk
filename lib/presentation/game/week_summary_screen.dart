@@ -90,6 +90,9 @@ class WeekSummaryScreen extends ConsumerWidget {
                               WeekEventKind.achievement => Icons.emoji_events,
                               WeekEventKind.retired => Icons.sports_score,
                               WeekEventKind.betSettled => Icons.casino,
+                              WeekEventKind.goalsReport => Icons.flag_circle,
+                              WeekEventKind.goalStreak =>
+                                Icons.local_fire_department,
                               WeekEventKind.betWarning ||
                               WeekEventKind.betFined ||
                               WeekEventKind.betSuspended ||

@@ -17,6 +17,10 @@ enum FeedKind {
   donation,
   betFined,
   horseWin,
+  rumor,
+  hype,
+  fanArt,
+  streak,
   // Oyuncunun kendi paylaşımları
   ownThanks,
   ownFunny,

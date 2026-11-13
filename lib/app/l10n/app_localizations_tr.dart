@@ -3494,4 +3494,91 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get raceDone => 'Bu hafta yarışı izledin. Gelecek hafta yeniden gel.';
+
+  @override
+  String get sm_post_rumor =>
+      'Kulis: büyük kulüpler %player% için masaya oturdu, iddia bu!|Transfer dedikodusu: %player% hakkında yeni iddialar var.|Duyduk duyduk: %player% için sürpriz bir teklif konuşuluyor!';
+
+  @override
+  String get sm_post_hype =>
+      'Hafta sonu için tribünler hazır, herkes sahaya bakıyor!|Gelecek maç için bilet kuyrukları başladı bile!|Takımın hazırlığı tam gaz sürüyor, taraftar heyecanlı.';
+
+  @override
+  String get sm_post_fanArt =>
+      'Bir taraftar %player% için çizim yaptı, harika olmuş!|Mahalle duvarına %player% posteri asıldı!|Minik bir taraftardan %player% için sevgi dolu bir mektup geldi.';
+
+  @override
+  String get sm_post_streak =>
+      '%streak% haftadır hedeflerini tamamlıyor: %player% durmuyor!|Seri devam ediyor: %streak% hafta üst üste! Tebrikler %player%.|Hedef makinesi %player%: %streak% haftalık seri!';
+
+  @override
+  String get goal_scoreGoal => 'Maçta gol at';
+
+  @override
+  String get goal_assist => 'Maçta asist yap';
+
+  @override
+  String get goal_rating7 => 'Maç puanın 7,0 ve üzeri olsun';
+
+  @override
+  String get goal_winMatch => 'Takımın maçı kazansın';
+
+  @override
+  String get goal_trainHard => 'Ağır tempoda antrenman yap';
+
+  @override
+  String get goal_postFeed => 'Sosyal ağda paylaşım yap';
+
+  @override
+  String get goal_noBetting => 'Bu hafta hiç bahis oynama';
+
+  @override
+  String get goalsTitle => 'Haftalık hedefler';
+
+  @override
+  String get goalsHint => 'Haftada en az 2 hedefi tamamla, serin büyüsün!';
+
+  @override
+  String goalsStreak(int weeks) {
+    return 'Seri: $weeks hafta';
+  }
+
+  @override
+  String goalsBest(int weeks) {
+    return 'En iyi seri: $weeks';
+  }
+
+  @override
+  String goalsReward(String each, String bonus) {
+    return 'Her hedef $each, hepsi tamamlanırsa $bonus ek ödül';
+  }
+
+  @override
+  String goalsLastWeek(String done, String total, String reward) {
+    return 'Geçen hafta: $done/$total hedef, ödül $reward';
+  }
+
+  @override
+  String get goalDone => 'Tamamlandı';
+
+  @override
+  String get goalFailed => 'Kaçırıldı';
+
+  @override
+  String get goalPending => 'Devam ediyor';
+
+  @override
+  String eventGoalsReport(
+    String done,
+    String total,
+    int streak,
+    String reward,
+  ) {
+    return 'Hedefler: $done/$total tamamlandı, seri $streak hafta, ödül $reward';
+  }
+
+  @override
+  String eventGoalStreak(int weeks) {
+    return '$weeks haftalık seri! Bonus ödül kazandın';
+  }
 }

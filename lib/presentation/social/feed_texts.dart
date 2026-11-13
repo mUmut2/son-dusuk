@@ -32,6 +32,10 @@ extension FeedTexts on AppLocalizations {
     FeedKind.donation => sm_post_donation,
     FeedKind.betFined => sm_post_betFined,
     FeedKind.horseWin => sm_post_horseWin,
+    FeedKind.rumor => sm_post_rumor,
+    FeedKind.hype => sm_post_hype,
+    FeedKind.fanArt => sm_post_fanArt,
+    FeedKind.streak => sm_post_streak,
     FeedKind.ownThanks => sm_post_ownThanks,
     FeedKind.ownFunny => sm_post_ownFunny,
     FeedKind.ownTraining => sm_post_ownTraining,
@@ -134,6 +138,7 @@ extension FeedTexts on AppLocalizations {
           ),
         ),
         FeedKind.interview => text.replaceAll('%headline%', _headline(p)),
+        FeedKind.streak => text.replaceAll('%streak%', q['streak'] ?? ''),
         FeedKind.horseWin => text.replaceAll(
           '%horse%',
           horseName(int.tryParse(q['horse'] ?? '') ?? 0),

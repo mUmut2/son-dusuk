@@ -119,6 +119,7 @@ class Spending {
     this.totalFines = 0,
     this.lastDonationWeek = 0,
     this.raceWeek = 0,
+    this.weekStaked = 0,
   });
 
   factory Spending.fromJson(Map<String, dynamic> json) => Spending(
@@ -142,6 +143,7 @@ class Spending {
     totalFines: json['totalFines'] as int? ?? 0,
     lastDonationWeek: json['lastDonationWeek'] as int? ?? 0,
     raceWeek: json['raceWeek'] as int? ?? 0,
+    weekStaked: json['weekStaked'] as int? ?? 0,
   );
 
   final List<Property> properties;
@@ -170,6 +172,9 @@ class Spending {
   /// En son at yarışı izlenen mutlak hafta (haftada bir yarış).
   final int raceWeek;
 
+  /// Bu hafta yatırılan toplam bahis tutarı (hafta bitince sıfırlanır).
+  final int weekStaked;
+
   bool owns(Property p) => properties.contains(p);
 
   bool get suspended => suspendedWeeks > 0;
@@ -197,6 +202,7 @@ class Spending {
     int? totalFines,
     int? lastDonationWeek,
     int? raceWeek,
+    int? weekStaked,
   }) => Spending(
     properties: properties ?? this.properties,
     bets: bets ?? this.bets,
@@ -209,6 +215,7 @@ class Spending {
     totalFines: totalFines ?? this.totalFines,
     lastDonationWeek: lastDonationWeek ?? this.lastDonationWeek,
     raceWeek: raceWeek ?? this.raceWeek,
+    weekStaked: weekStaked ?? this.weekStaked,
   );
 
   Map<String, dynamic> toJson() => {
@@ -223,5 +230,6 @@ class Spending {
     'totalFines': totalFines,
     'lastDonationWeek': lastDonationWeek,
     'raceWeek': raceWeek,
+    'weekStaked': weekStaked,
   };
 }

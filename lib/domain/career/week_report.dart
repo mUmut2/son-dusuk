@@ -69,6 +69,8 @@ enum WeekEventKind {
   betFined,
   betSuspended,
   suspended,
+  goalsReport,
+  goalStreak,
 }
 
 class WeekEvent {

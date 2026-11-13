@@ -8,6 +8,7 @@ import '../../domain/club/squad.dart';
 import '../../domain/national/national_balance.dart';
 import '../../domain/national/national_engine.dart';
 import '../equipment/equipment_screen.dart';
+import '../goals/goals_card.dart';
 import '../spending/spending_screen.dart';
 import '../l10n_labels.dart';
 import '../providers.dart';
@@ -99,6 +100,8 @@ class HomeTab extends ConsumerWidget {
           ),
         ),
         _NationalCard(career: career),
+        const SizedBox(height: 12),
+        const GoalsCard(),
         const SizedBox(height: 12),
         const EquipmentCard(),
         const SpendingCard(),

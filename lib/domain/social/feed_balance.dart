@@ -35,6 +35,12 @@ abstract final class FeedBalance {
   /// Bir maç haftasında ana paylaşımın yanına ikinci bir hesabın eklenme olasılığı.
   static const double extraPostChance = 0.35;
 
+  /// Maçsız (paylaşımsız) haftada "gündem" paylaşımı gelme olasılığı.
+  static const double quietPostChance = 0.7;
+
+  /// Yıldız performanslı haftada ek dedikodu paylaşımı olasılığı.
+  static const double rumorChance = 0.25;
+
   /// Beğeni = takipçi x [likeRate] x (0.5..1.5) x konu ağırlığı.
   static const double likeRate = 0.08;
   static const int minLikes = 3;
@@ -81,6 +87,10 @@ abstract final class FeedBalance {
     FeedKind.donation: [0.8, 0.15, 0.0, 0.05],
     FeedKind.betFined: [0.05, 0.15, 0.7, 0.1],
     FeedKind.horseWin: [0.3, 0.5, 0.15, 0.05],
+    FeedKind.rumor: [0.3, 0.4, 0.25, 0.05],
+    FeedKind.hype: [0.6, 0.3, 0.05, 0.05],
+    FeedKind.fanArt: [0.85, 0.1, 0.0, 0.05],
+    FeedKind.streak: [0.75, 0.2, 0.0, 0.05],
     FeedKind.ownThanks: [0.7, 0.2, 0.0, 0.1],
     FeedKind.ownFunny: [0.4, 0.55, 0.05, 0.0],
     FeedKind.ownTraining: [0.6, 0.25, 0.05, 0.1],
@@ -106,6 +116,10 @@ abstract final class FeedBalance {
     FeedKind.donation: 1.3,
     FeedKind.betFined: 2,
     FeedKind.horseWin: 1.5,
+    FeedKind.rumor: 1.4,
+    FeedKind.hype: 0.9,
+    FeedKind.fanArt: 1.1,
+    FeedKind.streak: 1.6,
     FeedKind.ownThanks: 1.2,
     FeedKind.ownFunny: 1.5,
     FeedKind.ownTraining: 0.9,

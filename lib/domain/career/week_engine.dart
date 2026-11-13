@@ -7,6 +7,7 @@ import '../club/finance.dart';
 import '../league/club_world.dart';
 import '../national/national_engine.dart';
 import '../social/social_engine.dart';
+import '../goals/goal_engine.dart';
 import '../spending/spending_engine.dart';
 import '../player/player_development.dart';
 import '../player/position.dart';
@@ -408,8 +409,24 @@ abstract final class WeekEngine {
     final spend = SpendingEngine.afterWeek(state, social.state, random);
     events.addAll(spend.events);
 
+    // --- Haftalık hedefler: ödül ve seri ---
+    final goalUpdate = GoalEngine.afterWeek(
+      state,
+      spend.state,
+      GoalInput(
+        played: m != null,
+        rating: m?.rating ?? 0,
+        goals: m?.goals ?? 0,
+        assists: m?.assists ?? 0,
+        won: m?.result == MatchResultKind.win,
+        hardTraining: training && intensity == TrainingIntensity.hard,
+      ),
+      random,
+    );
+    events.addAll(goalUpdate.events);
+
     // --- Başarımlar ve zorunlu emeklilik ---
-    var finalState = spend.state;
+    var finalState = goalUpdate.state;
     final contract = finalState.contract;
     final ach = AchievementEngine.sync(
       finalState,

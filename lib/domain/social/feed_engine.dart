@@ -51,6 +51,10 @@ abstract final class FeedEngine {
     FeedKind.donation: [FeedSource.fan, FeedSource.club, FeedSource.journalist],
     FeedKind.betFined: [FeedSource.journalist, FeedSource.fan, FeedSource.club],
     FeedKind.horseWin: [FeedSource.meme, FeedSource.fan, FeedSource.journalist],
+    FeedKind.rumor: [FeedSource.journalist, FeedSource.meme],
+    FeedKind.hype: [FeedSource.fan, FeedSource.club],
+    FeedKind.fanArt: [FeedSource.fan, FeedSource.family],
+    FeedKind.streak: [FeedSource.club, FeedSource.fan, FeedSource.journalist],
   };
 
   /// Bu hafta oyuncu paylaşım yapabilir mi (haftada bir).
@@ -144,6 +148,22 @@ abstract final class FeedEngine {
         case NewsKind.betting:
           break;
       }
+    }
+
+    // Sessiz haftada akış canlı kalsın: gündem paylaşımı.
+    if (posts.isEmpty) {
+      if (random.chance(FeedBalance.quietPostChance)) {
+        posts.add(
+          make(
+            random.pick(const [FeedKind.rumor, FeedKind.hype, FeedKind.fanArt]),
+            const {},
+          ),
+        );
+      }
+    } else if ((posts.first.kind == FeedKind.star ||
+            posts.first.kind == FeedKind.hatTrick) &&
+        random.chance(FeedBalance.rumorChance)) {
+      posts.add(make(FeedKind.rumor, const {}));
     }
 
     return _commit(next, posts, growth, random);

@@ -5,6 +5,7 @@ import '../club/finance.dart';
 import '../club/transfer_offer.dart';
 import '../national/national_career.dart';
 import '../player/player.dart';
+import '../goals/goal_models.dart';
 import '../social/event_models.dart';
 import '../social/feed_models.dart';
 import '../social/relationships.dart';
@@ -40,6 +41,7 @@ class CareerState {
     this.equipment = const Equipment(),
     this.feed = const SocialFeed(),
     this.spending = const Spending(),
+    this.goals = const Goals(),
   });
 
   factory CareerState.fromJson(Map<String, dynamic> json) => CareerState(
@@ -107,6 +109,9 @@ class CareerState {
     spending: json['spending'] == null
         ? const Spending()
         : Spending.fromJson(json['spending'] as Map<String, dynamic>),
+    goals: json['goals'] == null
+        ? const Goals()
+        : Goals.fromJson(json['goals'] as Map<String, dynamic>),
   );
 
   final Player player;
@@ -163,6 +168,9 @@ class CareerState {
   /// Mülkler, bahisler, şans alışkanlığı ve cezalar.
   final Spending spending;
 
+  /// Haftalık hedeflerin serisi ve toplamları.
+  final Goals goals;
+
   bool get isFreeAgent => contract == null;
 
   /// Sezonlar boyunca artan hafta sayacı (tekliflerin son geçerlilik günü için).
@@ -194,6 +202,7 @@ class CareerState {
     Equipment? equipment,
     SocialFeed? feed,
     Spending? spending,
+    Goals? goals,
   }) => CareerState(
     player: player ?? this.player,
     season: season ?? this.season,
@@ -218,6 +227,7 @@ class CareerState {
     equipment: equipment ?? this.equipment,
     feed: feed ?? this.feed,
     spending: spending ?? this.spending,
+    goals: goals ?? this.goals,
   );
 
   Map<String, dynamic> toJson() => {
@@ -244,5 +254,6 @@ class CareerState {
     'equipment': equipment.toJson(),
     'feed': feed.toJson(),
     'spending': spending.toJson(),
+    'goals': goals.toJson(),
   };
 }

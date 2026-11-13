@@ -44,7 +44,7 @@ Her alt faz kendi commit'i ve onayıyla ilerler.
 > alışkanlığını artırır. At isimleri kurgusal futbol esprileri (gerçek kişi
 > adlarının kelime oyunu değil; CLAUDE.md kural 8).
 
-## 10d — Tutundurma (öneri)
+## 10d — Tutundurma ✅
 - Haftalık **hedefler** (3 hedef: gol, reyting, takipçi, taraftar...) ve ödülü
   (rozet/küçük para); tamamlayınca akışta paylaşım.
 - **Seri göstergesi** (üst üste iyi maç) ve ekranda kutlama.

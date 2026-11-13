@@ -120,14 +120,25 @@ void main() {
       );
     });
 
-    test('maç ve sakatlık yoksa paylaşım gelmez; takipçi çok az değişir', () {
-      final s = FeedEngine.afterWeek(
-        newCareer(),
-        newCareer(),
-        const FeedWeekInput(),
-        GameRandom(1),
-      );
-      expect(s.feed.posts, isEmpty);
+    test('maçsız sessiz haftada en çok bir gündem paylaşımı gelir', () {
+      const quiet = {FeedKind.rumor, FeedKind.hype, FeedKind.fanArt};
+      var withPost = 0;
+      for (var seed = 0; seed < 100; seed++) {
+        final s = FeedEngine.afterWeek(
+          newCareer(),
+          newCareer(),
+          const FeedWeekInput(),
+          GameRandom(seed),
+        );
+        expect(s.feed.posts.length, lessThanOrEqualTo(1));
+        for (final p in s.feed.posts) {
+          expect(quiet, contains(p.kind));
+        }
+        withPost += s.feed.posts.length;
+      }
+      // Olasılık yaklaşık %70: hem çoğu hafta hem de bazı haftalar boş.
+      expect(withPost, greaterThan(50));
+      expect(withPost, lessThan(95));
     });
 
     test('akış sınırı aşılmaz ve en yeni başta', () {
@@ -383,6 +394,10 @@ void main() {
             FeedKind.donation => l10n.sm_post_donation,
             FeedKind.betFined => l10n.sm_post_betFined,
             FeedKind.horseWin => l10n.sm_post_horseWin,
+            FeedKind.rumor => l10n.sm_post_rumor,
+            FeedKind.hype => l10n.sm_post_hype,
+            FeedKind.fanArt => l10n.sm_post_fanArt,
+            FeedKind.streak => l10n.sm_post_streak,
             FeedKind.ownThanks => l10n.sm_post_ownThanks,
             FeedKind.ownFunny => l10n.sm_post_ownFunny,
             FeedKind.ownTraining => l10n.sm_post_ownTraining,
@@ -426,6 +441,7 @@ void main() {
         'choice': '0',
         'item': 'car',
         'horse': '3',
+        'streak': '5',
       };
       for (final k in FeedKind.values) {
         final p = k == FeedKind.interview

@@ -6218,6 +6218,138 @@ abstract class AppLocalizations {
   /// In tr, this message translates to:
   /// **'Bu hafta yarışı izledin. Gelecek hafta yeniden gel.'**
   String get raceDone;
+
+  /// No description provided for @sm_post_rumor.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kulis: büyük kulüpler %player% için masaya oturdu, iddia bu!|Transfer dedikodusu: %player% hakkında yeni iddialar var.|Duyduk duyduk: %player% için sürpriz bir teklif konuşuluyor!'**
+  String get sm_post_rumor;
+
+  /// No description provided for @sm_post_hype.
+  ///
+  /// In tr, this message translates to:
+  /// **'Hafta sonu için tribünler hazır, herkes sahaya bakıyor!|Gelecek maç için bilet kuyrukları başladı bile!|Takımın hazırlığı tam gaz sürüyor, taraftar heyecanlı.'**
+  String get sm_post_hype;
+
+  /// No description provided for @sm_post_fanArt.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bir taraftar %player% için çizim yaptı, harika olmuş!|Mahalle duvarına %player% posteri asıldı!|Minik bir taraftardan %player% için sevgi dolu bir mektup geldi.'**
+  String get sm_post_fanArt;
+
+  /// No description provided for @sm_post_streak.
+  ///
+  /// In tr, this message translates to:
+  /// **'%streak% haftadır hedeflerini tamamlıyor: %player% durmuyor!|Seri devam ediyor: %streak% hafta üst üste! Tebrikler %player%.|Hedef makinesi %player%: %streak% haftalık seri!'**
+  String get sm_post_streak;
+
+  /// No description provided for @goal_scoreGoal.
+  ///
+  /// In tr, this message translates to:
+  /// **'Maçta gol at'**
+  String get goal_scoreGoal;
+
+  /// No description provided for @goal_assist.
+  ///
+  /// In tr, this message translates to:
+  /// **'Maçta asist yap'**
+  String get goal_assist;
+
+  /// No description provided for @goal_rating7.
+  ///
+  /// In tr, this message translates to:
+  /// **'Maç puanın 7,0 ve üzeri olsun'**
+  String get goal_rating7;
+
+  /// No description provided for @goal_winMatch.
+  ///
+  /// In tr, this message translates to:
+  /// **'Takımın maçı kazansın'**
+  String get goal_winMatch;
+
+  /// No description provided for @goal_trainHard.
+  ///
+  /// In tr, this message translates to:
+  /// **'Ağır tempoda antrenman yap'**
+  String get goal_trainHard;
+
+  /// No description provided for @goal_postFeed.
+  ///
+  /// In tr, this message translates to:
+  /// **'Sosyal ağda paylaşım yap'**
+  String get goal_postFeed;
+
+  /// No description provided for @goal_noBetting.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bu hafta hiç bahis oynama'**
+  String get goal_noBetting;
+
+  /// No description provided for @goalsTitle.
+  ///
+  /// In tr, this message translates to:
+  /// **'Haftalık hedefler'**
+  String get goalsTitle;
+
+  /// No description provided for @goalsHint.
+  ///
+  /// In tr, this message translates to:
+  /// **'Haftada en az 2 hedefi tamamla, serin büyüsün!'**
+  String get goalsHint;
+
+  /// No description provided for @goalsStreak.
+  ///
+  /// In tr, this message translates to:
+  /// **'Seri: {weeks} hafta'**
+  String goalsStreak(int weeks);
+
+  /// No description provided for @goalsBest.
+  ///
+  /// In tr, this message translates to:
+  /// **'En iyi seri: {weeks}'**
+  String goalsBest(int weeks);
+
+  /// No description provided for @goalsReward.
+  ///
+  /// In tr, this message translates to:
+  /// **'Her hedef {each}, hepsi tamamlanırsa {bonus} ek ödül'**
+  String goalsReward(String each, String bonus);
+
+  /// No description provided for @goalsLastWeek.
+  ///
+  /// In tr, this message translates to:
+  /// **'Geçen hafta: {done}/{total} hedef, ödül {reward}'**
+  String goalsLastWeek(String done, String total, String reward);
+
+  /// No description provided for @goalDone.
+  ///
+  /// In tr, this message translates to:
+  /// **'Tamamlandı'**
+  String get goalDone;
+
+  /// No description provided for @goalFailed.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kaçırıldı'**
+  String get goalFailed;
+
+  /// No description provided for @goalPending.
+  ///
+  /// In tr, this message translates to:
+  /// **'Devam ediyor'**
+  String get goalPending;
+
+  /// No description provided for @eventGoalsReport.
+  ///
+  /// In tr, this message translates to:
+  /// **'Hedefler: {done}/{total} tamamlandı, seri {streak} hafta, ödül {reward}'**
+  String eventGoalsReport(String done, String total, int streak, String reward);
+
+  /// No description provided for @eventGoalStreak.
+  ///
+  /// In tr, this message translates to:
+  /// **'{weeks} haftalık seri! Bonus ödül kazandın'**
+  String eventGoalStreak(int weeks);
 }
 
 class _AppLocalizationsDelegate

@@ -16,6 +16,7 @@ enum FeedKind {
   shopping,
   donation,
   betFined,
+  horseWin,
   // Oyuncunun kendi paylaşımları
   ownThanks,
   ownFunny,

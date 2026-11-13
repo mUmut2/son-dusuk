@@ -6062,6 +6062,162 @@ abstract class AppLocalizations {
   /// In tr, this message translates to:
   /// **'Yatırılan: {staked} · Kazanılan: {won} · Cezalar: {fines}'**
   String habitStats(String staked, String won, String fines);
+
+  /// No description provided for @horse_names.
+  ///
+  /// In tr, this message translates to:
+  /// **'Ofsayt Osman|Penaltı Peri|Golcü Gürültü|Vole Vedat|Röveşata Rüzgârı|Şampiyon Şimşek|Tribün Tayfun|Zafer Zırhı|Forvet Fırtına|Kaleci Kasırga|Taktik Tarçın|Derbi Dede|Hat-Trick Hamdi|Çalım Çiçeği|Frikik Fatma|Taç Atışı Tarık|Hakem Hışmı|Kırmızı Kart Kaan|Sarı Şimşek|Pas Pamuk|Tezahürat Tolga|Şut Şahin|Gol Gülü|Kupa Kurabiyesi|Düdük Dedektif|Köşe Vuruşu Kübra|Uzatma Uykusu|Maç Sonu Mırıltısı|Kondisyon Kuzgunu|Bonservis Bülbülü|Transfer Tavşanı|Orta Saha Orkide|Libero Leylek|Stoper Süvari|Kanat Kartalı|Gol Kralı Gıgıl|Şımarık Şampiyon|VAR Vezir|Mola Maestro|Son Düdük Sultanı'**
+  String get horse_names;
+
+  /// No description provided for @sm_post_horseWin.
+  ///
+  /// In tr, this message translates to:
+  /// **'%player% at yarışında %horse% ile büyük vurgun yaptı!|At yarışında kazanan %horse% oldu, %player% de kazandı!|%horse% geldi, %player% güldü. Ama bahis her zaman kazandırmaz!'**
+  String get sm_post_horseWin;
+
+  /// No description provided for @raceTitle.
+  ///
+  /// In tr, this message translates to:
+  /// **'At Yarışı'**
+  String get raceTitle;
+
+  /// No description provided for @raceCardHint.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bu haftanın yarışı: 6 kurgusal at, bahissiz izleyebilirsin'**
+  String get raceCardHint;
+
+  /// No description provided for @raceCardDone.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bu haftanın yarışı bitti, gelecek hafta yeni yarış var'**
+  String get raceCardDone;
+
+  /// No description provided for @raceIntro.
+  ///
+  /// In tr, this message translates to:
+  /// **'Atlar da yarış da kurgusaldır. Bir at seç, bahis yap ya da bahissiz izle.'**
+  String get raceIntro;
+
+  /// No description provided for @raceRules.
+  ///
+  /// In tr, this message translates to:
+  /// **'Oranlar bürodan gelir ve uzun vadede kaybedersin. Bahis oynadıkça şans alışkanlığın artar; çok oynarsan ceza alırsın.'**
+  String get raceRules;
+
+  /// No description provided for @raceHorsesTitle.
+  ///
+  /// In tr, this message translates to:
+  /// **'Atlar'**
+  String get raceHorsesTitle;
+
+  /// No description provided for @raceForm.
+  ///
+  /// In tr, this message translates to:
+  /// **'Form'**
+  String get raceForm;
+
+  /// No description provided for @raceOddsLine.
+  ///
+  /// In tr, this message translates to:
+  /// **'Birinci {win} · İlk 3 {place}'**
+  String raceOddsLine(String win, String place);
+
+  /// No description provided for @raceBetKind.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bahis türü'**
+  String get raceBetKind;
+
+  /// No description provided for @raceBet_win.
+  ///
+  /// In tr, this message translates to:
+  /// **'Birinci gelir'**
+  String get raceBet_win;
+
+  /// No description provided for @raceBet_place.
+  ///
+  /// In tr, this message translates to:
+  /// **'İlk üçe girer'**
+  String get raceBet_place;
+
+  /// No description provided for @raceStakeLabel.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bahis tutarı'**
+  String get raceStakeLabel;
+
+  /// No description provided for @raceWatchOnly.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bahissiz izle'**
+  String get raceWatchOnly;
+
+  /// No description provided for @raceStart.
+  ///
+  /// In tr, this message translates to:
+  /// **'Yarışı başlat'**
+  String get raceStart;
+
+  /// No description provided for @racePickFirst.
+  ///
+  /// In tr, this message translates to:
+  /// **'Önce bir at seç'**
+  String get racePickFirst;
+
+  /// No description provided for @raceLeader.
+  ///
+  /// In tr, this message translates to:
+  /// **'Önde: {name}'**
+  String raceLeader(String name);
+
+  /// No description provided for @raceYourHorse.
+  ///
+  /// In tr, this message translates to:
+  /// **'Senin atın'**
+  String get raceYourHorse;
+
+  /// No description provided for @raceResultTitle.
+  ///
+  /// In tr, this message translates to:
+  /// **'Varış sırası'**
+  String get raceResultTitle;
+
+  /// No description provided for @raceWon.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kazandın! {amount} geri ödeme aldın'**
+  String raceWon(String amount);
+
+  /// No description provided for @raceLost.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bu sefer olmadı, bahsin kaybetti'**
+  String get raceLost;
+
+  /// No description provided for @raceWatchedHit.
+  ///
+  /// In tr, this message translates to:
+  /// **'Seçtiğin at tuttu! Bahis yapsaydın kazanacaktın'**
+  String get raceWatchedHit;
+
+  /// No description provided for @raceWatchedMiss.
+  ///
+  /// In tr, this message translates to:
+  /// **'Seçtiğin at tutmadı. İyi ki bahis yapmadın!'**
+  String get raceWatchedMiss;
+
+  /// No description provided for @raceAgainNextWeek.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bu haftanın yarışı bitti. Gelecek hafta yeni bir yarış var.'**
+  String get raceAgainNextWeek;
+
+  /// No description provided for @raceDone.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bu hafta yarışı izledin. Gelecek hafta yeniden gel.'**
+  String get raceDone;
 }
 
 class _AppLocalizationsDelegate

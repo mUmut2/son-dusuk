@@ -7,8 +7,22 @@ import '../social/feed_engine.dart';
 import '../social/feed_models.dart';
 import '../social/social_engine.dart';
 import 'betting.dart';
+import 'horse_racing.dart';
 import 'spending_balance.dart';
 import 'spending_models.dart';
+
+/// Oynanan yarışın sonucu.
+class RaceOutcome {
+  const RaceOutcome(this.state, this.result, this.card, this.payout, this.hit);
+
+  final CareerState state;
+  final RaceResult result;
+  final RaceCard card;
+  final int payout;
+
+  /// Seçilen at bahsi tutturdu mu (bahissiz izlemede de hesaplanır).
+  final bool hit;
+}
 
 class SpendingUpdate {
   const SpendingUpdate(this.state, this.events);
@@ -109,14 +123,7 @@ abstract final class SpendingEngine {
     if (sp.bets.any((b) => b.homeId == m.homeId && b.awayId == m.awayId)) {
       return null;
     }
-    final share = (stake / s.finance.balance).clamp(0.0, 1.0);
-    var habit =
-        sp.habit +
-        SpendingBalance.habitPerBet +
-        share * SpendingBalance.habitPerStakeShare;
-    if (sp.settled.isNotEmpty && !sp.settled.first.won) {
-      habit += SpendingBalance.habitChase;
-    }
+    final habit = _habitAfterBet(sp, stake, s.finance.balance);
     final next = _pay(s, stake);
     return next.copyWith(
       spending: sp.copyWith(
@@ -132,10 +139,74 @@ abstract final class SpendingEngine {
             week: s.week,
           ),
         ],
-        habit: habit.clamp(0.0, SpendingBalance.habitMax),
+        habit: habit,
         totalStaked: sp.totalStaked + stake,
       ),
     );
+  }
+
+  /// Bir bahis sonrası şans alışkanlığı: sabit + tutarın bakiyeye oranı, kaybı
+  /// çıkarma eki.
+  static double _habitAfterBet(Spending sp, int stake, int balance) {
+    final share = (stake / balance).clamp(0.0, 1.0);
+    var habit =
+        sp.habit +
+        SpendingBalance.habitPerBet +
+        share * SpendingBalance.habitPerStakeShare;
+    if (sp.settled.isNotEmpty && !sp.settled.first.won) {
+      habit += SpendingBalance.habitChase;
+    }
+    return habit.clamp(0.0, SpendingBalance.habitMax);
+  }
+
+  // --- At yarışı ---
+
+  /// Bu hafta yarış izlenmediyse true (haftada bir yarış).
+  static bool raceReady(CareerState s) => s.spending.raceWeek != s.absoluteWeek;
+
+  /// Haftanın yarışını oynatır. [stake] 0 ise bahissiz izlenir (para ve
+  /// alışkanlık değişmez). Hazır değilse ya da bahis geçersizse null.
+  static RaceOutcome? runRace(
+    CareerState s, {
+    required int horse,
+    required RaceBet kind,
+    required int stake,
+    required GameRandom random,
+    RaceCard? card,
+  }) {
+    if (!raceReady(s)) return null;
+    if (horse < 0 || horse >= SpendingBalance.horseCount) return null;
+    if (stake != 0 &&
+        (stake < SpendingBalance.minStake || stake > s.finance.balance)) {
+      return null;
+    }
+    final c = card ?? HorseRacing.card(s);
+    final result = HorseRacing.run(s);
+    final hit = kind == RaceBet.win
+        ? result.winner == horse
+        : result.placed(horse);
+    final payout = stake > 0 && hit ? (stake * c.odds(horse, kind)).round() : 0;
+
+    final sp = s.spending;
+    var next = s.copyWith(
+      finance: s.finance.copyWith(balance: s.finance.balance - stake + payout),
+      spending: sp.copyWith(
+        raceWeek: s.absoluteWeek,
+        habit: stake > 0 ? _habitAfterBet(sp, stake, s.finance.balance) : null,
+        totalStaked: sp.totalStaked + stake,
+        totalWon: sp.totalWon + payout,
+      ),
+    );
+    if (stake > 0 && payout >= stake * SpendingBalance.horseBigWinMultiple) {
+      next = FeedEngine.react(
+        next,
+        FeedKind.horseWin,
+        {'horse': '${c.horses[horse].nameIndex}'},
+        random,
+        growth: 0.01,
+      );
+    }
+    return RaceOutcome(next, result, c, payout, hit);
   }
 
   // --- Haftalık akış ---

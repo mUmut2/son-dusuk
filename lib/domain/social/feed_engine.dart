@@ -50,6 +50,7 @@ abstract final class FeedEngine {
     FeedKind.shopping: [FeedSource.meme, FeedSource.fan, FeedSource.journalist],
     FeedKind.donation: [FeedSource.fan, FeedSource.club, FeedSource.journalist],
     FeedKind.betFined: [FeedSource.journalist, FeedSource.fan, FeedSource.club],
+    FeedKind.horseWin: [FeedSource.meme, FeedSource.fan, FeedSource.journalist],
   };
 
   /// Bu hafta oyuncu paylaşım yapabilir mi (haftada bir).

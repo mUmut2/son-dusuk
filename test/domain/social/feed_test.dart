@@ -379,9 +379,10 @@ void main() {
             FeedKind.interview => l10n.sm_post_interview,
             FeedKind.achievement => l10n.sm_post_achievement,
             FeedKind.national => l10n.sm_post_national,
-          FeedKind.shopping => l10n.sm_post_shopping,
-          FeedKind.donation => l10n.sm_post_donation,
-          FeedKind.betFined => l10n.sm_post_betFined,
+            FeedKind.shopping => l10n.sm_post_shopping,
+            FeedKind.donation => l10n.sm_post_donation,
+            FeedKind.betFined => l10n.sm_post_betFined,
+            FeedKind.horseWin => l10n.sm_post_horseWin,
             FeedKind.ownThanks => l10n.sm_post_ownThanks,
             FeedKind.ownFunny => l10n.sm_post_ownFunny,
             FeedKind.ownTraining => l10n.sm_post_ownTraining,
@@ -424,6 +425,7 @@ void main() {
         'kind': 'world',
         'choice': '0',
         'item': 'car',
+        'horse': '3',
       };
       for (final k in FeedKind.values) {
         final p = k == FeedKind.interview

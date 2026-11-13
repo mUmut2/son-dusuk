@@ -157,4 +157,103 @@ void main() {
       expect(tester.takeException(), isNull);
     }
   });
+
+  group('at yarışı ekranı', () {
+    testWidgets('altı at listelenir, at seçmeden başlatılamaz', (tester) async {
+      await pumpSpending(tester, route: '/game/race');
+      expect(find.text('At Yarışı'), findsOneWidget);
+      expect(find.textContaining('Form:'), findsNWidgets(6));
+      expect(find.text('Önce bir at seç'), findsOneWidget);
+      final button = tester.widget<FilledButton>(
+        find.ancestor(
+          of: find.text('Önce bir at seç'),
+          matching: find.byWidgetPredicate((w) => w is FilledButton),
+        ),
+      );
+      expect(button.onPressed, isNull);
+    });
+
+    testWidgets('bahissiz izleme: yarış oynanır, sonuç görünür, para aynı', (
+      tester,
+    ) async {
+      final c = await pumpSpending(tester, route: '/game/race');
+      await tester.tap(find.textContaining('Form:').first);
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('Yarışı başlat'));
+      await tester.pump();
+      await tester.pump(const Duration(seconds: 3));
+      expect(find.textContaining('Önde:'), findsOneWidget);
+      await tester.pump(const Duration(seconds: 10));
+      await tester.pumpAndSettle();
+
+      expect(find.text('Varış sırası'), findsOneWidget);
+      final career = c.read(activeCareerProvider)!.state;
+      expect(career.finance.balance, 100000);
+      expect(career.spending.raceWeek, career.absoluteWeek);
+      expect(career.spending.habit, 0);
+    });
+
+    testWidgets('bahisli izleme parayı etkiler ve alışkanlığı artırır', (
+      tester,
+    ) async {
+      final c = await pumpSpending(tester, route: '/game/race');
+      await tester.tap(find.textContaining('Form:').first);
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('2.000 ₺'));
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('Yarışı başlat'));
+      await tester.pump();
+      await tester.pump(const Duration(seconds: 12));
+      await tester.pumpAndSettle();
+
+      final career = c.read(activeCareerProvider)!.state;
+      expect(career.spending.totalStaked, 2000);
+      expect(career.spending.habit, greaterThan(0));
+      expect(find.text('Varış sırası'), findsOneWidget);
+    });
+
+    testWidgets('aynı hafta ikinci yarış yok', (tester) async {
+      await pumpSpending(
+        tester,
+        route: '/game/race',
+        spending: const Spending(raceWeek: 10),
+      );
+      expect(find.textContaining('Bu hafta yarışı izledin'), findsOneWidget);
+      expect(find.text('Yarışı başlat'), findsNothing);
+    });
+
+    testWidgets('harcama ekranından yarışa gidilir', (tester) async {
+      await pumpSpending(tester);
+      await tester.ensureVisible(find.text('At Yarışı'));
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('At Yarışı'));
+      await tester.pumpAndSettle();
+      expect(find.textContaining('Form:'), findsNWidgets(6));
+    });
+
+    testWidgets('dar telefon ekranında taşma olmaz', (tester) async {
+      await pumpSpending(
+        tester,
+        route: '/game/race',
+        size: const Size(320, 568),
+      );
+      expect(tester.takeException(), isNull);
+      await tester.tap(find.textContaining('Form:').first);
+      await tester.pumpAndSettle();
+      await tester.scrollUntilVisible(
+        find.text('Yarışı başlat'),
+        200,
+        scrollable: find.byType(Scrollable).first,
+      );
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('Yarışı başlat'));
+      await tester.pump();
+      await tester.pump(const Duration(seconds: 4));
+      expect(tester.takeException(), isNull);
+      await tester.pump(const Duration(seconds: 10));
+      await tester.pumpAndSettle();
+      expect(tester.takeException(), isNull);
+      expect(find.text('Varış sırası'), findsOneWidget);
+    });
+  });
 }

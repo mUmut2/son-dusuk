@@ -31,6 +31,7 @@ extension FeedTexts on AppLocalizations {
     FeedKind.shopping => sm_post_shopping,
     FeedKind.donation => sm_post_donation,
     FeedKind.betFined => sm_post_betFined,
+    FeedKind.horseWin => sm_post_horseWin,
     FeedKind.ownThanks => sm_post_ownThanks,
     FeedKind.ownFunny => sm_post_ownFunny,
     FeedKind.ownTraining => sm_post_ownTraining,
@@ -133,6 +134,10 @@ extension FeedTexts on AppLocalizations {
           ),
         ),
         FeedKind.interview => text.replaceAll('%headline%', _headline(p)),
+        FeedKind.horseWin => text.replaceAll(
+          '%horse%',
+          horseName(int.tryParse(q['horse'] ?? '') ?? 0),
+        ),
         FeedKind.shopping => text.replaceAll(
           '%item%',
           propertyName(

@@ -3402,4 +3402,96 @@ class AppLocalizationsTr extends AppLocalizations {
   String habitStats(String staked, String won, String fines) {
     return 'Yatırılan: $staked · Kazanılan: $won · Cezalar: $fines';
   }
+
+  @override
+  String get horse_names =>
+      'Ofsayt Osman|Penaltı Peri|Golcü Gürültü|Vole Vedat|Röveşata Rüzgârı|Şampiyon Şimşek|Tribün Tayfun|Zafer Zırhı|Forvet Fırtına|Kaleci Kasırga|Taktik Tarçın|Derbi Dede|Hat-Trick Hamdi|Çalım Çiçeği|Frikik Fatma|Taç Atışı Tarık|Hakem Hışmı|Kırmızı Kart Kaan|Sarı Şimşek|Pas Pamuk|Tezahürat Tolga|Şut Şahin|Gol Gülü|Kupa Kurabiyesi|Düdük Dedektif|Köşe Vuruşu Kübra|Uzatma Uykusu|Maç Sonu Mırıltısı|Kondisyon Kuzgunu|Bonservis Bülbülü|Transfer Tavşanı|Orta Saha Orkide|Libero Leylek|Stoper Süvari|Kanat Kartalı|Gol Kralı Gıgıl|Şımarık Şampiyon|VAR Vezir|Mola Maestro|Son Düdük Sultanı';
+
+  @override
+  String get sm_post_horseWin =>
+      '%player% at yarışında %horse% ile büyük vurgun yaptı!|At yarışında kazanan %horse% oldu, %player% de kazandı!|%horse% geldi, %player% güldü. Ama bahis her zaman kazandırmaz!';
+
+  @override
+  String get raceTitle => 'At Yarışı';
+
+  @override
+  String get raceCardHint =>
+      'Bu haftanın yarışı: 6 kurgusal at, bahissiz izleyebilirsin';
+
+  @override
+  String get raceCardDone =>
+      'Bu haftanın yarışı bitti, gelecek hafta yeni yarış var';
+
+  @override
+  String get raceIntro =>
+      'Atlar da yarış da kurgusaldır. Bir at seç, bahis yap ya da bahissiz izle.';
+
+  @override
+  String get raceRules =>
+      'Oranlar bürodan gelir ve uzun vadede kaybedersin. Bahis oynadıkça şans alışkanlığın artar; çok oynarsan ceza alırsın.';
+
+  @override
+  String get raceHorsesTitle => 'Atlar';
+
+  @override
+  String get raceForm => 'Form';
+
+  @override
+  String raceOddsLine(String win, String place) {
+    return 'Birinci $win · İlk 3 $place';
+  }
+
+  @override
+  String get raceBetKind => 'Bahis türü';
+
+  @override
+  String get raceBet_win => 'Birinci gelir';
+
+  @override
+  String get raceBet_place => 'İlk üçe girer';
+
+  @override
+  String get raceStakeLabel => 'Bahis tutarı';
+
+  @override
+  String get raceWatchOnly => 'Bahissiz izle';
+
+  @override
+  String get raceStart => 'Yarışı başlat';
+
+  @override
+  String get racePickFirst => 'Önce bir at seç';
+
+  @override
+  String raceLeader(String name) {
+    return 'Önde: $name';
+  }
+
+  @override
+  String get raceYourHorse => 'Senin atın';
+
+  @override
+  String get raceResultTitle => 'Varış sırası';
+
+  @override
+  String raceWon(String amount) {
+    return 'Kazandın! $amount geri ödeme aldın';
+  }
+
+  @override
+  String get raceLost => 'Bu sefer olmadı, bahsin kaybetti';
+
+  @override
+  String get raceWatchedHit =>
+      'Seçtiğin at tuttu! Bahis yapsaydın kazanacaktın';
+
+  @override
+  String get raceWatchedMiss => 'Seçtiğin at tutmadı. İyi ki bahis yapmadın!';
+
+  @override
+  String get raceAgainNextWeek =>
+      'Bu haftanın yarışı bitti. Gelecek hafta yeni bir yarış var.';
+
+  @override
+  String get raceDone => 'Bu hafta yarışı izledin. Gelecek hafta yeniden gel.';
 }

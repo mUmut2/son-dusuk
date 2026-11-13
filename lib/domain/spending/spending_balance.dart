@@ -110,4 +110,36 @@ abstract final class SpendingBalance {
 
   /// Gösterilen son sonuç sayısı.
   static const int settledCap = 8;
+
+  // --- At yarışı (kurgusal) ---
+  /// Yarıştaki at sayısı ve ARB'deki toplam at ismi sayısı.
+  static const int horseCount = 6;
+  static const int horseNamePool = 40;
+
+  /// At gücü aralığı.
+  static const double horseRatingMin = 40;
+  static const double horseRatingMax = 90;
+
+  /// Simülasyon: adım sayısı üst sınırı, gün formu ve adım gürültüsü.
+  static const int raceMaxTicks = 160;
+  static const double raceBaseStep = 0.021;
+  static const double raceRatingSpread = 0.22;
+  static const double raceDayFormSpread = 0.06;
+  static const double raceNoise = 0.3;
+
+  /// Yarışın son kısmında yorgunluk (başlangıç oranı ve yorgunluk payı).
+  static const double raceFadeStart = 0.6;
+  static const double raceFadeAmount = 0.2;
+
+  /// Oranlar Monte Carlo ile hesaplanır; büro payı ve sınırlar.
+  static const int oddsSimulations = 800;
+  static const double horseWinMargin = 0.15;
+  static const double horsePlaceMargin = 0.15;
+  static const double horseWinOddsMin = 1.2;
+  static const double horseWinOddsMax = 30;
+  static const double horsePlaceOddsMin = 1.05;
+  static const double horsePlaceOddsMax = 6;
+
+  /// Akışa yansıyan büyük kazanç: geri ödeme tutarın en az bu katı.
+  static const double horseBigWinMultiple = 4;
 }

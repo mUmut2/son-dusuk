@@ -32,12 +32,17 @@ Her alt faz kendi commit'i ve onayıyla ilerler.
 - Kendi takımına bahis oynama: yasak (ceza + olay). Ödül yok, kar etme
   garantisi yok; beklenen değer negatif.
 
-## 10c — At yarışı mini oyunu (öneri)
+## 10c — At yarışı mini oyunu ✅
 - Kurgusal atlar (isim, form, pist uyumu); oyuncu at seçer, oyun parasıyla
   bahis yapar, yarış Flame ile kısa animasyonla oynanır (saf Dart çözümleyici,
   seed'li).
 - Bahis sayacına ve cezalara 10b ile aynı zincir üzerinden bağlanır.
 - Sürpriz: ucuz at kazanırsa akışta "olay" paylaşımı.
+
+> Uygulama notları: yarış Flame yerine Flutter `CustomPainter` ile animasyonlu;
+> haftada bir yarış, "bahissiz izle" seçeneği var, bahisli oynamak şans
+> alışkanlığını artırır. At isimleri kurgusal futbol esprileri (gerçek kişi
+> adlarının kelime oyunu değil; CLAUDE.md kural 8).
 
 ## 10d — Tutundurma (öneri)
 - Haftalık **hedefler** (3 hedef: gol, reyting, takipçi, taraftar...) ve ödülü

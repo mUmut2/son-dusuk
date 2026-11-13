@@ -524,6 +524,12 @@ extension L10nLabels on AppLocalizations {
     ),
   };
 
+  /// At ismi: ARB'deki `|` ile ayrılmış listeden.
+  String horseName(int index) {
+    final list = horse_names.split('|');
+    return list[index % list.length];
+  }
+
   String propertyName(Property p) => switch (p) {
     Property.watch => prop_watch,
     Property.car => prop_car,

@@ -108,6 +108,8 @@ class _SpendingScreenState extends ConsumerState<SpendingScreen> {
                 const SizedBox(height: 20),
                 Text(l10n.betTitle, style: textTheme.titleMedium),
                 const SizedBox(height: 8),
+                _RaceCard(career: career),
+                const SizedBox(height: 8),
                 _HabitCard(spending: career.spending),
                 const SizedBox(height: 8),
                 Text(
@@ -287,6 +289,27 @@ class _BalanceCard extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class _RaceCard extends StatelessWidget {
+  const _RaceCard({required this.career});
+
+  final CareerState career;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final ready = SpendingEngine.raceReady(career);
+    return Card(
+      child: ListTile(
+        leading: const Icon(Icons.emoji_events, size: 32),
+        title: Text(l10n.raceTitle),
+        subtitle: Text(ready ? l10n.raceCardHint : l10n.raceCardDone),
+        trailing: const Icon(Icons.chevron_right),
+        onTap: () => context.push('/game/race'),
       ),
     );
   }

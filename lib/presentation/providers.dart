@@ -17,6 +17,7 @@ import '../domain/league/club_world.dart';
 import '../domain/social/event_models.dart';
 import '../domain/social/feed_models.dart';
 import '../domain/social/social_engine.dart';
+import '../domain/spending/horse_racing.dart';
 import '../domain/spending/spending_engine.dart';
 import '../domain/spending/spending_models.dart';
 import '../game/sound_service.dart';
@@ -209,6 +210,28 @@ class ActiveCareerNotifier extends Notifier<ActiveCareer?> {
     if (next == null) return false;
     await update(next);
     return true;
+  }
+
+  /// Haftanın at yarışını oynatır ([stake] 0 = bahissiz izle); sonucu döner.
+  Future<RaceOutcome?> runRace({
+    required int horse,
+    required RaceBet kind,
+    required int stake,
+    RaceCard? card,
+  }) async {
+    final current = state;
+    if (current == null) return null;
+    final outcome = SpendingEngine.runRace(
+      current.state,
+      horse: horse,
+      kind: kind,
+      stake: stake,
+      random: GameRandom(),
+      card: card,
+    );
+    if (outcome == null) return null;
+    await update(outcome.state);
+    return outcome;
   }
 
   /// Kendi hesabından paylaşım yapar; yapamazsa (haftada bir) null döner.
